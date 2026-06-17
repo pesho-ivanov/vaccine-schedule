@@ -4,6 +4,7 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 
 - `vaccine_schedule.py` loads and renders the schedule.
 - `tracker_schedule.py` projects the stable YAML data into an app-facing schedule model.
+- `tracker_calculations.py` computes milestone due dates, dose statuses, visit groups, and completion summaries.
 - `data/bg/sources.yaml` contains source links.
 - `data/bg/columns.yaml` defines stable age-column IDs.
 - `data/bg/vaccines.yaml` defines vaccine row IDs, labels, short names, and aliases.
@@ -31,4 +32,10 @@ Export the app-facing schedule projection as JSON:
 
 ```sh
 python3 tracker_schedule.py
+```
+
+Preview the calculation engine with a generated example profile:
+
+```sh
+python3 tracker_calculations.py
 ```

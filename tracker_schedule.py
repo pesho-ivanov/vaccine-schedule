@@ -211,7 +211,7 @@ def milestone_kind(column_id: str, age_months: float) -> MilestoneKind:
         return "pregnancy"
     if column_id == "birth":
         return "birth"
-    if age_months >= 216:
+    if age_months > 216:
         return "adult"
     if column_id.endswith("y") or column_id == "gte65y":
         return "year"

@@ -210,6 +210,7 @@ Status convention:
 | 2026-06-16 | Planning | Expanded MVP plan with detailed phases, checklists, UAT, and log structure. | Markdown reviewed manually. | Start Phase 0 and validate schedule sources before app scaffolding. |
 | 2026-06-18 | Phase 0 | Added source inventory, schedule-version decision, safety disclaimer copy, privacy/analytics policy, product vocabulary, and risk register. | Reviewed Lex.bg Ordinance No. 15, ECDC Bulgaria scheduler link, and Plus Men pregnancy recommendations; `python3 validate.py` passed; UAT scenarios prepared but not user-tested. | Start Phase 1 with a compatibility-preserving adapter. |
 | 2026-06-18 | Phase 1 | Added compatibility-preserving app-facing schedule adapter, product mappings, source metadata, child fixtures, and projection validation. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Structure week/seasonal/minimum-interval rules before Phase 2 calculations depend on them. |
+| 2026-06-18 | Phase 2 | Added date/status calculation engine, administration-event matching, visit grouping, completion summary, and calculation tests. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Add structured minimum-interval and eligibility rules before building reminders or clinical warnings. |
 
 ## Detailed Implementation Phases
 
@@ -399,18 +400,28 @@ Deliverables:
 - Conservative handling for late or non-standard administration dates.
 - Unit and fixture tests.
 
+Phase 2 implementation notes:
+
+- Use `tracker_calculations.py` for date-only milestone calculations, dose statuses, visit groups, administration-event matching, and completion summaries.
+- Status calculation is stateless: callers recompute after any profile or administration-event change.
+- Product-based matching is conservative. Without explicit dose IDs, an administration event satisfies the earliest unmatched dose for each covered antigen.
+- Explicit `scheduled_dose_ids` should be used when the UI records a known due visit, especially for catch-up or older-child backfill.
+- Recommended items are emitted separately as `optional_recommended` and do not reduce mandatory completion.
+- Non-standard timing is recorded as `completed` with `needs_doctor_confirmation` rather than rejected or judged.
+- Minimum intervals, seasonal eligibility, risk groups, and true catch-up rules are still source notes, not clinical algorithms.
+
 Implementation checklist:
 
-- [ ] Implement date math using calendar dates rather than exact timestamps.
-- [ ] Calculate exact milestone dates from birth date for days, weeks, months, and years.
-- [ ] Define configurable due-soon and overdue thresholds.
-- [ ] Group same-date mandatory doses into a visit group.
-- [ ] Keep recommended vaccines separate from mandatory completion.
-- [ ] Mark non-standard or late entries as recorded while prompting doctor confirmation for future timing.
-- [ ] Support minimum interval notes without pretending to generate full clinical catch-up plans.
-- [ ] Recompute all statuses after an administration event changes.
-- [ ] Add tests for leap years, month-end birth dates, daylight saving changes, and Europe/Sofia timezone behavior.
-- [ ] Add tests for the reference example pattern: birth dose, 2-month dose, next 3-month dose.
+- [x] Implement date math using calendar dates rather than exact timestamps.
+- [x] Calculate exact milestone dates from birth date for days, weeks, months, and years.
+- [x] Define configurable due-soon and overdue thresholds.
+- [x] Group same-date mandatory doses into a visit group.
+- [x] Keep recommended vaccines separate from mandatory completion.
+- [x] Mark non-standard or late entries as recorded while prompting doctor confirmation for future timing.
+- [ ] Support minimum interval notes without pretending to generate full clinical catch-up plans. (pending: notes are preserved, but intervals are not structured rules)
+- [x] Recompute all statuses after an administration event changes.
+- [ ] Add tests for leap years, month-end birth dates, daylight saving changes, and Europe/Sofia timezone behavior. (in progress: leap-year and month-end tests exist; timezone-specific checks remain)
+- [x] Add tests for the reference example pattern: birth dose, 2-month dose, next 3-month dose.
 
 UAT scenarios:
 
@@ -430,7 +441,7 @@ Phase log:
 
 | Date | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- |
-| TBD | Not started. | Not run. | Build calculation module after Phase 1 schema is stable. |
+| 2026-06-18 | Added `tracker_calculations.py` with calendar date math, child profiles, administration events, dose statuses, visit grouping, next-visit selection, and completion summaries. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Add structured minimum-interval, week-anchor, seasonal, and eligibility rules before reminders and clinician-confirmation copy depend on them. |
 
 ### Phase 3: App Foundation and Local Storage
 

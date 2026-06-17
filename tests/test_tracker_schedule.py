@@ -27,6 +27,9 @@ class TrackerScheduleTests(unittest.TestCase):
         self.assertEqual(self.schedule.schedule_version, SCHEDULE_VERSION)
         self.assertEqual(self.schedule.effective_date, "2026-07-01")
         self.assertEqual(self.schedule.mvp_age_coverage["throughAgeYears"], 18)
+        milestones = {milestone.id: milestone for milestone in self.schedule.milestones}
+        self.assertEqual(milestones["18y"].kind, "year")
+        self.assertEqual(milestones["25y"].kind, "adult")
 
     def test_mandatory_child_antigens_are_projected(self) -> None:
         mandatory_antigen_ids = {
