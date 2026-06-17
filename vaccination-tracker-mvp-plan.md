@@ -208,6 +208,7 @@ Status convention:
 | Date | Phase | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- | --- |
 | 2026-06-16 | Planning | Expanded MVP plan with detailed phases, checklists, UAT, and log structure. | Markdown reviewed manually. | Start Phase 0 and validate schedule sources before app scaffolding. |
+| 2026-06-18 | Phase 0 | Added source inventory, schedule-version decision, safety disclaimer copy, privacy/analytics policy, product vocabulary, and risk register. | Reviewed Lex.bg Ordinance No. 15, ECDC Bulgaria scheduler link, and Plus Men pregnancy recommendations; `python3 validate.py` passed; UAT scenarios prepared but not user-tested. | Start Phase 1 with a compatibility-preserving adapter. |
 
 ## Detailed Implementation Phases
 
@@ -223,18 +224,92 @@ Deliverables:
 - Product vocabulary for mandatory, recommended, optional, due, overdue, completed, and needs doctor confirmation.
 - Initial acceptance criteria for all future phases.
 
+Phase 0 baseline decisions:
+
+#### MVP Schedule Version
+
+The first encoded schedule version should be `BG-N15-2026-07-01`: the Bulgarian child schedule in Ordinance No. 15, Appendix 1, as amended through State Gazette No. 3/2026 with changes in force from 2026-07-01. This matches the current repository shape, including mandatory varicella entries.
+
+If an app build is tested or released before 2026-07-01, the schedule must be labelled as an upcoming schedule version, not as the currently effective Bulgarian schedule. Before any beta release, re-check the official source and update the schedule version/import date if the regulation changes.
+
+#### Source Inventory
+
+| Source ID | Title | URL | Role | Effective / Version Notes | Accessed |
+| --- | --- | --- | --- | --- | --- |
+| `lex_calendar` | Наредба № 15 от 12 май 2005 г. за имунизациите в Република България | https://lex.bg/laws/ldoc/2135504228 | Normative source for mandatory, targeted, and recommended immunization categories; Appendix 1 is the Bulgarian immunization calendar. | Appendix 1 is amended through State Gazette No. 3/2026, in force from 2026-07-01. Use this as the primary source for child schedule encoding. | 2026-06-18 |
+| `ecdc_calendar` | ECDC Vaccine Scheduler, Bulgaria | https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeAdultAgeGroup=false | Cross-check source and future import-model reference for EU schedules. | Not a Bulgarian legal source. Use for comparison and country-schedule modelling, not as the authority when it conflicts with Ordinance No. 15. | 2026-06-18 |
+| `pregnancy_vaccine` | Плюс мен: Препоръки за имунизация на бременни жени | https://plusmen.bg/bg/suggestions/pregnancy | Supplementary public-health source for pregnancy pertussis, influenza, COVID-19, and RSV recommendation copy/product examples. | Treat as contextual recommendation content, not as the child schedule authority. | 2026-06-18 |
+
+Before beta release, add or verify Ministry of Health links for approved vaccine-product procurement/specification pages if product names are surfaced as more than examples.
+
+#### Scope Decisions
+
+- MVP age coverage is birth through 18 years.
+- Pregnancy and adult columns remain in this repository for compatibility and source continuity, but the mobile MVP child timeline should hide pregnancy and adult milestones by default.
+- Pregnancy recommendations are deferred from the main child-profile workflow. They may appear only as non-blocking educational/source context after the child timeline is stable.
+- Mandatory and recommended items must be visually and semantically separate. Recommended vaccines must not reduce mandatory completion.
+- Catch-up timing, contraindications, premature-infant rules, chronic-disease cases, and non-standard administration dates must be recorded neutrally and routed to "confirm with doctor" copy, not algorithmic medical advice.
+
+#### Safety Disclaimer Copy
+
+English:
+
+> This app helps you track vaccination records and reminders using published schedule data. It is not medical advice, not a diagnosis tool, and not an official medical record. Always confirm vaccine timing, contraindications, catch-up vaccination, optional vaccines, and non-standard situations with your child's pediatrician or GP.
+
+Bulgarian:
+
+> Това приложение помага да проследявате имунизационни записи и напомняния според публикувани календарни данни. То не е медицински съвет, не е инструмент за диагноза и не е официален медицински документ. Винаги потвърждавайте срокове, противопоказания, наваксващи имунизации, препоръчителни ваксини и нестандартни случаи с педиатъра или личния лекар на детето.
+
+Use the disclaimer in onboarding, export, source/version screens, and any screen that labels overdue or non-standard timing.
+
+#### Privacy and Analytics Policy
+
+- MVP privacy promise: local-first, no account, no server, and no network connection required for normal use.
+- Child profiles, vaccine records, notes, reminder settings, and export data stay on the device unless the user explicitly shares an export.
+- Do not collect analytics in the MVP.
+- If diagnostics are later added, they must be opt-in, must exclude child health data, and must be documented before implementation.
+- Attachments and free-text medical notes are privacy-sensitive; keep them deferred unless local encryption and deletion/export behavior are explicitly reviewed.
+
+#### Product Vocabulary
+
+| Concept | English UI Term | Bulgarian UI Term | Product Rule |
+| --- | --- | --- | --- |
+| Mandatory schedule item | Mandatory | Задължителна | Counts toward mandatory completion. |
+| Recommended/optional item | Recommended | Препоръчителна | Shown separately; does not reduce mandatory completion when absent. |
+| Completed item | Completed | Изпълнена | Requires a saved administration event or confirmed imported record. |
+| Future item | Upcoming | Предстояща | Due date is outside the due-soon window. |
+| Near-future item | Due soon | Скоро предстояща | Default threshold: within 14 calendar days unless Phase 2 changes it. |
+| Due item | Due today | Днес е срокът | Due date equals the local calendar date. |
+| Past-due item | Overdue | Просрочена | Use neutral copy; do not imply fault or medical harm. |
+| Unknown history | Not recorded | Няма запис | Missing record is not the same as missed vaccination. |
+| Older child setup state | Incomplete history | Непълна история | Shown after older-child onboarding when records are not backfilled. |
+| Non-standard timing | Confirm with doctor | Потвърдете с лекар | Used for late/early records, catch-up questions, contraindications, and eligibility uncertainty. |
+
+#### Risk Register
+
+| Risk | Impact | Phase 0 Mitigation | Follow-up Phase |
+| --- | --- | --- | --- |
+| Schedule source drift before release | App may show stale or future-effective data as current. | Version is explicitly `BG-N15-2026-07-01`; re-verify before beta. | Phase 1, Phase 10 |
+| Incorrect schedule encoding | Parent may receive misleading due/overdue status. | Use Ordinance No. 15 as primary authority and require source references for encoded rows. | Phase 1, Phase 2 |
+| Missed or duplicated reminders | Parent may miss a visit or receive noisy notifications. | Define reminders as supportive only; disclaimer keeps clinician confirmation primary. | Phase 7 |
+| Product-to-antigen mapping error | Combination products may mark wrong antigens complete. | Treat product mappings as examples until validated; allow manual correction. | Phase 1, Phase 6 |
+| Privacy leakage through exports or diagnostics | Child health data may leave the device unintentionally. | No analytics; sharing only through explicit export/share actions. | Phase 3, Phase 8 |
+| Overconfident medical wording | App may look like a medical decision system. | Standard disclaimer and "confirm with doctor" terminology are required. | Phase 4, Phase 5, Phase 9 |
+| Date math and timezone errors | Due dates may shift around DST or month ends. | Phase 2 must use calendar dates, not exact instants. | Phase 2 |
+| Breaking YAML contracts used by other repos | Downstream consumers may fail. | Additive-only policy is documented in `AGENTS.md`; Phase 1 should prefer adapters over schema rewrites. | Phase 1 |
+
 Implementation checklist:
 
 - [x] Review the existing Zoya vaccine table and identify schedule shape.
-- [ ] Capture official source URLs, source titles, effective dates, and access dates.
-- [ ] Confirm which Bulgarian schedule version the MVP will encode first.
-- [ ] Decide whether pregnancy recommendations are visible in MVP or deferred.
-- [ ] Define exact MVP age coverage: birth through 18 years.
-- [ ] Define the legal/medical disclaimer text in English.
-- [ ] Define the legal/medical disclaimer text in Bulgarian.
-- [ ] Define privacy promise: local-first, no account, no server by default.
-- [ ] Define analytics policy for MVP.
-- [ ] Create a risk register for schedule accuracy, missed reminders, incorrect product mapping, and privacy leakage.
+- [x] Capture official source URLs, source titles, effective dates, and access dates.
+- [x] Confirm which Bulgarian schedule version the MVP will encode first.
+- [x] Decide whether pregnancy recommendations are visible in MVP or deferred.
+- [x] Define exact MVP age coverage: birth through 18 years.
+- [x] Define the legal/medical disclaimer text in English.
+- [x] Define the legal/medical disclaimer text in Bulgarian.
+- [x] Define privacy promise: local-first, no account, no server by default.
+- [x] Define analytics policy for MVP.
+- [x] Create a risk register for schedule accuracy, missed reminders, incorrect product mapping, and privacy leakage.
 
 UAT scenarios:
 
@@ -254,6 +329,7 @@ Phase log:
 | Date | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- |
 | 2026-06-16 | Created initial MVP plan and expanded it with phase tracking. | Reviewed against the live Zoya vaccines table. | Add official source inventory and final disclaimer text. |
+| 2026-06-18 | Recorded Phase 0 source inventory, schedule-version decision, scope decisions, disclaimer copy, privacy/analytics policy, vocabulary, and risk register. | Reviewed Lex.bg Ordinance No. 15, ECDC scheduler link, and Plus Men pregnancy recommendation page; `python3 validate.py` passed; UAT scenarios prepared but not user-tested. | Start Phase 1 with an adapter over the existing YAML contracts. |
 
 ### Phase 1: Schedule Data Model and Bulgarian Schedule Encoding
 
