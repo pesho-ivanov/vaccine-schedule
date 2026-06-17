@@ -1,0 +1,156 @@
+version: 1
+country: BG
+vaccines:
+- id: tuberculosis
+  label:
+    en: tuberculosis
+    bg: туберкулоза
+  short:
+    en: TB
+    bg: ТБ
+  record_aliases:
+  - бцж
+  - туберкулоза
+- id: diphtheria
+  label:
+    en: diphtheria
+    bg: дифтерия
+  short:
+    en: Diph
+    bg: Диф
+  record_aliases:
+  - дтка
+- id: tetanus
+  label:
+    en: tetanus
+    bg: тетанус
+  short:
+    en: Tet
+    bg: Тет
+  record_aliases:
+  - дтка
+- id: pertussis
+  label:
+    en: pertussis
+    bg: коклюш
+  short:
+    en: Pert
+    bg: Кокл
+  record_aliases:
+  - дтка
+- id: poliomyelitis
+  label:
+    en: poliomyelitis
+    bg: полиомиелит
+  short:
+    en: Polio
+    bg: Полио
+  record_aliases:
+  - пи
+- id: haemophilus_influenzae_type_b
+  label:
+    en: Haemophilus influenzae type b
+    bg: хемофилус инфлуенце тип Б
+  short:
+    en: Hib
+    bg: Хиб
+  record_aliases:
+  - хиб
+- id: hepatitis_b
+  label:
+    en: hepatitis B
+    bg: вирусен хепатит тип Б
+  short:
+    en: Hep B
+    bg: Хеп. Б
+  record_aliases:
+  - хеп. б
+- id: pneumococcal_disease
+  label:
+    en: pneumococcal disease
+    bg: пневмококови инфекции
+  short:
+    en: Pneumo
+    bg: Пневмо
+  record_aliases:
+  - пневмо
+- id: measles_mumps_rubella
+  label:
+    en: measles, mumps, rubella
+    bg: морбили, паротит, рубеола
+  short:
+    en: MMR
+    bg: МПР
+  record_aliases:
+  - мпр
+- id: varicella
+  label:
+    en: varicella
+    bg: варицела
+  short:
+    en: Varicella
+    bg: Варицела
+  record_aliases:
+  - вар
+- id: pert
+  label:
+    en: Pert
+    bg: коклюш
+  record_aliases:
+  - tdap
+- id: rsv
+  label:
+    en: RSV
+    bg: респираторно-синцитиален вирус
+  short:
+    en: RSV
+    bg: РСВ
+  record_aliases:
+  - rsv
+- id: rotavirus
+  label:
+    en: rotavirus
+    bg: ротавирус
+  short:
+    en: Rota
+    bg: Рота
+- id: meningococcal
+  label:
+    en: Meningococcal
+    bg: менингококови инфекции
+  short:
+    en: Men.
+    bg: Мен.
+- id: hepatitis_a
+  label:
+    en: hepatitis A
+    bg: вирусен хепатит тип А
+  short:
+    en: Hep A
+    bg: Хеп. А
+- id: covid
+  label:
+    en: COVID
+    bg: коронавирусна болест (COVID)
+  short:
+    en: COVID
+    bg: КОВИД
+- id: influenza
+  label:
+    en: influenza
+    bg: грип
+  short:
+    en: Flu
+    bg: Грип
+  record_aliases:
+  - flu
+  - грип
+- id: hpv
+  label:
+    en: HPV
+    bg: човешки папиломен вирус
+  short:
+    en: HPV
+    bg: ЧПВ
+  hover_label:
+    en: Human papillomavirus infection

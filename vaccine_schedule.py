@@ -12,8 +12,7 @@ import yaml
 
 
 MODULE_DIR = Path(__file__).resolve().parent
-CURATED_SCHEDULE_YAML = MODULE_DIR / "data/curated_schedule.yaml"
-ECDC_SCHEDULE_YAML = MODULE_DIR / "data/ecdc_schedule.yaml"
+DATA_DIR = MODULE_DIR / "data/bg"
 DAYS_PER_MONTH = 365.2425 / 12.0
 
 
@@ -22,12 +21,25 @@ def read_yaml(path: Path) -> dict:
         return yaml.safe_load(handle) or {}
 
 
-CURATED_SCHEDULE = read_yaml(CURATED_SCHEDULE_YAML)
-ECDC_SCHEDULE = read_yaml(ECDC_SCHEDULE_YAML)
-ECDC_CALENDAR_SOURCE_URL = CURATED_SCHEDULE["sources"]["ecdc_calendar"]
-LEX_CALENDAR_SOURCE_URL = CURATED_SCHEDULE["sources"]["lex_calendar"]
-PREGNANCY_VACCINE_SOURCE_URL = CURATED_SCHEDULE["sources"]["pregnancy_vaccine"]
-VACCINE_TEXT = CURATED_SCHEDULE["text"]
+def normalized_disease_name(value: str) -> str:
+    return " ".join(value.lower().split())
+
+
+SOURCES = read_yaml(DATA_DIR / "sources.yaml")
+METADATA = read_yaml(DATA_DIR / "metadata.yaml")
+COLUMNS_DATA = read_yaml(DATA_DIR / "columns.yaml")
+VACCINES_DATA = read_yaml(DATA_DIR / "vaccines.yaml")
+SCHEDULE_DATA = read_yaml(DATA_DIR / "schedule.yaml")
+SOURCE_LINKS = SOURCES["source_links"]
+VACCINE_DEFS = VACCINES_DATA["vaccines"]
+VACCINE_BY_ID = {vaccine["id"]: vaccine for vaccine in VACCINE_DEFS}
+COLUMN_DEFS = COLUMNS_DATA["columns"]
+COLUMN_IDS = [column["id"] for column in COLUMN_DEFS]
+COLUMN_ID_TO_INDEX = {column_id: index for index, column_id in enumerate(COLUMN_IDS)}
+ECDC_CALENDAR_SOURCE_URL = SOURCE_LINKS["ecdc_calendar"]
+LEX_CALENDAR_SOURCE_URL = SOURCE_LINKS["lex_calendar"]
+PREGNANCY_VACCINE_SOURCE_URL = SOURCE_LINKS["pregnancy_vaccine"]
+VACCINE_TEXT = METADATA["text"]
 
 @dataclass(frozen=True)
 class VaccineRecord:
@@ -39,21 +51,45 @@ class VaccineRecord:
     border_color: str
     fill_color: str
 
-VACCINE_DISEASE_ROW_LABELS = CURATED_SCHEDULE["vaccine_disease_row_labels"]
-ECDC_CALENDAR_COLUMNS = CURATED_SCHEDULE["calendar"]["columns"]
-ECDC_LABEL_TRANSLATIONS = CURATED_SCHEDULE["label_translations"]
-ECDC_LABEL_SHORTENINGS = CURATED_SCHEDULE["label_shortenings"]["en"]
-ECDC_LABEL_SHORTENINGS_BG = CURATED_SCHEDULE["label_shortenings"]["bg"]
-ECDC_LABEL_HOVER_NAMES = CURATED_SCHEDULE["label_hover_names"]
-ECDC_CALENDAR_AGE_MONTHS = CURATED_SCHEDULE["calendar"]["age_months"]
+VACCINE_DISEASE_ROW_LABELS: dict[str, list[str]] = {}
+for vaccine in VACCINE_DEFS:
+    for alias in vaccine.get("record_aliases", []):
+        VACCINE_DISEASE_ROW_LABELS.setdefault(
+            normalized_disease_name(alias),
+            [],
+        ).append(vaccine["label"]["en"])
+ECDC_CALENDAR_COLUMNS = [column["label"]["en"] for column in COLUMN_DEFS]
+ECDC_LABEL_TRANSLATIONS = {
+    normalized_disease_name(vaccine["label"]["en"]): vaccine["label"].get("bg", "")
+    for vaccine in VACCINE_DEFS
+}
+ECDC_LABEL_SHORTENINGS = {
+    normalized_disease_name(vaccine["label"]["en"]): vaccine.get("short", {}).get("en", vaccine["label"]["en"])
+    for vaccine in VACCINE_DEFS
+}
+ECDC_LABEL_SHORTENINGS_BG = {
+    normalized_disease_name(vaccine["label"]["en"]): vaccine.get("short", {}).get("bg", vaccine["label"].get("bg", vaccine["label"]["en"]))
+    for vaccine in VACCINE_DEFS
+}
+ECDC_LABEL_HOVER_NAMES = {
+    normalized_disease_name(vaccine["label"]["en"]): vaccine["hover_label"]["en"]
+    for vaccine in VACCINE_DEFS
+    if "hover_label" in vaccine
+}
+ECDC_CALENDAR_AGE_MONTHS = [column["age_months"] for column in COLUMN_DEFS]
 ECDC_ADULT_EXTRA_START_COLUMN = ECDC_CALENDAR_COLUMNS.index(
-    CURATED_SCHEDULE["calendar"]["adult_extra_start_column"]
+    COLUMN_DEFS[COLUMN_ID_TO_INDEX[METADATA["age_ranges"]["adult_extra_start_column"]]]["label"]["en"]
 )
-VACCINE_OVERLAY_COLORS = CURATED_SCHEDULE["vaccine_overlay_colors"]
-ECDC_COLUMN_LOCALIZATIONS = CURATED_SCHEDULE["calendar"].get("localized_columns", {})
-SCHEDULE_CELL_OVERLAY_CONFIG = CURATED_SCHEDULE["schedule_cell_overlays"]
-PRE_BIRTH_RECORD_COLUMN_RULES = CURATED_SCHEDULE.get("pre_birth_record_columns", [])
-DEFAULT_PRE_BIRTH_RECORD_COLUMN = CURATED_SCHEDULE.get("default_pre_birth_record_column")
+VACCINE_OVERLAY_COLORS = METADATA["vaccine_overlay_colors"]
+ECDC_COLUMN_LOCALIZATIONS = {
+    "bg": {
+        column["label"]["en"]: column["label"].get("bg", column["label"]["en"])
+        for column in COLUMN_DEFS
+    }
+}
+SCHEDULE_CELL_OVERLAY_CONFIG = METADATA["schedule_cell_overlays"]
+PRE_BIRTH_RECORD_COLUMN_RULES = METADATA.get("pre_birth_record_columns", [])
+DEFAULT_PRE_BIRTH_RECORD_COLUMN = METADATA.get("default_pre_birth_record_column")
 
 
 def vaccine_text(locale: str) -> dict[str, str]:
@@ -631,51 +667,23 @@ def load_vaccine_records(path: Path) -> list[VaccineRecord]:
     return rows
 
 
-def normalized_disease_name(value: str) -> str:
-    return " ".join(value.lower().split())
-
-
 def ecdc_row_has_mandatory_cell(row: dict) -> bool:
     return any(cell.get("mandatory") for cell in row["cells"])
-
-
-def ecdc_label_translation(label: str) -> str:
-    return ECDC_LABEL_TRANSLATIONS.get(normalized_disease_name(label), "")
-
-
-def move_ecdc_row_to_end(rows: list[dict], label: str) -> list[dict]:
-    normalized_label = normalized_disease_name(label)
-    matching_rows = [
-        row for row in rows if normalized_disease_name(row["label"]) == normalized_label
-    ]
-    other_rows = [
-        row for row in rows if normalized_disease_name(row["label"]) != normalized_label
-    ]
-    return [*other_rows, *matching_rows]
-
-
-def insert_ecdc_row_after(rows: list[dict], target_label: str, row: dict) -> list[dict]:
-    normalized_target = normalized_disease_name(target_label)
-    for index, current_row in enumerate(rows):
-        if normalized_disease_name(current_row["label"]) == normalized_target:
-            return [*rows[: index + 1], row, *rows[index + 1 :]]
-    return [*rows, row]
-
-
-def insert_ecdc_row_as_first_recommended(rows: list[dict], row: dict) -> list[dict]:
-    insert_index = mandatory_row_count(rows)
-    return [*rows[:insert_index], row, *rows[insert_index:]]
 
 
 def ecdc_column_index(column: str | int, occurrence: int = 1) -> int:
     if isinstance(column, int):
         return column
 
+    if column in COLUMN_ID_TO_INDEX:
+        return COLUMN_ID_TO_INDEX[column]
+
     normalized_column = normalized_disease_name(column)
     matches = [
         index
-        for index, candidate in enumerate(ECDC_CALENDAR_COLUMNS)
-        if normalized_disease_name(candidate) == normalized_column
+        for index, column_def in enumerate(COLUMN_DEFS)
+        if normalized_disease_name(column_def["label"]["en"]) == normalized_column
+        or normalized_disease_name(column_def["label"].get("bg", "")) == normalized_column
     ]
     if not matches:
         raise ValueError(f"Unknown vaccine schedule column: {column}")
@@ -689,7 +697,7 @@ def ecdc_column_index(column: str | int, occurrence: int = 1) -> int:
 def curated_cell(cell: dict) -> dict:
     column = ecdc_column_index(cell["column"], int(cell.get("occurrence", 1)))
     converted = {
-        key: value
+        ("noteStyle" if key == "note_style" else key): value
         for key, value in cell.items()
         if key not in {"column", "occurrence", "through"}
     }
@@ -699,135 +707,45 @@ def curated_cell(cell: dict) -> dict:
     return converted
 
 
-def curated_row(row: dict, order: int) -> dict:
+def schedule_row(row: dict, order: int) -> dict:
+    vaccine = VACCINE_BY_ID[row["vaccine"]]
+    group = row.get("group", "recommended")
     converted = {
-        key: value
-        for key, value in row.items()
-        if key not in {"label", "cells", "label_title"}
+        "id": vaccine["id"],
+        "label": vaccine["label"]["en"],
+        "cells": [],
+        "_order": order,
     }
-    converted.update(
-        {
-            "label": row["label"],
-            "cells": [curated_cell(cell) for cell in row.get("cells", [])],
-            "_order": order,
-        }
-    )
-    if label_title := row.get("label_title"):
+    if label_title := vaccine["label"].get("bg"):
         converted["labelTitle"] = label_title
-    elif label_title := ecdc_label_translation(row["label"]):
-        converted["labelTitle"] = label_title
+    if row.get("divider_after"):
+        converted["dividerAfter"] = True
+
+    for dose in row.get("doses", []):
+        cell = curated_cell(dose)
+        cell["mandatory"] = dose.get("mandatory", group == "mandatory")
+        converted["cells"].append(cell)
     return converted
 
 
-def add_ecdc_row_cell(rows: list[dict], label: str, cell: dict) -> list[dict]:
-    normalized_label = normalized_disease_name(label)
-    for row in rows:
-        if normalized_disease_name(row["label"]) != normalized_label:
-            continue
-        for existing in row["cells"]:
-            if existing["column"] != cell["column"]:
-                continue
-            if cell.get("span", 1) > existing.get("span", 1):
-                existing["span"] = cell["span"]
-            for key in ("mandatory", "muted", "struck"):
-                if key in cell:
-                    existing[key] = cell[key]
-            if note := cell.get("note"):
-                existing_note = existing.get("note", "")
-                if note not in existing_note:
-                    existing["note"] = " ".join(
-                        part for part in (existing_note, note) if part
-                    )
-            return rows
-        row["cells"] = sorted([cell, *row["cells"]], key=lambda item: item["column"])
-        return rows
-    return rows
-
-
-def apply_cell_additions(rows: list[dict], additions: list[dict]) -> list[dict]:
-    for addition in additions:
-        for cell in addition.get("cells", []):
-            rows = add_ecdc_row_cell(rows, addition["row"], curated_cell(cell))
-    return rows
-
-
-def apply_insert_rows(rows: list[dict], insert_rows: list[dict]) -> list[dict]:
-    for row in insert_rows:
-        where = row.get("where")
-        new_row = curated_row(row, len(rows))
-        if where == "first_recommended":
-            rows = insert_ecdc_row_as_first_recommended(rows, new_row)
-        elif where == "after":
-            rows = insert_ecdc_row_after(rows, row["after"], new_row)
-        else:
-            raise ValueError(f"Unknown curated row insertion location: {where}")
-    return rows
-
-
-def apply_move_rows_to_end(rows: list[dict], labels: list[str]) -> list[dict]:
-    for label in labels:
-        rows = move_ecdc_row_to_end(rows, label)
-    return rows
-
-
-def apply_hpv_split(rows: list[dict], split: dict | None) -> list[dict]:
-    if not split:
-        return rows
-
-    first_female_only_column = ecdc_column_index(split["first_female_only_column"])
-    female_only_cell = {
-        "column": first_female_only_column,
-        "span": ecdc_column_index(split["female_only_end_column"]) - first_female_only_column + 1,
-        "text": split["female_only_text"],
-    }
-    if split.get("female_only_note_style"):
-        female_only_cell["noteStyle"] = True
-    normalized_row = normalized_disease_name(split["row"])
-    for row in rows:
-        if normalized_disease_name(row["label"]) != normalized_row:
-            continue
-        for cell in row["cells"]:
-            if cell.get("text") != split["source_text"]:
-                continue
-            cell_end = cell["column"] + cell.get("span", 1)
-            if cell["column"] < first_female_only_column < cell_end:
-                cell["span"] = first_female_only_column - cell["column"]
-        if not any(cell.get("text") == split["female_only_text"] for cell in row["cells"]):
-            row["cells"] = sorted(
-                [*row["cells"], female_only_cell],
-                key=lambda item: item["column"],
-            )
-    return rows
-
-
-def overlay_fill_lookup(curated_schedule: dict) -> dict[tuple[str, str], str]:
+def overlay_fill_lookup() -> dict[tuple[str, str], str]:
     return {
         (
-            normalized_disease_name(overlay["row"]),
+            overlay["vaccine"],
             str(overlay["cell_text"]),
         ): str(overlay["fill_background"])
-        for overlay in curated_schedule.get("overlay_fills", [])
+        for overlay in METADATA.get("cell_fills", [])
     }
-
-
-def apply_curated_schedule(rows: list[dict], curated_schedule: dict) -> list[dict]:
-    rows = apply_cell_additions(rows, curated_schedule.get("cell_additions", []))
-    rows = apply_insert_rows(rows, curated_schedule.get("insert_rows", []))
-    rows = apply_move_rows_to_end(rows, curated_schedule.get("move_rows_to_end", []))
-    rows = apply_hpv_split(rows, curated_schedule.get("hpv_split"))
-    return rows
 
 
 def load_immunization_calendar() -> dict:
-    curated_schedule = CURATED_SCHEDULE
-    source_rows = ECDC_SCHEDULE.get("rows", [])
+    source_rows = SCHEDULE_DATA.get("rows", [])
     if not source_rows:
-        raise ValueError(f"No ECDC schedule rows found at {ECDC_SCHEDULE_YAML}")
+        raise ValueError(f"No vaccine schedule rows found in {DATA_DIR / 'schedule.yaml'}")
     rows = [
-        curated_row(row, index)
+        schedule_row(row, index)
         for index, row in enumerate(copy.deepcopy(source_rows))
     ]
-    rows = apply_curated_schedule(rows, curated_schedule)
 
     return {
         "id": "ecdc-immunization-calendar",
@@ -835,7 +753,7 @@ def load_immunization_calendar() -> dict:
         "leftHeader": "Immunization",
         "columns": ECDC_CALENDAR_COLUMNS,
         "ageMonths": ECDC_CALENDAR_AGE_MONTHS,
-        "overlayFills": overlay_fill_lookup(curated_schedule),
+        "overlayFills": overlay_fill_lookup(),
         "rows": rows,
     }
 
@@ -972,20 +890,20 @@ def vaccine_overlay_payload(
 
 def schedule_cell_overlay_payload(calendar: dict) -> list[dict]:
     combined_overlay_labels = {
-        normalized_disease_name(label)
+        str(label)
         for label in SCHEDULE_CELL_OVERLAY_CONFIG.get("combined_rows", [])
     }
     split_overlay_labels = {
-        normalized_disease_name(label)
+        str(label)
         for label in SCHEDULE_CELL_OVERLAY_CONFIG.get("split_rows", [])
     }
     overlays = []
     overlay_fills = calendar.get("overlayFills", {})
     hexavalent_rows_by_column: dict[int, list[int]] = {}
     for row_index, row in enumerate(calendar["rows"]):
-        normalized_label = normalized_disease_name(row["label"])
+        vaccine_id = row.get("id", normalized_disease_name(row["label"]))
         for cell in row["cells"]:
-            if normalized_label in combined_overlay_labels:
+            if vaccine_id in combined_overlay_labels:
                 hexavalent_rows_by_column.setdefault(cell["column"], []).append(row_index)
                 continue
 
@@ -995,7 +913,7 @@ def schedule_cell_overlay_payload(calendar: dict) -> list[dict]:
                 if part.strip()
             ]
             if (
-                normalized_label in split_overlay_labels
+                vaccine_id in split_overlay_labels
                 and len(parts) > 1
             ):
                 for slot, _part in enumerate(parts):
@@ -1025,7 +943,7 @@ def schedule_cell_overlay_payload(calendar: dict) -> list[dict]:
                         {"fillBackground": fill_background}
                         if (
                             fill_background := overlay_fills.get(
-                                (normalized_label, str(cell["text"]))
+                                (vaccine_id, str(cell["text"]))
                             )
                         )
                         else {}

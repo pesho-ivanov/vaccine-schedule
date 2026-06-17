@@ -1,0 +1,143 @@
+version: 1
+country: BG
+columns:
+- id: pregnancy_flu
+  label:
+    en: Pregnancy
+    bg: Бременност
+  age_months: -3.0
+- id: pregnancy_tdap
+  label:
+    en: Pregnancy
+    bg: Бременност
+  age_months: -2.0
+- id: pregnancy_rsv
+  label:
+    en: Pregnancy
+    bg: Бременност
+  age_months: -1.0
+- id: birth
+  label:
+    en: Birth
+    bg: Раждане
+  age_months: 0.0
+- id: 1m
+  label:
+    en: 1m
+    bg: 1m
+  age_months: 1.0
+- id: 2m
+  label:
+    en: 2m
+    bg: 2m
+  age_months: 2.0
+- id: 3m
+  label:
+    en: 3m
+    bg: 3m
+  age_months: 3.0
+- id: 4m
+  label:
+    en: 4m
+    bg: 4m
+  age_months: 4.0
+- id: 6m
+  label:
+    en: 6m
+    bg: 6m
+  age_months: 6.0
+- id: 7m
+  label:
+    en: 7m
+    bg: 7m
+  age_months: 7.0
+- id: 12m
+  label:
+    en: 12m
+    bg: 12m
+  age_months: 12.0
+- id: 13m
+  label:
+    en: 13m
+    bg: 13m
+  age_months: 13.0
+- id: 15m
+  label:
+    en: 15m
+    bg: 15m
+  age_months: 15.0
+- id: 16m
+  label:
+    en: 16m
+    bg: 16m
+  age_months: 16.0
+- id: 4y
+  label:
+    en: 4y
+    bg: 4y
+  age_months: 48.0
+- id: 6y
+  label:
+    en: 6y
+    bg: 6y
+  age_months: 72.0
+- id: 7y
+  label:
+    en: 7y
+    bg: 7y
+  age_months: 84.0
+- id: 10y
+  label:
+    en: 10y
+    bg: 10y
+  age_months: 120.0
+- id: 12y
+  label:
+    en: 12y
+    bg: 12y
+  age_months: 144.0
+- id: 14y
+  label:
+    en: 14y
+    bg: 14y
+  age_months: 168.0
+- id: 15y
+  label:
+    en: 15y
+    bg: 15y
+  age_months: 180.0
+- id: 17y
+  label:
+    en: 17y
+    bg: 17y
+  age_months: 204.0
+- id: 18y
+  label:
+    en: 18y
+    bg: 18y
+  age_months: 216.0
+- id: 25y
+  label:
+    en: 25y
+    bg: 25y
+  age_months: 300.0
+- id: 59y
+  label:
+    en: 59y
+    bg: 59y
+  age_months: 708.0
+- id: 60y
+  label:
+    en: 60y
+    bg: 60y
+  age_months: 720.0
+- id: 64y
+  label:
+    en: 64y
+    bg: 64y
+  age_months: 768.0
+- id: gte65y
+  label:
+    en: ≥65y
+    bg: ≥65y
+  age_months: 780.0

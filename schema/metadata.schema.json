@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/vaccine-schedule/metadata.schema.json",
+  "title": "Vaccine Schedule Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "country",
+    "text",
+    "age_ranges",
+    "vaccine_overlay_colors",
+    "schedule_cell_overlays"
+  ],
+  "properties": {
+    "version": { "const": 1 },
+    "country": { "const": "BG" },
+    "text": {
+      "type": "object",
+      "required": ["en", "bg"],
+      "additionalProperties": false,
+      "properties": {
+        "en": { "$ref": "types.schema.json#/$defs/textBundle" },
+        "bg": { "$ref": "types.schema.json#/$defs/textBundle" }
+      }
+    },
+    "age_ranges": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adult_extra_start_column"],
+      "properties": {
+        "adult_extra_start_column": { "$ref": "types.schema.json#/$defs/id" }
+      }
+    },
+    "vaccine_overlay_colors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["border", "fill"],
+        "properties": {
+          "border": { "type": "string" },
+          "fill": { "type": "string" }
+        }
+      }
+    },
+    "schedule_cell_overlays": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["combined_rows", "split_rows"],
+      "properties": {
+        "combined_rows": {
+          "type": "array",
+          "items": { "$ref": "types.schema.json#/$defs/id" }
+        },
+        "split_rows": {
+          "type": "array",
+          "items": { "$ref": "types.schema.json#/$defs/id" }
+        }
+      }
+    },
+    "pre_birth_record_columns": {
+      "type": "array",
+      "items": { "$ref": "types.schema.json#/$defs/preBirthRule" }
+    },
+    "default_pre_birth_record_column": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column"],
+      "properties": {
+        "column": { "$ref": "types.schema.json#/$defs/id" }
+      }
+    },
+    "cell_fills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["vaccine", "cell_text", "fill_background"],
+        "properties": {
+          "vaccine": { "$ref": "types.schema.json#/$defs/id" },
+          "cell_text": { "type": "string", "minLength": 1 },
+          "fill_background": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

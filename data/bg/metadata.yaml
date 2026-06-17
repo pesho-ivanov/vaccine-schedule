@@ -1,0 +1,72 @@
+version: 1
+country: BG
+text:
+  en:
+    age_range: Calendar age range
+    all_ages: All
+    adult_years: 18+ years
+    after_4_years: 4–17 years
+    mandatory: Mandatory
+    months: months
+    next: 'next:'
+    pregnancy: Pregnancy
+    recommended: Recommended
+    schedule_title: Vaccine schedule for Bulgaria
+    until_1_5_years: 0–16 months
+    years: years
+  bg:
+    age_range: Възрастов диапазон
+    all_ages: Всички
+    adult_years: 18+ години
+    after_4_years: 4–17 години
+    mandatory: Задължителни
+    months: месеци
+    next: 'следваща:'
+    pregnancy: Бременност
+    recommended: Препоръчителни
+    schedule_title: Имунизационен календар за България
+    until_1_5_years: 0–16 месеца
+    years: години
+age_ranges:
+  adult_extra_start_column: 25y
+vaccine_overlay_colors:
+- border: rgb(224 49 49 / 0.74)
+  fill: rgb(224 49 49 / 0.13)
+- border: rgb(25 113 194 / 0.74)
+  fill: rgb(25 113 194 / 0.13)
+- border: rgb(47 158 68 / 0.74)
+  fill: rgb(47 158 68 / 0.13)
+- border: rgb(156 54 181 / 0.74)
+  fill: rgb(156 54 181 / 0.13)
+- border: rgb(230 119 0 / 0.74)
+  fill: rgb(230 119 0 / 0.13)
+- border: rgb(12 133 153 / 0.74)
+  fill: rgb(12 133 153 / 0.13)
+schedule_cell_overlays:
+  combined_rows:
+  - diphtheria
+  - tetanus
+  - pertussis
+  - poliomyelitis
+  - haemophilus_influenzae_type_b
+  - hepatitis_b
+  split_rows:
+  - meningococcal
+pre_birth_record_columns:
+- diseases:
+  - flu
+  - грип
+  - influenza
+  column: pregnancy_flu
+- diseases:
+  - rsv
+  column: pregnancy_rsv
+default_pre_birth_record_column:
+  column: pregnancy_tdap
+cell_fills:
+- vaccine: hpv
+  cell_text: HPV9 (F/M)
+  fill_background: "linear-gradient(90deg, #ffffff 0 50%, #94a3b8 50% 100%)"
+- vaccine: hpv
+  cell_text: HPV9 (F)
+  fill_background: "linear-gradient(90deg, #ffffff 0 33.333%, #94a3b8 33.333% 66.667%, #ffffff 66.667% 100%)"

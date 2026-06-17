@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/vaccine-schedule/sources.schema.json",
+  "title": "Vaccine Schedule Sources",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "country", "source_links"],
+  "properties": {
+    "version": { "const": 1 },
+    "country": { "const": "BG" },
+    "source_links": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "format": "uri" },
+      "minProperties": 1
+    }
+  }
+}
