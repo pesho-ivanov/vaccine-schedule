@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "country": "BG",
+  "scheduleVersion": "BG-N15-2026-07-01",
+  "asOf": "2026-06-18",
+  "profiles": [
+    {
+      "id": "newborn",
+      "nickname": "Newborn fixture",
+      "birthDate": "2026-06-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["birth"]
+    },
+    {
+      "id": "two_month",
+      "nickname": "Two month fixture",
+      "birthDate": "2026-04-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["2m"]
+    },
+    {
+      "id": "four_month",
+      "nickname": "Four month fixture",
+      "birthDate": "2026-02-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["4m"]
+    },
+    {
+      "id": "thirteen_month",
+      "nickname": "Thirteen month fixture",
+      "birthDate": "2025-05-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["13m"]
+    },
+    {
+      "id": "sixteen_month",
+      "nickname": "Sixteen month fixture",
+      "birthDate": "2025-02-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["16m"]
+    },
+    {
+      "id": "school_age",
+      "nickname": "School age fixture",
+      "birthDate": "2020-06-18",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["6y"]
+    },
+    {
+      "id": "overdue",
+      "nickname": "Overdue fixture",
+      "birthDate": "2026-03-01",
+      "sex": "not_set",
+      "expectedMilestoneIds": ["2m", "3m"]
+    }
+  ]
+}

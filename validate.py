@@ -6,6 +6,8 @@ from typing import Any
 
 import yaml
 
+from tracker_schedule import build_country_schedule, validate_country_schedule
+
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data/bg"
@@ -131,6 +133,8 @@ def validate() -> None:
                 through = require_string(dose["through"], f"schedule.yaml: {vaccine_id}: through must be a string")
                 require(through in column_id_set, f"schedule.yaml: {vaccine_id}: unknown through column {through}")
                 require(column_ids.index(through) >= column_ids.index(column), f"schedule.yaml: {vaccine_id}: through precedes column")
+
+    validate_country_schedule(build_country_schedule())
 
 
 def main() -> int:

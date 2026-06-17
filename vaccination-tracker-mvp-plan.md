@@ -209,6 +209,7 @@ Status convention:
 | --- | --- | --- | --- | --- |
 | 2026-06-16 | Planning | Expanded MVP plan with detailed phases, checklists, UAT, and log structure. | Markdown reviewed manually. | Start Phase 0 and validate schedule sources before app scaffolding. |
 | 2026-06-18 | Phase 0 | Added source inventory, schedule-version decision, safety disclaimer copy, privacy/analytics policy, product vocabulary, and risk register. | Reviewed Lex.bg Ordinance No. 15, ECDC Bulgaria scheduler link, and Plus Men pregnancy recommendations; `python3 validate.py` passed; UAT scenarios prepared but not user-tested. | Start Phase 1 with a compatibility-preserving adapter. |
+| 2026-06-18 | Phase 1 | Added compatibility-preserving app-facing schedule adapter, product mappings, source metadata, child fixtures, and projection validation. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Structure week/seasonal/minimum-interval rules before Phase 2 calculations depend on them. |
 
 ## Detailed Implementation Phases
 
@@ -343,19 +344,27 @@ Deliverables:
 - Product-to-antigen mapping for common combination vaccines used in the reference table.
 - Initial country/schedule metadata structure for future EU expansion.
 
+Phase 1 implementation notes:
+
+- Keep the existing YAML files and JSON schemas as the stable source contract for this repository.
+- Use `tracker_schedule.py` as an additive adapter that projects the YAML into app-facing `CountrySchedule`, `ScheduleMilestone`, `VaccineAntigen`, `ScheduleDose`, `VaccineProduct`, and `SourceReference` dataclasses.
+- The current adapter emits JSON through `python3 tracker_schedule.py`; the future React Native app can consume the same shape or port it to TypeScript types without changing YAML contracts.
+- Product mappings are example mappings, not a closed product database. The app must keep product entry editable.
+- Week-specific anchors and seasonal eligibility are not yet structured beyond labels/notes; Phase 2 should decide whether to encode them as typed rules before schedule calculations depend on them.
+
 Implementation checklist:
 
-- [ ] Define `CountrySchedule`, `ScheduleMilestone`, `VaccineAntigen`, `ScheduleDose`, `VaccineProduct`, and `SourceReference` types.
-- [ ] Represent age anchors for birth, weeks, months, years, ranges, and seasonal recommendations.
-- [ ] Encode mandatory child rows: TB/BCG, diphtheria, tetanus, pertussis, polio, Hib, hepatitis B, pneumococcal, MMR, and varicella.
-- [ ] Encode recommended child rows: rotavirus, meningococcal, hepatitis A, COVID, influenza, HPV, and RSV where relevant.
-- [ ] Decide how pregnancy pertussis and pregnancy RSV records relate to a child profile.
-- [ ] Add notes for conditions such as BCG after negative Mantoux test and dose minimum intervals.
-- [ ] Add source references at schedule, row, and dose-rule level where practical.
-- [ ] Add schedule version, effective date, imported date, and source access date.
-- [ ] Add product mappings for examples from the reference table, such as BCG, Engerix B, Infanrix hexa, Vaxneuvance, Abrysvo, Boostrix, and Influvac tetra.
-- [ ] Validate that every schedule dose has an antigen, age anchor, status category, and source.
-- [ ] Add fixture child profiles for newborn, 2-month, 4-month, 13-month, 16-month, school-age, and overdue cases.
+- [x] Define `CountrySchedule`, `ScheduleMilestone`, `VaccineAntigen`, `ScheduleDose`, `VaccineProduct`, and `SourceReference` types.
+- [ ] Represent age anchors for birth, weeks, months, years, ranges, and seasonal recommendations. (in progress: adapter projects birth, pregnancy, month, year, adult, and `through` ranges; week-specific and seasonal rules remain notes)
+- [x] Encode mandatory child rows: TB/BCG, diphtheria, tetanus, pertussis, polio, Hib, hepatitis B, pneumococcal, MMR, and varicella.
+- [x] Encode recommended child rows: rotavirus, meningococcal, hepatitis A, COVID, influenza, HPV, and RSV where relevant.
+- [x] Decide how pregnancy pertussis and pregnancy RSV records relate to a child profile.
+- [ ] Add notes for conditions such as BCG after negative Mantoux test and dose minimum intervals. (in progress: source notes are carried through; structured interval rules are still pending)
+- [x] Add source references at schedule, row, and dose-rule level where practical.
+- [x] Add schedule version, effective date, imported date, and source access date.
+- [x] Add product mappings for examples from the reference table, such as BCG, Engerix B, Infanrix hexa, Vaxneuvance, Abrysvo, Boostrix, and Influvac tetra.
+- [x] Validate that every schedule dose has an antigen, age anchor, status category, and source.
+- [x] Add fixture child profiles for newborn, 2-month, 4-month, 13-month, 16-month, school-age, and overdue cases.
 
 UAT scenarios:
 
@@ -376,7 +385,7 @@ Phase log:
 
 | Date | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- |
-| TBD | Not started. | Not run. | Encode schedule schema and Bulgarian fixture. |
+| 2026-06-18 | Added `tracker_schedule.py` app-facing adapter, product mappings, source metadata, tracker child fixtures, and projection validation. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Structure week/seasonal/minimum-interval rules before Phase 2 calculations depend on them. |
 
 ### Phase 2: Schedule Calculation Engine
 
