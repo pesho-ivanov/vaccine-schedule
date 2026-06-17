@@ -1,0 +1,392 @@
+sources:
+  ecdc_calendar: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false
+  lex_calendar: https://lex.bg/laws/ldoc/2135504228
+  pregnancy_vaccine: https://plusmen.bg/bg/suggestions/pregnancy
+
+text:
+  en:
+    age_range: Calendar age range
+    all_ages: All
+    adult_years: 18+ years
+    after_4_years: 4–17 years
+    mandatory: Mandatory
+    months: months
+    next: "next:"
+    pregnancy: Pregnancy
+    recommended: Recommended
+    schedule_title: Vaccine schedule for Bulgaria
+    until_1_5_years: 0–16 months
+    years: years
+  bg:
+    age_range: Възрастов диапазон
+    all_ages: Всички
+    adult_years: 18+ години
+    after_4_years: 4–17 години
+    mandatory: Задължителни
+    months: месеци
+    next: "следваща:"
+    pregnancy: Бременност
+    recommended: Препоръчителни
+    schedule_title: Имунизационен календар за България
+    until_1_5_years: 0–16 месеца
+    years: години
+
+calendar:
+  columns:
+    - Pregnancy
+    - Pregnancy
+    - Pregnancy
+    - Birth
+    - 1m
+    - 2m
+    - 3m
+    - 4m
+    - 6m
+    - 7m
+    - 12m
+    - 13m
+    - 15m
+    - 16m
+    - 4y
+    - 6y
+    - 7y
+    - 10y
+    - 12y
+    - 14y
+    - 15y
+    - 17y
+    - 18y
+    - 25y
+    - 59y
+    - 60y
+    - 64y
+    - ≥65y
+  age_months:
+    - -3.0
+    - -2.0
+    - -1.0
+    - 0.0
+    - 1.0
+    - 2.0
+    - 3.0
+    - 4.0
+    - 6.0
+    - 7.0
+    - 12.0
+    - 13.0
+    - 15.0
+    - 16.0
+    - 48.0
+    - 72.0
+    - 84.0
+    - 120.0
+    - 144.0
+    - 168.0
+    - 180.0
+    - 204.0
+    - 216.0
+    - 300.0
+    - 708.0
+    - 720.0
+    - 768.0
+    - 780.0
+  adult_extra_start_column: 25y
+  localized_columns:
+    bg:
+      Pregnancy: Бременност
+      Birth: Раждане
+
+label_translations:
+  covid: коронавирусна болест (COVID)
+  tuberculosis: туберкулоза
+  diphtheria, tetanus, pertussis: дифтерия, тетанус, коклюш
+  diphtheria: дифтерия
+  tetanus: тетанус
+  pertussis: коклюш
+  poliomyelitis: полиомиелит
+  haemophilus influenzae type b: хемофилус инфлуенце тип Б
+  hepatitis b: вирусен хепатит тип Б
+  hepatitis a: вирусен хепатит тип А
+  pneumococcal disease: пневмококови инфекции
+  measles, mumps, rubella: морбили, паротит, рубеола
+  varicella: варицела
+  rotavirus: ротавирус
+  hpv: човешки папиломен вирус
+  influenza: грип
+  meningococcal: менингококови инфекции
+  rsv: респираторно-синцитиален вирус
+
+label_shortenings:
+  en:
+    tuberculosis: TB
+    diphtheria, tetanus, pertussis: Tdap
+    diphtheria: Diph
+    tetanus: Tet
+    pertussis: Pert
+    poliomyelitis: Polio
+    haemophilus influenzae type b: Hib
+    hepatitis b: Hep B
+    hepatitis a: Hep A
+    pneumococcal disease: Pneumo
+    measles, mumps, rubella: MMR
+    varicella: Varicella
+    covid: COVID
+    hpv: HPV
+    influenza: Flu
+    rotavirus: Rota
+    meningococcal: Men.
+    rsv: RSV
+  bg:
+    tuberculosis: ТБ
+    diphtheria, tetanus, pertussis: ДТК
+    diphtheria: Диф
+    tetanus: Тет
+    pertussis: Кокл
+    poliomyelitis: Полио
+    haemophilus influenzae type b: Хиб
+    hepatitis b: Хеп. Б
+    hepatitis a: Хеп. А
+    pneumococcal disease: Пневмо
+    measles, mumps, rubella: МПР
+    varicella: Варицела
+    covid: КОВИД
+    hpv: ЧПВ
+    influenza: Грип
+    rotavirus: Рота
+    meningococcal: Мен.
+    rsv: РСВ
+
+label_hover_names:
+  hpv: Human papillomavirus infection
+
+vaccine_disease_row_labels:
+  туберкулоза:
+    - туберкулоза
+    - tuberculosis
+  бцж:
+    - туберкулоза
+    - tuberculosis
+  дтка:
+    - дифтерия, тетанус, коклюш
+    - diphtheria, tetanus, pertussis
+    - diphtheria
+    - tetanus
+    - pertussis
+  tdap:
+    - pert
+  пи:
+    - полиомиелит
+    - poliomyelitis
+  хиб:
+    - хемофилус инфлуенце тип б
+    - haemophilus influenzae type b
+    - haemophilus influenzae type b infection
+  хеп. б:
+    - вирусен хепатит тип б
+    - hepatitis b
+  пневмо:
+    - пневмококови инфекции
+    - pneumococcal disease
+  мпр:
+    - морбили, паротит, рубеола
+    - measles, mumps, rubella
+    - measles
+    - mumps
+    - rubella
+  вар:
+    - варицела
+    - varicella
+  flu:
+    - influenza
+    - грип
+  грип:
+    - influenza
+    - грип
+  rsv:
+    - rsv
+
+vaccine_overlay_colors:
+  - border: rgb(224 49 49 / 0.74)
+    fill: rgb(224 49 49 / 0.13)
+  - border: rgb(25 113 194 / 0.74)
+    fill: rgb(25 113 194 / 0.13)
+  - border: rgb(47 158 68 / 0.74)
+    fill: rgb(47 158 68 / 0.13)
+  - border: rgb(156 54 181 / 0.74)
+    fill: rgb(156 54 181 / 0.13)
+  - border: rgb(230 119 0 / 0.74)
+    fill: rgb(230 119 0 / 0.13)
+  - border: rgb(12 133 153 / 0.74)
+    fill: rgb(12 133 153 / 0.13)
+
+schedule_cell_overlays:
+  combined_rows:
+    - diphtheria
+    - tetanus
+    - pertussis
+    - poliomyelitis
+    - haemophilus influenzae type b
+    - hepatitis b
+  split_rows:
+    - meningococcal
+
+pre_birth_record_columns:
+  - diseases:
+      - flu
+      - грип
+      - influenza
+    column: Pregnancy
+    occurrence: 1
+  - diseases:
+      - rsv
+    column: Pregnancy
+    occurrence: 3
+default_pre_birth_record_column:
+  column: Pregnancy
+  occurrence: 2
+
+cell_additions:
+  - row: tuberculosis
+    cells:
+      - column: 7m
+        text: BCG
+        note: >-
+          Only after negative Montoux test. Проверка за белег след БЦЖ
+          имунизацията. На децата без белег се прави проба манту.
+          Отрицателните се имунизират с БЦЖ ваксина.
+      - column: 7y
+        text: BCG
+        note: >-
+          Only after negative Montoux test. Проверка за белег след БЦЖ
+          имунизацията. На децата без белег се прави проба манту.
+          Отрицателните се имунизират с БЦЖ ваксина.
+
+  - row: COVID
+    cells:
+      - column: 25y
+        through: 59y
+        text: COVID
+        note: >-
+          Priority groups: people aged 60+, people with chronic diseases,
+          immunocompromised people, pregnant women, medical staff, and users
+          and staff of social institutions.
+      - column: 60y
+        through: ≥65y
+        text: COVID
+        note: >-
+          Priority groups: people aged 60+, people with chronic diseases,
+          immunocompromised people, pregnant women, medical staff, and users
+          and staff of social institutions.
+
+  - row: diphtheria
+    cells:
+      - column: 25y
+        through: ≥65y
+        text: d
+        note: Subsequent Td booster every 10 years.
+
+  - row: tetanus
+    cells:
+      - column: 25y
+        through: ≥65y
+        text: TT
+        note: Subsequent Td booster every 10 years.
+
+  - row: pertussis
+    cells:
+      - column: 18y
+        through: 64y
+        text: acp
+        note: >-
+          Immunization against pertussis is given to pregnant women between
+          the 27th and 36th weeks of pregnancy.
+
+  - row: pneumococcal disease
+    cells:
+      - column: ≥65y
+        text: PCV13
+        note: >-
+          For people over 65 years of age, influenza and pneumococcal vaccines
+          and administration are free of charge and funded according to the
+          National programme.
+
+  - row: influenza
+    cells:
+      - column: Pregnancy
+        text: IIV3/IIV4
+      - column: 18y
+        through: 64y
+        text: IIV3/IIV4
+        note: >-
+          Inactivated vaccines are recommended for all people over 18 years of age.
+          Vaccines are not funded but vaccine administration is funded by the
+          national health insurance only for insured people.
+      - column: ≥65y
+        text: IIV3/IIV4
+        note: >-
+          For people over 65 years of age, influenza and pneumococcal vaccines
+          and administration are free of charge and funded according to the
+          National programme.
+
+insert_rows:
+  - where: first_recommended
+    label: RSV
+    label_title: респираторно-синцитиален вирус
+    cells:
+      - column: Pregnancy
+        occurrence: 3
+        text: RSV $
+        muted: true
+      - column: 18y
+        through: ≥65y
+        text: RSV
+        note: >-
+          Recommended for people aged 18 years and older.
+          Препоръчва се за лица на възраст 18 години и повече.
+
+  - where: first_recommended
+    label: Pert
+    label_title: коклюш
+    cells:
+      - column: Pregnancy
+        occurrence: 2
+        text: DPT
+
+  - where: after
+    after: rotavirus
+    label: Meningococcal
+    cells:
+      - column: 2m
+        span: 18
+        text: "MCV4\nMenB"
+        note: >-
+          General recommendation: MCV4 between 6 weeks and 18 years.
+          General recommendation: MenB between 2 months and 18 years.
+
+  - where: after
+    after: Meningococcal
+    label: hepatitis A
+    label_title: вирусен хепатит тип А
+    cells:
+      - column: 12m
+        span: 13
+        text: HepA
+
+move_rows_to_end:
+  - HPV
+
+hpv_split:
+  row: HPV
+  source_text: HPV9 (F/M)
+  first_female_only_column: 14y
+  female_only_end_column: 18y
+  female_only_text: HPV9 (F)
+  female_only_note_style: true
+
+overlay_fills:
+  - row: HPV
+    cell_text: HPV9 (F/M)
+    fill_background: linear-gradient(90deg, #ffffff 0 50%, #94a3b8 50% 100%)
+  - row: HPV
+    cell_text: HPV9 (F)
+    fill_background: linear-gradient(90deg, #ffffff 0 33.333%, #94a3b8 33.333% 66.667%, #ffffff 66.667% 100%)
