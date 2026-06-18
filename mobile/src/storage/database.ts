@@ -1,6 +1,12 @@
 import { openDatabaseAsync, type SQLiteDatabase } from 'expo-sqlite';
 
 import { BUNDLED_SCHEDULE } from '../data/bundledSchedule';
+import {
+  DISCLAIMER_VERSION,
+  normalizeNickname,
+  type ChildProfileDraft,
+  type ChildSex,
+} from '../domain/profile';
 import type { CountrySchedule, LanguageCode } from '../domain/schedule';
 import { DEFAULT_LANGUAGE } from '../i18n/strings';
 import { logAppHealth } from '../utils/healthLog';
@@ -12,6 +18,7 @@ export interface ScheduleImportResult {
 }
 
 export interface DatabaseSnapshot {
+  activeChildId: string | null;
   scheduleVersion: string | null;
   effectiveDate: string | null;
   importedDate: string | null;
@@ -23,12 +30,45 @@ export interface DatabaseSnapshot {
   language: LanguageCode;
   analyticsEnabled: boolean;
   notificationsEnabled: boolean;
+  disclaimerAcceptedVersion: string | null;
+  disclaimerAcceptedAt: string | null;
 }
 
 export interface TrackerDatabaseState {
   db: SQLiteDatabase;
   importResult: ScheduleImportResult;
   snapshot: DatabaseSnapshot;
+  profiles: ChildProfile[];
+  activeChildProfile: ChildProfile | null;
+  disclaimerAcceptance: DisclaimerAcceptance;
+}
+
+export interface ChildProfile {
+  id: string;
+  birthDate: string;
+  createdAt: string;
+  incompleteHistory: boolean;
+  nickname: string | null;
+  scheduleCountry: string;
+  sex: ChildSex;
+  updatedAt: string;
+}
+
+export interface DisclaimerAcceptance {
+  accepted: boolean;
+  acceptedAt: string | null;
+  version: string | null;
+}
+
+interface ChildProfileRow {
+  id: string;
+  birth_date: string;
+  created_at: string;
+  incomplete_history: number;
+  nickname: string | null;
+  schedule_country: string;
+  sex: string | null;
+  updated_at: string;
 }
 
 interface VersionRow {
@@ -50,9 +90,9 @@ export async function initializeTrackerDatabase(): Promise<TrackerDatabaseState>
   await runMigrations(db);
   await seedDefaultSettings(db);
   const importResult = await importScheduleIfNeeded(db, BUNDLED_SCHEDULE);
-  const snapshot = await getDatabaseSnapshot(db);
+  const state = await readTrackerDatabaseState(db, importResult);
   logAppHealth('database_initialized', importResult.version);
-  return { db, importResult, snapshot };
+  return state;
 }
 
 async function runMigrations(db: SQLiteDatabase): Promise<void> {
@@ -90,6 +130,8 @@ async function seedDefaultSettings(db: SQLiteDatabase): Promise<void> {
   const defaults: Record<string, string> = {
     active_child_id: '',
     analytics_enabled: 'false',
+    disclaimer_accepted_at: '',
+    disclaimer_accepted_version: '',
     language: DEFAULT_LANGUAGE,
     local_only_mode: 'true',
     notifications_enabled: 'false',
@@ -120,6 +162,154 @@ export async function saveSetting(
     value,
     nowIso(),
   );
+}
+
+export async function readTrackerDatabaseState(
+  db: SQLiteDatabase,
+  importResult: ScheduleImportResult,
+): Promise<TrackerDatabaseState> {
+  const profiles = await getChildProfiles(db);
+  let snapshot = await getDatabaseSnapshot(db);
+  let activeChildProfile =
+    profiles.find((profile) => profile.id === snapshot.activeChildId) ??
+    profiles[0] ??
+    null;
+
+  if (activeChildProfile && snapshot.activeChildId !== activeChildProfile.id) {
+    await saveSetting(db, 'active_child_id', activeChildProfile.id);
+    snapshot = { ...snapshot, activeChildId: activeChildProfile.id };
+  }
+
+  if (!activeChildProfile && snapshot.activeChildId) {
+    await saveSetting(db, 'active_child_id', '');
+    snapshot = { ...snapshot, activeChildId: null };
+  }
+
+  return {
+    activeChildProfile,
+    db,
+    disclaimerAcceptance: {
+      accepted: snapshot.disclaimerAcceptedVersion === DISCLAIMER_VERSION,
+      acceptedAt: snapshot.disclaimerAcceptedAt,
+      version: snapshot.disclaimerAcceptedVersion,
+    },
+    importResult,
+    profiles,
+    snapshot,
+  };
+}
+
+export async function createChildProfile(
+  db: SQLiteDatabase,
+  draft: ChildProfileDraft,
+): Promise<ChildProfile> {
+  const now = nowIso();
+  const profile: ChildProfile = {
+    birthDate: draft.birthDate,
+    createdAt: now,
+    id: createLocalId('child'),
+    incompleteHistory: draft.incompleteHistory,
+    nickname: normalizeNickname(draft.nickname),
+    scheduleCountry: draft.scheduleCountry,
+    sex: draft.sex,
+    updatedAt: now,
+  };
+
+  await db.withTransactionAsync(async () => {
+    await db.runAsync(
+      `INSERT INTO child_profiles (
+        id,
+        nickname,
+        birth_date,
+        sex,
+        schedule_country,
+        incomplete_history,
+        created_at,
+        updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      profile.id,
+      profile.nickname,
+      profile.birthDate,
+      profile.sex,
+      profile.scheduleCountry,
+      profile.incompleteHistory ? 1 : 0,
+      profile.createdAt,
+      profile.updatedAt,
+    );
+    await saveSetting(db, 'active_child_id', profile.id);
+  });
+
+  return profile;
+}
+
+export async function updateChildProfile(
+  db: SQLiteDatabase,
+  profileId: string,
+  draft: ChildProfileDraft,
+): Promise<void> {
+  await db.runAsync(
+    `UPDATE child_profiles
+     SET nickname = ?,
+         birth_date = ?,
+         sex = ?,
+         schedule_country = ?,
+         incomplete_history = ?,
+         updated_at = ?
+     WHERE id = ?`,
+    normalizeNickname(draft.nickname),
+    draft.birthDate,
+    draft.sex,
+    draft.scheduleCountry,
+    draft.incompleteHistory ? 1 : 0,
+    nowIso(),
+    profileId,
+  );
+}
+
+export async function deleteChildProfile(
+  db: SQLiteDatabase,
+  profileId: string,
+): Promise<void> {
+  await db.withTransactionAsync(async () => {
+    await db.runAsync('DELETE FROM child_profiles WHERE id = ?', profileId);
+    const nextProfile = await db.getFirstAsync<ChildProfileRow>(
+      `SELECT *
+       FROM child_profiles
+       ORDER BY created_at ASC, id ASC
+       LIMIT 1`,
+    );
+    await saveSetting(db, 'active_child_id', nextProfile?.id ?? '');
+  });
+}
+
+export async function setActiveChildProfile(
+  db: SQLiteDatabase,
+  profileId: string,
+): Promise<void> {
+  await saveSetting(db, 'active_child_id', profileId);
+}
+
+export async function acceptDisclaimer(db: SQLiteDatabase): Promise<void> {
+  await saveSetting(db, 'disclaimer_accepted_version', DISCLAIMER_VERSION);
+  await saveSetting(db, 'disclaimer_accepted_at', nowIso());
+}
+
+export async function getChildProfiles(
+  db: SQLiteDatabase,
+): Promise<ChildProfile[]> {
+  const rows = await db.getAllAsync<ChildProfileRow>(
+    `SELECT id,
+            nickname,
+            birth_date,
+            sex,
+            schedule_country,
+            incomplete_history,
+            created_at,
+            updated_at
+     FROM child_profiles
+     ORDER BY created_at ASC, id ASC`,
+  );
+  return rows.map(rowToChildProfile);
 }
 
 export async function importScheduleIfNeeded(
@@ -325,8 +515,15 @@ export async function getDatabaseSnapshot(
   const language = await getSetting(db, 'language');
   const analyticsEnabled = await getSetting(db, 'analytics_enabled');
   const notificationsEnabled = await getSetting(db, 'notifications_enabled');
+  const activeChildId = await getSetting(db, 'active_child_id');
+  const disclaimerAcceptedVersion = await getSetting(
+    db,
+    'disclaimer_accepted_version',
+  );
+  const disclaimerAcceptedAt = await getSetting(db, 'disclaimer_accepted_at');
 
   return {
+    activeChildId: activeChildId || null,
     scheduleVersion: metadata?.schedule_version ?? null,
     effectiveDate: metadata?.effective_date ?? null,
     importedDate: metadata?.imported_date ?? null,
@@ -338,6 +535,8 @@ export async function getDatabaseSnapshot(
     language: parseLanguage(language),
     analyticsEnabled: analyticsEnabled === 'true',
     notificationsEnabled: notificationsEnabled === 'true',
+    disclaimerAcceptedVersion: disclaimerAcceptedVersion || null,
+    disclaimerAcceptedAt: disclaimerAcceptedAt || null,
   };
 }
 
@@ -361,6 +560,28 @@ async function countRows(db: SQLiteDatabase, table: string): Promise<number> {
 
 function parseLanguage(value: string | null): LanguageCode {
   return value === 'en' || value === 'bg' ? value : DEFAULT_LANGUAGE;
+}
+
+function rowToChildProfile(row: ChildProfileRow): ChildProfile {
+  return {
+    birthDate: row.birth_date,
+    createdAt: row.created_at,
+    id: row.id,
+    incompleteHistory: row.incomplete_history === 1,
+    nickname: row.nickname,
+    scheduleCountry: row.schedule_country,
+    sex: parseChildSex(row.sex),
+    updatedAt: row.updated_at,
+  };
+}
+
+function parseChildSex(value: string | null): ChildSex {
+  return value === 'female' || value === 'male' ? value : 'not_set';
+}
+
+function createLocalId(prefix: string): string {
+  const suffix = Math.random().toString(36).slice(2, 10);
+  return `${prefix}_${Date.now().toString(36)}_${suffix}`;
 }
 
 function nowIso(): string {

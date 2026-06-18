@@ -212,6 +212,7 @@ Status convention:
 | 2026-06-18 | Phase 1 | Added compatibility-preserving app-facing schedule adapter, product mappings, source metadata, child fixtures, and projection validation. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Structure week/seasonal/minimum-interval rules before Phase 2 calculations depend on them. |
 | 2026-06-18 | Phase 2 | Added date/status calculation engine, administration-event matching, visit grouping, completion summary, and calculation tests. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Add structured minimum-interval and eligibility rules before building reminders or clinical warnings. |
 | 2026-06-18 | Phase 3 | Added Expo TypeScript app foundation, bundled schedule JSON import path, SQLite migrations/import, local settings defaults, bilingual labels, tab shell, error boundary, health logging, and mobile CI scripts. | `python3 validate.py` passed; `python3 -m unittest discover` passed; `npm run ci` passed in `mobile/`; Expo Metro started on `http://localhost:8081` and returned `packager-status:running`. Native iOS/Android launch UAT not run in this session. | Run device/simulator launch checks, then start Phase 4 onboarding and child-profile persistence. |
+| 2026-06-18 | Phase 4 | Added local child-profile onboarding, disclaimer acceptance settings, nickname/date-of-birth/sex capture, older-child incomplete-history choice, profile switching, profile editing, profile deletion confirmation, and profile-derived next milestone status. | `make ci` passed; Expo Metro started with `make mobile-start-clean` and returned `packager-status:running`. Device UAT still pending for this phase. | Run Android emulator smoke test, then start Phase 5 dashboard/timeline refinements. |
 
 ## Detailed Implementation Phases
 
@@ -502,16 +503,16 @@ Deliverables:
 
 Implementation checklist:
 
-- [ ] Build first-launch flow with brief value proposition and disclaimer.
-- [ ] Capture child nickname/name, date of birth, sex, and country schedule.
-- [ ] Make name optional or nickname-friendly.
-- [ ] Validate date of birth and prevent impossible future/very old child dates.
-- [ ] Add Bulgaria as the default schedule while keeping the country selector extensible.
-- [ ] Ask older-child users whether they want to backfill records now or continue with incomplete history.
-- [ ] Store disclaimer acceptance version and timestamp.
-- [ ] Add edit profile flow.
-- [ ] Add delete profile flow with confirmation and export reminder.
-- [ ] Support multiple child profiles if kept in MVP; otherwise explicitly defer and explain why.
+- [x] Build first-launch flow with brief value proposition and disclaimer.
+- [x] Capture child nickname/name, date of birth, sex, and country schedule.
+- [x] Make name optional or nickname-friendly.
+- [x] Validate date of birth and prevent impossible future/very old child dates.
+- [x] Add Bulgaria as the default schedule while keeping the country selector extensible.
+- [x] Ask older-child users whether they want to backfill records now or continue with incomplete history.
+- [x] Store disclaimer acceptance version and timestamp.
+- [x] Add edit profile flow.
+- [ ] Add delete profile flow with confirmation and export reminder. (in progress: confirmation exists; export reminder depends on Phase 8 export support)
+- [x] Support multiple child profiles if kept in MVP; otherwise explicitly defer and explain why.
 
 UAT scenarios:
 
@@ -531,7 +532,7 @@ Phase log:
 
 | Date | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- |
-| TBD | Not started. | Not run. | Build after app foundation and local storage are available. |
+| 2026-06-18 | Added profile onboarding and profile management backed by SQLite: local profile creation, optional nickname, date-of-birth validation, sex selection, Bulgaria schedule default, older-child incomplete-history choice, disclaimer acceptance settings, active profile switching, editing, deletion confirmation, and profile-derived next milestone status on Today. | `make ci` passed; Expo Metro started with `make mobile-start-clean` and returned `packager-status:running`. Device UAT still pending for this phase. | Run Android emulator smoke test, then start Phase 5 dashboard/timeline refinements and later add delete/export reminder once export exists. |
 
 ### Phase 5: Today Dashboard and Timeline
 
