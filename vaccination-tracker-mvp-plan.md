@@ -211,6 +211,7 @@ Status convention:
 | 2026-06-18 | Phase 0 | Added source inventory, schedule-version decision, safety disclaimer copy, privacy/analytics policy, product vocabulary, and risk register. | Reviewed Lex.bg Ordinance No. 15, ECDC Bulgaria scheduler link, and Plus Men pregnancy recommendations; `python3 validate.py` passed; UAT scenarios prepared but not user-tested. | Start Phase 1 with a compatibility-preserving adapter. |
 | 2026-06-18 | Phase 1 | Added compatibility-preserving app-facing schedule adapter, product mappings, source metadata, child fixtures, and projection validation. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Structure week/seasonal/minimum-interval rules before Phase 2 calculations depend on them. |
 | 2026-06-18 | Phase 2 | Added date/status calculation engine, administration-event matching, visit grouping, completion summary, and calculation tests. | `python3 validate.py` passed; `python3 -m unittest discover` passed. | Add structured minimum-interval and eligibility rules before building reminders or clinical warnings. |
+| 2026-06-18 | Phase 3 | Added Expo TypeScript app foundation, bundled schedule JSON import path, SQLite migrations/import, local settings defaults, bilingual labels, tab shell, error boundary, health logging, and mobile CI scripts. | `python3 validate.py` passed; `python3 -m unittest discover` passed; `npm run ci` passed in `mobile/`; Expo Metro started on `http://localhost:8081` and returned `packager-status:running`. Native iOS/Android launch UAT not run in this session. | Run device/simulator launch checks, then start Phase 4 onboarding and child-profile persistence. |
 
 ## Detailed Implementation Phases
 
@@ -457,16 +458,16 @@ Deliverables:
 
 Implementation checklist:
 
-- [ ] Create Expo app with TypeScript.
-- [ ] Add linting, formatting, unit test runner, and basic CI command.
-- [ ] Add app navigation with placeholder screens.
-- [ ] Add local database library and migration system.
-- [ ] Create tables for child profiles, schedule metadata, schedule doses, products, administration events, reminders, and settings.
-- [ ] Import bundled schedule JSON on first launch.
-- [ ] Detect app schedule-data upgrades and preserve existing child records.
-- [ ] Add local-only privacy defaults.
-- [ ] Add Bulgarian and English localization framework.
-- [ ] Add error boundary and basic app health logging without health data.
+- [x] Create Expo app with TypeScript.
+- [x] Add linting, formatting, unit test runner, and basic CI command.
+- [x] Add app navigation with placeholder screens.
+- [x] Add local database library and migration system.
+- [x] Create tables for child profiles, schedule metadata, schedule doses, products, administration events, reminders, and settings.
+- [x] Import bundled schedule JSON on first launch.
+- [x] Detect app schedule-data upgrades and preserve existing child records.
+- [x] Add local-only privacy defaults.
+- [x] Add Bulgarian and English localization framework.
+- [x] Add error boundary and basic app health logging without health data.
 
 UAT scenarios:
 
@@ -485,7 +486,7 @@ Phase log:
 
 | Date | Implemented | Verification / UAT | Next Steps |
 | --- | --- | --- | --- |
-| TBD | Not started. | Not run. | Scaffold Expo app after calculation engine tests pass. |
+| 2026-06-18 | Created the `mobile/` Expo TypeScript app, pinned SDK 53-compatible dependencies for Node 18, added the generated `bg-schedule.json` bundle and exporter, built a SQLite migration/import layer, added local settings defaults, bilingual copy, a four-tab app shell, error boundary, health logging, Jest/ESLint/Prettier/TypeScript CI, and a mobile bundle test. | `npm run ci` passed in `mobile/`; `python3 validate.py` passed; `python3 -m unittest discover` passed; Expo Metro started on `http://localhost:8081` and returned `packager-status:running`. Native iOS and Android launch UAT was not run in this session. | Run iOS/Android simulator or device launch checks, then build Phase 4 onboarding and persisted child profiles. |
 
 ### Phase 4: Child Profile and Onboarding
 

@@ -5,6 +5,8 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 - `vaccine_schedule.py` loads and renders the schedule.
 - `tracker_schedule.py` projects the stable YAML data into an app-facing schedule model.
 - `tracker_calculations.py` computes milestone due dates, dose statuses, visit groups, and completion summaries.
+- `mobile/` contains the Expo React Native TypeScript app foundation.
+- `mobile/src/data/bg-schedule.json` is the generated bundled schedule consumed by the app.
 - `data/bg/sources.yaml` contains source links.
 - `data/bg/columns.yaml` defines stable age-column IDs.
 - `data/bg/vaccines.yaml` defines vaccine row IDs, labels, short names, and aliases.
@@ -28,14 +30,37 @@ Run unit tests from this repository:
 python3 -m unittest discover
 ```
 
+Common commands are also available through `make`:
+
+```sh
+make validate
+make test
+make ci
+make android-env
+make mobile-android
+```
+
 Export the app-facing schedule projection as JSON:
 
 ```sh
 python3 tracker_schedule.py
 ```
 
+Regenerate the bundled mobile schedule:
+
+```sh
+python3 scripts/export_mobile_schedule.py
+```
+
 Preview the calculation engine with a generated example profile:
 
 ```sh
 python3 tracker_calculations.py
+```
+
+Run mobile app checks:
+
+```sh
+cd mobile
+npm run ci
 ```

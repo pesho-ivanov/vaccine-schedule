@@ -1,0 +1,1366 @@
+{
+  "country_code": "BG",
+  "jurisdiction_name": {
+    "en": "Bulgaria",
+    "bg": "България"
+  },
+  "schedule_version": "BG-N15-2026-07-01",
+  "effective_date": "2026-07-01",
+  "imported_date": "2026-06-18",
+  "mvp_age_coverage": {
+    "from": "birth",
+    "throughAgeYears": 18,
+    "defaultHiddenMilestoneKinds": ["pregnancy", "adult"]
+  },
+  "source_references": [
+    {
+      "id": "ecdc_calendar",
+      "title": "ECDC Vaccine Scheduler, Bulgaria",
+      "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
+      "role": "Cross-check source and future import-model reference for EU schedules; not the authority when it conflicts with Ordinance No. 15.",
+      "accessed_on": "2026-06-18",
+      "effective_date": null
+    },
+    {
+      "id": "lex_calendar",
+      "title": "Наредба № 15 от 12 май 2005 г. за имунизациите в Република България",
+      "url": "https://lex.bg/laws/ldoc/2135504228",
+      "role": "Primary legal source for mandatory, targeted, and recommended immunization categories; Appendix 1 is the Bulgarian immunization calendar.",
+      "accessed_on": "2026-06-18",
+      "effective_date": "2026-07-01"
+    },
+    {
+      "id": "pregnancy_vaccine",
+      "title": "Плюс мен: Препоръки за имунизация на бременни жени",
+      "url": "https://plusmen.bg/bg/suggestions/pregnancy",
+      "role": "Supplementary public-health source for pregnancy recommendation copy and product examples.",
+      "accessed_on": "2026-06-18",
+      "effective_date": null
+    }
+  ],
+  "milestones": [
+    {
+      "id": "pregnancy_flu",
+      "label": {
+        "en": "Pregnancy",
+        "bg": "Бременност"
+      },
+      "kind": "pregnancy",
+      "age_months": -3.0,
+      "open_ended": false
+    },
+    {
+      "id": "pregnancy_tdap",
+      "label": {
+        "en": "Pregnancy",
+        "bg": "Бременност"
+      },
+      "kind": "pregnancy",
+      "age_months": -2.0,
+      "open_ended": false
+    },
+    {
+      "id": "pregnancy_rsv",
+      "label": {
+        "en": "Pregnancy",
+        "bg": "Бременност"
+      },
+      "kind": "pregnancy",
+      "age_months": -1.0,
+      "open_ended": false
+    },
+    {
+      "id": "birth",
+      "label": {
+        "en": "Birth",
+        "bg": "Раждане"
+      },
+      "kind": "birth",
+      "age_months": 0.0,
+      "open_ended": false
+    },
+    {
+      "id": "1m",
+      "label": {
+        "en": "1m",
+        "bg": "1m"
+      },
+      "kind": "month",
+      "age_months": 1.0,
+      "open_ended": false
+    },
+    {
+      "id": "2m",
+      "label": {
+        "en": "2m",
+        "bg": "2m"
+      },
+      "kind": "month",
+      "age_months": 2.0,
+      "open_ended": false
+    },
+    {
+      "id": "3m",
+      "label": {
+        "en": "3m",
+        "bg": "3m"
+      },
+      "kind": "month",
+      "age_months": 3.0,
+      "open_ended": false
+    },
+    {
+      "id": "4m",
+      "label": {
+        "en": "4m",
+        "bg": "4m"
+      },
+      "kind": "month",
+      "age_months": 4.0,
+      "open_ended": false
+    },
+    {
+      "id": "6m",
+      "label": {
+        "en": "6m",
+        "bg": "6m"
+      },
+      "kind": "month",
+      "age_months": 6.0,
+      "open_ended": false
+    },
+    {
+      "id": "7m",
+      "label": {
+        "en": "7m",
+        "bg": "7m"
+      },
+      "kind": "month",
+      "age_months": 7.0,
+      "open_ended": false
+    },
+    {
+      "id": "12m",
+      "label": {
+        "en": "12m",
+        "bg": "12m"
+      },
+      "kind": "month",
+      "age_months": 12.0,
+      "open_ended": false
+    },
+    {
+      "id": "13m",
+      "label": {
+        "en": "13m",
+        "bg": "13m"
+      },
+      "kind": "month",
+      "age_months": 13.0,
+      "open_ended": false
+    },
+    {
+      "id": "15m",
+      "label": {
+        "en": "15m",
+        "bg": "15m"
+      },
+      "kind": "month",
+      "age_months": 15.0,
+      "open_ended": false
+    },
+    {
+      "id": "16m",
+      "label": {
+        "en": "16m",
+        "bg": "16m"
+      },
+      "kind": "month",
+      "age_months": 16.0,
+      "open_ended": false
+    },
+    {
+      "id": "4y",
+      "label": {
+        "en": "4y",
+        "bg": "4y"
+      },
+      "kind": "year",
+      "age_months": 48.0,
+      "open_ended": false
+    },
+    {
+      "id": "6y",
+      "label": {
+        "en": "6y",
+        "bg": "6y"
+      },
+      "kind": "year",
+      "age_months": 72.0,
+      "open_ended": false
+    },
+    {
+      "id": "7y",
+      "label": {
+        "en": "7y",
+        "bg": "7y"
+      },
+      "kind": "year",
+      "age_months": 84.0,
+      "open_ended": false
+    },
+    {
+      "id": "10y",
+      "label": {
+        "en": "10y",
+        "bg": "10y"
+      },
+      "kind": "year",
+      "age_months": 120.0,
+      "open_ended": false
+    },
+    {
+      "id": "12y",
+      "label": {
+        "en": "12y",
+        "bg": "12y"
+      },
+      "kind": "year",
+      "age_months": 144.0,
+      "open_ended": false
+    },
+    {
+      "id": "14y",
+      "label": {
+        "en": "14y",
+        "bg": "14y"
+      },
+      "kind": "year",
+      "age_months": 168.0,
+      "open_ended": false
+    },
+    {
+      "id": "15y",
+      "label": {
+        "en": "15y",
+        "bg": "15y"
+      },
+      "kind": "year",
+      "age_months": 180.0,
+      "open_ended": false
+    },
+    {
+      "id": "17y",
+      "label": {
+        "en": "17y",
+        "bg": "17y"
+      },
+      "kind": "year",
+      "age_months": 204.0,
+      "open_ended": false
+    },
+    {
+      "id": "18y",
+      "label": {
+        "en": "18y",
+        "bg": "18y"
+      },
+      "kind": "year",
+      "age_months": 216.0,
+      "open_ended": false
+    },
+    {
+      "id": "25y",
+      "label": {
+        "en": "25y",
+        "bg": "25y"
+      },
+      "kind": "adult",
+      "age_months": 300.0,
+      "open_ended": false
+    },
+    {
+      "id": "59y",
+      "label": {
+        "en": "59y",
+        "bg": "59y"
+      },
+      "kind": "adult",
+      "age_months": 708.0,
+      "open_ended": false
+    },
+    {
+      "id": "60y",
+      "label": {
+        "en": "60y",
+        "bg": "60y"
+      },
+      "kind": "adult",
+      "age_months": 720.0,
+      "open_ended": false
+    },
+    {
+      "id": "64y",
+      "label": {
+        "en": "64y",
+        "bg": "64y"
+      },
+      "kind": "adult",
+      "age_months": 768.0,
+      "open_ended": false
+    },
+    {
+      "id": "gte65y",
+      "label": {
+        "en": "≥65y",
+        "bg": "≥65y"
+      },
+      "kind": "adult",
+      "age_months": 780.0,
+      "open_ended": true
+    }
+  ],
+  "antigens": [
+    {
+      "id": "tuberculosis",
+      "label": {
+        "en": "tuberculosis",
+        "bg": "туберкулоза"
+      },
+      "short": {
+        "en": "TB",
+        "bg": "ТБ"
+      },
+      "record_aliases": ["бцж", "туберкулоза"]
+    },
+    {
+      "id": "diphtheria",
+      "label": {
+        "en": "diphtheria",
+        "bg": "дифтерия"
+      },
+      "short": {
+        "en": "Diph",
+        "bg": "Диф"
+      },
+      "record_aliases": ["дтка"]
+    },
+    {
+      "id": "tetanus",
+      "label": {
+        "en": "tetanus",
+        "bg": "тетанус"
+      },
+      "short": {
+        "en": "Tet",
+        "bg": "Тет"
+      },
+      "record_aliases": ["дтка"]
+    },
+    {
+      "id": "pertussis",
+      "label": {
+        "en": "pertussis",
+        "bg": "коклюш"
+      },
+      "short": {
+        "en": "Pert",
+        "bg": "Кокл"
+      },
+      "record_aliases": ["дтка"]
+    },
+    {
+      "id": "poliomyelitis",
+      "label": {
+        "en": "poliomyelitis",
+        "bg": "полиомиелит"
+      },
+      "short": {
+        "en": "Polio",
+        "bg": "Полио"
+      },
+      "record_aliases": ["пи"]
+    },
+    {
+      "id": "haemophilus_influenzae_type_b",
+      "label": {
+        "en": "Haemophilus influenzae type b",
+        "bg": "хемофилус инфлуенце тип Б"
+      },
+      "short": {
+        "en": "Hib",
+        "bg": "Хиб"
+      },
+      "record_aliases": ["хиб"]
+    },
+    {
+      "id": "hepatitis_b",
+      "label": {
+        "en": "hepatitis B",
+        "bg": "вирусен хепатит тип Б"
+      },
+      "short": {
+        "en": "Hep B",
+        "bg": "Хеп. Б"
+      },
+      "record_aliases": ["хеп. б"]
+    },
+    {
+      "id": "pneumococcal_disease",
+      "label": {
+        "en": "pneumococcal disease",
+        "bg": "пневмококови инфекции"
+      },
+      "short": {
+        "en": "Pneumo",
+        "bg": "Пневмо"
+      },
+      "record_aliases": ["пневмо"]
+    },
+    {
+      "id": "measles_mumps_rubella",
+      "label": {
+        "en": "measles, mumps, rubella",
+        "bg": "морбили, паротит, рубеола"
+      },
+      "short": {
+        "en": "MMR",
+        "bg": "МПР"
+      },
+      "record_aliases": ["мпр"]
+    },
+    {
+      "id": "varicella",
+      "label": {
+        "en": "varicella",
+        "bg": "варицела"
+      },
+      "short": {
+        "en": "Varicella",
+        "bg": "Варицела"
+      },
+      "record_aliases": ["вар"]
+    },
+    {
+      "id": "pert",
+      "label": {
+        "en": "Pert",
+        "bg": "коклюш"
+      },
+      "short": null,
+      "record_aliases": ["tdap"]
+    },
+    {
+      "id": "rsv",
+      "label": {
+        "en": "RSV",
+        "bg": "респираторно-синцитиален вирус"
+      },
+      "short": {
+        "en": "RSV",
+        "bg": "РСВ"
+      },
+      "record_aliases": ["rsv"]
+    },
+    {
+      "id": "rotavirus",
+      "label": {
+        "en": "rotavirus",
+        "bg": "ротавирус"
+      },
+      "short": {
+        "en": "Rota",
+        "bg": "Рота"
+      },
+      "record_aliases": []
+    },
+    {
+      "id": "meningococcal",
+      "label": {
+        "en": "Meningococcal",
+        "bg": "менингококови инфекции"
+      },
+      "short": {
+        "en": "Men.",
+        "bg": "Мен."
+      },
+      "record_aliases": []
+    },
+    {
+      "id": "hepatitis_a",
+      "label": {
+        "en": "hepatitis A",
+        "bg": "вирусен хепатит тип А"
+      },
+      "short": {
+        "en": "Hep A",
+        "bg": "Хеп. А"
+      },
+      "record_aliases": []
+    },
+    {
+      "id": "covid",
+      "label": {
+        "en": "COVID",
+        "bg": "коронавирусна болест (COVID)"
+      },
+      "short": {
+        "en": "COVID",
+        "bg": "КОВИД"
+      },
+      "record_aliases": []
+    },
+    {
+      "id": "influenza",
+      "label": {
+        "en": "influenza",
+        "bg": "грип"
+      },
+      "short": {
+        "en": "Flu",
+        "bg": "Грип"
+      },
+      "record_aliases": ["flu", "грип"]
+    },
+    {
+      "id": "hpv",
+      "label": {
+        "en": "HPV",
+        "bg": "човешки папиломен вирус"
+      },
+      "short": {
+        "en": "HPV",
+        "bg": "ЧПВ"
+      },
+      "record_aliases": []
+    }
+  ],
+  "doses": [
+    {
+      "id": "tuberculosis:birth:1",
+      "antigen_id": "tuberculosis",
+      "milestone_id": "birth",
+      "status_category": "mandatory",
+      "display_text": "BCG",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Bacille Calmette-Guerin vaccine Administration after 48 hours from birth.",
+      "flags": []
+    },
+    {
+      "id": "tuberculosis:7m:2",
+      "antigen_id": "tuberculosis",
+      "milestone_id": "7m",
+      "status_category": "mandatory",
+      "display_text": "BCG",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Only after negative Montoux test. Проверка за белег след БЦЖ имунизацията. На децата без белег се прави проба манту. Отрицателните се имунизират с БЦЖ ваксина.",
+      "flags": []
+    },
+    {
+      "id": "tuberculosis:7y:3",
+      "antigen_id": "tuberculosis",
+      "milestone_id": "7y",
+      "status_category": "mandatory",
+      "display_text": "BCG",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Only after negative Montoux test. Проверка за белег след БЦЖ имунизацията. На децата без белег се прави проба манту. Отрицателните се имунизират с БЦЖ ваксина.",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:2m:1",
+      "antigen_id": "diphtheria",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "D",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Diphtheria toxoid, paediatric formulation Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively.",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:3m:2",
+      "antigen_id": "diphtheria",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "D",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Diphtheria toxoid, paediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:4m:3",
+      "antigen_id": "diphtheria",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "D",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Diphtheria toxoid, paediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:16m:4",
+      "antigen_id": "diphtheria",
+      "milestone_id": "16m",
+      "status_category": "mandatory",
+      "display_text": "D",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Diphtheria toxoid, paediatric formulation Not earlier than 12 months after the 3rd dose",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:6y:5",
+      "antigen_id": "diphtheria",
+      "milestone_id": "6y",
+      "status_category": "mandatory",
+      "display_text": "D",
+      "dose_number": 5,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Diphtheria toxoid, paediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:12y:6",
+      "antigen_id": "diphtheria",
+      "milestone_id": "12y",
+      "status_category": "mandatory",
+      "display_text": "d",
+      "dose_number": 6,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "diphtheria toxoid, reduced antigen content",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:17y:7",
+      "antigen_id": "diphtheria",
+      "milestone_id": "17y",
+      "status_category": "mandatory",
+      "display_text": "d",
+      "dose_number": 7,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "diphtheria toxoid, reduced antigen content",
+      "flags": []
+    },
+    {
+      "id": "diphtheria:25y:8",
+      "antigen_id": "diphtheria",
+      "milestone_id": "25y",
+      "status_category": "mandatory",
+      "display_text": "d",
+      "dose_number": 8,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": "gte65y",
+      "note": "Subsequent Td booster every 10 years.",
+      "flags": []
+    },
+    {
+      "id": "tetanus:2m:1",
+      "antigen_id": "tetanus",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively.",
+      "flags": []
+    },
+    {
+      "id": "tetanus:3m:2",
+      "antigen_id": "tetanus",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid",
+      "flags": []
+    },
+    {
+      "id": "tetanus:4m:3",
+      "antigen_id": "tetanus",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid",
+      "flags": []
+    },
+    {
+      "id": "tetanus:16m:4",
+      "antigen_id": "tetanus",
+      "milestone_id": "16m",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid Not earlier than 12 months after the 3rd dose",
+      "flags": []
+    },
+    {
+      "id": "tetanus:6y:5",
+      "antigen_id": "tetanus",
+      "milestone_id": "6y",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 5,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid",
+      "flags": []
+    },
+    {
+      "id": "tetanus:12y:6",
+      "antigen_id": "tetanus",
+      "milestone_id": "12y",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 6,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid",
+      "flags": []
+    },
+    {
+      "id": "tetanus:17y:7",
+      "antigen_id": "tetanus",
+      "milestone_id": "17y",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 7,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Tetanus toxoid",
+      "flags": []
+    },
+    {
+      "id": "tetanus:25y:8",
+      "antigen_id": "tetanus",
+      "milestone_id": "25y",
+      "status_category": "mandatory",
+      "display_text": "TT",
+      "dose_number": 8,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": "gte65y",
+      "note": "Subsequent Td booster every 10 years.",
+      "flags": []
+    },
+    {
+      "id": "pertussis:2m:1",
+      "antigen_id": "pertussis",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "acP",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, pediatric formulation Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively.",
+      "flags": []
+    },
+    {
+      "id": "pertussis:3m:2",
+      "antigen_id": "pertussis",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "acP",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, pediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "pertussis:4m:3",
+      "antigen_id": "pertussis",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "acP",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, pediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "pertussis:16m:4",
+      "antigen_id": "pertussis",
+      "milestone_id": "16m",
+      "status_category": "mandatory",
+      "display_text": "acP",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, pediatric formulation Not earlier than 12 months after the 3rd dose",
+      "flags": []
+    },
+    {
+      "id": "pertussis:6y:5",
+      "antigen_id": "pertussis",
+      "milestone_id": "6y",
+      "status_category": "mandatory",
+      "display_text": "acP",
+      "dose_number": 5,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, pediatric formulation",
+      "flags": []
+    },
+    {
+      "id": "pertussis:12y:6",
+      "antigen_id": "pertussis",
+      "milestone_id": "12y",
+      "status_category": "mandatory",
+      "display_text": "acp",
+      "dose_number": 6,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "acellular pertussis vaccine, adult/adolescent formulation",
+      "flags": []
+    },
+    {
+      "id": "pertussis:18y:7",
+      "antigen_id": "pertussis",
+      "milestone_id": "18y",
+      "status_category": "mandatory",
+      "display_text": "acp",
+      "dose_number": 7,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": "64y",
+      "note": "acellular pertussis vaccine, adult/adolescent formulation Immunization against pertussis is given to pregnant women between the 27th and 36th weeks of pregnancy. A booster of TDaP reduced-antigen vaccine and the administration are free of charge for pregnant women and  funded by the National Health system.",
+      "flags": []
+    },
+    {
+      "id": "poliomyelitis:2m:1",
+      "antigen_id": "poliomyelitis",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "IPV",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "poliovirus vaccine, types 1, 2, 3, inactivated Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively.",
+      "flags": []
+    },
+    {
+      "id": "poliomyelitis:3m:2",
+      "antigen_id": "poliomyelitis",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "IPV",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "poliovirus vaccine, types 1, 2, 3, inactivated",
+      "flags": []
+    },
+    {
+      "id": "poliomyelitis:4m:3",
+      "antigen_id": "poliomyelitis",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "IPV",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "poliovirus vaccine, types 1, 2, 3, inactivated",
+      "flags": []
+    },
+    {
+      "id": "poliomyelitis:16m:4",
+      "antigen_id": "poliomyelitis",
+      "milestone_id": "16m",
+      "status_category": "mandatory",
+      "display_text": "IPV",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "poliovirus vaccine, types 1, 2, 3, inactivated Not earlier than 12 months after the 3rd dose",
+      "flags": []
+    },
+    {
+      "id": "poliomyelitis:6y:5",
+      "antigen_id": "poliomyelitis",
+      "milestone_id": "6y",
+      "status_category": "mandatory",
+      "display_text": "IPV",
+      "dose_number": 5,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "poliovirus vaccine, types 1, 2, 3, inactivated",
+      "flags": []
+    },
+    {
+      "id": "haemophilus_influenzae_type_b:2m:1",
+      "antigen_id": "haemophilus_influenzae_type_b",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "Hib",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Haemophilus influenzae type b conjugated vaccine Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose, at three and four months of age, respectively.",
+      "flags": []
+    },
+    {
+      "id": "haemophilus_influenzae_type_b:3m:2",
+      "antigen_id": "haemophilus_influenzae_type_b",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "Hib",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Haemophilus influenzae type b conjugated vaccine",
+      "flags": []
+    },
+    {
+      "id": "haemophilus_influenzae_type_b:4m:3",
+      "antigen_id": "haemophilus_influenzae_type_b",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "Hib",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Haemophilus influenzae type b conjugated vaccine",
+      "flags": []
+    },
+    {
+      "id": "haemophilus_influenzae_type_b:16m:4",
+      "antigen_id": "haemophilus_influenzae_type_b",
+      "milestone_id": "16m",
+      "status_category": "mandatory",
+      "display_text": "Hib",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Haemophilus influenzae type b conjugated vaccine Not earlier than 12 months after the 3rd dose",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:birth:1",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "birth",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B During the first 24 hours after birth with a monovalent hepatitis B vaccine, regardless of the type of vaccine used to continue the immunization schedule.",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:1m:2",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "1m",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B When using a monovalent vaccine, doses are administered at 1 and 6 months",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:2m:3",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses are given at 2, 3 and 4 months of age.",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:3m:4",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "3m",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses are given at 2, 3 and 4 months of age.",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:4m:5",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 5,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses are given at 2, 3 and 4 months of age.",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_b:6m:6",
+      "antigen_id": "hepatitis_b",
+      "milestone_id": "6m",
+      "status_category": "mandatory",
+      "display_text": "HepB",
+      "dose_number": 6,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Hepatitis B When using a monovalent vaccine, doses are administered at 1 and 6 months",
+      "flags": []
+    },
+    {
+      "id": "pneumococcal_disease:2m:1",
+      "antigen_id": "pneumococcal_disease",
+      "milestone_id": "2m",
+      "status_category": "mandatory",
+      "display_text": "PCV",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Pneumococcal conjugate vaccine Routine vaccination begins at 6 weeks of age. Second dose is given at 14 weeks of age. For children born to mothers vaccinated against pertussis during pregnancy, mandatory immunization against pneumococcal infections is carried out from two months of age. Subsequent immunization is administered no earlier than 8 weeks after the first dose, respectively from four months of age.",
+      "flags": []
+    },
+    {
+      "id": "pneumococcal_disease:4m:2",
+      "antigen_id": "pneumococcal_disease",
+      "milestone_id": "4m",
+      "status_category": "mandatory",
+      "display_text": "PCV",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Pneumococcal conjugate vaccine Routine vaccination begins at 6 weeks of age. Second dose is given at 14 weeks of age. For children born to mothers vaccinated against pertussis during pregnancy, mandatory immunization against pneumococcal infections is carried out from two months of age. Subsequent immunization is administered no earlier than 8 weeks after the first dose, respectively from four months of age.",
+      "flags": []
+    },
+    {
+      "id": "pneumococcal_disease:12m:3",
+      "antigen_id": "pneumococcal_disease",
+      "milestone_id": "12m",
+      "status_category": "mandatory",
+      "display_text": "PCV",
+      "dose_number": 3,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "Pneumococcal conjugate vaccine Not earlier than 6 months after the previous dose.",
+      "flags": []
+    },
+    {
+      "id": "pneumococcal_disease:gte65y:4",
+      "antigen_id": "pneumococcal_disease",
+      "milestone_id": "gte65y",
+      "status_category": "mandatory",
+      "display_text": "PCV13",
+      "dose_number": 4,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "For people over 65 years of age, influenza and pneumococcal vaccines and administration are free of charge and funded according to the National programme.",
+      "flags": []
+    },
+    {
+      "id": "measles_mumps_rubella:13m:1",
+      "antigen_id": "measles_mumps_rubella",
+      "milestone_id": "13m",
+      "status_category": "mandatory",
+      "display_text": "MMR",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "measles vaccine mumps vaccine rubella vaccine",
+      "flags": []
+    },
+    {
+      "id": "measles_mumps_rubella:12y:2",
+      "antigen_id": "measles_mumps_rubella",
+      "milestone_id": "12y",
+      "status_category": "mandatory",
+      "display_text": "MMR",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "measles vaccine mumps vaccine rubella vaccine",
+      "flags": []
+    },
+    {
+      "id": "varicella:12m:1",
+      "antigen_id": "varicella",
+      "milestone_id": "12m",
+      "status_category": "mandatory",
+      "display_text": "VAR",
+      "dose_number": 1,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": "15m",
+      "note": "varicella vaccine Varicella vaccine will be in place as mandatory vaccination since 1st July 2026. 2 doses scheme is recommended: 1 st dose at age 12-15 months and 2nd at 4 years of age.",
+      "flags": []
+    },
+    {
+      "id": "varicella:4y:2",
+      "antigen_id": "varicella",
+      "milestone_id": "4y",
+      "status_category": "mandatory",
+      "display_text": "VAR",
+      "dose_number": 2,
+      "source_ids": ["lex_calendar"],
+      "through_milestone_id": null,
+      "note": "varicella vaccine Varicella vaccine will be in place as mandatory vaccination since 1st July 2026. 2 doses scheme is recommended: 1 st dose at age 12-15 months and 2nd at 4 years of age.",
+      "flags": []
+    },
+    {
+      "id": "pert:pregnancy_tdap:1",
+      "antigen_id": "pert",
+      "milestone_id": "pregnancy_tdap",
+      "status_category": "recommended",
+      "display_text": "DPT",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar", "pregnancy_vaccine"],
+      "through_milestone_id": null,
+      "note": null,
+      "flags": []
+    },
+    {
+      "id": "rsv:pregnancy_rsv:1",
+      "antigen_id": "rsv",
+      "milestone_id": "pregnancy_rsv",
+      "status_category": "recommended",
+      "display_text": "RSV $",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar", "pregnancy_vaccine"],
+      "through_milestone_id": null,
+      "note": null,
+      "flags": ["muted"]
+    },
+    {
+      "id": "rsv:18y:2",
+      "antigen_id": "rsv",
+      "milestone_id": "18y",
+      "status_category": "recommended",
+      "display_text": "RSV",
+      "dose_number": 2,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "gte65y",
+      "note": "Recommended for people aged 18 years and older. Препоръчва се за лица на възраст 18 години и повече.",
+      "flags": []
+    },
+    {
+      "id": "rotavirus:2m:1",
+      "antigen_id": "rotavirus",
+      "milestone_id": "2m",
+      "status_category": "recommended",
+      "display_text": "ROTA",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "6m",
+      "note": "rotavirus vaccine Active immunization of children aged 6 to 24 weeks. The vaccination course consists of two doses, with an interval of at least 4 weeks between doses. Vaccine and immunization are covered by National Program for the Prevention of Rotavirus Gastroenteritis",
+      "flags": []
+    },
+    {
+      "id": "meningococcal:2m:1",
+      "antigen_id": "meningococcal",
+      "milestone_id": "2m",
+      "status_category": "recommended",
+      "display_text": "MCV4\nMenB",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "18y",
+      "note": "General recommendation: MCV4 between 6 weeks and 18 years. General recommendation: MenB between 2 months and 18 years.",
+      "flags": []
+    },
+    {
+      "id": "hepatitis_a:12m:1",
+      "antigen_id": "hepatitis_a",
+      "milestone_id": "12m",
+      "status_category": "recommended",
+      "display_text": "HepA",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "18y",
+      "note": null,
+      "flags": []
+    },
+    {
+      "id": "covid:6m:1",
+      "antigen_id": "covid",
+      "milestone_id": "6m",
+      "status_category": "recommended",
+      "display_text": "COVID",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "18y",
+      "note": "Coronavirus disease (COVID-19) Priority groups for vaccination are: persons aged 60+; people with chronic diseases; immunocompromised persons (including children over 6 months); pregnant women; medical staff; users and staff of social institutions. More information: https://plusmen.bg/bg/optional/covid-19",
+      "flags": []
+    },
+    {
+      "id": "covid:25y:2",
+      "antigen_id": "covid",
+      "milestone_id": "25y",
+      "status_category": "recommended",
+      "display_text": "COVID",
+      "dose_number": 2,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "59y",
+      "note": "Priority groups: people aged 60+, people with chronic diseases, immunocompromised people, pregnant women, medical staff, and users and staff of social institutions.",
+      "flags": []
+    },
+    {
+      "id": "covid:60y:3",
+      "antigen_id": "covid",
+      "milestone_id": "60y",
+      "status_category": "recommended",
+      "display_text": "COVID",
+      "dose_number": 3,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "gte65y",
+      "note": "Priority groups: people aged 60+, people with chronic diseases, immunocompromised people, pregnant women, medical staff, and users and staff of social institutions.",
+      "flags": []
+    },
+    {
+      "id": "influenza:pregnancy_flu:1",
+      "antigen_id": "influenza",
+      "milestone_id": "pregnancy_flu",
+      "status_category": "recommended",
+      "display_text": "IIV3/IIV4",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar", "pregnancy_vaccine"],
+      "through_milestone_id": null,
+      "note": null,
+      "flags": []
+    },
+    {
+      "id": "influenza:6m:2",
+      "antigen_id": "influenza",
+      "milestone_id": "6m",
+      "status_category": "recommended",
+      "display_text": "IIV3/LAIV",
+      "dose_number": 2,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "17y",
+      "note": "Influenza vaccine Inactivated vaccines are recommended for children over 6 months of age. LAIV is recommended for children over 24 months of age. Vaccines are not funded but vaccine administration is funded by the national health insurance.",
+      "flags": []
+    },
+    {
+      "id": "influenza:18y:3",
+      "antigen_id": "influenza",
+      "milestone_id": "18y",
+      "status_category": "recommended",
+      "display_text": "IIV3/IIV4",
+      "dose_number": 3,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "64y",
+      "note": "IIV3/IIV4 Inactivated vaccines are recommended for all people over 18 years of age. Vaccines are not funded but vaccine administration is funded by the national health insurance only for insured Inactivated vaccines are recommended for all people over 18 years of age. Vaccines are not funded but vaccine administration is funded by the national health insurance only for insured people.",
+      "flags": []
+    },
+    {
+      "id": "influenza:gte65y:4",
+      "antigen_id": "influenza",
+      "milestone_id": "gte65y",
+      "status_category": "recommended",
+      "display_text": "IIV3/IIV4",
+      "dose_number": 4,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": null,
+      "note": "For people over 65 years of age, influenza and pneumococcal vaccines and administration are free of charge and funded according to the National programme.",
+      "flags": []
+    },
+    {
+      "id": "hpv:10y:1",
+      "antigen_id": "hpv",
+      "milestone_id": "10y",
+      "status_category": "recommended",
+      "display_text": "HPV9 (F/M)",
+      "dose_number": 1,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "12y",
+      "note": "HPV9 Specific groups according to a National Programme: females 10-14 years, males 10-13 years; 2 doses scheme. Second dose: Not earlier than 6 months after the previous dose",
+      "flags": []
+    },
+    {
+      "id": "hpv:14y:2",
+      "antigen_id": "hpv",
+      "milestone_id": "14y",
+      "status_category": "recommended",
+      "display_text": "HPV9 (F)",
+      "dose_number": 2,
+      "source_ids": ["ecdc_calendar"],
+      "through_milestone_id": "18y",
+      "note": null,
+      "flags": ["note_style"]
+    }
+  ],
+  "products": [
+    {
+      "id": "bcg",
+      "name": "BCG",
+      "covered_antigen_ids": ["tuberculosis"],
+      "source_ids": ["lex_calendar"],
+      "notes": null
+    },
+    {
+      "id": "engerix_b",
+      "name": "Engerix B",
+      "covered_antigen_ids": ["hepatitis_b"],
+      "source_ids": ["lex_calendar"],
+      "notes": "Example monovalent hepatitis B product name; keep editable in the app."
+    },
+    {
+      "id": "infanrix_hexa",
+      "name": "Infanrix hexa",
+      "covered_antigen_ids": [
+        "diphtheria",
+        "tetanus",
+        "pertussis",
+        "poliomyelitis",
+        "haemophilus_influenzae_type_b",
+        "hepatitis_b"
+      ],
+      "source_ids": ["lex_calendar"],
+      "notes": "Example six-component product mapping for DTPa-IPV-Hib-HepB coverage."
+    },
+    {
+      "id": "vaxneuvance",
+      "name": "Vaxneuvance",
+      "covered_antigen_ids": ["pneumococcal_disease"],
+      "source_ids": ["lex_calendar"],
+      "notes": "Example pneumococcal conjugate product name; keep editable in the app."
+    },
+    {
+      "id": "abrysvo",
+      "name": "Abrysvo",
+      "covered_antigen_ids": ["rsv"],
+      "source_ids": ["pregnancy_vaccine"],
+      "notes": "Example RSV product name from pregnancy recommendation context."
+    },
+    {
+      "id": "boostrix",
+      "name": "Boostrix",
+      "covered_antigen_ids": ["diphtheria", "tetanus", "pertussis"],
+      "source_ids": ["pregnancy_vaccine"],
+      "notes": "Example reduced-antigen Tdap product mapping."
+    },
+    {
+      "id": "influvac_tetra",
+      "name": "Influvac tetra",
+      "covered_antigen_ids": ["influenza"],
+      "source_ids": ["pregnancy_vaccine", "ecdc_calendar"],
+      "notes": "Example influenza product name; seasonal eligibility remains clinician-confirmed."
+    }
+  ]
+}
