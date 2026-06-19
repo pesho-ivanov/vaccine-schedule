@@ -10,8 +10,9 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 - `data/bg/metadata.yaml` contains UI text and display settings.
 - `schema/*.schema.json` documents the YAML file contracts.
 - `validate.py` checks required fields and cross-file references.
-- `generated-site/index.html` shows a static table of vaccines as rows and time points as columns.
-- `scripts/build_static_site.py` exports the browser-friendly table data used by the site.
+- `site-src/` contains the static site source.
+- `generated-site/` is ignored generated output with the browser-ready vaccine table.
+- `scripts/build_static_site.py` builds the static site and exports browser-friendly table data.
 
 The module reads data relative to this directory, so it can be moved into a separate repository.
 
@@ -27,8 +28,8 @@ Build the static site:
 make site
 ```
 
-Then open `generated-site/index.html` in a browser. The site is generated only from `data/bg/*.yaml`
-and contains no user profile data.
+Then open `generated-site/index.html` in a browser. The site copies static assets from
+`site-src/`, generates schedule data from `data/bg/*.yaml`, and contains no user profile data.
 
 Serve it locally:
 

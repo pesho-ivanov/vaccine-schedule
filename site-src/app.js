@@ -19,7 +19,6 @@
   title.textContent = data.title.en;
   summaryVaccines.textContent = String(data.rows.length);
   summaryColumns.textContent = String(data.columns.length);
-  table.style.setProperty("--column-count", data.columns.length);
 
   function appendText(parent, value, className) {
     const node = document.createElement("span");
@@ -39,6 +38,47 @@
       return column.label.bg;
     }
     return "";
+  }
+
+  function widestLineLength(value) {
+    return String(value)
+      .split(/\r?\n/)
+      .reduce((widest, line) => Math.max(widest, line.trim().length), 0);
+  }
+
+  function columnWidth(column) {
+    const values = [column.label.en, columnMeta(column)];
+    for (const row of data.rows) {
+      for (const dose of row.doses) {
+        if (dose.column === column.id && (dose.span || 1) === 1) {
+          values.push(dose.text);
+        }
+      }
+    }
+
+    const maxChars = Math.max(...values.map(widestLineLength));
+    return Math.min(112, Math.max(42, Math.ceil(maxChars * 7.5 + 20)));
+  }
+
+  function makeColGroup() {
+    const colgroup = document.createElement("colgroup");
+
+    const numberCol = document.createElement("col");
+    numberCol.className = "number-col";
+    colgroup.appendChild(numberCol);
+
+    const vaccineCol = document.createElement("col");
+    vaccineCol.className = "vaccine-col";
+    colgroup.appendChild(vaccineCol);
+
+    for (const column of data.columns) {
+      const col = document.createElement("col");
+      col.className = "time-col";
+      col.style.width = `${columnWidth(column)}px`;
+      colgroup.appendChild(col);
+    }
+
+    return colgroup;
   }
 
   function makeHeader() {
@@ -188,6 +228,7 @@
     }
   }
 
+  table.appendChild(makeColGroup());
   table.appendChild(makeHeader());
   table.appendChild(makeBody());
   renderSources();

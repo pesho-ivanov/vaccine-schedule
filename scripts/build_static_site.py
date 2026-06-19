@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -10,7 +11,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data/bg"
+SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
+STATIC_FILES = ("index.html", "app.js", "styles.css")
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -124,8 +127,23 @@ def build_schedule_table() -> dict[str, Any]:
     }
 
 
+def rebuild_site_dir() -> None:
+    if SITE_DIR.exists():
+        shutil.rmtree(SITE_DIR)
+    SITE_DIR.mkdir()
+
+
+def copy_static_files() -> None:
+    for filename in STATIC_FILES:
+        source = SITE_SRC_DIR / filename
+        if not source.is_file():
+            raise FileNotFoundError(f"missing static site source: {source}")
+        shutil.copy2(source, SITE_DIR / filename)
+
+
 def main() -> int:
-    SITE_DIR.mkdir(exist_ok=True)
+    rebuild_site_dir()
+    copy_static_files()
     table = build_schedule_table()
     json_text = json.dumps(table, ensure_ascii=False, indent=2)
     (SITE_DIR / "schedule-table.json").write_text(f"{json_text}\n", encoding="utf-8")
@@ -134,6 +152,7 @@ def main() -> int:
         f"{json.dumps(table, ensure_ascii=False, indent=2)};\n",
         encoding="utf-8",
     )
+    print("copied site-src to generated-site")
     print("wrote generated-site/schedule-table.json")
     print("wrote generated-site/schedule-table.js")
     return 0
