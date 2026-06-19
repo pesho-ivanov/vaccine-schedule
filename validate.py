@@ -79,7 +79,32 @@ def validate() -> None:
         label = require_mapping(row.get("label"), f"columns.yaml: {row.get('id')}: label must be a mapping")
         require_string(label.get("en"), f"columns.yaml: {row.get('id')}: label.en is required")
         require_string(label.get("bg"), f"columns.yaml: {row.get('id')}: label.bg is required")
+        if "header_label" in row:
+            header_label = require_mapping(row["header_label"], f"columns.yaml: {row.get('id')}: header_label must be a mapping")
+            require(isinstance(header_label.get("en"), str), f"columns.yaml: {row.get('id')}: header_label.en must be a string")
+            require(isinstance(header_label.get("bg"), str), f"columns.yaml: {row.get('id')}: header_label.bg must be a string")
         require(isinstance(row.get("age_months"), (int, float)), f"columns.yaml: {row.get('id')}: age_months must be numeric")
+
+    if "column_groups" in columns:
+        column_groups = require_list(columns["column_groups"], "columns.yaml: column_groups must be a list")
+        group_ids = [require_string(group.get("id"), "columns.yaml: column group id is required") for group in column_groups]
+        require_unique(group_ids, "columns.yaml: duplicate column group ids")
+        grouped_columns: list[str] = []
+        for group in column_groups:
+            group_id = group["id"]
+            label = require_mapping(group.get("label"), f"columns.yaml: {group_id}: label must be a mapping")
+            require_string(label.get("en"), f"columns.yaml: {group_id}: label.en is required")
+            require_string(label.get("bg"), f"columns.yaml: {group_id}: label.bg is required")
+            group_columns = [
+                require_string(column, f"columns.yaml: {group_id}: grouped column id is required")
+                for column in require_list(group.get("columns"), f"columns.yaml: {group_id}: columns must be a list")
+            ]
+            for column in group_columns:
+                require(column in column_id_set, f"columns.yaml: {group_id}: unknown grouped column {column}")
+            require_unique(group_columns, f"columns.yaml: {group_id}: duplicate grouped columns")
+            grouped_columns.extend(group_columns)
+        require_unique(grouped_columns, "columns.yaml: duplicate column_groups column references")
+        require(grouped_columns == column_ids, "columns.yaml: column_groups must cover every column exactly once in columns order")
 
     vaccine_rows = require_list(vaccines.get("vaccines"), "vaccines.yaml: vaccines must be a list")
     vaccine_ids = [require_string(row.get("id"), "vaccines.yaml: vaccine id is required") for row in vaccine_rows]

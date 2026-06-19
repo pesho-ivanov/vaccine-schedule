@@ -31,6 +31,10 @@ def language_map(value: dict[str, Any] | None, fallback: str) -> dict[str, str]:
     return {"en": english, "bg": bulgarian}
 
 
+def optional_language_map(value: dict[str, Any]) -> dict[str, str]:
+    return {"en": str(value.get("en", "")), "bg": str(value.get("bg", ""))}
+
+
 def build_schedule_table() -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     vaccines_data = read_yaml("vaccines.yaml")
@@ -99,11 +103,26 @@ def build_schedule_table() -> dict[str, Any]:
         },
         "columns": [
             {
-                "id": column["id"],
-                "label": language_map(column.get("label"), column["id"]),
-                "age_months": column["age_months"],
+                **{
+                    "id": column["id"],
+                    "label": language_map(column.get("label"), column["id"]),
+                    "age_months": column["age_months"],
+                },
+                **(
+                    {"header_label": optional_language_map(column["header_label"])}
+                    if "header_label" in column
+                    else {}
+                ),
             }
             for column in columns
+        ],
+        "column_groups": [
+            {
+                "id": group["id"],
+                "label": language_map(group.get("label"), group["id"]),
+                "columns": group["columns"],
+            }
+            for group in columns_data.get("column_groups", [])
         ],
         "rows": rows,
         "groups": {

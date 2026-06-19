@@ -31,13 +31,21 @@
   }
 
   function columnMeta(column) {
+    const headerLabel = columnHeaderLabel(column);
+    if (!headerLabel.en && !headerLabel.bg) {
+      return "";
+    }
     if (column.id.startsWith("pregnancy_")) {
       return column.id.replace("pregnancy_", "").toUpperCase();
     }
-    if (column.label.bg && column.label.bg !== column.label.en) {
-      return column.label.bg;
+    if (headerLabel.bg && headerLabel.bg !== headerLabel.en) {
+      return headerLabel.bg;
     }
     return "";
+  }
+
+  function columnHeaderLabel(column) {
+    return column.header_label || column.label;
   }
 
   function widestLineLength(value) {
@@ -47,7 +55,8 @@
   }
 
   function columnWidth(column) {
-    const values = [column.label.en, columnMeta(column)];
+    const headerLabel = columnHeaderLabel(column);
+    const values = [headerLabel.en, columnMeta(column)];
     for (const row of data.rows) {
       for (const dose of row.doses) {
         if (dose.column === column.id && (dose.span || 1) === 1) {
@@ -81,35 +90,69 @@
     return colgroup;
   }
 
+  function columnGroups() {
+    if (data.column_groups && data.column_groups.length) {
+      return data.column_groups;
+    }
+    return [
+      {
+        id: "all",
+        label: { en: "Schedule", bg: "Schedule" },
+        columns: data.columns.map((column) => column.id),
+      },
+    ];
+  }
+
   function makeHeader() {
     const thead = document.createElement("thead");
-    const row = document.createElement("tr");
+    const groupRow = document.createElement("tr");
+    groupRow.className = "column-group-row";
+    const timeRow = document.createElement("tr");
+    timeRow.className = "time-header-row";
 
     const numberHeader = document.createElement("th");
     numberHeader.scope = "col";
     numberHeader.className = "number-column";
+    numberHeader.rowSpan = 2;
     numberHeader.textContent = "#";
-    row.appendChild(numberHeader);
+    groupRow.appendChild(numberHeader);
 
     const vaccineHeader = document.createElement("th");
     vaccineHeader.scope = "col";
     vaccineHeader.className = "vaccine-column";
+    vaccineHeader.rowSpan = 2;
     vaccineHeader.textContent = "Vaccine";
-    row.appendChild(vaccineHeader);
+    groupRow.appendChild(vaccineHeader);
+
+    for (const group of columnGroups()) {
+      const th = document.createElement("th");
+      th.scope = "colgroup";
+      th.className = "column-group-header";
+      th.colSpan = group.columns.length;
+      appendText(th, group.label.en, "column-group-label");
+      if (group.label.bg && group.label.bg !== group.label.en) {
+        appendText(th, group.label.bg, "column-group-meta");
+      }
+      groupRow.appendChild(th);
+    }
 
     for (const column of data.columns) {
       const th = document.createElement("th");
       th.scope = "col";
       th.className = "time-column";
-      appendText(th, column.label.en, "column-label");
+      const headerLabel = columnHeaderLabel(column);
+      if (headerLabel.en) {
+        appendText(th, headerLabel.en, "column-label");
+      }
       const meta = columnMeta(column);
       if (meta) {
         appendText(th, meta, "column-meta");
       }
-      row.appendChild(th);
+      timeRow.appendChild(th);
     }
 
-    thead.appendChild(row);
+    thead.appendChild(groupRow);
+    thead.appendChild(timeRow);
     return thead;
   }
 

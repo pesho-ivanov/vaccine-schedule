@@ -4,7 +4,7 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 
 - `vaccine_schedule.py` loads and renders the schedule.
 - `data/bg/sources.yaml` contains source links.
-- `data/bg/columns.yaml` defines stable age-column IDs.
+- `data/bg/columns.yaml` defines stable age-column IDs and optional display column groups.
 - `data/bg/vaccines.yaml` defines vaccine row IDs, labels, short names, and aliases.
 - `data/bg/schedule.yaml` defines doses by vaccine ID and column ID.
 - `data/bg/metadata.yaml` contains UI text and display settings.
@@ -15,6 +15,10 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 - `scripts/build_static_site.py` builds the static site and exports browser-friendly table data.
 
 The module reads data relative to this directory, so it can be moved into a separate repository.
+
+`data/bg/columns.yaml` keeps `columns` as the stable schedule axis. The optional
+`column_groups` field clusters those existing IDs for display, without replacing
+or renaming any column IDs.
 
 Run validation from the parent repository:
 

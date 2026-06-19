@@ -12,6 +12,8 @@
   --recommended-bg: #fff2df;
   --header-bg: #273447;
   --header-text: #ffffff;
+  --group-header-height: 34px;
+  --time-header-height: 56px;
   --number-column-width: 56px;
   --vaccine-column-width: 280px;
   --sticky-shadow: 8px 0 14px rgb(23 32 51 / 0.08);
@@ -139,15 +141,25 @@ td {
 
 thead th {
   position: sticky;
-  top: 0;
   z-index: 3;
-  height: 64px;
   padding: 8px;
   background: var(--header-bg);
   color: var(--header-text);
   font-size: 0.78rem;
   font-weight: 800;
   text-align: center;
+}
+
+.column-group-header {
+  top: 0;
+  height: var(--group-header-height);
+  padding: 6px 8px;
+  border-bottom-color: #6e7b8d;
+}
+
+.time-column {
+  top: var(--group-header-height);
+  height: var(--time-header-height);
 }
 
 .number-column,
@@ -174,6 +186,12 @@ thead th {
 
 thead .number-column,
 thead .vaccine-column {
+  top: 0;
+  z-index: 5;
+  height: calc(var(--group-header-height) + var(--time-header-height));
+}
+
+.column-group-header {
   z-index: 4;
 }
 
@@ -186,10 +204,25 @@ thead .vaccine-column {
 
 .column-label,
 .column-meta,
+.column-group-label,
+.column-group-meta,
 .vaccine-short,
 .vaccine-label,
 .vaccine-bg {
   display: block;
+}
+
+.column-group-label {
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.column-group-meta {
+  margin-top: 2px;
+  color: #c8d4e6;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .column-label {

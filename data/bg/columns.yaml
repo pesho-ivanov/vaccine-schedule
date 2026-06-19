@@ -1,5 +1,59 @@
 version: 1
 country: BG
+column_groups:
+- id: pregnancy
+  label:
+    en: Pregnancy
+    bg: Бременност
+  columns:
+  - pregnancy_flu
+  - pregnancy_tdap
+  - pregnancy_rsv
+- id: birth
+  label:
+    en: Birth
+    bg: Раждане
+  columns:
+  - birth
+- id: infant
+  label:
+    en: Infant
+    bg: Кърмаче
+  columns:
+  - 1m
+  - 2m
+  - 3m
+  - 4m
+  - 6m
+  - 7m
+  - 12m
+  - 13m
+  - 15m
+  - 16m
+- id: child
+  label:
+    en: Child
+    bg: Дете
+  columns:
+  - 4y
+  - 6y
+  - 7y
+  - 10y
+  - 12y
+  - 14y
+  - 15y
+  - 17y
+- id: adult
+  label:
+    en: Adult
+    bg: Възрастен
+  columns:
+  - 18y
+  - 25y
+  - 59y
+  - 60y
+  - 64y
+  - gte65y
 columns:
 - id: pregnancy_flu
   label:
@@ -20,6 +74,9 @@ columns:
   label:
     en: Birth
     bg: Раждане
+  header_label:
+    en: ""
+    bg: ""
   age_months: 0.0
 - id: 1m
   label:

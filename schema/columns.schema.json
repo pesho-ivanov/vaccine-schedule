@@ -18,7 +18,34 @@
         "properties": {
           "id": { "$ref": "types.schema.json#/$defs/id" },
           "label": { "$ref": "types.schema.json#/$defs/localizedText" },
+          "header_label": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["en", "bg"],
+            "properties": {
+              "en": { "type": "string" },
+              "bg": { "type": "string" }
+            }
+          },
           "age_months": { "type": "number" }
+        }
+      }
+    },
+    "column_groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "columns"],
+        "properties": {
+          "id": { "$ref": "types.schema.json#/$defs/id" },
+          "label": { "$ref": "types.schema.json#/$defs/localizedText" },
+          "columns": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "types.schema.json#/$defs/id" }
+          }
         }
       }
     }
