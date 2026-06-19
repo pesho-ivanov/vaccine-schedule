@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data/bg"
 SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
-STATIC_FILES = ("index.html", "app.js", "styles.css")
+STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
 
 
 def read_yaml(name: str) -> dict[str, Any]:
