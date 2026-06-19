@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vaccine schedule for Bulgaria</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Bulgaria vaccine schedule</p>
+        <h1 id="page-title">Vaccine schedule for Bulgaria</h1>
+      </div>
+      <dl class="summary" aria-label="Schedule summary">
+        <div>
+          <dt>Vaccines</dt>
+          <dd id="summary-vaccines">-</dd>
+        </div>
+        <div>
+          <dt>Time points</dt>
+          <dd id="summary-columns">-</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <section class="table-section" aria-labelledby="table-title">
+        <div class="section-heading">
+          <h2 id="table-title">Schedule table</h2>
+        </div>
+        <div class="table-scroll">
+          <table id="schedule-table">
+            <caption>Vaccines by time point</caption>
+          </table>
+        </div>
+      </section>
+
+      <section class="sources-section" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources</h2>
+        <ul id="source-list"></ul>
+      </section>
+    </main>
+
+    <script src="schedule-table.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
