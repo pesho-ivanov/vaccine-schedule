@@ -6,9 +6,11 @@ column_groups:
     en: Pregnancy
     bg: Бременност
   columns:
-  - pregnancy_flu
-  - pregnancy_tdap
-  - pregnancy_rsv
+  - pregnancy_1w
+  - pregnancy_24w
+  - pregnancy_27w
+  - pregnancy_36w
+  - pregnancy_end
 - id: birth
   label:
     en: Birth
@@ -55,21 +57,31 @@ column_groups:
   - 64y
   - gte65y
 columns:
-- id: pregnancy_flu
+- id: pregnancy_1w
   label:
-    en: Pregnancy
-    bg: Бременност
+    en: 1w
+    bg: 1w
+  age_months: -9.0
+- id: pregnancy_24w
+  label:
+    en: 24w
+    bg: 24w
+  age_months: -3.7
+- id: pregnancy_27w
+  label:
+    en: 27w
+    bg: 27w
   age_months: -3.0
-- id: pregnancy_tdap
+- id: pregnancy_36w
   label:
-    en: Pregnancy
-    bg: Бременност
-  age_months: -2.0
-- id: pregnancy_rsv
+    en: 36w
+    bg: 36w
+  age_months: -0.9
+- id: pregnancy_end
   label:
-    en: Pregnancy
-    bg: Бременност
-  age_months: -1.0
+    en: end
+    bg: end
+  age_months: -0.1
 - id: birth
   label:
     en: Birth

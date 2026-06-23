@@ -35,10 +35,9 @@
     if (!headerLabel.en && !headerLabel.bg) {
       return "";
     }
-    if (column.id.startsWith("pregnancy_")) {
-      return column.id.replace("pregnancy_", "").toUpperCase();
-    }
-    if (headerLabel.bg && headerLabel.bg !== headerLabel.en) {
+    const english = String(headerLabel.en || "").trim().toLowerCase();
+    const bulgarian = String(headerLabel.bg || "").trim().toLowerCase();
+    if (headerLabel.bg && bulgarian !== english) {
       return headerLabel.bg;
     }
     return "";
@@ -259,12 +258,20 @@
     return tbody;
   }
 
+  function sourceLabel(name) {
+    return {
+      ecdc_calendar: "ECDC",
+      lex_calendar: "lex.bg",
+      pregnancy_vaccine: "plusmen",
+    }[name] || name.replaceAll("_", " ");
+  }
+
   function renderSources() {
     for (const [name, url] of Object.entries(data.source_links)) {
       const item = document.createElement("li");
       const link = document.createElement("a");
       link.href = url;
-      link.textContent = name.replaceAll("_", " ");
+      link.textContent = sourceLabel(name);
       link.rel = "noreferrer";
       item.appendChild(link);
       sourceList.appendChild(item);

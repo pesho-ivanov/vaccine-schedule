@@ -57,12 +57,12 @@ pre_birth_record_columns:
   - flu
   - грип
   - influenza
-  column: pregnancy_flu
+  column: pregnancy_1w
 - diseases:
   - rsv
-  column: pregnancy_rsv
+  column: pregnancy_24w
 default_pre_birth_record_column:
-  column: pregnancy_tdap
+  column: pregnancy_27w
 cell_fills:
 - vaccine: hpv
   cell_text: HPV9 (F/M)

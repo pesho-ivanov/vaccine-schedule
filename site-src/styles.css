@@ -334,11 +334,6 @@ tbody td {
   cursor: help;
 }
 
-.noted-dose::after {
-  content: "*";
-  margin-left: 2px;
-}
-
 .divider-after th,
 .divider-after td {
   border-bottom: 3px solid var(--line-strong);

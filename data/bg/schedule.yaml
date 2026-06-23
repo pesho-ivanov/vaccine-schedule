@@ -271,14 +271,23 @@ rows:
 - vaccine: pert
   group: recommended
   doses:
-  - column: pregnancy_tdap
-    text: DPT
+  - column: pregnancy_27w
+    through: pregnancy_36w
+    text: Tdap
+    note: Ordinance No. 15, Art. 23 and Annex 5. Pertussis immunization is done
+      for pregnant women from gestational week 27 through 36 using a combined
+      diphtheria-tetanus-pertussis vaccine with acellular pertussis component
+      and reduced antigen content.
 - vaccine: rsv
   group: recommended
   doses:
-  - column: pregnancy_rsv
-    text: RSV $
+  - column: pregnancy_24w
+    through: pregnancy_36w
+    text: RSV
     muted: true
+    note: Ordinance No. 15, Art. 23a and Annex 5, effective 2026-07-01. RSV
+      immunization is done for pregnant women from gestational week 24 through
+      36 using a bivalent recombinant RSV vaccine.
   - column: 18y
     text: RSV
     through: gte65y
@@ -312,6 +321,10 @@ rows:
 - vaccine: covid
   group: recommended
   doses:
+  - column: pregnancy_1w
+    through: pregnancy_end
+    text: COVID
+    note: COVID-19 vaccine is recommended during the whole pregnancy.
   - column: 6m
     text: COVID
     through: 18y
@@ -332,8 +345,12 @@ rows:
 - vaccine: influenza
   group: recommended
   doses:
-  - column: pregnancy_flu
+  - column: pregnancy_1w
+    through: pregnancy_end
     text: IIV3/IIV4
+    note: Ordinance No. 15, Annex 2, XII.A.3.8 recommends inactivated influenza
+      vaccine through all stages of pregnancy. Annex 10 lists pregnant women
+      under contraindications for live viral vaccines.
   - column: 6m
     text: IIV3/LAIV
     through: 17y
