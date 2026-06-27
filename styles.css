@@ -40,19 +40,9 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
-.eyebrow {
-  margin: 0 0 6px;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 h1,
 h2,
-p,
-dl,
-dd {
+p {
   margin: 0;
 }
 
@@ -68,37 +58,8 @@ h2 {
   letter-spacing: 0;
 }
 
-.summary {
-  display: flex;
-  gap: 12px;
-}
-
-.summary div {
-  min-width: 112px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  background: #fbfcfe;
-}
-
-.summary dt {
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.summary dd {
-  margin-top: 2px;
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
 main {
   padding: 22px 32px 36px;
-}
-
-.section-heading {
-  margin-bottom: 12px;
 }
 
 .table-scroll {
@@ -292,6 +253,31 @@ tbody td {
   line-height: 1.25;
 }
 
+.ecdc-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  border: 0;
+  background: transparent;
+  vertical-align: -5px;
+}
+
+.ecdc-link:hover,
+.ecdc-link:focus-visible {
+  outline: 2px solid rgb(36 92 159 / 0.2);
+  outline-offset: 1px;
+}
+
+.ecdc-link img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .time-column,
 .time-cell {
   width: auto;
@@ -332,11 +318,6 @@ tbody td {
 .noted-dose {
   outline-offset: 2px;
   cursor: help;
-}
-
-.noted-dose::after {
-  content: "*";
-  margin-left: 2px;
 }
 
 .divider-after th,

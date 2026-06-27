@@ -12,13 +12,9 @@
 
   const table = document.getElementById("schedule-table");
   const title = document.getElementById("page-title");
-  const summaryVaccines = document.getElementById("summary-vaccines");
-  const summaryColumns = document.getElementById("summary-columns");
   const sourceList = document.getElementById("source-list");
 
   title.textContent = data.title.en;
-  summaryVaccines.textContent = String(data.rows.length);
-  summaryColumns.textContent = String(data.columns.length);
 
   function appendText(parent, value, className) {
     const node = document.createElement("span");
@@ -35,10 +31,9 @@
     if (!headerLabel.en && !headerLabel.bg) {
       return "";
     }
-    if (column.id.startsWith("pregnancy_")) {
-      return column.id.replace("pregnancy_", "").toUpperCase();
-    }
-    if (headerLabel.bg && headerLabel.bg !== headerLabel.en) {
+    const english = String(headerLabel.en || "").trim().toLowerCase();
+    const bulgarian = String(headerLabel.bg || "").trim().toLowerCase();
+    if (headerLabel.bg && bulgarian !== english) {
       return headerLabel.bg;
     }
     return "";
@@ -174,6 +169,48 @@
     return doseNode;
   }
 
+  function makeEcdcLink(link) {
+    const anchor = document.createElement("a");
+    anchor.className = "ecdc-link";
+    anchor.href = link.url;
+    anchor.target = "_blank";
+    anchor.rel = "noreferrer";
+    anchor.title = `EU countries for ${link.label}`;
+    anchor.setAttribute("aria-label", `EU countries for ${link.label}`);
+
+    const logo = document.createElement("img");
+    logo.src = "ECDC_logo_simple.svg";
+    logo.alt = "";
+    logo.width = 18;
+    logo.height = 18;
+    anchor.appendChild(logo);
+    return anchor;
+  }
+
+  function appendDiseaseName(parent, rowData) {
+    const line = document.createElement("span");
+    line.className = "vaccine-label";
+    const links = rowData.ecdc_links || [];
+
+    if (links.length > 1) {
+      for (const [index, link] of links.entries()) {
+        if (index > 0) {
+          line.appendChild(document.createTextNode(", "));
+        }
+        line.appendChild(document.createTextNode(link.label));
+        line.appendChild(makeEcdcLink(link));
+      }
+    } else {
+      line.appendChild(document.createTextNode(rowData.label.en));
+      if (links.length === 1) {
+        line.appendChild(makeEcdcLink(links[0]));
+      }
+    }
+
+    parent.appendChild(line);
+    return line;
+  }
+
   function makeBodyRow(rowData, rowNumber) {
     const tr = document.createElement("tr");
     tr.className = `schedule-row ${rowData.group}`;
@@ -190,7 +227,7 @@
     nameCell.scope = "row";
     nameCell.className = "vaccine-cell";
     appendText(nameCell, rowData.short.en, "vaccine-short");
-    appendText(nameCell, rowData.label.en, "vaccine-label");
+    appendDiseaseName(nameCell, rowData);
     if (rowData.label.bg && rowData.label.bg !== rowData.label.en) {
       appendText(nameCell, rowData.label.bg, "vaccine-bg");
     }
@@ -259,12 +296,20 @@
     return tbody;
   }
 
+  function sourceLabel(name) {
+    return {
+      ecdc_calendar: "ECDC",
+      lex_calendar: "lex.bg",
+      pregnancy_vaccine: "plusmen",
+    }[name] || name.replaceAll("_", " ");
+  }
+
   function renderSources() {
     for (const [name, url] of Object.entries(data.source_links)) {
       const item = document.createElement("li");
       const link = document.createElement("a");
       link.href = url;
-      link.textContent = name.replaceAll("_", " ");
+      link.textContent = sourceLabel(name);
       link.rel = "noreferrer";
       item.appendChild(link);
       sourceList.appendChild(item);

@@ -7,28 +7,44 @@ window.VACCINE_SCHEDULE_TABLE = {
   },
   "columns": [
     {
-      "id": "pregnancy_flu",
+      "id": "pregnancy_1w",
       "label": {
-        "en": "Pregnancy",
-        "bg": "Бременност"
+        "en": "1w",
+        "bg": "1w"
+      },
+      "age_months": -9.0
+    },
+    {
+      "id": "pregnancy_24w",
+      "label": {
+        "en": "24w",
+        "bg": "24w"
+      },
+      "age_months": -3.7
+    },
+    {
+      "id": "pregnancy_27w",
+      "label": {
+        "en": "27w",
+        "bg": "27w"
       },
       "age_months": -3.0
     },
     {
-      "id": "pregnancy_tdap",
+      "id": "pregnancy_36w",
       "label": {
-        "en": "Pregnancy",
-        "bg": "Бременност"
+        "en": "36w",
+        "bg": "36w"
       },
-      "age_months": -2.0
+      "age_months": -0.9
     },
     {
-      "id": "pregnancy_rsv",
+      "id": "pregnancy_end",
       "label": {
-        "en": "Pregnancy",
-        "bg": "Бременност"
+        "en": "end",
+        "bg": "end"
       },
-      "age_months": -1.0
+      "age_months": -0.1
     },
     {
       "id": "birth",
@@ -243,9 +259,11 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "Бременност"
       },
       "columns": [
-        "pregnancy_flu",
-        "pregnancy_tdap",
-        "pregnancy_rsv"
+        "pregnancy_1w",
+        "pregnancy_24w",
+        "pregnancy_27w",
+        "pregnancy_36w",
+        "pregnancy_end"
       ]
     },
     {
@@ -312,7 +330,7 @@ window.VACCINE_SCHEDULE_TABLE = {
   ],
   "rows": [
     {
-      "vaccine": "tuberculosis",
+      "disease": "tuberculosis",
       "group": "mandatory",
       "label": {
         "en": "tuberculosis",
@@ -322,6 +340,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "TB",
         "bg": "ТБ"
       },
+      "ecdc_links": [
+        {
+          "label": "tuberculosis",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=14&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "birth",
@@ -348,7 +372,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "diphtheria",
+      "disease": "diphtheria",
       "group": "mandatory",
       "label": {
         "en": "diphtheria",
@@ -358,6 +382,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Diph",
         "bg": "Диф"
       },
+      "ecdc_links": [
+        {
+          "label": "diphtheria",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=1&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -419,7 +449,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "tetanus",
+      "disease": "tetanus",
       "group": "mandatory",
       "label": {
         "en": "tetanus",
@@ -429,6 +459,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Tet",
         "bg": "Тет"
       },
+      "ecdc_links": [
+        {
+          "label": "tetanus",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=2&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -490,7 +526,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "pertussis",
+      "disease": "pertussis",
       "group": "mandatory",
       "label": {
         "en": "pertussis",
@@ -500,6 +536,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Pert",
         "bg": "Кокл"
       },
+      "ecdc_links": [
+        {
+          "label": "pertussis",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -554,7 +596,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "poliomyelitis",
+      "disease": "poliomyelitis",
       "group": "mandatory",
       "label": {
         "en": "poliomyelitis",
@@ -564,6 +606,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Polio",
         "bg": "Полио"
       },
+      "ecdc_links": [
+        {
+          "label": "poliomyelitis",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=4&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -604,7 +652,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "haemophilus_influenzae_type_b",
+      "disease": "haemophilus_influenzae_type_b",
       "group": "mandatory",
       "label": {
         "en": "Haemophilus influenzae type b",
@@ -614,6 +662,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Hib",
         "bg": "Хиб"
       },
+      "ecdc_links": [
+        {
+          "label": "Haemophilus influenzae type b",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=5&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -647,7 +701,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "hepatitis_b",
+      "disease": "hepatitis_b",
       "group": "mandatory",
       "label": {
         "en": "hepatitis B",
@@ -657,6 +711,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Hep B",
         "bg": "Хеп. Б"
       },
+      "ecdc_links": [
+        {
+          "label": "hepatitis B",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=6&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "birth",
@@ -704,7 +764,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "pneumococcal_disease",
+      "disease": "pneumococcal_disease",
       "group": "mandatory",
       "label": {
         "en": "pneumococcal disease",
@@ -714,6 +774,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Pneumo",
         "bg": "Пневмо"
       },
+      "ecdc_links": [
+        {
+          "label": "pneumococcal disease",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=25&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -747,7 +813,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "measles_mumps_rubella",
+      "disease": "measles_mumps_rubella",
       "group": "mandatory",
       "label": {
         "en": "measles, mumps, rubella",
@@ -757,6 +823,20 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "MMR",
         "bg": "МПР"
       },
+      "ecdc_links": [
+        {
+          "label": "measles",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=8&SelectedCountryIdByDisease=-1"
+        },
+        {
+          "label": "mumps",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=9&SelectedCountryIdByDisease=-1"
+        },
+        {
+          "label": "rubella",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=10&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "13m",
@@ -776,7 +856,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "varicella",
+      "disease": "varicella",
       "group": "mandatory",
       "label": {
         "en": "varicella",
@@ -786,6 +866,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Varicella",
         "bg": "Варицела"
       },
+      "ecdc_links": [
+        {
+          "label": "varicella",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=11&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "12m",
@@ -805,7 +891,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": true
     },
     {
-      "vaccine": "pert",
+      "disease": "pert",
       "group": "recommended",
       "label": {
         "en": "Pert",
@@ -815,18 +901,25 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Pert",
         "bg": "Pert"
       },
+      "ecdc_links": [
+        {
+          "label": "pertussis",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
-          "column": "pregnancy_tdap",
-          "through": "pregnancy_tdap",
-          "span": 1,
-          "text": "DPT"
+          "column": "pregnancy_27w",
+          "through": "pregnancy_36w",
+          "span": 2,
+          "text": "Tdap",
+          "note": "Ordinance No. 15, Art. 23 and Annex 5. Pertussis immunization is done for pregnant women from gestational week 27 through 36 using a combined diphtheria-tetanus-pertussis vaccine with acellular pertussis component and reduced antigen content."
         }
       ],
       "divider_after": false
     },
     {
-      "vaccine": "rsv",
+      "disease": "rsv",
       "group": "recommended",
       "label": {
         "en": "RSV",
@@ -836,12 +929,19 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "RSV",
         "bg": "РСВ"
       },
+      "ecdc_links": [
+        {
+          "label": "RSV",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=53&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
-          "column": "pregnancy_rsv",
-          "through": "pregnancy_rsv",
-          "span": 1,
-          "text": "RSV $",
+          "column": "pregnancy_24w",
+          "through": "pregnancy_36w",
+          "span": 3,
+          "text": "RSV",
+          "note": "Ordinance No. 15, Art. 23a and Annex 5, effective 2026-07-01. RSV immunization is done for pregnant women from gestational week 24 through 36 using a bivalent recombinant RSV vaccine.",
           "muted": true
         },
         {
@@ -855,7 +955,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "rotavirus",
+      "disease": "rotavirus",
       "group": "recommended",
       "label": {
         "en": "rotavirus",
@@ -865,6 +965,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Rota",
         "bg": "Рота"
       },
+      "ecdc_links": [
+        {
+          "label": "rotavirus infection",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=32&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -877,7 +983,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "meningococcal",
+      "disease": "meningococcal",
       "group": "recommended",
       "label": {
         "en": "Meningococcal",
@@ -887,6 +993,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Men.",
         "bg": "Мен."
       },
+      "ecdc_links": [
+        {
+          "label": "meningococcal disease",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=48&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "2m",
@@ -899,7 +1011,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "hepatitis_a",
+      "disease": "hepatitis_a",
       "group": "recommended",
       "label": {
         "en": "hepatitis A",
@@ -909,6 +1021,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Hep A",
         "bg": "Хеп. А"
       },
+      "ecdc_links": [
+        {
+          "label": "hepatitis A",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=16&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "12m",
@@ -920,7 +1038,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "covid",
+      "disease": "covid",
       "group": "recommended",
       "label": {
         "en": "COVID",
@@ -930,7 +1048,20 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "COVID",
         "bg": "КОВИД"
       },
+      "ecdc_links": [
+        {
+          "label": "Coronavirus disease (COVID-19)",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=52&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
+        {
+          "column": "pregnancy_1w",
+          "through": "pregnancy_end",
+          "span": 5,
+          "text": "COVID",
+          "note": "COVID-19 vaccine is recommended during the whole pregnancy."
+        },
         {
           "column": "6m",
           "through": "18y",
@@ -956,7 +1087,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "influenza",
+      "disease": "influenza",
       "group": "recommended",
       "label": {
         "en": "influenza",
@@ -966,12 +1097,19 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "Flu",
         "bg": "Грип"
       },
+      "ecdc_links": [
+        {
+          "label": "influenza",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=15&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
-          "column": "pregnancy_flu",
-          "through": "pregnancy_flu",
-          "span": 1,
-          "text": "IIV3/IIV4"
+          "column": "pregnancy_1w",
+          "through": "pregnancy_end",
+          "span": 5,
+          "text": "IIV3/IIV4",
+          "note": "Ordinance No. 15, Annex 2, XII.A.3.8 recommends inactivated influenza vaccine through all stages of pregnancy. Annex 10 lists pregnant women under contraindications for live viral vaccines."
         },
         {
           "column": "6m",
@@ -998,7 +1136,7 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     },
     {
-      "vaccine": "hpv",
+      "disease": "hpv",
       "group": "recommended",
       "label": {
         "en": "HPV",
@@ -1008,6 +1146,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "en": "HPV",
         "bg": "ЧПВ"
       },
+      "ecdc_links": [
+        {
+          "label": "human papillomavirus infection",
+          "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=38&SelectedCountryIdByDisease=-1"
+        }
+      ],
       "doses": [
         {
           "column": "10y",
@@ -1042,12 +1186,14 @@ window.VACCINE_SCHEDULE_TABLE = {
   "source_links": {
     "ecdc_calendar": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
     "lex_calendar": "https://lex.bg/laws/ldoc/2135504228",
-    "pregnancy_vaccine": "https://plusmen.bg/bg/suggestions/pregnancy"
+    "pregnancy_vaccine": "https://plusmen.bg"
   },
   "generated_from": [
     "data/bg/columns.yaml",
-    "data/bg/vaccines.yaml",
+    "data/bg/diseases.yaml",
     "data/bg/schedule.yaml",
+    "data/bg/dose_texts.yaml",
+    "data/bg/notes.yaml",
     "data/bg/sources.yaml",
     "data/bg/metadata.yaml"
   ]
