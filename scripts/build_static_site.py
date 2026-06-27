@@ -14,6 +14,11 @@ DATA_DIR = ROOT / "data/bg"
 SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
+ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
+ECDC_DISEASE_URL = (
+    "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease"
+    "?SelectedDiseaseId={disease_id}&SelectedCountryIdByDisease=-1"
+)
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -59,6 +64,16 @@ def build_note_lookup(notes_data: dict[str, Any]) -> dict[tuple[str, str, str], 
         for dose in row.get("doses", []):
             notes[dose_reference_key(disease_id, dose)] = str(dose["note"])
     return notes
+
+
+def build_ecdc_links(disease: dict[str, Any]) -> list[dict[str, str]]:
+    return [
+        {
+            "label": str(ecdc_disease["label"]),
+            "url": ECDC_DISEASE_URL.format(disease_id=ecdc_disease["id"]),
+        }
+        for ecdc_disease in disease.get("ecdc_diseases", [])
+    ]
 
 
 def build_schedule_table() -> dict[str, Any]:
@@ -120,6 +135,7 @@ def build_schedule_table() -> dict[str, Any]:
                 "group": schedule_row["group"],
                 "label": language_map(disease.get("label"), disease_id),
                 "short": language_map(disease.get("short"), disease["label"]["en"]),
+                "ecdc_links": build_ecdc_links(disease),
                 "doses": doses,
                 "divider_after": bool(schedule_row.get("divider_after")),
             }
@@ -189,6 +205,11 @@ def rebuild_site_dir() -> None:
 def copy_static_files() -> None:
     for filename in STATIC_FILES:
         source = SITE_SRC_DIR / filename
+        if not source.is_file():
+            raise FileNotFoundError(f"missing static site source: {source}")
+        shutil.copy2(source, SITE_DIR / filename)
+    for filename in ROOT_STATIC_FILES:
+        source = ROOT / filename
         if not source.is_file():
             raise FileNotFoundError(f"missing static site source: {source}")
         shutil.copy2(source, SITE_DIR / filename)

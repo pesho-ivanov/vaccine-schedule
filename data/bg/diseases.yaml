@@ -8,6 +8,9 @@ diseases:
   short:
     en: TB
     bg: ТБ
+  ecdc_diseases:
+  - id: 14
+    label: tuberculosis
   record_aliases:
   - бцж
   - туберкулоза
@@ -18,6 +21,9 @@ diseases:
   short:
     en: Diph
     bg: Диф
+  ecdc_diseases:
+  - id: 1
+    label: diphtheria
   record_aliases:
   - дтка
 - id: tetanus
@@ -27,6 +33,9 @@ diseases:
   short:
     en: Tet
     bg: Тет
+  ecdc_diseases:
+  - id: 2
+    label: tetanus
   record_aliases:
   - дтка
 - id: pertussis
@@ -36,6 +45,9 @@ diseases:
   short:
     en: Pert
     bg: Кокл
+  ecdc_diseases:
+  - id: 3
+    label: pertussis
   record_aliases:
   - дтка
 - id: poliomyelitis
@@ -45,6 +57,9 @@ diseases:
   short:
     en: Polio
     bg: Полио
+  ecdc_diseases:
+  - id: 4
+    label: poliomyelitis
   record_aliases:
   - пи
 - id: haemophilus_influenzae_type_b
@@ -54,6 +69,9 @@ diseases:
   short:
     en: Hib
     bg: Хиб
+  ecdc_diseases:
+  - id: 5
+    label: Haemophilus influenzae type b
   record_aliases:
   - хиб
 - id: hepatitis_b
@@ -63,6 +81,9 @@ diseases:
   short:
     en: Hep B
     bg: Хеп. Б
+  ecdc_diseases:
+  - id: 6
+    label: hepatitis B
   record_aliases:
   - хеп. б
 - id: pneumococcal_disease
@@ -72,6 +93,9 @@ diseases:
   short:
     en: Pneumo
     bg: Пневмо
+  ecdc_diseases:
+  - id: 25
+    label: pneumococcal disease
   record_aliases:
   - пневмо
 - id: measles_mumps_rubella
@@ -81,6 +105,13 @@ diseases:
   short:
     en: MMR
     bg: МПР
+  ecdc_diseases:
+  - id: 8
+    label: measles
+  - id: 9
+    label: mumps
+  - id: 10
+    label: rubella
   record_aliases:
   - мпр
 - id: varicella
@@ -90,12 +121,18 @@ diseases:
   short:
     en: Varicella
     bg: Варицела
+  ecdc_diseases:
+  - id: 11
+    label: varicella
   record_aliases:
   - вар
 - id: pert
   label:
     en: Pert
     bg: коклюш
+  ecdc_diseases:
+  - id: 3
+    label: pertussis
   record_aliases:
   - tdap
 - id: rsv
@@ -105,6 +142,9 @@ diseases:
   short:
     en: RSV
     bg: РСВ
+  ecdc_diseases:
+  - id: 53
+    label: RSV
   record_aliases:
   - rsv
 - id: rotavirus
@@ -114,6 +154,9 @@ diseases:
   short:
     en: Rota
     bg: Рота
+  ecdc_diseases:
+  - id: 32
+    label: rotavirus infection
 - id: meningococcal
   label:
     en: Meningococcal
@@ -121,6 +164,9 @@ diseases:
   short:
     en: Men.
     bg: Мен.
+  ecdc_diseases:
+  - id: 48
+    label: meningococcal disease
 - id: hepatitis_a
   label:
     en: hepatitis A
@@ -128,6 +174,9 @@ diseases:
   short:
     en: Hep A
     bg: Хеп. А
+  ecdc_diseases:
+  - id: 16
+    label: hepatitis A
 - id: covid
   label:
     en: COVID
@@ -135,6 +184,9 @@ diseases:
   short:
     en: COVID
     bg: КОВИД
+  ecdc_diseases:
+  - id: 52
+    label: Coronavirus disease (COVID-19)
 - id: influenza
   label:
     en: influenza
@@ -142,6 +194,9 @@ diseases:
   short:
     en: Flu
     bg: Грип
+  ecdc_diseases:
+  - id: 15
+    label: influenza
   record_aliases:
   - flu
   - грип
@@ -152,5 +207,8 @@ diseases:
   short:
     en: HPV
     bg: ЧПВ
+  ecdc_diseases:
+  - id: 38
+    label: human papillomavirus infection
   hover_label:
     en: Human papillomavirus infection

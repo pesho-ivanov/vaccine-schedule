@@ -292,6 +292,31 @@ tbody td {
   line-height: 1.25;
 }
 
+.ecdc-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  border: 0;
+  background: transparent;
+  vertical-align: -5px;
+}
+
+.ecdc-link:hover,
+.ecdc-link:focus-visible {
+  outline: 2px solid rgb(36 92 159 / 0.2);
+  outline-offset: 1px;
+}
+
+.ecdc-link img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .time-column,
 .time-cell {
   width: auto;
