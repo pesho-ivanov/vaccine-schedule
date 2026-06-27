@@ -12,13 +12,9 @@
 
   const table = document.getElementById("schedule-table");
   const title = document.getElementById("page-title");
-  const summaryVaccines = document.getElementById("summary-vaccines");
-  const summaryColumns = document.getElementById("summary-columns");
   const sourceList = document.getElementById("source-list");
 
   title.textContent = data.title.en;
-  summaryVaccines.textContent = String(data.rows.length);
-  summaryColumns.textContent = String(data.columns.length);
 
   function appendText(parent, value, className) {
     const node = document.createElement("span");

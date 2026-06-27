@@ -40,19 +40,9 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
-.eyebrow {
-  margin: 0 0 6px;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 h1,
 h2,
-p,
-dl,
-dd {
+p {
   margin: 0;
 }
 
@@ -68,37 +58,8 @@ h2 {
   letter-spacing: 0;
 }
 
-.summary {
-  display: flex;
-  gap: 12px;
-}
-
-.summary div {
-  min-width: 112px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  background: #fbfcfe;
-}
-
-.summary dt {
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.summary dd {
-  margin-top: 2px;
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
 main {
   padding: 22px 32px 36px;
-}
-
-.section-heading {
-  margin-bottom: 12px;
 }
 
 .table-scroll {
