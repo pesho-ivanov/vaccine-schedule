@@ -213,6 +213,7 @@ def copy_static_files() -> None:
         if not source.is_file():
             raise FileNotFoundError(f"missing static site source: {source}")
         shutil.copy2(source, SITE_DIR / filename)
+    (SITE_DIR / ".nojekyll").write_text("", encoding="utf-8")
 
 
 def main() -> int:
