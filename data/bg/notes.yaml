@@ -1,0 +1,270 @@
+version: 1
+country: BG
+notes:
+- disease: tuberculosis
+  doses:
+  - column: birth
+    note: Bacille Calmette-Guerin vaccine Administration after 48 hours from birth.
+  - column: 7m
+    note: Only after negative Montoux test. Проверка за белег след БЦЖ имунизацията. На децата без белег
+      се прави проба манту. Отрицателните се имунизират с БЦЖ ваксина.
+  - column: 7y
+    note: Only after negative Montoux test. Проверка за белег след БЦЖ имунизацията. На децата без белег
+      се прави проба манту. Отрицателните се имунизират с БЦЖ ваксина.
+- disease: diphtheria
+  doses:
+  - column: 2m
+    note: Diphtheria toxoid, paediatric formulation Routine vaccination against diphtheria, tetanus, pertussis,
+      poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination
+      begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively.
+  - column: 3m
+    note: Diphtheria toxoid, paediatric formulation
+  - column: 4m
+    note: Diphtheria toxoid, paediatric formulation
+  - column: 16m
+    note: Diphtheria toxoid, paediatric formulation Not earlier than 12 months after the 3rd dose
+  - column: 6y
+    note: Diphtheria toxoid, paediatric formulation
+  - column: 12y
+    note: diphtheria toxoid, reduced antigen content
+  - column: 17y
+    note: diphtheria toxoid, reduced antigen content
+  - column: 25y
+    through: gte65y
+    note: Subsequent Td booster every 10 years.
+- disease: tetanus
+  doses:
+  - column: 2m
+    note: Tetanus toxoid Routine vaccination against diphtheria, tetanus, pertussis, poliomyelitis, Haemophilus
+      influenzae type B infections, and viral hepatitis type B vaccination begins at 6 weeks of age. Second
+      and third doses are given at week 10 and week 14. For children born to mothers vaccinated during
+      pregnancy against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis,
+      Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months
+      of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose,
+      at three and four months of age, respectively. For children born to mothers vaccinated during pregnancy
+      against pertussis, mandatory immunization against diphtheria, tetanus, pertussis, poliomyelitis,
+      Haemophilus influenzae type B infections, and viral hepatitis type B is carried out from two months
+      of age. Subsequent immunizations are administered no earlier than 4 weeks after the previous dose,
+      at three and four months of age, respectively.
+  - column: 3m
+    note: Tetanus toxoid
+  - column: 4m
+    note: Tetanus toxoid
+  - column: 16m
+    note: Tetanus toxoid Not earlier than 12 months after the 3rd dose
+  - column: 6y
+    note: Tetanus toxoid
+  - column: 12y
+    note: Tetanus toxoid
+  - column: 17y
+    note: Tetanus toxoid
+  - column: 25y
+    through: gte65y
+    note: Subsequent Td booster every 10 years.
+- disease: pertussis
+  doses:
+  - column: 2m
+    note: acellular pertussis vaccine, pediatric formulation Routine vaccination against diphtheria, tetanus,
+      pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination
+      begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively.
+  - column: 3m
+    note: acellular pertussis vaccine, pediatric formulation
+  - column: 4m
+    note: acellular pertussis vaccine, pediatric formulation
+  - column: 16m
+    note: acellular pertussis vaccine, pediatric formulation Not earlier than 12 months after the 3rd
+      dose
+  - column: 6y
+    note: acellular pertussis vaccine, pediatric formulation
+  - column: 12y
+    note: acellular pertussis vaccine, adult/adolescent formulation
+  - column: 18y
+    through: 64y
+    note: acellular pertussis vaccine, adult/adolescent formulation Immunization against pertussis is
+      given to pregnant women between the 27th and 36th weeks of pregnancy. A booster of TDaP reduced-antigen
+      vaccine and the administration are free of charge for pregnant women and  funded by the National
+      Health system.
+- disease: poliomyelitis
+  doses:
+  - column: 2m
+    note: poliovirus vaccine, types 1, 2, 3, inactivated Routine vaccination against diphtheria, tetanus,
+      pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination
+      begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively.
+  - column: 3m
+    note: poliovirus vaccine, types 1, 2, 3, inactivated
+  - column: 4m
+    note: poliovirus vaccine, types 1, 2, 3, inactivated
+  - column: 16m
+    note: poliovirus vaccine, types 1, 2, 3, inactivated Not earlier than 12 months after the 3rd dose
+  - column: 6y
+    note: poliovirus vaccine, types 1, 2, 3, inactivated
+- disease: haemophilus_influenzae_type_b
+  doses:
+  - column: 2m
+    note: Haemophilus influenzae type b conjugated vaccine Routine vaccination against diphtheria, tetanus,
+      pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis type B vaccination
+      begins at 6 weeks of age. Second and third doses are given at week 10 and week 14. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively. For children
+      born to mothers vaccinated during pregnancy against pertussis, mandatory immunization against diphtheria,
+      tetanus, pertussis, poliomyelitis, Haemophilus influenzae type B infections, and viral hepatitis
+      type B is carried out from two months of age. Subsequent immunizations are administered no earlier
+      than 4 weeks after the previous dose, at three and four months of age, respectively.
+  - column: 3m
+    note: Haemophilus influenzae type b conjugated vaccine
+  - column: 4m
+    note: Haemophilus influenzae type b conjugated vaccine
+  - column: 16m
+    note: Haemophilus influenzae type b conjugated vaccine Not earlier than 12 months after the 3rd dose
+- disease: hepatitis_b
+  doses:
+  - column: birth
+    note: Hepatitis B During the first 24 hours after birth with a monovalent hepatitis B vaccine, regardless
+      of the type of vaccine used to continue the immunization schedule.
+  - column: 1m
+    note: Hepatitis B When using a monovalent vaccine, doses are administered at 1 and 6 months
+  - column: 2m
+    note: Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses
+      are given at 2, 3 and 4 months of age.
+  - column: 3m
+    note: Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses
+      are given at 2, 3 and 4 months of age.
+  - column: 4m
+    note: Hepatitis B When administering a combination vaccine containing a hepatitis B vaccine, doses
+      are given at 2, 3 and 4 months of age.
+  - column: 6m
+    note: Hepatitis B When using a monovalent vaccine, doses are administered at 1 and 6 months
+- disease: pneumococcal_disease
+  doses:
+  - column: 2m
+    note: Pneumococcal conjugate vaccine Routine vaccination begins at 6 weeks of age. Second dose is
+      given at 14 weeks of age. For children born to mothers vaccinated against pertussis during pregnancy,
+      mandatory immunization against pneumococcal infections is carried out from two months of age. Subsequent
+      immunization is administered no earlier than 8 weeks after the first dose, respectively from four
+      months of age.
+  - column: 4m
+    note: Pneumococcal conjugate vaccine Routine vaccination begins at 6 weeks of age. Second dose is
+      given at 14 weeks of age. For children born to mothers vaccinated against pertussis during pregnancy,
+      mandatory immunization against pneumococcal infections is carried out from two months of age. Subsequent
+      immunization is administered no earlier than 8 weeks after the first dose, respectively from four
+      months of age.
+  - column: 12m
+    note: Pneumococcal conjugate vaccine Not earlier than 6 months after the previous dose.
+  - column: gte65y
+    note: For people over 65 years of age, influenza and pneumococcal vaccines and administration are
+      free of charge and funded according to the National programme.
+- disease: measles_mumps_rubella
+  doses:
+  - column: 13m
+    note: measles vaccine mumps vaccine rubella vaccine
+  - column: 12y
+    note: measles vaccine mumps vaccine rubella vaccine
+- disease: varicella
+  doses:
+  - column: 12m
+    through: 15m
+    note: 'varicella vaccine Varicella vaccine will be in place as mandatory vaccination since 1st July
+      2026. 2 doses scheme is recommended: 1 st dose at age 12-15 months and 2nd at 4 years of age.'
+  - column: 4y
+    note: 'varicella vaccine Varicella vaccine will be in place as mandatory vaccination since 1st July
+      2026. 2 doses scheme is recommended: 1 st dose at age 12-15 months and 2nd at 4 years of age.'
+- disease: pert
+  doses:
+  - column: pregnancy_27w
+    through: pregnancy_36w
+    note: Ordinance No. 15, Art. 23 and Annex 5. Pertussis immunization is done for pregnant women from
+      gestational week 27 through 36 using a combined diphtheria-tetanus-pertussis vaccine with acellular
+      pertussis component and reduced antigen content.
+- disease: rsv
+  doses:
+  - column: pregnancy_24w
+    through: pregnancy_36w
+    note: Ordinance No. 15, Art. 23a and Annex 5, effective 2026-07-01. RSV immunization is done for pregnant
+      women from gestational week 24 through 36 using a bivalent recombinant RSV vaccine.
+  - column: 18y
+    through: gte65y
+    note: Recommended for people aged 18 years and older. Препоръчва се за лица на възраст 18 години и
+      повече.
+- disease: rotavirus
+  doses:
+  - column: 2m
+    through: 6m
+    note: rotavirus vaccine Active immunization of children aged 6 to 24 weeks. The vaccination course
+      consists of two doses, with an interval of at least 4 weeks between doses. Vaccine and immunization
+      are covered by National Program for the Prevention of Rotavirus Gastroenteritis
+- disease: meningococcal
+  doses:
+  - column: 2m
+    through: 18y
+    note: 'General recommendation: MCV4 between 6 weeks and 18 years. General recommendation: MenB between
+      2 months and 18 years.'
+- disease: covid
+  doses:
+  - column: pregnancy_1w
+    through: pregnancy_end
+    note: COVID-19 vaccine is recommended during the whole pregnancy.
+  - column: 6m
+    through: 18y
+    note: 'Coronavirus disease (COVID-19) Priority groups for vaccination are: persons aged 60+; people
+      with chronic diseases; immunocompromised persons (including children over 6 months); pregnant women;
+      medical staff; users and staff of social institutions. More information: https://plusmen.bg/bg/optional/covid-19'
+  - column: 25y
+    through: 59y
+    note: 'Priority groups: people aged 60+, people with chronic diseases, immunocompromised people, pregnant
+      women, medical staff, and users and staff of social institutions.'
+  - column: 60y
+    through: gte65y
+    note: 'Priority groups: people aged 60+, people with chronic diseases, immunocompromised people, pregnant
+      women, medical staff, and users and staff of social institutions.'
+- disease: influenza
+  doses:
+  - column: pregnancy_1w
+    through: pregnancy_end
+    note: Ordinance No. 15, Annex 2, XII.A.3.8 recommends inactivated influenza vaccine through all stages
+      of pregnancy. Annex 10 lists pregnant women under contraindications for live viral vaccines.
+  - column: 6m
+    through: 17y
+    note: Influenza vaccine Inactivated vaccines are recommended for children over 6 months of age. LAIV
+      is recommended for children over 24 months of age. Vaccines are not funded but vaccine administration
+      is funded by the national health insurance.
+  - column: 18y
+    through: 64y
+    note: IIV3/IIV4 Inactivated vaccines are recommended for all people over 18 years of age. Vaccines
+      are not funded but vaccine administration is funded by the national health insurance only for insured
+      Inactivated vaccines are recommended for all people over 18 years of age. Vaccines are not funded
+      but vaccine administration is funded by the national health insurance only for insured people.
+  - column: gte65y
+    note: For people over 65 years of age, influenza and pneumococcal vaccines and administration are
+      free of charge and funded according to the National programme.
+- disease: hpv
+  doses:
+  - column: 10y
+    through: 12y
+    note: 'HPV9 Specific groups according to a National Programme: females 10-14 years, males 10-13 years;
+      2 doses scheme. Second dose: Not earlier than 6 months after the previous dose'

@@ -49,19 +49,31 @@ def require_unique(items: list[str], message: str) -> None:
     require(not duplicates, f"{message}: {', '.join(duplicates)}")
 
 
+def dose_reference_key(disease_id: str, dose: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        disease_id,
+        str(dose["column"]),
+        str(dose.get("through", "")),
+    )
+
+
 def validate() -> None:
     sources = read_yaml("sources.yaml")
     metadata = read_yaml("metadata.yaml")
     columns = read_yaml("columns.yaml")
-    vaccines = read_yaml("vaccines.yaml")
+    diseases = read_yaml("diseases.yaml")
     schedule = read_yaml("schedule.yaml")
+    dose_texts = read_yaml("dose_texts.yaml")
+    notes = read_yaml("notes.yaml")
 
     for name, data in (
         ("sources.yaml", sources),
         ("metadata.yaml", metadata),
         ("columns.yaml", columns),
-        ("vaccines.yaml", vaccines),
+        ("diseases.yaml", diseases),
         ("schedule.yaml", schedule),
+        ("dose_texts.yaml", dose_texts),
+        ("notes.yaml", notes),
     ):
         require_header(name, data)
 
@@ -106,18 +118,18 @@ def validate() -> None:
         require_unique(grouped_columns, "columns.yaml: duplicate column_groups column references")
         require(grouped_columns == column_ids, "columns.yaml: column_groups must cover every column exactly once in columns order")
 
-    vaccine_rows = require_list(vaccines.get("vaccines"), "vaccines.yaml: vaccines must be a list")
-    vaccine_ids = [require_string(row.get("id"), "vaccines.yaml: vaccine id is required") for row in vaccine_rows]
-    require_unique(vaccine_ids, "vaccines.yaml: duplicate vaccine ids")
-    vaccine_id_set = set(vaccine_ids)
-    for row in vaccine_rows:
-        label = require_mapping(row.get("label"), f"vaccines.yaml: {row.get('id')}: label must be a mapping")
-        require_string(label.get("en"), f"vaccines.yaml: {row.get('id')}: label.en is required")
-        require_string(label.get("bg"), f"vaccines.yaml: {row.get('id')}: label.bg is required")
+    disease_rows = require_list(diseases.get("diseases"), "diseases.yaml: diseases must be a list")
+    disease_ids = [require_string(row.get("id"), "diseases.yaml: disease id is required") for row in disease_rows]
+    require_unique(disease_ids, "diseases.yaml: duplicate disease ids")
+    disease_id_set = set(disease_ids)
+    for row in disease_rows:
+        label = require_mapping(row.get("label"), f"diseases.yaml: {row.get('id')}: label must be a mapping")
+        require_string(label.get("en"), f"diseases.yaml: {row.get('id')}: label.en is required")
+        require_string(label.get("bg"), f"diseases.yaml: {row.get('id')}: label.bg is required")
         for optional_key in ("short", "hover_label"):
             if optional_key in row:
-                optional_label = require_mapping(row[optional_key], f"vaccines.yaml: {row.get('id')}: {optional_key} must be a mapping")
-                require(optional_label, f"vaccines.yaml: {row.get('id')}: {optional_key} must not be empty")
+                optional_label = require_mapping(row[optional_key], f"diseases.yaml: {row.get('id')}: {optional_key} must be a mapping")
+                require(optional_label, f"diseases.yaml: {row.get('id')}: {optional_key} must not be empty")
 
     text = require_mapping(metadata.get("text"), "metadata.yaml: text must be a mapping")
     require("en" in text and "bg" in text, "metadata.yaml: text must define en and bg")
@@ -136,26 +148,76 @@ def validate() -> None:
     overlays = require_mapping(metadata.get("schedule_cell_overlays"), "metadata.yaml: schedule_cell_overlays must be a mapping")
     for key in ("combined_rows", "split_rows"):
         for vaccine_id in require_list(overlays.get(key, []), f"metadata.yaml: {key} must be a list"):
-            require(vaccine_id in vaccine_id_set, f"metadata.yaml: {key} references unknown vaccine {vaccine_id}")
+            require(vaccine_id in disease_id_set, f"metadata.yaml: {key} references unknown vaccine {vaccine_id}")
     for fill in require_list(metadata.get("cell_fills", []), "metadata.yaml: cell_fills must be a list"):
         vaccine_id = require_string(fill.get("vaccine"), "metadata.yaml: cell_fills vaccine is required")
-        require(vaccine_id in vaccine_id_set, f"metadata.yaml: cell_fills references unknown vaccine {vaccine_id}")
+        require(vaccine_id in disease_id_set, f"metadata.yaml: cell_fills references unknown vaccine {vaccine_id}")
         require_string(fill.get("cell_text"), f"metadata.yaml: {vaccine_id}: cell_text is required")
         require_string(fill.get("fill_background"), f"metadata.yaml: {vaccine_id}: fill_background is required")
 
     schedule_rows = require_list(schedule.get("rows"), "schedule.yaml: rows must be a list")
+    schedule_dose_keys: set[tuple[str, str, str]] = set()
     for row in schedule_rows:
-        vaccine_id = require_string(row.get("vaccine"), "schedule.yaml: row vaccine is required")
-        require(vaccine_id in vaccine_id_set, f"schedule.yaml: unknown vaccine {vaccine_id}")
-        require(row.get("group") in {"mandatory", "recommended"}, f"schedule.yaml: {vaccine_id}: invalid group")
-        for dose in require_list(row.get("doses"), f"schedule.yaml: {vaccine_id}: doses must be a list"):
-            column = require_string(dose.get("column"), f"schedule.yaml: {vaccine_id}: dose column is required")
-            require(column in column_id_set, f"schedule.yaml: {vaccine_id}: unknown column {column}")
-            require_string(dose.get("text"), f"schedule.yaml: {vaccine_id}: dose text is required")
+        disease_id = require_string(row.get("disease"), "schedule.yaml: row disease is required")
+        require(disease_id in disease_id_set, f"schedule.yaml: unknown disease {disease_id}")
+        require(row.get("group") in {"mandatory", "recommended"}, f"schedule.yaml: {disease_id}: invalid group")
+        for dose in require_list(row.get("doses"), f"schedule.yaml: {disease_id}: doses must be a list"):
+            require("note" not in dose, f"schedule.yaml: {disease_id}: dose notes belong in notes.yaml")
+            require("text" not in dose, f"schedule.yaml: {disease_id}: dose text belongs in dose_texts.yaml")
+            column = require_string(dose.get("column"), f"schedule.yaml: {disease_id}: dose column is required")
+            require(column in column_id_set, f"schedule.yaml: {disease_id}: unknown column {column}")
             if "through" in dose:
-                through = require_string(dose["through"], f"schedule.yaml: {vaccine_id}: through must be a string")
-                require(through in column_id_set, f"schedule.yaml: {vaccine_id}: unknown through column {through}")
-                require(column_ids.index(through) >= column_ids.index(column), f"schedule.yaml: {vaccine_id}: through precedes column")
+                through = require_string(dose["through"], f"schedule.yaml: {disease_id}: through must be a string")
+                require(through in column_id_set, f"schedule.yaml: {disease_id}: unknown through column {through}")
+                require(column_ids.index(through) >= column_ids.index(column), f"schedule.yaml: {disease_id}: through precedes column")
+            schedule_dose_keys.add(dose_reference_key(disease_id, dose))
+
+    text_rows = require_list(dose_texts.get("dose_texts"), "dose_texts.yaml: dose_texts must be a list")
+    text_diseases = [require_string(row.get("disease"), "dose_texts.yaml: text disease is required") for row in text_rows]
+    require_unique(text_diseases, "dose_texts.yaml: duplicate disease text rows")
+    text_keys: list[str] = []
+    text_key_set: set[tuple[str, str, str]] = set()
+    for row in text_rows:
+        disease_id = row["disease"]
+        require(disease_id in disease_id_set, f"dose_texts.yaml: unknown disease {disease_id}")
+        for dose in require_list(row.get("doses"), f"dose_texts.yaml: {disease_id}: doses must be a list"):
+            column = require_string(dose.get("column"), f"dose_texts.yaml: {disease_id}: dose column is required")
+            require(column in column_id_set, f"dose_texts.yaml: {disease_id}: unknown column {column}")
+            if "through" in dose:
+                through = require_string(dose["through"], f"dose_texts.yaml: {disease_id}: through must be a string")
+                require(through in column_id_set, f"dose_texts.yaml: {disease_id}: unknown through column {through}")
+                require(column_ids.index(through) >= column_ids.index(column), f"dose_texts.yaml: {disease_id}: through precedes column")
+            require_string(dose.get("text"), f"dose_texts.yaml: {disease_id}: text is required")
+            key = dose_reference_key(disease_id, dose)
+            key_text = "|".join(key)
+            text_keys.append(key_text)
+            text_key_set.add(key)
+            require(key in schedule_dose_keys, f"dose_texts.yaml: {disease_id}: text does not match a schedule dose: {key_text}")
+    require_unique(text_keys, "dose_texts.yaml: duplicate dose text")
+    missing_text_keys = sorted("|".join(key) for key in schedule_dose_keys - text_key_set)
+    require(not missing_text_keys, f"dose_texts.yaml: missing dose text: {', '.join(missing_text_keys)}")
+
+    note_rows = require_list(notes.get("notes"), "notes.yaml: notes must be a list")
+    note_diseases = [require_string(row.get("disease"), "notes.yaml: note disease is required") for row in note_rows]
+    require_unique(note_diseases, "notes.yaml: duplicate disease notes")
+    note_keys: list[str] = []
+    for row in note_rows:
+        disease_id = row["disease"]
+        require(disease_id in disease_id_set, f"notes.yaml: unknown disease {disease_id}")
+        for dose in require_list(row.get("doses"), f"notes.yaml: {disease_id}: doses must be a list"):
+            require("text" not in dose, f"notes.yaml: {disease_id}: dose text belongs in dose_texts.yaml")
+            column = require_string(dose.get("column"), f"notes.yaml: {disease_id}: dose column is required")
+            require(column in column_id_set, f"notes.yaml: {disease_id}: unknown column {column}")
+            if "through" in dose:
+                through = require_string(dose["through"], f"notes.yaml: {disease_id}: through must be a string")
+                require(through in column_id_set, f"notes.yaml: {disease_id}: unknown through column {through}")
+                require(column_ids.index(through) >= column_ids.index(column), f"notes.yaml: {disease_id}: through precedes column")
+            require_string(dose.get("note"), f"notes.yaml: {disease_id}: note is required")
+            key = dose_reference_key(disease_id, dose)
+            key_text = "|".join(key)
+            note_keys.append(key_text)
+            require(key in schedule_dose_keys, f"notes.yaml: {disease_id}: note does not match a schedule dose: {key_text}")
+    require_unique(note_keys, "notes.yaml: duplicate dose notes")
 
 
 def main() -> int:

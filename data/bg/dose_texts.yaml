@@ -1,144 +1,190 @@
 version: 1
 country: BG
-rows:
+dose_texts:
 - disease: tuberculosis
-  group: mandatory
   doses:
   - column: birth
+    text: BCG
   - column: 7m
+    text: BCG
   - column: 7y
+    text: BCG
 - disease: diphtheria
-  group: mandatory
   doses:
   - column: 2m
+    text: D
   - column: 3m
+    text: D
   - column: 4m
+    text: D
   - column: 16m
+    text: D
   - column: 6y
+    text: D
   - column: 12y
+    text: d
   - column: 17y
+    text: d
   - column: 25y
+    text: d
     through: gte65y
 - disease: tetanus
-  group: mandatory
   doses:
   - column: 2m
+    text: TT
   - column: 3m
+    text: TT
   - column: 4m
+    text: TT
   - column: 16m
+    text: TT
   - column: 6y
+    text: TT
   - column: 12y
+    text: TT
   - column: 17y
+    text: TT
   - column: 25y
+    text: TT
     through: gte65y
 - disease: pertussis
-  group: mandatory
   doses:
   - column: 2m
+    text: acP
   - column: 3m
+    text: acP
   - column: 4m
+    text: acP
   - column: 16m
+    text: acP
   - column: 6y
+    text: acP
   - column: 12y
+    text: acp
   - column: 18y
+    text: acp
     through: 64y
 - disease: poliomyelitis
-  group: mandatory
   doses:
   - column: 2m
+    text: IPV
   - column: 3m
+    text: IPV
   - column: 4m
+    text: IPV
   - column: 16m
+    text: IPV
   - column: 6y
+    text: IPV
 - disease: haemophilus_influenzae_type_b
-  group: mandatory
   doses:
   - column: 2m
+    text: Hib
   - column: 3m
+    text: Hib
   - column: 4m
+    text: Hib
   - column: 16m
+    text: Hib
 - disease: hepatitis_b
-  group: mandatory
   doses:
   - column: birth
+    text: HepB
   - column: 1m
+    text: HepB
   - column: 2m
+    text: HepB
   - column: 3m
+    text: HepB
   - column: 4m
+    text: HepB
   - column: 6m
+    text: HepB
 - disease: pneumococcal_disease
-  group: mandatory
   doses:
   - column: 2m
+    text: PCV
   - column: 4m
+    text: PCV
   - column: 12m
+    text: PCV
   - column: gte65y
+    text: PCV13
 - disease: measles_mumps_rubella
-  group: mandatory
   doses:
   - column: 13m
+    text: MMR
   - column: 12y
+    text: MMR
 - disease: varicella
-  group: mandatory
-  divider_after: true
   doses:
   - column: 12m
+    text: VAR
     through: 15m
   - column: 4y
+    text: VAR
 - disease: pert
-  group: recommended
   doses:
   - column: pregnancy_27w
+    text: Tdap
     through: pregnancy_36w
 - disease: rsv
-  group: recommended
   doses:
   - column: pregnancy_24w
+    text: RSV
     through: pregnancy_36w
-    muted: true
   - column: 18y
+    text: RSV
     through: gte65y
 - disease: rotavirus
-  group: recommended
   doses:
   - column: 2m
+    text: ROTA
     through: 6m
 - disease: meningococcal
-  group: recommended
   doses:
   - column: 2m
+    text: 'MCV4
+
+      MenB'
     through: 18y
 - disease: hepatitis_a
-  group: recommended
   doses:
   - column: 12m
+    text: HepA
     through: 18y
 - disease: covid
-  group: recommended
   doses:
   - column: pregnancy_1w
+    text: COVID
     through: pregnancy_end
   - column: 6m
+    text: COVID
     through: 18y
   - column: 25y
+    text: COVID
     through: 59y
   - column: 60y
+    text: COVID
     through: gte65y
 - disease: influenza
-  group: recommended
   doses:
   - column: pregnancy_1w
+    text: IIV3/IIV4
     through: pregnancy_end
   - column: 6m
+    text: IIV3/LAIV
     through: 17y
   - column: 18y
+    text: IIV3/IIV4
     through: 64y
   - column: gte65y
+    text: IIV3/IIV4
 - disease: hpv
-  group: recommended
   doses:
   - column: 10y
+    text: HPV9 (F/M)
     through: 12y
   - column: 14y
+    text: HPV9 (F)
     through: 18y
-    note_style: true

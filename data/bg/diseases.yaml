@@ -1,6 +1,6 @@
 version: 1
 country: BG
-vaccines:
+diseases:
 - id: tuberculosis
   label:
     en: tuberculosis

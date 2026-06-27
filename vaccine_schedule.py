@@ -28,11 +28,16 @@ def normalized_disease_name(value: str) -> str:
 SOURCES = read_yaml(DATA_DIR / "sources.yaml")
 METADATA = read_yaml(DATA_DIR / "metadata.yaml")
 COLUMNS_DATA = read_yaml(DATA_DIR / "columns.yaml")
-VACCINES_DATA = read_yaml(DATA_DIR / "vaccines.yaml")
+DISEASES_DATA = read_yaml(DATA_DIR / "diseases.yaml")
 SCHEDULE_DATA = read_yaml(DATA_DIR / "schedule.yaml")
+SCHEDULE_DOSE_TEXTS_DATA = read_yaml(DATA_DIR / "dose_texts.yaml")
+SCHEDULE_NOTES_DATA = read_yaml(DATA_DIR / "notes.yaml")
 SOURCE_LINKS = SOURCES["source_links"]
-VACCINE_DEFS = VACCINES_DATA["vaccines"]
-VACCINE_BY_ID = {vaccine["id"]: vaccine for vaccine in VACCINE_DEFS}
+DISEASE_DEFS = DISEASES_DATA["diseases"]
+DISEASE_BY_ID = {disease["id"]: disease for disease in DISEASE_DEFS}
+VACCINES_DATA = DISEASES_DATA
+VACCINE_DEFS = DISEASE_DEFS
+VACCINE_BY_ID = DISEASE_BY_ID
 COLUMN_DEFS = COLUMNS_DATA["columns"]
 COLUMN_IDS = [column["id"] for column in COLUMN_DEFS]
 COLUMN_ID_TO_INDEX = {column_id: index for index, column_id in enumerate(COLUMN_IDS)}
@@ -694,6 +699,36 @@ def ecdc_column_index(column: str | int, occurrence: int = 1) -> int:
     return matches[occurrence - 1]
 
 
+def dose_reference_key(disease_id: str, dose: dict) -> tuple[str, str, str]:
+    return (
+        disease_id,
+        str(dose["column"]),
+        str(dose.get("through", "")),
+    )
+
+
+def schedule_dose_texts_by_dose(texts_data: dict) -> dict[tuple[str, str, str], str]:
+    texts = {}
+    for row in texts_data.get("dose_texts", []):
+        disease_id = row["disease"]
+        for dose in row.get("doses", []):
+            texts[dose_reference_key(disease_id, dose)] = str(dose["text"])
+    return texts
+
+
+def schedule_notes_by_dose(notes_data: dict) -> dict[tuple[str, str, str], str]:
+    notes = {}
+    for row in notes_data.get("notes", []):
+        disease_id = row["disease"]
+        for dose in row.get("doses", []):
+            notes[dose_reference_key(disease_id, dose)] = str(dose["note"])
+    return notes
+
+
+SCHEDULE_DOSE_TEXTS_BY_DOSE = schedule_dose_texts_by_dose(SCHEDULE_DOSE_TEXTS_DATA)
+SCHEDULE_NOTES_BY_DOSE = schedule_notes_by_dose(SCHEDULE_NOTES_DATA)
+
+
 def curated_cell(cell: dict) -> dict:
     column = ecdc_column_index(cell["column"], int(cell.get("occurrence", 1)))
     converted = {
@@ -708,21 +743,26 @@ def curated_cell(cell: dict) -> dict:
 
 
 def schedule_row(row: dict, order: int) -> dict:
-    vaccine = VACCINE_BY_ID[row["vaccine"]]
+    disease = DISEASE_BY_ID[row["disease"]]
     group = row.get("group", "recommended")
     converted = {
-        "id": vaccine["id"],
-        "label": vaccine["label"]["en"],
+        "id": disease["id"],
+        "label": disease["label"]["en"],
         "cells": [],
         "_order": order,
     }
-    if label_title := vaccine["label"].get("bg"):
+    if label_title := disease["label"].get("bg"):
         converted["labelTitle"] = label_title
     if row.get("divider_after"):
         converted["dividerAfter"] = True
 
     for dose in row.get("doses", []):
-        cell = curated_cell(dose)
+        dose_with_text = dict(dose)
+        reference_key = dose_reference_key(row["disease"], dose)
+        dose_with_text["text"] = SCHEDULE_DOSE_TEXTS_BY_DOSE[reference_key]
+        if reference_key in SCHEDULE_NOTES_BY_DOSE:
+            dose_with_text["note"] = SCHEDULE_NOTES_BY_DOSE[reference_key]
+        cell = curated_cell(dose_with_text)
         cell["mandatory"] = dose.get("mandatory", group == "mandatory")
         converted["cells"].append(cell)
     return converted

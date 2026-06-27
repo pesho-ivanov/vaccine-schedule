@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/vaccine-schedule/vaccines.schema.json",
-  "title": "Vaccine Schedule Vaccines",
+  "$id": "https://example.org/vaccine-schedule/diseases.schema.json",
+  "title": "Vaccine Schedule Diseases",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "country", "vaccines"],
+  "required": ["version", "country", "diseases"],
   "properties": {
     "version": { "const": 1 },
     "country": { "const": "BG" },
-    "vaccines": {
+    "diseases": {
       "type": "array",
       "minItems": 1,
       "items": {

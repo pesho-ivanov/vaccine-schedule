@@ -1,37 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/vaccine-schedule/schedule.schema.json",
-  "title": "Vaccine Schedule Rows",
+  "$id": "https://example.org/vaccine-schedule/dose_texts.schema.json",
+  "title": "Vaccine Schedule Dose Texts",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "country", "rows"],
+  "required": ["version", "country", "dose_texts"],
   "properties": {
     "version": { "const": 1 },
     "country": { "const": "BG" },
-    "rows": {
+    "dose_texts": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["disease", "group", "doses"],
+        "required": ["disease", "doses"],
         "properties": {
           "disease": { "$ref": "types.schema.json#/$defs/id" },
-          "group": { "enum": ["mandatory", "recommended"] },
-          "divider_after": { "type": "boolean" },
           "doses": {
             "type": "array",
+            "minItems": 1,
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["column"],
+              "required": ["column", "text"],
               "properties": {
                 "column": { "$ref": "types.schema.json#/$defs/id" },
                 "through": { "$ref": "types.schema.json#/$defs/id" },
-                "mandatory": { "type": "boolean" },
-                "muted": { "type": "boolean" },
-                "struck": { "type": "boolean" },
-                "note_style": { "type": "boolean" }
+                "text": { "type": "string", "minLength": 1 }
               }
             }
           }

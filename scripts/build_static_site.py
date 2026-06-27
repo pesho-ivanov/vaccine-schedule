@@ -35,17 +35,47 @@ def optional_language_map(value: dict[str, Any]) -> dict[str, str]:
     return {"en": str(value.get("en", "")), "bg": str(value.get("bg", ""))}
 
 
+def dose_reference_key(disease_id: str, dose: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        disease_id,
+        str(dose["column"]),
+        str(dose.get("through", "")),
+    )
+
+
+def build_text_lookup(texts_data: dict[str, Any]) -> dict[tuple[str, str, str], str]:
+    texts = {}
+    for row in texts_data.get("dose_texts", []):
+        disease_id = row["disease"]
+        for dose in row.get("doses", []):
+            texts[dose_reference_key(disease_id, dose)] = str(dose["text"])
+    return texts
+
+
+def build_note_lookup(notes_data: dict[str, Any]) -> dict[tuple[str, str, str], str]:
+    notes = {}
+    for row in notes_data.get("notes", []):
+        disease_id = row["disease"]
+        for dose in row.get("doses", []):
+            notes[dose_reference_key(disease_id, dose)] = str(dose["note"])
+    return notes
+
+
 def build_schedule_table() -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
-    vaccines_data = read_yaml("vaccines.yaml")
+    diseases_data = read_yaml("diseases.yaml")
     schedule_data = read_yaml("schedule.yaml")
+    dose_texts_data = read_yaml("dose_texts.yaml")
+    notes_data = read_yaml("notes.yaml")
     sources_data = read_yaml("sources.yaml")
     metadata = read_yaml("metadata.yaml")
 
     columns = columns_data["columns"]
     column_ids = [column["id"] for column in columns]
     column_index = {column_id: index for index, column_id in enumerate(column_ids)}
-    vaccines = {vaccine["id"]: vaccine for vaccine in vaccines_data["vaccines"]}
+    diseases = {disease["id"]: disease for disease in diseases_data["diseases"]}
+    text_lookup = build_text_lookup(dose_texts_data)
+    note_lookup = build_note_lookup(notes_data)
     cell_fills = {
         (fill["vaccine"], fill["cell_text"]): fill["fill_background"]
         for fill in metadata.get("cell_fills", [])
@@ -53,8 +83,8 @@ def build_schedule_table() -> dict[str, Any]:
 
     rows: list[dict[str, Any]] = []
     for schedule_row in schedule_data["rows"]:
-        vaccine_id = schedule_row["vaccine"]
-        vaccine = vaccines[vaccine_id]
+        disease_id = schedule_row["disease"]
+        disease = diseases[disease_id]
         doses: list[dict[str, Any]] = []
 
         for dose in schedule_row["doses"]:
@@ -63,31 +93,33 @@ def build_schedule_table() -> dict[str, Any]:
             start = column_index[column]
             end = column_index[through]
             if end < start:
-                raise ValueError(f"{vaccine_id}: dose through column precedes start column")
+                raise ValueError(f"{disease_id}: dose through column precedes start column")
 
+            reference_key = dose_reference_key(disease_id, dose)
+            dose_text = text_lookup[reference_key]
             dose_projection = {
                 "column": column,
                 "through": through,
                 "span": end - start + 1,
-                "text": str(dose["text"]),
+                "text": dose_text,
             }
-            if "note" in dose:
-                dose_projection["note"] = str(dose["note"])
+            if reference_key in note_lookup:
+                dose_projection["note"] = note_lookup[reference_key]
             if dose.get("muted"):
                 dose_projection["muted"] = True
             if dose.get("note_style") or dose.get("noteStyle"):
                 dose_projection["note_style"] = True
-            fill_background = cell_fills.get((vaccine_id, dose["text"]))
+            fill_background = cell_fills.get((disease_id, dose_text))
             if fill_background:
                 dose_projection["fill_background"] = fill_background
             doses.append(dose_projection)
 
         rows.append(
             {
-                "vaccine": vaccine_id,
+                "disease": disease_id,
                 "group": schedule_row["group"],
-                "label": language_map(vaccine.get("label"), vaccine_id),
-                "short": language_map(vaccine.get("short"), vaccine["label"]["en"]),
+                "label": language_map(disease.get("label"), disease_id),
+                "short": language_map(disease.get("short"), disease["label"]["en"]),
                 "doses": doses,
                 "divider_after": bool(schedule_row.get("divider_after")),
             }
@@ -138,8 +170,10 @@ def build_schedule_table() -> dict[str, Any]:
         "source_links": sources_data["source_links"],
         "generated_from": [
             "data/bg/columns.yaml",
-            "data/bg/vaccines.yaml",
+            "data/bg/diseases.yaml",
             "data/bg/schedule.yaml",
+            "data/bg/dose_texts.yaml",
+            "data/bg/notes.yaml",
             "data/bg/sources.yaml",
             "data/bg/metadata.yaml",
         ],
