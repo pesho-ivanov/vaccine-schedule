@@ -14,7 +14,6 @@
   --header-text: #ffffff;
   --group-header-height: 34px;
   --time-header-height: 56px;
-  --number-column-width: 56px;
   --vaccine-column-width: 280px;
   --sticky-shadow: 8px 0 14px rgb(23 32 51 / 0.08);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -32,12 +31,37 @@ body {
 
 .page-header {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 32px;
   padding: 28px 32px 22px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
+}
+
+.language-toggle {
+  flex: 0 0 auto;
+  min-width: 42px;
+  height: 34px;
+  border: 1px solid var(--line-strong);
+  background: #fbfcfe;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.language-toggle[aria-pressed="true"] {
+  border-color: var(--header-bg);
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
+.language-toggle:focus-visible {
+  outline: 2px solid rgb(36 92 159 / 0.28);
+  outline-offset: 2px;
 }
 
 h1,
@@ -75,10 +99,6 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   table-layout: auto;
-}
-
-.number-col {
-  width: var(--number-column-width);
 }
 
 .vaccine-col {
@@ -123,29 +143,19 @@ thead th {
   height: var(--time-header-height);
 }
 
-.number-column,
-.number-cell {
-  left: 0;
-  min-width: var(--number-column-width);
-  width: var(--number-column-width);
-}
-
 .vaccine-column,
 .vaccine-cell {
-  left: var(--number-column-width);
+  left: 0;
   min-width: var(--vaccine-column-width);
   width: var(--vaccine-column-width);
 }
 
-.number-column,
-.number-cell,
 .vaccine-column,
 .vaccine-cell {
   position: sticky;
   z-index: 2;
 }
 
-thead .number-column,
 thead .vaccine-column {
   top: 0;
   z-index: 5;
@@ -156,8 +166,6 @@ thead .vaccine-column {
   z-index: 4;
 }
 
-.number-column,
-.number-cell,
 .vaccine-column,
 .vaccine-cell {
   box-shadow: var(--sticky-shadow);
@@ -199,6 +207,10 @@ thead .vaccine-column {
   white-space: nowrap;
 }
 
+body:not(.show-bg) .translation-bg {
+  display: none;
+}
+
 tbody th,
 tbody td {
   min-height: 54px;
@@ -223,14 +235,6 @@ tbody td {
 
 .group-row.recommended th {
   background: var(--recommended);
-}
-
-.number-cell {
-  background: #f4f7fb;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-align: center;
 }
 
 .vaccine-cell {
@@ -357,17 +361,17 @@ tbody td {
 
 @media (max-width: 760px) {
   :root {
-    --number-column-width: 48px;
     --vaccine-column-width: 220px;
   }
 
   .page-header {
-    display: block;
+    gap: 16px;
     padding: 22px 18px 18px;
   }
 
-  .summary {
-    margin-top: 18px;
+  .language-toggle {
+    min-width: 40px;
+    height: 32px;
   }
 
   main {
