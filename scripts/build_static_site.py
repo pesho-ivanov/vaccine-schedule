@@ -15,10 +15,6 @@ SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
-ECDC_DISEASE_URL = (
-    "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease"
-    "?SelectedDiseaseId={disease_id}&SelectedCountryIdByDisease=-1"
-)
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -70,7 +66,7 @@ def build_ecdc_links(disease: dict[str, Any]) -> list[dict[str, str]]:
     return [
         {
             "label": str(ecdc_disease["label"]),
-            "url": ECDC_DISEASE_URL.format(disease_id=ecdc_disease["id"]),
+            "url": str(ecdc_disease["url"]),
         }
         for ecdc_disease in disease.get("ecdc_diseases", [])
     ]

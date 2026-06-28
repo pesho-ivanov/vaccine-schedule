@@ -133,14 +133,14 @@ def validate() -> None:
         if "ecdc_diseases" in row:
             ecdc_diseases = require_list(row["ecdc_diseases"], f"diseases.yaml: {row.get('id')}: ecdc_diseases must be a list")
             require(ecdc_diseases, f"diseases.yaml: {row.get('id')}: ecdc_diseases must not be empty")
-            ecdc_ids = []
+            ecdc_urls = []
             for ecdc_disease in ecdc_diseases:
                 ecdc_disease = require_mapping(ecdc_disease, f"diseases.yaml: {row.get('id')}: ecdc disease must be a mapping")
-                ecdc_id = ecdc_disease.get("id")
-                require(isinstance(ecdc_id, int) and ecdc_id > 0, f"diseases.yaml: {row.get('id')}: ecdc disease id must be a positive integer")
-                ecdc_ids.append(str(ecdc_id))
+                ecdc_url = require_string(ecdc_disease.get("url"), f"diseases.yaml: {row.get('id')}: ecdc disease url is required")
+                require(ecdc_url.startswith("https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?"), f"diseases.yaml: {row.get('id')}: ecdc disease url must be an ECDC ByDisease URL")
+                ecdc_urls.append(ecdc_url)
                 require_string(ecdc_disease.get("label"), f"diseases.yaml: {row.get('id')}: ecdc disease label is required")
-            require_unique(ecdc_ids, f"diseases.yaml: {row.get('id')}: duplicate ecdc disease ids")
+            require_unique(ecdc_urls, f"diseases.yaml: {row.get('id')}: duplicate ecdc disease urls")
 
     text = require_mapping(metadata.get("text"), "metadata.yaml: text must be a mapping")
     require("en" in text and "bg" in text, "metadata.yaml: text must define en and bg")

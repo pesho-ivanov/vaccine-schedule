@@ -9,7 +9,7 @@ diseases:
     en: TB
     bg: ТБ
   ecdc_diseases:
-  - id: 14
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=14&SelectedCountryIdByDisease=-1
     label: tuberculosis
   record_aliases:
   - бцж
@@ -22,7 +22,7 @@ diseases:
     en: Diph
     bg: Диф
   ecdc_diseases:
-  - id: 1
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=1&SelectedCountryIdByDisease=-1
     label: diphtheria
   record_aliases:
   - дтка
@@ -34,7 +34,7 @@ diseases:
     en: Tet
     bg: Тет
   ecdc_diseases:
-  - id: 2
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=2&SelectedCountryIdByDisease=-1
     label: tetanus
   record_aliases:
   - дтка
@@ -46,7 +46,7 @@ diseases:
     en: Pert
     bg: Кокл
   ecdc_diseases:
-  - id: 3
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1
     label: pertussis
   record_aliases:
   - дтка
@@ -58,7 +58,7 @@ diseases:
     en: Polio
     bg: Полио
   ecdc_diseases:
-  - id: 4
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=4&SelectedCountryIdByDisease=-1
     label: poliomyelitis
   record_aliases:
   - пи
@@ -70,7 +70,7 @@ diseases:
     en: Hib
     bg: Хиб
   ecdc_diseases:
-  - id: 5
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=5&SelectedCountryIdByDisease=-1
     label: Haemophilus influenzae type b
   record_aliases:
   - хиб
@@ -82,7 +82,7 @@ diseases:
     en: Hep B
     bg: Хеп. Б
   ecdc_diseases:
-  - id: 6
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=6&SelectedCountryIdByDisease=-1
     label: hepatitis B
   record_aliases:
   - хеп. б
@@ -94,7 +94,7 @@ diseases:
     en: Pneumo
     bg: Пневмо
   ecdc_diseases:
-  - id: 25
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=25&SelectedCountryIdByDisease=-1
     label: pneumococcal disease
   record_aliases:
   - пневмо
@@ -106,11 +106,11 @@ diseases:
     en: MMR
     bg: МПР
   ecdc_diseases:
-  - id: 8
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=8&SelectedCountryIdByDisease=-1
     label: measles
-  - id: 9
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=9&SelectedCountryIdByDisease=-1
     label: mumps
-  - id: 10
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=10&SelectedCountryIdByDisease=-1
     label: rubella
   record_aliases:
   - мпр
@@ -122,7 +122,7 @@ diseases:
     en: Varicella
     bg: Варицела
   ecdc_diseases:
-  - id: 11
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=11&SelectedCountryIdByDisease=-1
     label: varicella
   record_aliases:
   - вар
@@ -131,7 +131,7 @@ diseases:
     en: Pert
     bg: коклюш
   ecdc_diseases:
-  - id: 3
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1
     label: pertussis
   record_aliases:
   - tdap
@@ -143,7 +143,7 @@ diseases:
     en: RSV
     bg: РСВ
   ecdc_diseases:
-  - id: 53
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=53&SelectedCountryIdByDisease=-1
     label: RSV
   record_aliases:
   - rsv
@@ -155,7 +155,7 @@ diseases:
     en: Rota
     bg: Рота
   ecdc_diseases:
-  - id: 32
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=32&SelectedCountryIdByDisease=-1
     label: rotavirus infection
 - id: meningococcal
   label:
@@ -165,7 +165,7 @@ diseases:
     en: Men.
     bg: Мен.
   ecdc_diseases:
-  - id: 48
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=48&SelectedCountryIdByDisease=-1
     label: meningococcal disease
 - id: hepatitis_a
   label:
@@ -175,7 +175,7 @@ diseases:
     en: Hep A
     bg: Хеп. А
   ecdc_diseases:
-  - id: 16
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=16&SelectedCountryIdByDisease=-1
     label: hepatitis A
 - id: covid
   label:
@@ -185,7 +185,7 @@ diseases:
     en: COVID
     bg: КОВИД
   ecdc_diseases:
-  - id: 52
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=52&SelectedCountryIdByDisease=-1
     label: Coronavirus disease (COVID-19)
 - id: influenza
   label:
@@ -195,7 +195,7 @@ diseases:
     en: Flu
     bg: Грип
   ecdc_diseases:
-  - id: 15
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=15&SelectedCountryIdByDisease=-1
     label: influenza
   record_aliases:
   - flu
@@ -208,7 +208,7 @@ diseases:
     en: HPV
     bg: ЧПВ
   ecdc_diseases:
-  - id: 38
+  - url: https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=38&SelectedCountryIdByDisease=-1
     label: human papillomavirus infection
   hover_label:
     en: Human papillomavirus infection
