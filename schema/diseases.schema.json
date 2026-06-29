@@ -4,7 +4,7 @@
   "title": "Vaccine Schedule Diseases",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "country", "diseases"],
+  "required": ["version", "diseases"],
   "properties": {
     "version": { "const": 1 },
     "country": { "const": "BG" },
@@ -17,25 +17,13 @@
         "required": ["id", "label"],
         "properties": {
           "id": { "$ref": "types.schema.json#/$defs/id" },
-          "label": { "$ref": "types.schema.json#/$defs/localizedText" },
+          "label": { "type": "string", "minLength": 1 },
           "short": { "$ref": "types.schema.json#/$defs/localizedText" },
           "hover_label": { "$ref": "types.schema.json#/$defs/localizedText" },
-          "ecdc_diseases": {
+          "ecdc_url": {
             "type": "array",
             "minItems": 1,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["url", "label"],
-              "properties": {
-                "url": { "type": "string", "format": "uri", "minLength": 1 },
-                "label": { "type": "string", "minLength": 1 }
-              }
-            }
-          },
-          "record_aliases": {
-            "type": "array",
-            "items": { "type": "string", "minLength": 1 }
+            "items": { "type": "string", "format": "uri", "minLength": 1 }
           }
         }
       }

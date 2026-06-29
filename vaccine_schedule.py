@@ -12,13 +12,51 @@ import yaml
 
 
 MODULE_DIR = Path(__file__).resolve().parent
-DATA_DIR = MODULE_DIR / "data/bg"
+DATA_DIR = MODULE_DIR / "data"
+BG_DATA_DIR = DATA_DIR / "bg"
 DAYS_PER_MONTH = 365.2425 / 12.0
+
+
+def merge_overlay(base, overlay):
+    if not isinstance(base, dict) and isinstance(overlay, dict) and "bg" in overlay:
+        return {"en": str(base), **overlay}
+
+    if isinstance(base, dict) and isinstance(overlay, dict):
+        merged = dict(base)
+        for key, value in overlay.items():
+            if key in {"version", "country"}:
+                continue
+            merged[key] = merge_overlay(merged[key], value) if key in merged else value
+        return merged
+
+    if isinstance(base, list) and isinstance(overlay, list):
+        merged = list(base)
+        positions = {
+            item["id"]: index
+            for index, item in enumerate(merged)
+            if isinstance(item, dict) and "id" in item
+        }
+        if len(positions) == len(merged):
+            for item in overlay:
+                item_id = item.get("id") if isinstance(item, dict) else None
+                if item_id in positions:
+                    merged[positions[item_id]] = merge_overlay(merged[positions[item_id]], item)
+                else:
+                    merged.append(item)
+            return merged
+
+    return overlay
 
 
 def read_yaml(path: Path) -> dict:
     with path.open(encoding="utf-8") as handle:
-        return yaml.safe_load(handle) or {}
+        data = yaml.safe_load(handle) or {}
+    translation_path = BG_DATA_DIR / path.name
+    if translation_path.is_file():
+        with translation_path.open(encoding="utf-8") as handle:
+            translations = yaml.safe_load(handle) or {}
+        data = merge_overlay(data, translations)
+    return data
 
 
 def normalized_disease_name(value: str) -> str:
@@ -56,13 +94,6 @@ class VaccineRecord:
     border_color: str
     fill_color: str
 
-VACCINE_DISEASE_ROW_LABELS: dict[str, list[str]] = {}
-for vaccine in VACCINE_DEFS:
-    for alias in vaccine.get("record_aliases", []):
-        VACCINE_DISEASE_ROW_LABELS.setdefault(
-            normalized_disease_name(alias),
-            [],
-        ).append(vaccine["label"]["en"])
 ECDC_CALENDAR_COLUMNS = [column["label"]["en"] for column in COLUMN_DEFS]
 ECDC_LABEL_TRANSLATIONS = {
     normalized_disease_name(vaccine["label"]["en"]): vaccine["label"].get("bg", "")
@@ -886,14 +917,10 @@ def vaccine_calendar_header_records(
 
 
 def vaccine_disease_row_indexes(calendar: dict, disease: str) -> list[int]:
-    target_labels = VACCINE_DISEASE_ROW_LABELS.get(normalized_disease_name(disease), ())
-    if not target_labels:
-        return []
-
+    normalized = normalized_disease_name(disease)
     row_indexes = []
-    normalized_targets = {normalized_disease_name(label) for label in target_labels}
     for index, row in enumerate(calendar["rows"]):
-        if normalized_disease_name(row["label"]) in normalized_targets:
+        if normalized_disease_name(row["label"]) == normalized:
             row_indexes.append(index)
     return row_indexes
 

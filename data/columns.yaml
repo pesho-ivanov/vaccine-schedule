@@ -1,0 +1,176 @@
+version: 1
+country: BG
+column_groups:
+- id: pregnancy
+  label:
+    en: Pregnancy
+  columns:
+  - pregnancy_1w
+  - pregnancy_24w
+  - pregnancy_27w
+  - pregnancy_36w
+  - pregnancy_end
+- id: birth
+  label:
+    en: Birth
+  columns:
+  - birth
+- id: infant
+  label:
+    en: Infant
+  columns:
+  - 1m
+  - 2m
+  - 3m
+  - 4m
+  - 6m
+  - 7m
+  - 12m
+  - 13m
+  - 15m
+  - 16m
+- id: child
+  label:
+    en: Child
+  columns:
+  - 4y
+  - 6y
+  - 7y
+  - 10y
+  - 12y
+  - 14y
+  - 15y
+  - 17y
+- id: adult
+  label:
+    en: Adult
+  columns:
+  - 18y
+  - 25y
+  - 59y
+  - 60y
+  - 64y
+  - gte65y
+columns:
+- id: pregnancy_1w
+  label:
+    en: 1w
+  age_months: -9.0
+- id: pregnancy_24w
+  label:
+    en: 24w
+  age_months: -3.7
+- id: pregnancy_27w
+  label:
+    en: 27w
+  age_months: -3.0
+- id: pregnancy_36w
+  label:
+    en: 36w
+  age_months: -0.9
+- id: pregnancy_end
+  label:
+    en: end
+  age_months: -0.1
+- id: birth
+  label:
+    en: Birth
+  header_label:
+    en: ''
+  age_months: 0.0
+- id: 1m
+  label:
+    en: 1m
+  age_months: 1.0
+- id: 2m
+  label:
+    en: 2m
+  age_months: 2.0
+- id: 3m
+  label:
+    en: 3m
+  age_months: 3.0
+- id: 4m
+  label:
+    en: 4m
+  age_months: 4.0
+- id: 6m
+  label:
+    en: 6m
+  age_months: 6.0
+- id: 7m
+  label:
+    en: 7m
+  age_months: 7.0
+- id: 12m
+  label:
+    en: 12m
+  age_months: 12.0
+- id: 13m
+  label:
+    en: 13m
+  age_months: 13.0
+- id: 15m
+  label:
+    en: 15m
+  age_months: 15.0
+- id: 16m
+  label:
+    en: 16m
+  age_months: 16.0
+- id: 4y
+  label:
+    en: 4y
+  age_months: 48.0
+- id: 6y
+  label:
+    en: 6y
+  age_months: 72.0
+- id: 7y
+  label:
+    en: 7y
+  age_months: 84.0
+- id: 10y
+  label:
+    en: 10y
+  age_months: 120.0
+- id: 12y
+  label:
+    en: 12y
+  age_months: 144.0
+- id: 14y
+  label:
+    en: 14y
+  age_months: 168.0
+- id: 15y
+  label:
+    en: 15y
+  age_months: 180.0
+- id: 17y
+  label:
+    en: 17y
+  age_months: 204.0
+- id: 18y
+  label:
+    en: 18y
+  age_months: 216.0
+- id: 25y
+  label:
+    en: 25y
+  age_months: 300.0
+- id: 59y
+  label:
+    en: 59y
+  age_months: 708.0
+- id: 60y
+  label:
+    en: 60y
+  age_months: 720.0
+- id: 64y
+  label:
+    en: 64y
+  age_months: 768.0
+- id: gte65y
+  label:
+    en: ≥65y
+  age_months: 780.0

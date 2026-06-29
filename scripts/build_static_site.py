@@ -10,7 +10,8 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "data/bg"
+DATA_DIR = ROOT / "data"
+BG_DATA_DIR = DATA_DIR / "bg"
 SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
@@ -22,7 +23,45 @@ def read_yaml(name: str) -> dict[str, Any]:
         data = yaml.safe_load(handle) or {}
     if not isinstance(data, dict):
         raise ValueError(f"{name}: expected mapping at document root")
+    translation_path = BG_DATA_DIR / name
+    if translation_path.is_file():
+        with translation_path.open(encoding="utf-8") as handle:
+            translations = yaml.safe_load(handle) or {}
+        if not isinstance(translations, dict):
+            raise ValueError(f"data/bg/{name}: expected mapping at document root")
+        data = merge_overlay(data, translations)
     return data
+
+
+def merge_overlay(base: Any, overlay: Any) -> Any:
+    if not isinstance(base, dict) and isinstance(overlay, dict) and "bg" in overlay:
+        return {"en": str(base), **overlay}
+
+    if isinstance(base, dict) and isinstance(overlay, dict):
+        merged = dict(base)
+        for key, value in overlay.items():
+            if key in {"version", "country"}:
+                continue
+            merged[key] = merge_overlay(merged[key], value) if key in merged else value
+        return merged
+
+    if isinstance(base, list) and isinstance(overlay, list):
+        merged = list(base)
+        positions = {
+            item["id"]: index
+            for index, item in enumerate(merged)
+            if isinstance(item, dict) and "id" in item
+        }
+        if len(positions) == len(merged):
+            for item in overlay:
+                item_id = item.get("id") if isinstance(item, dict) else None
+                if item_id in positions:
+                    merged[positions[item_id]] = merge_overlay(merged[positions[item_id]], item)
+                else:
+                    merged.append(item)
+            return merged
+
+    return overlay
 
 
 def language_map(value: dict[str, Any] | None, fallback: str) -> dict[str, str]:
@@ -32,7 +71,8 @@ def language_map(value: dict[str, Any] | None, fallback: str) -> dict[str, str]:
     return {"en": english, "bg": bulgarian}
 
 
-def optional_language_map(value: dict[str, Any]) -> dict[str, str]:
+def optional_language_map(value: dict[str, Any] | None) -> dict[str, str]:
+    value = value or {}
     return {"en": str(value.get("en", "")), "bg": str(value.get("bg", ""))}
 
 
@@ -65,10 +105,10 @@ def build_note_lookup(notes_data: dict[str, Any]) -> dict[tuple[str, str, str], 
 def build_ecdc_links(disease: dict[str, Any]) -> list[dict[str, str]]:
     return [
         {
-            "label": str(ecdc_disease["label"]),
-            "url": str(ecdc_disease["url"]),
+            "label": str(disease["label"]["en"]),
+            "url": str(ecdc_url),
         }
-        for ecdc_disease in disease.get("ecdc_diseases", [])
+        for ecdc_url in disease.get("ecdc_url", [])
     ]
 
 
@@ -130,7 +170,7 @@ def build_schedule_table() -> dict[str, Any]:
                 "disease": disease_id,
                 "group": schedule_row["group"],
                 "label": language_map(disease.get("label"), disease_id),
-                "short": language_map(disease.get("short"), disease["label"]["en"]),
+                "short": optional_language_map(disease.get("short")),
                 "ecdc_links": build_ecdc_links(disease),
                 "doses": doses,
                 "divider_after": bool(schedule_row.get("divider_after")),
@@ -181,12 +221,15 @@ def build_schedule_table() -> dict[str, Any]:
         },
         "source_links": sources_data["source_links"],
         "generated_from": [
+            "data/columns.yaml",
             "data/bg/columns.yaml",
+            "data/diseases.yaml",
             "data/bg/diseases.yaml",
-            "data/bg/schedule.yaml",
-            "data/bg/dose_texts.yaml",
-            "data/bg/notes.yaml",
-            "data/bg/sources.yaml",
+            "data/schedule.yaml",
+            "data/dose_texts.yaml",
+            "data/notes.yaml",
+            "data/sources.yaml",
+            "data/metadata.yaml",
             "data/bg/metadata.yaml",
         ],
     }

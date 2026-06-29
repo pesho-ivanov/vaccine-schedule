@@ -21,10 +21,9 @@
           "header_label": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["en", "bg"],
+            "required": ["en"],
             "properties": {
-              "en": { "type": "string" },
-              "bg": { "type": "string" }
+              "en": { "type": "string" }
             }
           },
           "age_months": { "type": "number" }

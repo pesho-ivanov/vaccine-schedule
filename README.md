@@ -3,13 +3,14 @@
 Reusable Bulgaria vaccine schedule data and rendering helpers.
 
 - `vaccine_schedule.py` loads and renders the schedule.
-- `data/bg/sources.yaml` contains source links.
-- `data/bg/columns.yaml` defines stable age-column IDs and optional display column groups.
-- `data/bg/diseases.yaml` defines disease row IDs, labels, short names, and aliases.
-- `data/bg/schedule.yaml` defines doses by disease ID and column ID.
-- `data/bg/dose_texts.yaml` defines visible dose labels by disease ID and column ID.
-- `data/bg/notes.yaml` defines dose notes by disease ID and column ID.
-- `data/bg/metadata.yaml` contains UI text and display settings.
+- `data/sources.yaml` contains source links.
+- `data/columns.yaml` defines stable age-column IDs and optional display column groups.
+- `data/diseases.yaml` defines disease row IDs, labels, and ECDC links.
+- `data/schedule.yaml` defines doses by disease ID and column ID.
+- `data/dose_texts.yaml` defines visible dose labels by disease ID and column ID.
+- `data/notes.yaml` defines dose notes by disease ID and column ID.
+- `data/metadata.yaml` contains UI text and display settings.
+- `data/bg/*.yaml` contains Bulgarian translation overlays for the matching base files.
 - `schema/*.schema.json` documents the YAML file contracts.
 - `validate.py` checks required fields and cross-file references.
 - `site-src/` contains the static site source.
@@ -18,7 +19,7 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 
 The module reads data relative to this directory, so it can be moved into a separate repository.
 
-`data/bg/columns.yaml` keeps `columns` as the stable schedule axis. The optional
+`data/columns.yaml` keeps `columns` as the stable schedule axis. The optional
 `column_groups` field clusters those existing IDs for display, without replacing
 or renaming any column IDs.
 
@@ -35,7 +36,8 @@ make site
 ```
 
 Then open `generated-site/index.html` in a browser. The site copies static assets from
-`site-src/`, generates schedule data from `data/bg/*.yaml`, and contains no user profile data.
+`site-src/`, generates schedule data from `data/*.yaml` plus `data/bg/*.yaml` overlays,
+and contains no user profile data.
 
 Serve it locally:
 

@@ -1,0 +1,76 @@
+version: 1
+diseases:
+- id: tuberculosis
+  label: Tuberculosis
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=14&SelectedCountryIdByDisease=-1
+- id: diphtheria
+  label: Diphtheria
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=1&SelectedCountryIdByDisease=-1
+- id: tetanus
+  label: Tetanus
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=2&SelectedCountryIdByDisease=-1
+- id: pertussis
+  label: Pertussis
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1
+- id: poliomyelitis
+  label: Poliomyelitis
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=4&SelectedCountryIdByDisease=-1
+- id: haemophilus_influenzae_type_b
+  label: Haemophilus influenzae type b
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=5&SelectedCountryIdByDisease=-1
+- id: hepatitis_b
+  label: Hepatitis B
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=6&SelectedCountryIdByDisease=-1
+- id: pneumococcal_disease
+  label: Pneumococcal disease
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=25&SelectedCountryIdByDisease=-1
+- id: measles_mumps_rubella
+  label: MMR (measles, mumps, rubella)
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=8&SelectedCountryIdByDisease=-1
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=9&SelectedCountryIdByDisease=-1
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=10&SelectedCountryIdByDisease=-1
+- id: varicella
+  label: Varicella
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=11&SelectedCountryIdByDisease=-1
+- id: pert
+  label: Pert
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1
+- id: rsv
+  label: RSV
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=53&SelectedCountryIdByDisease=-1
+- id: rotavirus
+  label: Rotavirus
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=32&SelectedCountryIdByDisease=-1
+- id: meningococcal
+  label: Meningococcal
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=48&SelectedCountryIdByDisease=-1
+- id: hepatitis_a
+  label: Hepatitis A
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=16&SelectedCountryIdByDisease=-1
+- id: covid
+  label: COVID
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=52&SelectedCountryIdByDisease=-1
+- id: influenza
+  label: Influenza
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=15&SelectedCountryIdByDisease=-1
+- id: hpv
+  label: HPV
+  ecdc_url:
+  - https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=38&SelectedCountryIdByDisease=-1

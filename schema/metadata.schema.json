@@ -17,11 +17,10 @@
     "country": { "const": "BG" },
     "text": {
       "type": "object",
-      "required": ["en", "bg"],
+      "required": ["en"],
       "additionalProperties": false,
       "properties": {
-        "en": { "$ref": "types.schema.json#/$defs/textBundle" },
-        "bg": { "$ref": "types.schema.json#/$defs/textBundle" }
+        "en": { "$ref": "types.schema.json#/$defs/textBundle" }
       }
     },
     "age_ranges": {

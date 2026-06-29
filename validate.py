@@ -8,7 +8,8 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parent
-DATA_DIR = ROOT / "data/bg"
+DATA_DIR = ROOT / "data"
+BG_DATA_DIR = DATA_DIR / "bg"
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -16,7 +17,61 @@ def read_yaml(name: str) -> dict[str, Any]:
         data = yaml.safe_load(handle) or {}
     if not isinstance(data, dict):
         raise ValueError(f"{name}: expected mapping at document root")
+    reject_base_bg_fields(data, name)
+    translation_path = BG_DATA_DIR / name
+    if translation_path.is_file():
+        with translation_path.open(encoding="utf-8") as handle:
+            translations = yaml.safe_load(handle) or {}
+        if not isinstance(translations, dict):
+            raise ValueError(f"data/bg/{name}: expected mapping at document root")
+        if translations.get("version") != data.get("version"):
+            raise ValueError(f"data/bg/{name}: version must match {name}")
+        if "country" in data and translations.get("country") != data.get("country"):
+            raise ValueError(f"data/bg/{name}: country must match {name}")
+        data = merge_overlay(data, translations)
     return data
+
+
+def reject_base_bg_fields(value: Any, path: str) -> None:
+    if isinstance(value, dict):
+        if "bg" in value:
+            raise ValueError(f"{path}: Bulgarian translations belong in data/bg/")
+        for key, nested in value.items():
+            reject_base_bg_fields(nested, f"{path}.{key}")
+    elif isinstance(value, list):
+        for index, nested in enumerate(value):
+            reject_base_bg_fields(nested, f"{path}[{index}]")
+
+
+def merge_overlay(base: Any, overlay: Any) -> Any:
+    if not isinstance(base, dict) and isinstance(overlay, dict) and "bg" in overlay:
+        return {"en": str(base), **overlay}
+
+    if isinstance(base, dict) and isinstance(overlay, dict):
+        merged = dict(base)
+        for key, value in overlay.items():
+            if key in {"version", "country"}:
+                continue
+            merged[key] = merge_overlay(merged[key], value) if key in merged else value
+        return merged
+
+    if isinstance(base, list) and isinstance(overlay, list):
+        merged = list(base)
+        positions = {
+            item["id"]: index
+            for index, item in enumerate(merged)
+            if isinstance(item, dict) and "id" in item
+        }
+        if len(positions) == len(merged):
+            for item in overlay:
+                item_id = item.get("id") if isinstance(item, dict) else None
+                if item_id in positions:
+                    merged[positions[item_id]] = merge_overlay(merged[positions[item_id]], item)
+                else:
+                    merged.append(item)
+            return merged
+
+    return overlay
 
 
 def require(condition: bool, message: str) -> None:
@@ -26,7 +81,8 @@ def require(condition: bool, message: str) -> None:
 
 def require_header(name: str, data: dict[str, Any]) -> None:
     require(data.get("version") == 1, f"{name}: version must be 1")
-    require(data.get("country") == "BG", f"{name}: country must be BG")
+    if name != "diseases.yaml":
+        require(data.get("country") == "BG", f"{name}: country must be BG")
 
 
 def require_mapping(value: Any, message: str) -> dict[str, Any]:
@@ -130,16 +186,14 @@ def validate() -> None:
             if optional_key in row:
                 optional_label = require_mapping(row[optional_key], f"diseases.yaml: {row.get('id')}: {optional_key} must be a mapping")
                 require(optional_label, f"diseases.yaml: {row.get('id')}: {optional_key} must not be empty")
-        if "ecdc_diseases" in row:
-            ecdc_diseases = require_list(row["ecdc_diseases"], f"diseases.yaml: {row.get('id')}: ecdc_diseases must be a list")
-            require(ecdc_diseases, f"diseases.yaml: {row.get('id')}: ecdc_diseases must not be empty")
-            ecdc_urls = []
-            for ecdc_disease in ecdc_diseases:
-                ecdc_disease = require_mapping(ecdc_disease, f"diseases.yaml: {row.get('id')}: ecdc disease must be a mapping")
-                ecdc_url = require_string(ecdc_disease.get("url"), f"diseases.yaml: {row.get('id')}: ecdc disease url is required")
-                require(ecdc_url.startswith("https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?"), f"diseases.yaml: {row.get('id')}: ecdc disease url must be an ECDC ByDisease URL")
-                ecdc_urls.append(ecdc_url)
-                require_string(ecdc_disease.get("label"), f"diseases.yaml: {row.get('id')}: ecdc disease label is required")
+        if "ecdc_url" in row:
+            ecdc_urls = [
+                require_string(url, f"diseases.yaml: {row.get('id')}: ecdc_url entries must be strings")
+                for url in require_list(row["ecdc_url"], f"diseases.yaml: {row.get('id')}: ecdc_url must be a list")
+            ]
+            require(ecdc_urls, f"diseases.yaml: {row.get('id')}: ecdc_url must not be empty")
+            for ecdc_url in ecdc_urls:
+                require(ecdc_url.startswith("https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?"), f"diseases.yaml: {row.get('id')}: ecdc_url must be an ECDC ByDisease URL")
             require_unique(ecdc_urls, f"diseases.yaml: {row.get('id')}: duplicate ecdc disease urls")
 
     text = require_mapping(metadata.get("text"), "metadata.yaml: text must be a mapping")
