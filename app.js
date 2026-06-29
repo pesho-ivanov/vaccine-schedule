@@ -14,6 +14,7 @@
   const title = document.getElementById("page-title");
   const bgToggle = document.getElementById("bg-toggle");
   const sourceList = document.getElementById("source-list");
+  const otherCalendarList = document.getElementById("other-calendar-list");
 
   title.textContent = data.title.en;
   bgToggle.addEventListener("click", () => {
@@ -30,6 +31,10 @@
     node.textContent = value;
     parent.appendChild(node);
     return node;
+  }
+
+  function normalizedText(value) {
+    return String(value || "").trim().toLowerCase();
   }
 
   function columnMeta(column) {
@@ -170,8 +175,8 @@
     anchor.href = link.url;
     anchor.target = "_blank";
     anchor.rel = "noreferrer";
-    anchor.title = `EU countries for ${link.label}`;
-    anchor.setAttribute("aria-label", `EU countries for ${link.label}`);
+    anchor.title = `Compare EU countries for ${link.label}`;
+    anchor.setAttribute("aria-label", `Compare EU countries for ${link.label}`);
 
     const logo = document.createElement("img");
     logo.src = "ECDC_logo_simple.svg";
@@ -187,23 +192,21 @@
     line.className = "vaccine-label";
     const links = rowData.ecdc_links || [];
 
-    if (links.length > 1) {
-      for (const [index, link] of links.entries()) {
-        if (index > 0) {
-          line.appendChild(document.createTextNode(", "));
-        }
-        line.appendChild(document.createTextNode(link.label));
-        line.appendChild(makeEcdcLink(link));
-      }
-    } else {
-      line.appendChild(document.createTextNode(rowData.label.en));
-      if (links.length === 1) {
-        line.appendChild(makeEcdcLink(links[0]));
-      }
+    line.appendChild(document.createTextNode(rowData.label.en));
+    for (const link of links) {
+      line.appendChild(makeEcdcLink(link));
     }
 
     parent.appendChild(line);
     return line;
+  }
+
+  function appendShortName(parent, rowData) {
+    const shortName = rowData.short?.en;
+    if (!shortName || normalizedText(shortName) === normalizedText(rowData.label.en)) {
+      return;
+    }
+    appendText(parent, shortName, "vaccine-short");
   }
 
   function makeBodyRow(rowData) {
@@ -216,7 +219,7 @@
     const nameCell = document.createElement("th");
     nameCell.scope = "row";
     nameCell.className = "vaccine-cell";
-    appendText(nameCell, rowData.short.en, "vaccine-short");
+    appendShortName(nameCell, rowData);
     appendDiseaseName(nameCell, rowData);
     if (rowData.label.bg && rowData.label.bg !== rowData.label.en) {
       appendText(nameCell, rowData.label.bg, "vaccine-bg translation-bg");
@@ -294,20 +297,52 @@
     }[name] || name.replaceAll("_", " ");
   }
 
+  function appendLinkItem(parent, label, url) {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = url;
+    link.textContent = label;
+    link.rel = "noreferrer";
+    item.appendChild(link);
+    parent.appendChild(item);
+  }
+
   function renderSources() {
     for (const [name, url] of Object.entries(data.source_links)) {
-      const item = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = url;
-      link.textContent = sourceLabel(name);
-      link.rel = "noreferrer";
-      item.appendChild(link);
-      sourceList.appendChild(item);
+      if (name === "ecdc_calendar") {
+        continue;
+      }
+      appendLinkItem(sourceList, sourceLabel(name), url);
     }
+  }
+
+  function renderOtherCalendars() {
+    appendLinkItem(otherCalendarList, "ECDC (EU)", data.source_links.ecdc_calendar);
+    appendLinkItem(
+      otherCalendarList,
+      "NHS (UK)",
+      "https://www.nhs.uk/vaccinations/nhs-vaccinations-and-when-to-have-them"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "CDC (US)",
+      "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-age.html"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "Australia",
+      "https://www.health.gov.au/sites/default/files/2026-06/national-immunisation-program-schedule.pdf"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "Germany",
+      "https://www.bundesgesundheitsministerium.de/en/topics/vaccinations"
+    );
   }
 
   table.appendChild(makeColGroup());
   table.appendChild(makeHeader());
   table.appendChild(makeBody());
   renderSources();
+  renderOtherCalendars();
 })();

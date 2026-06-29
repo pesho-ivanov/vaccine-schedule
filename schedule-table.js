@@ -333,16 +333,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "tuberculosis",
       "group": "mandatory",
       "label": {
-        "en": "tuberculosis",
+        "en": "Tuberculosis",
         "bg": "туберкулоза"
       },
       "short": {
-        "en": "TB",
-        "bg": "ТБ"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "tuberculosis",
+          "label": "Tuberculosis",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=14&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -375,16 +375,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "diphtheria",
       "group": "mandatory",
       "label": {
-        "en": "diphtheria",
+        "en": "Diphtheria",
         "bg": "дифтерия"
       },
       "short": {
-        "en": "Diph",
-        "bg": "Диф"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "diphtheria",
+          "label": "Diphtheria",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=1&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -452,16 +452,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "tetanus",
       "group": "mandatory",
       "label": {
-        "en": "tetanus",
+        "en": "Tetanus",
         "bg": "тетанус"
       },
       "short": {
-        "en": "Tet",
-        "bg": "Тет"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "tetanus",
+          "label": "Tetanus",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=2&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -529,16 +529,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "pertussis",
       "group": "mandatory",
       "label": {
-        "en": "pertussis",
+        "en": "Pertussis",
         "bg": "коклюш"
       },
       "short": {
-        "en": "Pert",
-        "bg": "Кокл"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "pertussis",
+          "label": "Pertussis",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -599,16 +599,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "poliomyelitis",
       "group": "mandatory",
       "label": {
-        "en": "poliomyelitis",
+        "en": "Poliomyelitis",
         "bg": "полиомиелит"
       },
       "short": {
-        "en": "Polio",
-        "bg": "Полио"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "poliomyelitis",
+          "label": "Poliomyelitis",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=4&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -659,8 +659,8 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "хемофилус инфлуенце тип Б"
       },
       "short": {
-        "en": "Hib",
-        "bg": "Хиб"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
@@ -704,16 +704,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "hepatitis_b",
       "group": "mandatory",
       "label": {
-        "en": "hepatitis B",
+        "en": "Hepatitis B",
         "bg": "вирусен хепатит тип Б"
       },
       "short": {
-        "en": "Hep B",
-        "bg": "Хеп. Б"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "hepatitis B",
+          "label": "Hepatitis B",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=6&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -767,16 +767,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "pneumococcal_disease",
       "group": "mandatory",
       "label": {
-        "en": "pneumococcal disease",
+        "en": "Pneumococcal disease",
         "bg": "пневмококови инфекции"
       },
       "short": {
-        "en": "Pneumo",
-        "bg": "Пневмо"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "pneumococcal disease",
+          "label": "Pneumococcal disease",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=25&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -816,24 +816,24 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "measles_mumps_rubella",
       "group": "mandatory",
       "label": {
-        "en": "measles, mumps, rubella",
+        "en": "MMR (measles, mumps, rubella)",
         "bg": "морбили, паротит, рубеола"
       },
       "short": {
-        "en": "MMR",
-        "bg": "МПР"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "measles",
+          "label": "MMR (measles, mumps, rubella)",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=8&SelectedCountryIdByDisease=-1"
         },
         {
-          "label": "mumps",
+          "label": "MMR (measles, mumps, rubella)",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=9&SelectedCountryIdByDisease=-1"
         },
         {
-          "label": "rubella",
+          "label": "MMR (measles, mumps, rubella)",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=10&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -859,16 +859,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "varicella",
       "group": "mandatory",
       "label": {
-        "en": "varicella",
+        "en": "Varicella",
         "bg": "варицела"
       },
       "short": {
-        "en": "Varicella",
-        "bg": "Варицела"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "varicella",
+          "label": "Varicella",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=11&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -898,12 +898,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "коклюш"
       },
       "short": {
-        "en": "Pert",
-        "bg": "Pert"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "pertussis",
+          "label": "Pert",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=3&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -926,8 +926,8 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "респираторно-синцитиален вирус"
       },
       "short": {
-        "en": "RSV",
-        "bg": "РСВ"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
@@ -958,16 +958,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "rotavirus",
       "group": "recommended",
       "label": {
-        "en": "rotavirus",
+        "en": "Rotavirus",
         "bg": "ротавирус"
       },
       "short": {
-        "en": "Rota",
-        "bg": "Рота"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "rotavirus infection",
+          "label": "Rotavirus",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=32&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -990,12 +990,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "менингококови инфекции"
       },
       "short": {
-        "en": "Men.",
-        "bg": "Мен."
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "meningococcal disease",
+          "label": "Meningococcal",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=48&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -1014,16 +1014,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "hepatitis_a",
       "group": "recommended",
       "label": {
-        "en": "hepatitis A",
+        "en": "Hepatitis A",
         "bg": "вирусен хепатит тип А"
       },
       "short": {
-        "en": "Hep A",
-        "bg": "Хеп. А"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "hepatitis A",
+          "label": "Hepatitis A",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=16&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -1045,12 +1045,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "коронавирусна болест (COVID)"
       },
       "short": {
-        "en": "COVID",
-        "bg": "КОВИД"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "Coronavirus disease (COVID-19)",
+          "label": "COVID",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=52&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -1090,16 +1090,16 @@ window.VACCINE_SCHEDULE_TABLE = {
       "disease": "influenza",
       "group": "recommended",
       "label": {
-        "en": "influenza",
+        "en": "Influenza",
         "bg": "грип"
       },
       "short": {
-        "en": "Flu",
-        "bg": "Грип"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "influenza",
+          "label": "Influenza",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=15&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -1143,12 +1143,12 @@ window.VACCINE_SCHEDULE_TABLE = {
         "bg": "човешки папиломен вирус"
       },
       "short": {
-        "en": "HPV",
-        "bg": "ЧПВ"
+        "en": "",
+        "bg": ""
       },
       "ecdc_links": [
         {
-          "label": "human papillomavirus infection",
+          "label": "HPV",
           "url": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByDisease?SelectedDiseaseId=38&SelectedCountryIdByDisease=-1"
         }
       ],
@@ -1189,12 +1189,15 @@ window.VACCINE_SCHEDULE_TABLE = {
     "pregnancy_vaccine": "https://plusmen.bg"
   },
   "generated_from": [
+    "data/columns.yaml",
     "data/bg/columns.yaml",
+    "data/diseases.yaml",
     "data/bg/diseases.yaml",
-    "data/bg/schedule.yaml",
-    "data/bg/dose_texts.yaml",
-    "data/bg/notes.yaml",
-    "data/bg/sources.yaml",
+    "data/schedule.yaml",
+    "data/dose_texts.yaml",
+    "data/notes.yaml",
+    "data/sources.yaml",
+    "data/metadata.yaml",
     "data/bg/metadata.yaml"
   ]
 };
