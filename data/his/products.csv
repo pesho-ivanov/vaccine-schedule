@@ -1,61 +1,61 @@
-key,product,EMA link,WHO link,FDA link
--1000,Comirnaty,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
--1001,Moderna,https://www.ema.europa.eu/en/medicines/human/EPAR/spikevax,,https://www.fda.gov/vaccines-blood-biologics/spikevax
--1002,Vaxzevria,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxzevria,,
--1003,Janssen,https://www.ema.europa.eu/en/medicines/human/EPAR/jcovden,,
--1004,Valneva,https://www.ema.europa.eu/en/medicines/human/EPAR/covid-19-vaccine-inactivated-adjuvanted-valneva,,
--1005,Comirnaty Kids,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
--1006,Vidprevtyn,https://www.ema.europa.eu/en/medicines/human/EPAR/vidprevtyn-beta,,
-99999,UNKNOWN,,,
-17,BCG,,https://extranet.who.int/prequal/vaccines/p/bcg-vaccine,https://www.fda.gov/vaccines-blood-biologics/vaccines/bcg-vaccine
-15138,PPD,,,
-16058,Infanrix Hexa,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
-1754,Infanrix Hexa,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
-3537,Hexacima,https://www.ema.europa.eu/en/medicines/human/EPAR/hexacima,https://extranet.who.int/prequal/vaccines/p/hexaxim,
-3339,Infanrix-IPV+HIB,,,
-1542,Pentaxim,,,
-1541,Pentaxim,,,
-15420,Tetraxim,,,
-61121,Tetraxim,,,
-127,Boostrix,,https://extranet.who.int/prequal/vaccines/p/boostrix,https://www.fda.gov/vaccines-blood-biologics/vaccines/boostrix
-16962,Adacel,,https://extranet.who.int/prequal/vaccines/p/adacel,https://www.fda.gov/vaccines-blood-biologics/vaccines/adacel
-64,Tetadif,,https://extranet.who.int/prequal/vaccines/p/tetadif,
-1344,Tetatox,,https://extranet.who.int/prequal/vaccines/p/tetatox,
-2998,Engerix B,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
-1730,Engerix B,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
-2517,M-M-RVAXPRO,https://www.ema.europa.eu/en/medicines/human/EPAR/m-m-rvaxpro,,
-1234,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
-4084,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
-4184,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
-2958,Synflorix,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
-16291,Synflorix,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
-1653,Prevenar 13,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
-16979,Prevenar 13,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
-16651,Verorab,,https://extranet.who.int/prequal/vaccines/p/verorab,
-4133,Anti-CHF,,,
-129,Twinrix adult,https://www.ema.europa.eu/en/medicines/human/EPAR/twinrix-adult,,https://www.fda.gov/vaccines-blood-biologics/vaccines/twinrix
-1925,Havrix 720,,https://extranet.who.int/prequal/vaccines/p/havrix-720-junior,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
-7401,Havrix 1440,,https://extranet.who.int/prequal/vaccines/p/havrix-1440-adult,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
-16568,VaxigripTetra,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
-15497,VaxigripTetra,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
-16744,Influvac Tetra,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
-16146,Influvac Tetra,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
-17327,Fluenz Tetra,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-tetra,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist-quadrivalent
-66739,Vaxigrip,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
-66737,Vaxigrip,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
-2683,Cervarix,https://www.ema.europa.eu/en/medicines/human/EPAR/cervarix,https://extranet.who.int/prequal/vaccines/p/cervarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/cervarix
-16074,Gardasil,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil,https://extranet.who.int/prequal/vaccines/p/gardasiltm,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil
-48571,Gardasil 9,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil-9,https://extranet.who.int/prequal/vaccines/p/gardasil-9,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil-9
-4144,Antitetanus serum,,,
-2565,RotaTeq,https://www.ema.europa.eu/en/medicines/human/EPAR/rotateq,https://extranet.who.int/prequal/vaccines/p/rotateq,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotateq
-17091,Rotarix,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
-3932,Rotarix,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
-15358,Stamaril,,https://extranet.who.int/prequal/vaccines/p/stamaril,
-8556,Nimenrix,https://www.ema.europa.eu/en/medicines/human/EPAR/nimenrix,https://extranet.who.int/prequal/vaccines/p/nimenrix,
-16887,Varivax,,https://extranet.who.int/prequal/vaccines/p/varivax,https://www.fda.gov/vaccines-blood-biologics/vaccines/varivax-refrigerated-and-frozen-formulations
-15210,Antidiphtheria serum,,,
-57335,Vaxneuvance,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxneuvance,,https://www.fda.gov/vaccines-blood-biologics/vaccines/vaxneuvance
-58090,Prevenar 20,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-20,,https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20
-64095,Abrysvo,https://www.ema.europa.eu/en/medicines/human/EPAR/abrysvo,https://extranet.who.int/prequal/vaccines/p/abrysvo,https://www.fda.gov/vaccines-blood-biologics/abrysvo
-64907,Fluenz,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-0,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist
-46255,Bexsero,https://www.ema.europa.eu/en/medicines/human/EPAR/bexsero,,https://www.fda.gov/vaccines-blood-biologics/vaccines/bexsero
+key,product,BDA listovka link,BDA harakteristika link,EMA link,WHO link,FDA link
+-1000,Comirnaty,,,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
+-1001,Moderna,,,https://www.ema.europa.eu/en/medicines/human/EPAR/spikevax,,https://www.fda.gov/vaccines-blood-biologics/spikevax
+-1002,Vaxzevria,,,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxzevria,,
+-1003,Janssen,,,https://www.ema.europa.eu/en/medicines/human/EPAR/jcovden,,
+-1004,Valneva,,,https://www.ema.europa.eu/en/medicines/human/EPAR/covid-19-vaccine-inactivated-adjuvanted-valneva,,
+-1005,Comirnaty Kids,,,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
+-1006,Vidprevtyn,,,https://www.ema.europa.eu/en/medicines/human/EPAR/vidprevtyn-beta,,
+99999,UNKNOWN,,,,,
+17,BCG,https://www.bda.bg/images/stories/documents/bdias/2024-12-09-136778q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-12-09-136778.pdf,,https://extranet.who.int/prequal/vaccines/p/bcg-vaccine,https://www.fda.gov/vaccines-blood-biologics/vaccines/bcg-vaccine
+15138,PPD,https://www.bda.bg/images/stories/documents/bdias/2025-03-11-137614q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-03-11-137614.pdf,,,
+16058,Infanrix Hexa,,,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
+1754,Infanrix Hexa,,,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
+3537,Hexacima,,,https://www.ema.europa.eu/en/medicines/human/EPAR/hexacima,https://extranet.who.int/prequal/vaccines/p/hexaxim,
+3339,Infanrix-IPV+HIB,https://www.bda.bg/images/stories/documents/bdias/2025-01-13-136949q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134016.pdf,,,
+1542,Pentaxim,https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141817q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141737.pdf,,,
+1541,Pentaxim,https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141817q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141737.pdf,,,
+15420,Tetraxim,https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141826q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136822.pdf,,,
+61121,Tetraxim,https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141826q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136822.pdf,,,
+127,Boostrix,https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134014q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134014.pdf,,https://extranet.who.int/prequal/vaccines/p/boostrix,https://www.fda.gov/vaccines-blood-biologics/vaccines/boostrix
+16962,Adacel,https://www.bda.bg/images/stories/documents/bdias/2026-03-24-141032q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-03-24-141032.pdf,,https://extranet.who.int/prequal/vaccines/p/adacel,https://www.fda.gov/vaccines-blood-biologics/vaccines/adacel
+64,Tetadif,https://www.bda.bg/images/stories/documents/bdias/2025-11-03-139994q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-04-06-141195.pdf,,https://extranet.who.int/prequal/vaccines/p/tetadif,
+1344,Tetatox,https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136805q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136805.pdf,,https://extranet.who.int/prequal/vaccines/p/tetatox,
+2998,Engerix B,https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134027q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-06-11-135043.pdf,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
+1730,Engerix B,https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134028q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-06-11-135044.pdf,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
+2517,M-M-RVAXPRO,,,https://www.ema.europa.eu/en/medicines/human/EPAR/m-m-rvaxpro,,
+1234,Priorix,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+4084,Priorix,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+4184,Priorix,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+2958,Synflorix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
+16291,Synflorix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
+1653,Prevenar 13,,,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
+16979,Prevenar 13,,,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
+16651,Verorab,https://www.bda.bg/images/stories/documents/bdias/2025-03-17-137708q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-01-13-136983.pdf,,https://extranet.who.int/prequal/vaccines/p/verorab,
+4133,Anti-CHF,https://www.bda.bg/images/stories/documents/bdias/2026-01-19-140522q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-01-19-140522.pdf,,,
+129,Twinrix adult,,,https://www.ema.europa.eu/en/medicines/human/EPAR/twinrix-adult,,https://www.fda.gov/vaccines-blood-biologics/vaccines/twinrix
+1925,Havrix 720,https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137961q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137961.pdf,,https://extranet.who.int/prequal/vaccines/p/havrix-720-junior,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
+7401,Havrix 1440,https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137962q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137962.pdf,,https://extranet.who.int/prequal/vaccines/p/havrix-1440-adult,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
+16568,VaxigripTetra,https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690.pdf,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
+15497,VaxigripTetra,https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690.pdf,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
+16744,Influvac Tetra,https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788.pdf,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
+16146,Influvac Tetra,https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788q.pdf,https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788.pdf,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
+17327,Fluenz Tetra,,,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-tetra,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist-quadrivalent
+66739,Vaxigrip,https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776.pdf,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
+66737,Vaxigrip,https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776.pdf,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
+2683,Cervarix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/cervarix,https://extranet.who.int/prequal/vaccines/p/cervarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/cervarix
+16074,Gardasil,,,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil,https://extranet.who.int/prequal/vaccines/p/gardasiltm,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil
+48571,Gardasil 9,,,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil-9,https://extranet.who.int/prequal/vaccines/p/gardasil-9,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil-9
+4144,Antitetanus serum,https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139722q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139722.pdf,,,
+2565,RotaTeq,,,https://www.ema.europa.eu/en/medicines/human/EPAR/rotateq,https://extranet.who.int/prequal/vaccines/p/rotateq,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotateq
+17091,Rotarix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
+3932,Rotarix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
+15358,Stamaril,https://www.bda.bg/images/stories/documents/bdias/2025-04-22-138135q.pdf,https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136824.pdf,,https://extranet.who.int/prequal/vaccines/p/stamaril,
+8556,Nimenrix,,,https://www.ema.europa.eu/en/medicines/human/EPAR/nimenrix,https://extranet.who.int/prequal/vaccines/p/nimenrix,
+16887,Varivax,https://www.bda.bg/images/stories/documents/bdias/2025-12-08-140204q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-12-08-140204.pdf,,https://extranet.who.int/prequal/vaccines/p/varivax,https://www.fda.gov/vaccines-blood-biologics/vaccines/varivax-refrigerated-and-frozen-formulations
+15210,Antidiphtheria serum,https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139724q.pdf,https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139724.pdf,,,
+57335,Vaxneuvance,,,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxneuvance,,https://www.fda.gov/vaccines-blood-biologics/vaccines/vaxneuvance
+58090,Prevenar 20,,,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-20,,https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20
+64095,Abrysvo,,,https://www.ema.europa.eu/en/medicines/human/EPAR/abrysvo,https://extranet.who.int/prequal/vaccines/p/abrysvo,https://www.fda.gov/vaccines-blood-biologics/abrysvo
+64907,Fluenz,,,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-0,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist
+46255,Bexsero,,,https://www.ema.europa.eu/en/medicines/human/EPAR/bexsero,,https://www.fda.gov/vaccines-blood-biologics/vaccines/bexsero

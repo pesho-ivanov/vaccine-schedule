@@ -443,6 +443,8 @@ def build_product_links() -> dict[str, dict[str, str]]:
             continue
         links[key] = {
             "product": str(row.get("product", "")).strip(),
+            "bda_listovka": str(row.get("BDA listovka link", "")).strip(),
+            "bda_harakteristika": str(row.get("BDA harakteristika link", "")).strip(),
             "ema": str(row.get("EMA link", "")).strip(),
             "who": str(row.get("WHO link", "")).strip(),
             "fda": str(row.get("FDA link", "")).strip(),
