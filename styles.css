@@ -111,7 +111,7 @@ h1 {
   margin-top: 12px;
 }
 
-.page-link-row a {
+.page-link-row > a {
   display: inline-flex;
   align-items: center;
   min-height: 30px;
@@ -124,7 +124,7 @@ h1 {
   text-decoration: none;
 }
 
-.page-link-row a[aria-current="page"] {
+.page-link-row > a[aria-current="page"] {
   border-color: var(--header-bg);
   background: var(--header-bg);
   color: var(--header-text);
@@ -171,11 +171,6 @@ h1 {
   border-color: var(--header-bg);
   background: var(--header-bg);
   color: var(--header-text);
-}
-
-.sheet-source-link {
-  color: #245c9f;
-  text-decoration: underline;
 }
 
 h2 {
@@ -226,6 +221,17 @@ main {
 
 .change-note-line + .change-note-line {
   margin-top: 5px;
+}
+
+.change-note-line-muted {
+  color: var(--muted);
+}
+
+.change-note-code {
+  cursor: help;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 0.16em;
 }
 
 .sheet-footnotes {

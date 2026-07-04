@@ -18,7 +18,6 @@
   const bgToggle = document.getElementById("bg-toggle");
   const oldRecordsToggle = document.getElementById("old-records-toggle");
   const detailsToggle = document.getElementById("details-toggle");
-  const hisSheetsSource = document.getElementById("his-sheets-source");
   const changeNotesList = document.getElementById("change-notes-list");
   const tableSection = document.getElementById("sheet-table-section");
   const footnotes = document.getElementById("sheet-footnotes");
@@ -183,6 +182,7 @@
         "Description EN",
         "Vaccine Group",
         "Dose Quantity (ml)",
+        "INN",
         "Permit Number",
         "Permit Owner ID",
         "MH code",
@@ -366,19 +366,162 @@
     footnotes.hidden = false;
   }
 
-  function appendChangeNotes() {
+  function changeText(change) {
+    return typeof change === "string" ? change : change.change || "";
+  }
+
+  function changeRegardsVaccines(change) {
+    return typeof change === "string" || change.regarding_vaccines !== false;
+  }
+
+  function sheetCodeDescriptions(sheetName) {
+    const sourceSheet = data.sheets.find((candidate) => candidate.name === sheetName);
+    if (!sourceSheet) {
+      return new Map();
+    }
+
+    const firstSourceRow = sourceSheet.rows[0];
+    const firstSourceRowCells = firstSourceRow
+      ? Object.values(firstSourceRow.cells).filter(Boolean)
+      : [];
+    const sourceRows = firstSourceRowCells.length === 1
+      ? sourceSheet.rows.slice(1)
+      : sourceSheet.rows;
+    const leafHeader = sourceRows[1];
+    const keyColumn = findColumnByHeader(sourceSheet, leafHeader, "Key");
+    const descriptionColumn = findColumnByHeader(sourceSheet, leafHeader, "Description EN");
+    const lookup = new Map();
+
+    if (!keyColumn || !descriptionColumn) {
+      return lookup;
+    }
+
+    for (const row of sourceRows.slice(2)) {
+      const key = cellValue(row, keyColumn);
+      const description = cellValue(row, descriptionColumn);
+      if (!key || !description) {
+        continue;
+      }
+      lookup.set(key, description);
+      if (sheetName === "CL038" && /^0\d$/.test(key)) {
+        lookup.set(String(Number(key)), description);
+      }
+    }
+
+    return lookup;
+  }
+
+  function findColumnByHeader(sourceSheet, headerRow, label) {
+    for (let index = 1; index <= sourceSheet.column_count; index += 1) {
+      if (cellValue(headerRow, index) === label) {
+        return index;
+      }
+    }
+    return 0;
+  }
+
+  const hisCodeDescriptionsBySheet = new Map([
+    ["CL037", sheetCodeDescriptions("CL037")],
+    ["CL038", sheetCodeDescriptions("CL038")],
+  ]);
+
+  function changeCodeDescription(code, text) {
+    const cl037Descriptions = hisCodeDescriptionsBySheet.get("CL037") || new Map();
+    const cl038Descriptions = hisCodeDescriptionsBySheet.get("CL038") || new Map();
+    const mentionsCl037 = /\bCL037\b/i.test(text);
+    const mentionsCl038 = /\bCL038\b/i.test(text);
+
+    if (!mentionsCl037 && !mentionsCl038) {
+      return "";
+    }
+    if (mentionsCl037 && !mentionsCl038) {
+      return cl037Descriptions.get(code) || "";
+    }
+    if (mentionsCl038 && !mentionsCl037) {
+      return cl038Descriptions.get(code) || cl037Descriptions.get(code) || "";
+    }
+    if (cl037Descriptions.has(code) && !cl038Descriptions.has(code)) {
+      return cl037Descriptions.get(code);
+    }
+    if (cl038Descriptions.has(code) && !cl037Descriptions.has(code)) {
+      return cl038Descriptions.get(code);
+    }
+    if (/^\s*(?:Номенклатура\s+)?CL037\b/i.test(text)) {
+      return cl037Descriptions.get(code) || cl038Descriptions.get(code) || "";
+    }
+    return cl038Descriptions.get(code) || cl037Descriptions.get(code) || "";
+  }
+
+  function appendAnnotatedChangeText(parent, text) {
+    const codeListPattern = /(?:(?:CL037|CL038)\s*[-:]\s*|(?:код(?:ове)?|Key|ключ(?:ове)?|запис(?:и)?|ред(?:ове)?)\s*(?::|от|from)?\s*)["“”']?-?\d+["“”']?(?:\s*(?:,|и|and|до|to|–)\s*["“”']?-?\d+["“”']?)*/giu;
+    let cursor = 0;
+
+    for (const match of text.matchAll(codeListPattern)) {
+      const phrase = match[0];
+      const start = match.index || 0;
+      if (start > cursor) {
+        parent.appendChild(document.createTextNode(text.slice(cursor, start)));
+      }
+      appendAnnotatedCodePhrase(parent, phrase, text);
+      cursor = start + phrase.length;
+    }
+
+    if (cursor < text.length) {
+      parent.appendChild(document.createTextNode(text.slice(cursor)));
+    }
+  }
+
+  function appendAnnotatedCodePhrase(parent, phrase, text) {
+    const codePattern = /-?\d+/g;
+    let cursor = 0;
+
+    for (const match of phrase.matchAll(codePattern)) {
+      const code = match[0];
+      const start = match.index || 0;
+      if (start > cursor) {
+        parent.appendChild(document.createTextNode(phrase.slice(cursor, start)));
+      }
+
+      const description = changeCodeDescription(code, text);
+      if (description) {
+        const codeElement = document.createElement("span");
+        codeElement.className = "change-note-code";
+        codeElement.title = description;
+        codeElement.textContent = code;
+        parent.appendChild(codeElement);
+      } else {
+        parent.appendChild(document.createTextNode(code));
+      }
+      cursor = start + code.length;
+    }
+
+    if (cursor < phrase.length) {
+      parent.appendChild(document.createTextNode(phrase.slice(cursor)));
+    }
+  }
+
+  function renderChangeNotes() {
     tableSection.hidden = true;
     changeNotesList.hidden = false;
+    changeNotesList.replaceChildren();
 
     for (const version of data.change_notes || []) {
+      const visibleChanges = (version.changes || []).filter(
+        (change) => detailsVisible() || changeRegardsVaccines(change)
+      );
+      if (!visibleChanges.length) {
+        continue;
+      }
+
       const section = {
         title: version.version,
         style: "",
         notes: [],
       };
       appendChangeNoteSection(section);
-      for (const change of version.changes) {
-        appendChangeNote(section, change, "");
+      for (const change of visibleChanges) {
+        const regardsVaccines = changeRegardsVaccines(change);
+        appendChangeNote(section, changeText(change), "", !regardsVaccines, regardsVaccines);
       }
     }
   }
@@ -404,12 +547,19 @@
     changeNotesList.appendChild(article);
   }
 
-  function appendChangeNote(section, text, style) {
+  function appendChangeNote(section, text, style, muted = false, annotateCodes = true) {
     const item = document.createElement("div");
     item.className = "change-note-line";
-    item.textContent = text;
+    if (annotateCodes) {
+      appendAnnotatedChangeText(item, text);
+    } else {
+      item.textContent = text;
+    }
     if (style === "red") {
       item.classList.add("sheet-cell-red");
+    }
+    if (muted) {
+      item.classList.add("change-note-line-muted");
     }
     section.notes.push(text);
     section.notesElement.appendChild(item);
@@ -417,8 +567,6 @@
 
   document.title = `HIS ${sheet.name}`;
   caption.textContent = `HIS ${sheet.name}`;
-  hisSheetsSource.href = data.source.page_url;
-  hisSheetsSource.textContent = `HIS sheets (${data.source.his_version}, ${data.source.nomenclatures_date}):`;
   bgToggle.addEventListener("click", () => {
     const showBulgarian = !document.body.classList.contains("show-bg");
     document.body.classList.toggle("show-bg", showBulgarian);
@@ -439,7 +587,9 @@
     const showDetails = !document.body.classList.contains("show-details");
     document.body.classList.toggle("show-details", showDetails);
     detailsToggle.setAttribute("aria-pressed", String(showDetails));
-    if (sheet.name !== "Change Notes") {
+    if (sheet.name === "Change Notes") {
+      renderChangeNotes();
+    } else {
       renderTable();
     }
   });
@@ -447,7 +597,7 @@
   renderSources();
   renderOtherCalendars();
   if (sheet.name === "Change Notes") {
-    appendChangeNotes();
+    renderChangeNotes();
   } else {
     renderTable();
   }

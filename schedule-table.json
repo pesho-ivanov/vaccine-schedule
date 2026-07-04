@@ -1193,14 +1193,14 @@
     "his_bg": "v1.5.27"
   },
   "his_sheets": [
-    "Change Notes",
     "CL037",
-    "CL038"
+    "CL038",
+    "Change Notes"
   ],
   "his_sheet_labels": {
-    "Change Notes": "Change Notes",
     "CL037": "HIS products",
-    "CL038": "HIS Schedule"
+    "CL038": "HIS schedule",
+    "Change Notes": "HIS Change notes"
   },
   "his_sheets_source": {
     "url": "https://his.bg/bg/dev/nomenclatures",
