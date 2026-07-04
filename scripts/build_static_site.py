@@ -361,6 +361,27 @@ def his_sheet_label(name: str, rows: list[dict[str, Any]]) -> str:
     return cells[0] if len(cells) == 1 else name
 
 
+def his_sheet_source_details(name: str, rows: list[dict[str, Any]]) -> dict[str, str]:
+    if name in {"CL037", "CL038"} and rows:
+        cells = [str(value).strip() for value in rows[0]["cells"].values() if str(value).strip()]
+        if cells:
+            sheet_name, separator, description = cells[0].partition(" - ")
+            if separator:
+                return {
+                    "sheet_name": sheet_name.strip(),
+                    "sheet_description": description.strip(),
+                }
+    if name == "Change Notes":
+        return {
+            "sheet_name": "Change Notes",
+            "sheet_description": "Version change notes",
+        }
+    return {
+        "sheet_name": name,
+        "sheet_description": "",
+    }
+
+
 def version_sort_key(version: str) -> tuple[int, ...]:
     match = re.search(r"(\d+(?:\.\d+)+)", version)
     if not match:
@@ -438,6 +459,13 @@ def build_his_sheets() -> dict[str, Any]:
                 {
                     "name": name,
                     "label": his_sheet_label(name, rows),
+                    "source": {
+                        "name": "his.bg",
+                        "url": str(his_spec["source_url"]),
+                        "version": f"v{his_spec['his_version']}",
+                        "date": str(his_spec["nomenclatures_date"]),
+                        **his_sheet_source_details(name, rows),
+                    },
                     "column_count": column_count,
                     "rows": rows,
                 }
@@ -559,6 +587,12 @@ def build_schedule_table(his_sheet_labels: dict[str, str] | None = None) -> dict
             for group in columns_data.get("column_groups", [])
         ],
         "rows": rows,
+        "table_source": {
+            "name": "lex.bg",
+            "url": sources_data["source_links"]["lex_calendar"],
+            "sheet_name": "Bulgarian immunization calendar",
+            "sheet_description": text["en"]["schedule_title"],
+        },
         "groups": {
             "mandatory": {
                 "en": text["en"]["mandatory"],

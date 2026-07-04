@@ -13,6 +13,7 @@
   const table = document.getElementById("schedule-table");
   const title = document.getElementById("page-title");
   const bgToggle = document.getElementById("bg-toggle");
+  const tableSource = document.getElementById("table-source");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const hisSheetList = document.getElementById("his-sheet-list");
@@ -32,6 +33,34 @@
     node.textContent = value;
     parent.appendChild(node);
     return node;
+  }
+
+  function setTooltip(element, text) {
+    element.dataset.tooltip = text;
+  }
+
+  function appendSourceLine(parent, source) {
+    if (!parent || !source) {
+      return;
+    }
+
+    parent.replaceChildren();
+    appendText(parent, "Source:", "table-source-label");
+    const link = document.createElement("a");
+    link.href = source.url;
+    link.rel = "noreferrer";
+    link.textContent = source.name;
+    parent.appendChild(link);
+
+    const versionText = [source.version, source.date].filter(Boolean).join(", ");
+    if (versionText) {
+      appendText(parent, `(${versionText})`, "table-source-version");
+    }
+
+    const sheetText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ");
+    if (sheetText) {
+      appendText(parent, `- ${sheetText}`, "table-source-sheet");
+    }
   }
 
   function normalizedText(value) {
@@ -164,7 +193,7 @@
     }
     doseNode.textContent = dose.text;
     if (dose.note) {
-      doseNode.title = dose.note;
+      doseNode.dataset.tooltip = dose.note;
       doseNode.setAttribute("aria-label", `${dose.text}. ${dose.note}`);
     }
     return doseNode;
@@ -176,7 +205,7 @@
     anchor.href = link.url;
     anchor.target = "_blank";
     anchor.rel = "noreferrer";
-    anchor.title = `Compare EU countries for ${link.label}`;
+    setTooltip(anchor, `Compare EU countries for ${link.label}`);
     anchor.setAttribute("aria-label", `Compare EU countries for ${link.label}`);
 
     const logo = document.createElement("img");
@@ -316,7 +345,7 @@
     link.textContent = label;
     link.rel = "noreferrer";
     if (title) {
-      link.title = title;
+      setTooltip(link, title);
     }
     item.appendChild(link);
     parent.appendChild(item);
@@ -380,6 +409,7 @@
   table.appendChild(makeColGroup());
   table.appendChild(makeHeader());
   table.appendChild(makeBody());
+  appendSourceLine(tableSource, data.table_source);
   renderSources();
   renderOtherCalendars();
   renderHisSheets();

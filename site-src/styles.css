@@ -104,6 +104,41 @@ h1 {
   text-decoration: underline;
 }
 
+[data-tooltip]:not(th) {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 20;
+  width: max-content;
+  max-width: min(320px, 70vw);
+  padding: 6px 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #172033;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgb(23 32 51 / 0.18);
+  content: attr(data-tooltip);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transform: translateX(-50%);
+  white-space: pre-line;
+  visibility: hidden;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .page-link-row {
   display: flex;
   flex-wrap: wrap;
@@ -194,10 +229,54 @@ main {
   padding: 22px 32px 36px;
 }
 
+.table-source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.table-source:empty {
+  display: none;
+}
+
+.table-source a {
+  color: #245c9f;
+  font-weight: 800;
+}
+
+.table-source-label,
+.table-source-sheet {
+  color: var(--text);
+  font-weight: 800;
+}
+
 .table-scroll {
   overflow-x: auto;
   border: 1px solid var(--line-strong);
   background: var(--surface);
+}
+
+.sheet-scroll {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.sheet-program-group + .sheet-program-group {
+  margin-top: 18px;
+}
+
+.sheet-program-title {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .change-notes-list {
@@ -240,7 +319,6 @@ main {
 }
 
 .change-note-code {
-  cursor: help;
   text-decoration-line: underline;
   text-decoration-style: dashed;
   text-underline-offset: 0.16em;
@@ -484,11 +562,16 @@ tbody td {
 }
 
 .his-sheet-table .sheet-column-header th {
-  top: 34px;
+  top: 0;
 }
 
-.his-sheet-table .sheet-column-header:first-child th {
-  top: 0;
+.sheet-header-tooltip {
+  display: inline-block;
+}
+
+.sheet-header-tooltip::after {
+  top: calc(100% + 8px);
+  bottom: auto;
 }
 
 .his-sheet-table tbody th,
@@ -568,7 +651,6 @@ tbody td {
 
 .noted-dose {
   outline-offset: 2px;
-  cursor: help;
 }
 
 .divider-after th,
