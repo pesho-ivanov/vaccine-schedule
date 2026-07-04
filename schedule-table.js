@@ -1173,6 +1173,12 @@ window.VACCINE_SCHEDULE_TABLE = {
       "divider_after": false
     }
   ],
+  "table_source": {
+    "name": "lex.bg",
+    "url": "https://lex.bg/laws/ldoc/2135504228",
+    "sheet_name": "Bulgarian immunization calendar",
+    "sheet_description": "Vaccine schedule for Bulgaria"
+  },
   "groups": {
     "mandatory": {
       "en": "Mandatory",

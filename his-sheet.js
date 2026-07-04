@@ -18,6 +18,7 @@
   const bgToggle = document.getElementById("bg-toggle");
   const oldRecordsToggle = document.getElementById("old-records-toggle");
   const detailsToggle = document.getElementById("details-toggle");
+  const sheetSource = document.getElementById("sheet-source");
   const changeNotesList = document.getElementById("change-notes-list");
   const tableSection = document.getElementById("sheet-table-section");
   const footnotes = document.getElementById("sheet-footnotes");
@@ -38,10 +39,21 @@
   const baseBodyRows = footnoteRows.length
     ? allBodyRows.filter((row) => !isFootnoteRow(row))
     : allBodyRows;
+  const footnotesByMarker = new Map(
+    footnoteRows
+      .map((row) => {
+        const match = cellValue(row, 2).match(/^(\*+)\s*(.+)$/);
+        return match ? [match[1], match[2]] : null;
+      })
+      .filter(Boolean)
+  );
   const dataColumns = Array.from(
     { length: sheet.column_count - (usesKeyRowHeader ? 1 : 0) },
     (_, index) => index + (usesKeyRowHeader ? 2 : 1)
   );
+  const programGroupColumnIndex = sheet.name === "CL038"
+    ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "Program Group") || 0
+    : 0;
 
   function columnName(index) {
     let name = "";
@@ -54,6 +66,44 @@
     return name;
   }
 
+  function setTooltip(element, text) {
+    element.dataset.tooltip = text;
+  }
+
+  function appendText(parent, value, className) {
+    const node = document.createElement("span");
+    if (className) {
+      node.className = className;
+    }
+    node.textContent = value;
+    parent.appendChild(node);
+    return node;
+  }
+
+  function appendSourceLine(parent, source) {
+    if (!parent || !source) {
+      return;
+    }
+
+    parent.replaceChildren();
+    appendText(parent, "Source:", "table-source-label");
+    const link = document.createElement("a");
+    link.href = source.url;
+    link.rel = "noreferrer";
+    link.textContent = source.name;
+    parent.appendChild(link);
+
+    const versionText = [source.version, source.date].filter(Boolean).join(", ");
+    if (versionText) {
+      appendText(parent, `(${versionText})`, "table-source-version");
+    }
+
+    const sheetText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ");
+    if (sheetText) {
+      appendText(parent, `- ${sheetText}`, "table-source-sheet");
+    }
+  }
+
   function appendSheetNav() {
     for (const candidate of data.sheets) {
       const item = document.createElement("li");
@@ -61,7 +111,7 @@
       link.href = `his-sheet.html?sheet=${encodeURIComponent(candidate.name)}`;
       link.textContent = candidate.label || candidate.name;
       if (["CL037", "CL038"].includes(candidate.name)) {
-        link.title = `sheet ${candidate.name}`;
+        setTooltip(link, `sheet ${candidate.name}`);
       }
       if (candidate.name === sheet.name) {
         link.setAttribute("aria-current", "page");
@@ -97,7 +147,7 @@
     link.textContent = label;
     link.rel = "noreferrer";
     if (title) {
-      link.title = title;
+      setTooltip(link, title);
     }
     item.appendChild(link);
     parent.appendChild(item);
@@ -152,12 +202,79 @@
     }
   }
 
+  function footnoteMarker(value) {
+    const match = String(value || "").trim().match(/(\*+)$/);
+    return match ? match[1] : "";
+  }
+
+  function leadingFootnoteMarker(value) {
+    const match = String(value || "").trim().match(/^(\*+)\s+/);
+    return match ? match[1] : "";
+  }
+
+  function stripFootnoteMarker(value) {
+    return String(value || "").replace(/\s*\*+$/, "");
+  }
+
+  function displayFootnotedText(value) {
+    const marker = footnoteMarker(value);
+    return marker && footnotesByMarker.has(marker)
+      ? stripFootnoteMarker(value)
+      : String(value || "");
+  }
+
+  function footnoteTooltip(value) {
+    const marker = footnoteMarker(value);
+    if (marker && footnotesByMarker.has(marker)) {
+      return combinedAgeFootnoteTooltip();
+    }
+    if (sheet.name === "CL038" && String(value || "").trim() === "Min age") {
+      return combinedAgeFootnoteTooltip();
+    }
+    return "";
+  }
+
+  function combinedAgeFootnoteTooltip() {
+    return ["*", "**"]
+      .map((marker) => {
+        const text = footnotesByMarker.get(marker);
+        return text ? `${marker} ${text}` : "";
+      })
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  function setFootnotedText(element, value) {
+    const text = displayFootnotedText(value);
+    const tooltip = footnoteTooltip(value);
+    if (tooltip) {
+      const label = document.createElement("span");
+      label.className = "sheet-header-tooltip";
+      label.textContent = text;
+      setTooltip(label, tooltip);
+      label.tabIndex = 0;
+      label.setAttribute("aria-label", `${text}. ${tooltip}`);
+      element.replaceChildren(label);
+    } else {
+      element.textContent = text;
+    }
+  }
+
+  function usesDefaultHeaderColor(column) {
+    return sheet.name === "CL037"
+      && cellValue(hierarchicalHeaderRows[1], column) === "Days to Next Dose";
+  }
+
   function bgColumnsVisible() {
     return document.body.classList.contains("show-bg");
   }
 
   function isBulgarianColumn(column) {
     return usesKeyRowHeader && /\bBG$/i.test(cellValue(hierarchicalHeaderRows[1], column));
+  }
+
+  function isProgramGroupColumn(column) {
+    return sheet.name === "CL038" && column === programGroupColumnIndex;
   }
 
   function isAlwaysHiddenColumn(column) {
@@ -191,6 +308,8 @@
       CL038: [
         "Display transfered data EN",
         "Display value EN",
+        "Rules",
+        "Vaccine additional info",
         "Since",
       ],
     };
@@ -201,6 +320,7 @@
     return dataColumns.filter(
       (column) => (
         !isAlwaysHiddenColumn(column)
+        && !isProgramGroupColumn(column)
         && (oldRecordsVisible() || !isOldRecordColumn(column))
         && (detailsVisible() || !isDetailsColumn(column))
         && (bgColumnsVisible() || !isBulgarianColumn(column))
@@ -236,39 +356,21 @@
     return !cellValue(row, 1) && /^\*+/.test(cellValue(row, 2));
   }
 
-  function groupHeaders(row, columns) {
-    const starts = [];
-    for (let index = 1; index <= sheet.column_count; index += 1) {
-      const label = cellValue(row, index);
-      if (label) {
-        starts.push({ column: index, label, style: cellStyle(row, index) });
-      }
-    }
-
-    return starts.map((group, index) => {
-      const next = starts[index + 1];
-      const end = (next ? next.column : sheet.column_count + 1) - 1;
-      return {
-        label: group.label,
-        span: columns.filter((column) => column >= group.column && column <= end).length,
-        style: group.style,
-      };
-    }).filter((group) => group.span > 0);
+  function appendCaption(targetTable, text) {
+    const captionNode = document.createElement("caption");
+    captionNode.textContent = text;
+    targetTable.appendChild(captionNode);
   }
 
-  function appendHeader() {
+  function appendHeader(targetTable, columns) {
     const thead = document.createElement("thead");
     const hasHierarchy = hierarchicalHeaderRows.length === 2;
-    const columns = visibleColumns();
     const row = document.createElement("tr");
-    row.className = hasHierarchy ? "sheet-group-header" : "sheet-column-header";
+    row.className = "sheet-column-header";
 
     const rowHeader = document.createElement("th");
     rowHeader.scope = "col";
     rowHeader.className = "sheet-row-number";
-    if (hasHierarchy) {
-      rowHeader.rowSpan = 2;
-    }
     rowHeader.textContent = usesKeyRowHeader
       ? cellValue(hierarchicalHeaderRows[1], 1) || "Key"
       : "";
@@ -278,28 +380,15 @@
     row.appendChild(rowHeader);
 
     if (hasHierarchy) {
-      for (const group of groupHeaders(hierarchicalHeaderRows[0], columns)) {
-        const th = document.createElement("th");
-        th.scope = "colgroup";
-        th.colSpan = group.span;
-        th.textContent = group.label;
-        if (group.style === "red") {
-          th.classList.add("sheet-cell-red");
-        }
-        row.appendChild(th);
-      }
-      thead.appendChild(row);
-
-      const leafRow = document.createElement("tr");
-      leafRow.className = "sheet-column-header";
       for (const index of columns) {
         const th = document.createElement("th");
         th.scope = "col";
-        th.textContent = cellValue(hierarchicalHeaderRows[1], index) || columnName(index);
-        applyCellStyle(th, hierarchicalHeaderRows[1], index);
-        leafRow.appendChild(th);
+        setFootnotedText(th, cellValue(hierarchicalHeaderRows[1], index) || columnName(index));
+        if (!usesDefaultHeaderColor(index)) {
+          applyCellStyle(th, hierarchicalHeaderRows[1], index);
+        }
+        row.appendChild(th);
       }
-      thead.appendChild(leafRow);
     } else {
       for (const index of columns) {
         const th = document.createElement("th");
@@ -307,17 +396,16 @@
         th.textContent = columnName(index);
         row.appendChild(th);
       }
-      thead.appendChild(row);
     }
 
-    table.appendChild(thead);
+    thead.appendChild(row);
+    targetTable.appendChild(thead);
   }
 
-  function appendBody() {
+  function appendBody(targetTable, rows, columns) {
     const tbody = document.createElement("tbody");
-    const columns = visibleColumns();
 
-    for (const sheetRow of visibleRows()) {
+    for (const sheetRow of rows) {
       const tr = document.createElement("tr");
       if (sheetRow.row_style === "red") {
         tr.classList.add("sheet-row-red");
@@ -333,7 +421,7 @@
 
       for (const index of columns) {
         const td = document.createElement("td");
-        td.textContent = sheetRow.cells[index] || "";
+        setFootnotedText(td, sheetRow.cells[index] || "");
         applyCellStyle(td, sheetRow, index);
         tr.appendChild(td);
       }
@@ -341,16 +429,73 @@
       tbody.appendChild(tr);
     }
 
-    table.appendChild(tbody);
+    targetTable.appendChild(tbody);
   }
 
   function renderTable() {
-    table.replaceChildren();
+    tableSection.hidden = false;
     footnotes.replaceChildren();
     footnotes.hidden = true;
-    appendHeader();
-    appendBody();
+    if (sheet.name === "CL038" && programGroupColumnIndex) {
+      renderProgramGroupTables();
+    } else {
+      tableSection.replaceChildren();
+      const scroll = document.createElement("div");
+      scroll.className = "table-scroll sheet-scroll";
+      table.replaceChildren();
+      appendCaption(table, `HIS ${sheet.name}`);
+      const columns = visibleColumns();
+      appendHeader(table, columns);
+      appendBody(table, visibleRows(), columns);
+      scroll.appendChild(table);
+      tableSection.appendChild(scroll);
+    }
     appendFootnotes();
+  }
+
+  function programGroupTables() {
+    const groups = [];
+    const groupsByLabel = new Map();
+
+    for (const row of visibleRows()) {
+      const label = cellValue(row, programGroupColumnIndex) || "No program group";
+      if (!groupsByLabel.has(label)) {
+        const group = { label, rows: [] };
+        groupsByLabel.set(label, group);
+        groups.push(group);
+      }
+      groupsByLabel.get(label).rows.push(row);
+    }
+
+    return groups;
+  }
+
+  function renderProgramGroupTables() {
+    const columns = visibleColumns();
+    tableSection.replaceChildren();
+
+    for (const group of programGroupTables()) {
+      const section = document.createElement("section");
+      section.className = "sheet-program-group";
+
+      const heading = document.createElement("h2");
+      heading.className = "sheet-program-title";
+      heading.textContent = group.label;
+      section.appendChild(heading);
+
+      const scroll = document.createElement("div");
+      scroll.className = "table-scroll sheet-scroll";
+
+      const groupTable = document.createElement("table");
+      groupTable.className = "his-sheet-table";
+      appendCaption(groupTable, `HIS ${sheet.name}: ${group.label}`);
+      appendHeader(groupTable, columns);
+      appendBody(groupTable, group.rows, columns);
+      scroll.appendChild(groupTable);
+
+      section.appendChild(scroll);
+      tableSection.appendChild(section);
+    }
   }
 
   function appendFootnotes() {
@@ -358,10 +503,18 @@
       return;
     }
 
+    const visibleFootnoteRows = footnoteRows.filter((row) => {
+      const marker = leadingFootnoteMarker(cellValue(row, 2));
+      return !marker || !footnotesByMarker.has(marker);
+    });
+    if (!visibleFootnoteRows.length) {
+      return;
+    }
+
     const list = document.createElement("ul");
-    for (const row of footnoteRows) {
+    for (const row of visibleFootnoteRows) {
       const item = document.createElement("li");
-      item.textContent = cellValue(row, 2);
+      item.textContent = stripFootnoteMarker(cellValue(row, 2));
       applyCellStyle(item, row, 2);
       list.appendChild(item);
     }
@@ -489,8 +642,10 @@
       if (description) {
         const codeElement = document.createElement("span");
         codeElement.className = "change-note-code";
-        codeElement.title = description;
+        setTooltip(codeElement, description);
         codeElement.textContent = code;
+        codeElement.tabIndex = 0;
+        codeElement.setAttribute("aria-label", `${code}. ${description}`);
         parent.appendChild(codeElement);
       } else {
         parent.appendChild(document.createTextNode(code));
@@ -597,6 +752,7 @@
     }
   });
   appendSheetNav();
+  appendSourceLine(sheetSource, sheet.source);
   renderSources();
   renderOtherCalendars();
   if (sheet.name === "Change Notes") {
