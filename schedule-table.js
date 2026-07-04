@@ -1186,7 +1186,8 @@ window.VACCINE_SCHEDULE_TABLE = {
   "source_links": {
     "ecdc_calendar": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
     "lex_calendar": "https://lex.bg/laws/ldoc/2135504228",
-    "pregnancy_vaccine": "https://plusmen.bg"
+    "pregnancy_vaccine": "https://plusmen.bg",
+    "his_bg": "https://his.bg/bg/dev/nomenclatures"
   },
   "generated_from": [
     "data/columns.yaml",
