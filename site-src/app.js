@@ -294,15 +294,25 @@
       ecdc_calendar: "ECDC",
       lex_calendar: "lex.bg",
       pregnancy_vaccine: "plusmen",
+      his_bg: "his.bg",
     }[name] || name.replaceAll("_", " ");
   }
 
-  function appendLinkItem(parent, label, url) {
+  function sourceTitle(name) {
+    return {
+      his_bg: "Sheets CL037 & CL038",
+    }[name] || "";
+  }
+
+  function appendLinkItem(parent, label, url, title = "") {
     const item = document.createElement("li");
     const link = document.createElement("a");
     link.href = url;
     link.textContent = label;
     link.rel = "noreferrer";
+    if (title) {
+      link.title = title;
+    }
     item.appendChild(link);
     parent.appendChild(item);
   }
@@ -312,7 +322,7 @@
       if (name === "ecdc_calendar") {
         continue;
       }
-      appendLinkItem(sourceList, sourceLabel(name), url);
+      appendLinkItem(sourceList, sourceLabel(name), url, sourceTitle(name));
     }
   }
 
