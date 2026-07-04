@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HIS nomenclature sheet</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="sheet-page">
+    <header class="page-header">
+      <div class="header-content">
+        <h1><a class="title-link" href="index.html">Vaccine schedule for Bulgaria</a></h1>
+        <nav class="page-link-row" aria-label="Pages">
+          <a href="index.html">Table</a>
+        </nav>
+        <nav class="sheet-link-row" aria-label="HIS sheets">
+          <span><a id="his-sheets-source" class="sheet-source-link" href="https://his.bg/bg/dev/nomenclatures" rel="noreferrer">HIS sheets:</a></span>
+          <ul id="sheet-nav"></ul>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <button id="bg-toggle" class="language-toggle" type="button" aria-pressed="false">BG</button>
+        <button id="old-records-toggle" class="language-toggle old-records-toggle" type="button" aria-pressed="false">Old records</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="change-notes-list" class="change-notes-list" aria-label="Change notes" hidden></section>
+      <section id="sheet-table-section" class="table-section" aria-label="HIS sheet">
+        <div class="table-scroll sheet-scroll">
+          <table id="his-sheet-table" class="his-sheet-table">
+            <caption id="sheet-caption">HIS nomenclature sheet</caption>
+          </table>
+        </div>
+      </section>
+      <section id="sheet-footnotes" class="sheet-footnotes" aria-label="Footnotes" hidden></section>
+    </main>
+
+    <script src="his-sheets.js"></script>
+    <script src="his-sheet.js"></script>
+  </body>
+</html>

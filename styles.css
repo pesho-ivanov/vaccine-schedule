@@ -31,12 +31,23 @@ body {
 
 .page-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
   padding: 28px 32px 22px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
+}
+
+.header-content {
+  min-width: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  gap: 8px;
 }
 
 .language-toggle {
@@ -51,6 +62,12 @@ body {
   font-weight: 800;
   letter-spacing: 0;
   cursor: pointer;
+}
+
+.old-records-toggle {
+  width: auto;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
 .language-toggle[aria-pressed="true"] {
@@ -77,6 +94,90 @@ h1 {
   letter-spacing: 0;
 }
 
+.title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.title-link:hover,
+.title-link:focus-visible {
+  text-decoration: underline;
+}
+
+.page-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.page-link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  background: #fbfcfe;
+  color: #245c9f;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.page-link-row a[aria-current="page"] {
+  border-color: var(--header-bg);
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
+.sheet-link-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-top: 12px;
+}
+
+.sheet-link-row span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.sheet-link-row ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sheet-link-row li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid var(--line-strong);
+  background: #fbfcfe;
+  color: #245c9f;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.sheet-link-row li a[aria-current="page"] {
+  border-color: var(--header-bg);
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
+.sheet-source-link {
+  color: #245c9f;
+  text-decoration: underline;
+}
+
 h2 {
   font-size: 1rem;
   letter-spacing: 0;
@@ -91,6 +192,70 @@ main {
   max-height: calc(100vh - 210px);
   border: 1px solid var(--line-strong);
   background: var(--surface);
+}
+
+.sheet-scroll {
+  max-height: calc(100vh - 220px);
+}
+
+.change-notes-list {
+  display: grid;
+  gap: 16px;
+  max-width: 980px;
+}
+
+.change-notes-list[hidden] {
+  display: none;
+}
+
+.change-note-version {
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.change-note-title {
+  font-weight: 800;
+}
+
+.change-note-lines:empty {
+  display: none;
+}
+
+.change-note-lines {
+  margin-top: 5px;
+}
+
+.change-note-line + .change-note-line {
+  margin-top: 5px;
+}
+
+.sheet-footnotes {
+  max-width: 980px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.sheet-footnotes[hidden] {
+  display: none;
+}
+
+.sheet-footnotes ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sheet-footnotes li {
+  color: var(--text);
+  line-height: 1.35;
 }
 
 table {
@@ -292,6 +457,68 @@ tbody td {
 .time-column,
 .time-cell {
   width: auto;
+}
+
+.his-sheet-table {
+  min-width: max-content;
+  font-size: 0.82rem;
+}
+
+.his-sheet-table thead th {
+  top: 0;
+  height: 34px;
+  padding: 7px 8px;
+}
+
+.his-sheet-table .sheet-column-header th {
+  top: 34px;
+}
+
+.his-sheet-table .sheet-column-header:first-child th {
+  top: 0;
+}
+
+.his-sheet-table tbody th,
+.his-sheet-table tbody td {
+  min-width: 92px;
+  max-width: 460px;
+  height: 34px;
+  min-height: 34px;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+  white-space: pre-wrap;
+}
+
+.his-sheet-table tbody th {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.his-sheet-table .sheet-row-number {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  min-width: 54px;
+  width: 54px;
+  background: #fbfcfe;
+  text-align: right;
+  box-shadow: var(--sticky-shadow);
+}
+
+.his-sheet-table thead .sheet-row-number {
+  top: 0;
+  z-index: 5;
+  background: var(--header-bg);
+}
+
+.sheet-cell-red {
+  color: #c00000 !important;
+}
+
+.sheet-row-red th,
+.sheet-row-red td {
+  color: #c00000 !important;
 }
 
 .time-cell {

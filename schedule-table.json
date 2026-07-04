@@ -1192,6 +1192,21 @@
   "source_versions": {
     "his_bg": "v1.5.27"
   },
+  "his_sheets": [
+    "Change Notes",
+    "CL037",
+    "CL038"
+  ],
+  "his_sheet_labels": {
+    "Change Notes": "Change Notes",
+    "CL037": "HIS products",
+    "CL038": "HIS Schedule"
+  },
+  "his_sheets_source": {
+    "url": "https://his.bg/bg/dev/nomenclatures",
+    "version": "v1.5.27",
+    "date": "29.06.2026"
+  },
   "generated_from": [
     "data/columns.yaml",
     "data/bg/columns.yaml",

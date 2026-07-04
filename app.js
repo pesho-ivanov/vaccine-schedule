@@ -15,8 +15,14 @@
   const bgToggle = document.getElementById("bg-toggle");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
+  const hisSheetList = document.getElementById("his-sheet-list");
+  const hisSheetsSource = document.getElementById("his-sheets-source");
 
   title.textContent = data.title.en;
+  if (data.his_sheets_source) {
+    hisSheetsSource.href = data.his_sheets_source.url;
+    hisSheetsSource.textContent = `HIS sheets (${data.his_sheets_source.version}, ${data.his_sheets_source.date}):`;
+  }
   bgToggle.addEventListener("click", () => {
     const showBulgarian = !document.body.classList.contains("show-bg");
     document.body.classList.toggle("show-bg", showBulgarian);
@@ -365,9 +371,21 @@
     );
   }
 
+  function renderHisSheets() {
+    for (const sheetName of data.his_sheets || []) {
+      appendLinkItem(
+        hisSheetList,
+        data.his_sheet_labels?.[sheetName] || sheetName,
+        `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
+        ["CL037", "CL038"].includes(sheetName) ? `sheet ${sheetName}` : ""
+      );
+    }
+  }
+
   table.appendChild(makeColGroup());
   table.appendChild(makeHeader());
   table.appendChild(makeBody());
   renderSources();
   renderOtherCalendars();
+  renderHisSheets();
 })();
