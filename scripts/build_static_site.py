@@ -2,9 +2,13 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
+import zipfile
+import csv
 from pathlib import Path
 from typing import Any
+from xml.etree import ElementTree
 
 import yaml
 
@@ -14,9 +18,17 @@ DATA_DIR = ROOT / "data"
 BG_DATA_DIR = DATA_DIR / "bg"
 SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
-STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
+STATIC_FILES = ("index.html", "app.js", "his-sheet.html", "his-sheet.js", "styles.css", "CNAME")
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
 HIS_VACCINE_SPEC_PATH = DATA_DIR / "his/vaccine-specifications.yaml"
+HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
+HIS_SHEET_NAMES = ("Change Notes", "CL037", "CL038")
+HIS_OMITTED_COLUMNS = {
+    "Change Notes": ("Дата на тестова", "Дата на прод"),
+}
+XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+XLSX_REL_NS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+PACKAGE_REL_NS = "{http://schemas.openxmlformats.org/package/2006/relationships}"
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -132,7 +144,301 @@ def his_vaccine_spec() -> dict[str, Any]:
     return spec
 
 
-def build_schedule_table() -> dict[str, Any]:
+def column_number(cell_reference: str) -> int:
+    match = re.match(r"([A-Z]+)", cell_reference)
+    if not match:
+        raise ValueError(f"invalid XLSX cell reference: {cell_reference}")
+
+    number = 0
+    for char in match.group(1):
+        number = number * 26 + ord(char) - ord("A") + 1
+    return number
+
+
+def shared_strings(archive: zipfile.ZipFile) -> list[str]:
+    if "xl/sharedStrings.xml" not in archive.namelist():
+        return []
+
+    root = ElementTree.fromstring(archive.read("xl/sharedStrings.xml"))
+    strings = []
+    for item in root.iter(f"{XLSX_NS}si"):
+        strings.append("".join(text.text or "" for text in item.iter(f"{XLSX_NS}t")))
+    return strings
+
+
+def red_style_indexes(archive: zipfile.ZipFile) -> set[str]:
+    root = ElementTree.fromstring(archive.read("xl/styles.xml"))
+    fonts_element = root.find(f"{XLSX_NS}fonts")
+    cell_formats_element = root.find(f"{XLSX_NS}cellXfs")
+    fonts = list(fonts_element) if fonts_element is not None else []
+    cell_formats = list(cell_formats_element) if cell_formats_element is not None else []
+    red_styles = set()
+
+    for style_index, cell_format in enumerate(cell_formats):
+        font_id = int(cell_format.attrib.get("fontId", "0"))
+        if font_id >= len(fonts):
+            continue
+        color = fonts[font_id].find(f"{XLSX_NS}color")
+        if color is not None and is_red_rgb(color.attrib.get("rgb", "")):
+            red_styles.add(str(style_index))
+
+    return red_styles
+
+
+def red_fill_style_indexes(archive: zipfile.ZipFile) -> set[str]:
+    root = ElementTree.fromstring(archive.read("xl/styles.xml"))
+    fills_element = root.find(f"{XLSX_NS}fills")
+    cell_formats_element = root.find(f"{XLSX_NS}cellXfs")
+    fills = list(fills_element) if fills_element is not None else []
+    cell_formats = list(cell_formats_element) if cell_formats_element is not None else []
+    red_styles = set()
+
+    for style_index, cell_format in enumerate(cell_formats):
+        fill_id = int(cell_format.attrib.get("fillId", "0"))
+        if fill_id >= len(fills):
+            continue
+        fill = fills[fill_id]
+        if any(is_red_rgb(color.attrib.get("rgb", "")) for color in fill.iter(f"{XLSX_NS}fgColor")):
+            red_styles.add(str(style_index))
+
+    return red_styles
+
+
+def is_red_rgb(value: str) -> bool:
+    value = value.upper()
+    if len(value) == 8:
+        value = value[2:]
+    if len(value) != 6:
+        return False
+
+    red = int(value[0:2], 16)
+    green = int(value[2:4], 16)
+    blue = int(value[4:6], 16)
+    return red >= 180 and green <= 80 and blue <= 80
+
+
+def workbook_sheet_paths(archive: zipfile.ZipFile) -> dict[str, str]:
+    workbook = ElementTree.fromstring(archive.read("xl/workbook.xml"))
+    relationships = ElementTree.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
+    targets_by_id = {
+        relationship.attrib["Id"]: relationship.attrib["Target"]
+        for relationship in relationships.iter(f"{PACKAGE_REL_NS}Relationship")
+    }
+
+    paths = {}
+    for sheet in workbook.iter(f"{XLSX_NS}sheet"):
+        name = sheet.attrib.get("name")
+        relationship_id = sheet.attrib.get(f"{XLSX_REL_NS}id")
+        if not name or not relationship_id:
+            continue
+        target = targets_by_id[relationship_id].lstrip("/")
+        paths[name] = target if target.startswith("xl/") else f"xl/{target}"
+    return paths
+
+
+def cell_text(cell: ElementTree.Element, strings: list[str]) -> str:
+    cell_type = cell.attrib.get("t")
+    if cell_type == "inlineStr":
+        return normalized_cell_text("".join(text.text or "" for text in cell.iter(f"{XLSX_NS}t")))
+
+    value = cell.find(f"{XLSX_NS}v")
+    if value is None or value.text is None:
+        return ""
+
+    if cell_type == "s":
+        return normalized_cell_text(strings[int(value.text)])
+    if cell_type == "b":
+        return "TRUE" if value.text == "1" else "FALSE"
+    return normalized_cell_text(value.text)
+
+
+def normalized_cell_text(value: str) -> str:
+    return value.replace("\xa0", " ").strip()
+
+
+def sheet_rows(
+    archive: zipfile.ZipFile,
+    sheet_path: str,
+    strings: list[str],
+    red_styles: set[str],
+    red_fill_styles: set[str],
+) -> tuple[list[dict[str, Any]], int]:
+    root = ElementTree.fromstring(archive.read(sheet_path))
+    rows: list[dict[str, Any]] = []
+    max_column = 0
+
+    for row in root.iter(f"{XLSX_NS}row"):
+        cells_by_column: dict[int, str] = {}
+        styles_by_column: dict[int, str] = {}
+        for cell in row.iter(f"{XLSX_NS}c"):
+            reference = cell.attrib.get("r")
+            if not reference:
+                continue
+            column = column_number(reference)
+            value = cell_text(cell, strings)
+            if value:
+                cells_by_column[column] = value
+                max_column = max(max_column, column)
+                if cell.attrib.get("s") in red_styles:
+                    styles_by_column[column] = "red"
+                if column == 1 and cell.attrib.get("s") in red_fill_styles:
+                    styles_by_column[0] = "red"
+
+        if cells_by_column:
+            projected_row: dict[str, Any] = {
+                "index": int(row.attrib["r"]),
+                "cells": cells_by_column,
+            }
+            if styles_by_column:
+                row_style = styles_by_column.pop(0, None)
+                if row_style:
+                    projected_row["row_style"] = row_style
+                if styles_by_column:
+                    projected_row["styles"] = styles_by_column
+            rows.append(projected_row)
+
+    return rows, max_column
+
+
+def without_omitted_columns(
+    rows: list[dict[str, Any]],
+    column_count: int,
+    omitted_headings: tuple[str, ...],
+) -> tuple[list[dict[str, Any]], int]:
+    if not rows or not omitted_headings:
+        return rows, column_count
+
+    omitted = set(omitted_headings)
+    omitted_columns = {
+        column
+        for column, value in rows[0]["cells"].items()
+        if str(value).strip() in omitted
+    }
+    if not omitted_columns:
+        return rows, column_count
+
+    column_map = {
+        column: compact_column
+        for compact_column, column in enumerate(
+            (column for column in range(1, column_count + 1) if column not in omitted_columns),
+            start=1,
+        )
+    }
+    compact_rows = []
+    for row in rows:
+        cells = {
+            column_map[column]: value
+            for column, value in row["cells"].items()
+            if column in column_map
+        }
+        if cells:
+            styles = {
+                column_map[column]: value
+                for column, value in row.get("styles", {}).items()
+                if column in column_map
+            }
+            compact_row = {**row, "cells": cells}
+            if styles:
+                compact_row["styles"] = styles
+            elif "styles" in compact_row:
+                del compact_row["styles"]
+            compact_rows.append(compact_row)
+
+    return compact_rows, len(column_map)
+
+
+def his_sheet_label(name: str, rows: list[dict[str, Any]]) -> str:
+    if name == "CL037":
+        return "HIS products"
+    if name == "CL038":
+        return "HIS Schedule"
+    if name not in {"CL037", "CL038"} or not rows:
+        return name
+
+    cells = [str(value).strip() for value in rows[0]["cells"].values() if str(value).strip()]
+    return cells[0] if len(cells) == 1 else name
+
+
+def version_sort_key(version: str) -> tuple[int, ...]:
+    match = re.search(r"(\d+(?:\.\d+)+)", version)
+    if not match:
+        return ()
+    return tuple(int(part) for part in match.group(1).split("."))
+
+
+def build_change_notes() -> list[dict[str, Any]]:
+    if not HIS_CHANGE_NOTES_DIR.is_dir():
+        raise FileNotFoundError(f"missing HIS change notes directory: {HIS_CHANGE_NOTES_DIR}")
+
+    versions = []
+    for path in sorted(HIS_CHANGE_NOTES_DIR.glob("*.csv")):
+        with path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        if not rows:
+            continue
+        version = rows[0]["version"]
+        versions.append(
+            {
+                "version": version,
+                "file": str(path.relative_to(ROOT)),
+                "changes": [row["change"] for row in rows if row.get("change")],
+            }
+        )
+
+    return sorted(versions, key=lambda item: version_sort_key(item["version"]), reverse=True)
+
+
+def build_his_sheets() -> dict[str, Any]:
+    his_spec = his_vaccine_spec()
+    artifact = DATA_DIR / "his" / str(his_spec["artifact"])
+    if not artifact.is_file():
+        raise FileNotFoundError(f"missing HIS artifact: {artifact}")
+
+    with zipfile.ZipFile(artifact) as archive:
+        strings = shared_strings(archive)
+        red_styles = red_style_indexes(archive)
+        red_fill_styles = red_fill_style_indexes(archive)
+        paths = workbook_sheet_paths(archive)
+        sheets = []
+        for name in HIS_SHEET_NAMES:
+            if name not in paths:
+                raise ValueError(f"{artifact.name}: missing XLSX sheet {name}")
+            rows, column_count = sheet_rows(
+                archive,
+                paths[name],
+                strings,
+                red_styles,
+                red_fill_styles,
+            )
+            rows, column_count = without_omitted_columns(
+                rows,
+                column_count,
+                HIS_OMITTED_COLUMNS.get(name, ()),
+            )
+            sheets.append(
+                {
+                    "name": name,
+                    "label": his_sheet_label(name, rows),
+                    "column_count": column_count,
+                    "rows": rows,
+                }
+            )
+
+    return {
+        "schema_version": 1,
+        "source": {
+            "artifact": str(his_spec["artifact"]),
+            "url": str(his_spec["source_url"]),
+            "page_url": str(his_spec["pages"]["nomenclatures"]),
+            "his_version": f"v{his_spec['his_version']}",
+            "nomenclatures_date": str(his_spec["nomenclatures_date"]),
+        },
+        "change_notes": build_change_notes(),
+        "sheets": sheets,
+    }
+
+
+def build_schedule_table(his_sheet_labels: dict[str, str] | None = None) -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     diseases_data = read_yaml("diseases.yaml")
     schedule_data = read_yaml("schedule.yaml")
@@ -244,6 +550,16 @@ def build_schedule_table() -> dict[str, Any]:
         "source_versions": {
             "his_bg": f"v{his_spec['his_version']}",
         },
+        "his_sheets": list(HIS_SHEET_NAMES),
+        "his_sheet_labels": {
+            name: his_sheet_labels.get(name, name) if his_sheet_labels else name
+            for name in HIS_SHEET_NAMES
+        },
+        "his_sheets_source": {
+            "url": str(his_spec["pages"]["nomenclatures"]),
+            "version": f"v{his_spec['his_version']}",
+            "date": str(his_spec["nomenclatures_date"]),
+        },
         "generated_from": [
             "data/columns.yaml",
             "data/bg/columns.yaml",
@@ -283,7 +599,12 @@ def copy_static_files() -> None:
 def main() -> int:
     rebuild_site_dir()
     copy_static_files()
-    table = build_schedule_table()
+    his_sheets = build_his_sheets()
+    his_sheet_labels = {
+        sheet["name"]: sheet.get("label", sheet["name"])
+        for sheet in his_sheets["sheets"]
+    }
+    table = build_schedule_table(his_sheet_labels)
     json_text = json.dumps(table, ensure_ascii=False, indent=2)
     (SITE_DIR / "schedule-table.json").write_text(f"{json_text}\n", encoding="utf-8")
     (SITE_DIR / "schedule-table.js").write_text(
@@ -291,9 +612,18 @@ def main() -> int:
         f"{json.dumps(table, ensure_ascii=False, indent=2)};\n",
         encoding="utf-8",
     )
+    his_sheets_json = json.dumps(his_sheets, ensure_ascii=False, indent=2)
+    (SITE_DIR / "his-sheets.json").write_text(f"{his_sheets_json}\n", encoding="utf-8")
+    (SITE_DIR / "his-sheets.js").write_text(
+        "window.HIS_SHEETS = "
+        f"{json.dumps(his_sheets, ensure_ascii=False, indent=2)};\n",
+        encoding="utf-8",
+    )
     print("copied site-src to generated-site")
     print("wrote generated-site/schedule-table.json")
     print("wrote generated-site/schedule-table.js")
+    print("wrote generated-site/his-sheets.json")
+    print("wrote generated-site/his-sheets.js")
     return 0
 
 
