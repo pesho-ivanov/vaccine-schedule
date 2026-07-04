@@ -1189,6 +1189,9 @@ window.VACCINE_SCHEDULE_TABLE = {
     "pregnancy_vaccine": "https://plusmen.bg",
     "his_bg": "https://his.bg/bg/dev/nomenclatures"
   },
+  "source_versions": {
+    "his_bg": "v1.5.27"
+  },
   "generated_from": [
     "data/columns.yaml",
     "data/bg/columns.yaml",
@@ -1198,6 +1201,7 @@ window.VACCINE_SCHEDULE_TABLE = {
     "data/dose_texts.yaml",
     "data/notes.yaml",
     "data/sources.yaml",
+    "data/his/vaccine-specifications.yaml",
     "data/metadata.yaml",
     "data/bg/metadata.yaml"
   ]
