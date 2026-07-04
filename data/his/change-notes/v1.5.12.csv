@@ -1,4 +1,4 @@
-version,change,regarding vaccines
-Версия 1.5.12,Номенклатура CL139 - промяна в код 07.01 и добавени стойности за кодове от 07.02 до 07.11 - възможни отговори за битово-санитарни условия,false
-Версия 1.5.12,Номенклатура CL134 - промяна на Note за код 04.03,false
-Версия 1.5.12,"Номенклатура CL132 - добавена стойност за Max age при преглед A6M, за да няма застъпване с дейностите по A10M",false
+version,change,change EN,regarding vaccines
+1.5.12,Номенклатура CL139 - промяна в код 07.01 и добавени стойности за кодове от 07.02 до 07.11 - възможни отговори за битово-санитарни условия,Nomenclature CL139 - change in code 07.01 and added values for codes from 07.02 until 07.11 - possible answers for household sanitary conditions,false
+1.5.12,Номенклатура CL134 - промяна на Note за код 04.03,Nomenclature CL134 - change of Note for code 04.03,false
+1.5.12,"Номенклатура CL132 - добавена стойност за Max age при преглед A6M, за да няма застъпване с дейностите по A10M","Nomenclature CL132 - added value for Max age for examination A6M, so there is no overlap with activities by A10M",false

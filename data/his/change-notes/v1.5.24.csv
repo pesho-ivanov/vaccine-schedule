@@ -1,5 +1,5 @@
-version,change,regarding vaccines
-Версия 1.5.24,Номенклатура CL038 - добавен код 103 за варицела 1-ви прием,true
-Версия 1.5.24,Номенклатура CL038 - добавен код 104 за варицела 2-ри прием,true
-Версия 1.5.24,Номенклатура CL038 - добавен код 105 за коклюш при бременни,true
-Версия 1.5.24,Номенклатура CL038 - добавен код 106 за РСВ при бременни,true
+version,change,change EN,regarding vaccines
+1.5.24,Номенклатура CL038 - добавен код 103 за варицела 1-ви прием,Nomenclature CL038 - added code 103 for varicella first dose,true
+1.5.24,Номенклатура CL038 - добавен код 104 за варицела 2-ри прием,Nomenclature CL038 - added code 104 for varicella second dose,true
+1.5.24,Номенклатура CL038 - добавен код 105 за коклюш при бременни,Nomenclature CL038 - added code 105 for pertussis for pregnant women,true
+1.5.24,Номенклатура CL038 - добавен код 106 за РСВ при бременни,Nomenclature CL038 - added code 106 for RSV for pregnant women,true

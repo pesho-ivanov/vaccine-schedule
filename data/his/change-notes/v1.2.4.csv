@@ -1,15 +1,15 @@
-version,change,regarding vaccines
-Версия 1.2.4,"Добавена нова колона ""Permit Owner ID"" в мета-данните за номенклатура CL037 със стойности за 4-те COVID ваксини",true
-Версия 1.2.4,"Променено името на колона ""Permit Owner Name"" в мета-данните за номенклатура CL037 и коригирани стойности за 4-те COVID ваксини",true
-Версия 1.2.4,"Добавена нова колона ""SNOMED"" в мета-данните за номенклатура CL030 със стойности за първите два резултата",false
-Версия 1.2.4,Коригиран ред в CL005 - LB Ливан Lebanon,false
-Версия 1.2.4,Ред BU в CL005 e направен неактивен,false
-Версия 1.2.4,"Променено името на колона ""NSCRLP Code"" на ""CL009 Mapping"" в номенклатура CL026",false
-Версия 1.2.4,"Добавена нова колона ""CL010 Mapping"" в номенклатура CL026",false
-Версия 1.2.4,Коригирано описание на ред BQ в номенклатура CL005,false
-Версия 1.2.4,Коригирано описание на ред GB в номенклатура CL005,false
-Версия 1.2.4,"Сменено името на CL056 на ""Медицински инструменти""",false
-Версия 1.2.4,Добавена номенклатура CL057,false
-Версия 1.2.4,Добавена номенклатура CL058,false
-Версия 1.2.4,"Променени редовете по номенклатура CL056 спрямо последните данни от ЕК за DGC. Добавени мета колони ""CL057 Mapping"" и ""CL058 Mapping""",false
-Версия 1.2.4,"Добавен нов ред с код ""VNT001"" в номенклатура CL022",false
+version,change,change EN,regarding vaccines
+1.2.4,"Добавена нова колона ""Permit Owner ID"" в мета-данните за номенклатура CL037 със стойности за 4-те COVID ваксини","Added new column ""Permit Owner ID"" in meta-data for nomenclature CL037 with values for 4- COVID vaccines",true
+1.2.4,"Променено името на колона ""Permit Owner Name"" в мета-данните за номенклатура CL037 и коригирани стойности за 4-те COVID ваксини","Changed the name of column ""Permit Owner Name"" in meta-data for nomenclature CL037 and corrected values for 4- COVID vaccines",true
+1.2.4,"Добавена нова колона ""SNOMED"" в мета-данните за номенклатура CL030 със стойности за първите два резултата","Added new column ""SNOMED"" in meta-data for nomenclature CL030 with values for the first two result",false
+1.2.4,Коригиран ред в CL005 - LB Ливан Lebanon,Corrected row in CL005 - LB Lebanon Lebanon,false
+1.2.4,Ред BU в CL005 e направен неактивен,Row BU in CL005 e made inactive,false
+1.2.4,"Променено името на колона ""NSCRLP Code"" на ""CL009 Mapping"" в номенклатура CL026","Changed the name of column ""NSCRLP Code"" of ""CL009 Mapping"" in nomenclature CL026",false
+1.2.4,"Добавена нова колона ""CL010 Mapping"" в номенклатура CL026","Added new column ""CL010 Mapping"" in nomenclature CL026",false
+1.2.4,Коригирано описание на ред BQ в номенклатура CL005,Corrected description of row BQ in nomenclature CL005,false
+1.2.4,Коригирано описание на ред GB в номенклатура CL005,Corrected description of row GB in nomenclature CL005,false
+1.2.4,"Сменено името на CL056 на ""Медицински инструменти""","Changed the name of CL056 of ""Medical instruments""",false
+1.2.4,Добавена номенклатура CL057,Added nomenclature CL057,false
+1.2.4,Добавена номенклатура CL058,Added nomenclature CL058,false
+1.2.4,"Променени редовете по номенклатура CL056 спрямо последните данни от ЕК за DGC. Добавени мета колони ""CL057 Mapping"" и ""CL058 Mapping""","Changed rows by nomenclature CL056 according to the latest data from EC for DGC. added meta columns ""CL057 Mapping"" and ""CL058 Mapping""",false
+1.2.4,"Добавен нов ред с код ""VNT001"" в номенклатура CL022","Added new row with code ""VNT001"" in nomenclature CL022",false

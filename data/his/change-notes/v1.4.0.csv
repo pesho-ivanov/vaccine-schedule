@@ -1,14 +1,14 @@
-version,change,regarding vaccines
-Версия 1.4.0,Добавяне на код -1006 в номенклатура CL037,true
-Версия 1.4.0,Добавена номенклaтура CL103,false
-Версия 1.4.0,Добавена номенклaтура CL104,false
-Версия 1.4.0,Добавена номенклaтура CL105,false
-Версия 1.4.0,Добавена номенклaтура CL106,false
-Версия 1.4.0,Добавена номенклaтура CL107,false
-Версия 1.4.0,Добавена номенклaтура CL108,false
-Версия 1.4.0,Добавена номенклaтура CL109,false
-Версия 1.4.0,Добавена номенклaтура CL110,false
-Версия 1.4.0,Добавена номенклaтура CL111,false
-Версия 1.4.0,Добавена номенклaтура CL112,false
-Версия 1.4.0,Добавена номенклaтура CL113,false
-Версия 1.4.0,"Добавяне на нов код ""D"" в номенклатура CL102",false
+version,change,change EN,regarding vaccines
+1.4.0,Добавяне на код -1006 в номенклатура CL037,Added code -1006 in nomenclature CL037,true
+1.4.0,Добавена номенклaтура CL103,Added nomenclature CL103,false
+1.4.0,Добавена номенклaтура CL104,Added nomenclature CL104,false
+1.4.0,Добавена номенклaтура CL105,Added nomenclature CL105,false
+1.4.0,Добавена номенклaтура CL106,Added nomenclature CL106,false
+1.4.0,Добавена номенклaтура CL107,Added nomenclature CL107,false
+1.4.0,Добавена номенклaтура CL108,Added nomenclature CL108,false
+1.4.0,Добавена номенклaтура CL109,Added nomenclature CL109,false
+1.4.0,Добавена номенклaтура CL110,Added nomenclature CL110,false
+1.4.0,Добавена номенклaтура CL111,Added nomenclature CL111,false
+1.4.0,Добавена номенклaтура CL112,Added nomenclature CL112,false
+1.4.0,Добавена номенклaтура CL113,Added nomenclature CL113,false
+1.4.0,"Добавяне на нов код ""D"" в номенклатура CL102","Addition of new code ""D"" in nomenclature CL102",false

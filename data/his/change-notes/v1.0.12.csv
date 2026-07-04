@@ -1,14 +1,14 @@
-version,change,regarding vaccines
-Версия 1.0.12,Коригиран мапинг към CL022 на ред 10 в номенклатура CL024,false
-Версия 1.0.12,Добавена номенклатура CL036,false
-Версия 1.0.12,Добавена номенклатура CL035,false
-Версия 1.0.12,Добавена номенклатура CL037,true
-Версия 1.0.12,Добавена номенклатура CL038,true
-Версия 1.0.12,Добавена номенклатура CL039,false
-Версия 1.0.12,Добавена номенклатура CL040,false
-Версия 1.0.12,Добавена номенклатура CL041,false
-Версия 1.0.12,Добавена номенклатура CL042,false
-Версия 1.0.12,Добавена номенклатура CL043,false
-Версия 1.0.12,Добавена номенклатура CL044,false
-Версия 1.0.12,Добавена номенклатура CL045,false
-Версия 1.0.12,Добавена номенклатура CL046,false
+version,change,change EN,regarding vaccines
+1.0.12,Коригиран мапинг към CL022 на ред 10 в номенклатура CL024,Corrected mapping to CL022 of row 10 in nomenclature CL024,false
+1.0.12,Добавена номенклатура CL036,Added nomenclature CL036,false
+1.0.12,Добавена номенклатура CL035,Added nomenclature CL035,false
+1.0.12,Добавена номенклатура CL037,Added nomenclature CL037,true
+1.0.12,Добавена номенклатура CL038,Added nomenclature CL038,true
+1.0.12,Добавена номенклатура CL039,Added nomenclature CL039,false
+1.0.12,Добавена номенклатура CL040,Added nomenclature CL040,false
+1.0.12,Добавена номенклатура CL041,Added nomenclature CL041,false
+1.0.12,Добавена номенклатура CL042,Added nomenclature CL042,false
+1.0.12,Добавена номенклатура CL043,Added nomenclature CL043,false
+1.0.12,Добавена номенклатура CL044,Added nomenclature CL044,false
+1.0.12,Добавена номенклатура CL045,Added nomenclature CL045,false
+1.0.12,Добавена номенклатура CL046,Added nomenclature CL046,false

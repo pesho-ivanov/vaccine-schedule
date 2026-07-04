@@ -1,13 +1,13 @@
-version,change,regarding vaccines
-Версия 1.5.21,Създадена номенклатура CL148 във връзка с регистър на Заразните болести,false
-Версия 1.5.21,"Номенклатура CL011 - добавяне на нови заболявания с кодове: J09, U04, U04.9",false
-Версия 1.5.21,Номенклатура CL011 - добавяне на колона към Meta data с информация за това дали конкретния МКБ код е за заразно заболяване - Contagious (релация към CL148),false
-Версия 1.5.21,Създадена номенклатура CL149 за категоризация на случаите на заразни заболявания,false
-Версия 1.5.21,Номенклатура CL038 - добавяне на колони към Meta data с информация за имена при мигрирани данни от НЗОК - колони Display transfered data BG и Display transfered data EN,true
-Версия 1.5.21,"Номенклатура CL038 - добавяне на колона към Meta data с информация за групата на имунизационните програми - Program Group, която преди беше представена като отделни редове и липсваше в данните по отделните кодове",true
-Версия 1.5.21,Номенклатура CL018 - добавяне на код 10 за здравен експерт от МОН,false
-Версия 1.5.21,Номенклатура CL018 - добавяне на код 11 за инспектор от ИАМН,false
-Версия 1.5.21,Създадена номенклатура CL150 за редки заболявания по Orhpanet,false
-Версия 1.5.21,Номенклатура CL078 - добавяне на колони към Meta data с информация за описание при редки заболявания - Orpha diseases label BG и Orpha diseases label EN,false
-Версия 1.5.21,Номенклатура CL084 - корекция в наименованието на номенклатурата,false
-Версия 1.5.21,Номенклатура CL086 - корекция в наименованието на номенклатурата,false
+version,change,change EN,regarding vaccines
+1.5.21,Създадена номенклатура CL148 във връзка с регистър на Заразните болести,Created nomenclature CL148 in relation to registry of Infectious Diseases,false
+1.5.21,"Номенклатура CL011 - добавяне на нови заболявания с кодове: J09, U04, U04.9","Nomenclature CL011 - addition of new diseases with codes: J09, U04, U04.9",false
+1.5.21,Номенклатура CL011 - добавяне на колона към Meta data с информация за това дали конкретния МКБ код е за заразно заболяване - Contagious (релация към CL148),Nomenclature CL011 - addition of column to Meta data with information about this whether the specific ICD code is for infectious disease - Contagious (relation to CL148),false
+1.5.21,Създадена номенклатура CL149 за категоризация на случаите на заразни заболявания,Created nomenclature CL149 for categorization of cases of infectious diseases,false
+1.5.21,Номенклатура CL038 - добавяне на колони към Meta data с информация за имена при мигрирани данни от НЗОК - колони Display transfered data BG и Display transfered data EN,Nomenclature CL038 - addition of columns to Meta data with information about names for migrated data from NHIF - columns Display transfered data BG and Display transfered data EN,true
+1.5.21,"Номенклатура CL038 - добавяне на колона към Meta data с информация за групата на имунизационните програми - Program Group, която преди беше представена като отделни редове и липсваше в данните по отделните кодове","Nomenclature CL038 - addition of column to Meta data with information about group of immunization programs - Program Group, which was previously presented as separate rows and was missing in data by individual codes",true
+1.5.21,Номенклатура CL018 - добавяне на код 10 за здравен експерт от МОН,Nomenclature CL018 - addition of code 10 for health expert from Ministry of Education and Science,false
+1.5.21,Номенклатура CL018 - добавяне на код 11 за инспектор от ИАМН,Nomenclature CL018 - addition of code 11 for inspector from Medical Supervision Executive Agency,false
+1.5.21,Създадена номенклатура CL150 за редки заболявания по Orhpanet,Created nomenclature CL150 for rare diseases by Orhpanet,false
+1.5.21,Номенклатура CL078 - добавяне на колони към Meta data с информация за описание при редки заболявания - Orpha diseases label BG и Orpha diseases label EN,Nomenclature CL078 - addition of columns to Meta data with information about description for rare diseases - Orpha diseases label BG and Orpha diseases label EN,false
+1.5.21,Номенклатура CL084 - корекция в наименованието на номенклатурата,Nomenclature CL084 - Correction in the name of the nomenclature,false
+1.5.21,Номенклатура CL086 - корекция в наименованието на номенклатурата,Nomenclature CL086 - Correction in the name of the nomenclature,false

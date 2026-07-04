@@ -1,13 +1,13 @@
-version,change,regarding vaccines
-Версия 1.5.18,"Номенклатура CL038 - премахната е връзка към CL037 за кодове 48 и 49, като е премахната възможността за прилагане на код 16979 (Preventar 13) за пневмококови имунизации",true
-Версия 1.5.18,"Номенклатура CL038 - промяна на стойностите за Min age и Max age при кодове: 28, 29, 30, 44, 61, 62, 63, 64, 70, 74, 98",true
-Версия 1.5.18,Номенклатура CL038 - премахнато правило от rules за код 52 по отношение на минимален интервал между дозите,true
-Версия 1.5.18,"Номенклатура CL038 - промяна в Dose number за код 59, 73, 74, 91, 92, 98",true
-Версия 1.5.18,Номенклатура CL038 - при код 81 е премахната връзката към CL037 за код 16074 (Gardasil),true
-Версия 1.5.18,Номенклатура CL037 - възстановен е код 1234 за ваксина Priorix,true
-Версия 1.5.18,Номенклатура CL038 - при код 45 е добавена връзката към CL037 за код 1234 (Priorix) за регистиране на случаи по медицински проучвания за ваксината,true
-Версия 1.5.18,Номенклатура CL022 - промяна в Description и Display Value EN за кодове: 04-030; 00-02C във връзка с промени в приложение № 10 „Изисквания на НЗОК за сключване на договор с лечебни заведения за оказване на СИМП“,false
-Версия 1.5.18,Номенклатура CL022 - добавени нови кодове: 02-029; 0B-04E; 03-029,false
-Версия 1.5.18,Номенклатура CL022 - за код 02-024 са добавени стойности за NHIF code и NHIF Package,false
-Версия 1.5.18,Номенклатура CL024 - добавени нови кодове: 02-029-00; 0B-04E-00; 03-029-00,false
-Версия 1.5.18,"Номенклатура CL038 - всички възрасти в Min age и Max age, които са в седмици, са преобразувани в дни. Това включва Min age при кодове: 28, 29, 30 и 70",true
+version,change,change EN,regarding vaccines
+1.5.18,"Номенклатура CL038 - премахната е връзка към CL037 за кодове 48 и 49, като е премахната възможността за прилагане на код 16979 (Preventar 13) за пневмококови имунизации","Nomenclature CL038 - removed is relation to CL037 for codes 48 and 49, as is removed the possibility for administration of code 16979 (Preventar 13) for pneumococcal immunizations",true
+1.5.18,"Номенклатура CL038 - промяна на стойностите за Min age и Max age при кодове: 28, 29, 30, 44, 61, 62, 63, 64, 70, 74, 98","Nomenclature CL038 - change of values for Min age and Max age for codes: 28, 29, 30, 44, 61, 62, 63, 64, 70, 74, 98",true
+1.5.18,Номенклатура CL038 - премахнато правило от rules за код 52 по отношение на минимален интервал между дозите,Nomenclature CL038 - Removed rule from rules for code 52 regarding minimum interval between doses,true
+1.5.18,"Номенклатура CL038 - промяна в Dose number за код 59, 73, 74, 91, 92, 98","Nomenclature CL038 - change in Dose number for code 59, 73, 74, 91, 92, 98",true
+1.5.18,Номенклатура CL038 - при код 81 е премахната връзката към CL037 за код 16074 (Gardasil),Nomenclature CL038 - for code 81 is removed the relation to CL037 for code 16074 (Gardasil),true
+1.5.18,Номенклатура CL037 - възстановен е код 1234 за ваксина Priorix,Nomenclature CL037 - restored is code 1234 for vaccine Priorix,true
+1.5.18,Номенклатура CL038 - при код 45 е добавена връзката към CL037 за код 1234 (Priorix) за регистиране на случаи по медицински проучвания за ваксината,Nomenclature CL038 - for code 45 is added the relation to CL037 for code 1234 (Priorix) for registration of cases by Medical studies for the vaccine,true
+1.5.18,Номенклатура CL022 - промяна в Description и Display Value EN за кодове: 04-030; 00-02C във връзка с промени в приложение № 10 „Изисквания на НЗОК за сключване на договор с лечебни заведения за оказване на СИМП“,Nomenclature CL022 - change in Description and Display Value EN for codes: 04-030; 00-02C in relation to changes in appendix № 10 „Requirements of NHIF for concluding of contract with medical institutions for provision of SIMP“,false
+1.5.18,Номенклатура CL022 - добавени нови кодове: 02-029; 0B-04E; 03-029,Nomenclature CL022 - added new codes: 02-029; 0B-04E; 03-029,false
+1.5.18,Номенклатура CL022 - за код 02-024 са добавени стойности за NHIF code и NHIF Package,Nomenclature CL022 - for code 02-024 were added values for NHIF code and NHIF Package,false
+1.5.18,Номенклатура CL024 - добавени нови кодове: 02-029-00; 0B-04E-00; 03-029-00,Nomenclature CL024 - added new codes: 02-029-00; 0B-04E-00; 03-029-00,false
+1.5.18,"Номенклатура CL038 - всички възрасти в Min age и Max age, които са в седмици, са преобразувани в дни. Това включва Min age при кодове: 28, 29, 30 и 70","Nomenclature CL038 - all ages in Min age and Max age, that are in weeks, were converted in days. this includes Min age for codes: 28, 29, 30 and 70",true

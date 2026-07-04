@@ -1,4 +1,4 @@
-version,change,regarding vaccines
-Версия 1.5.25,Номенклатира CL998 - добавено съобщение за предупреждение W001 за липсваща партида от ваксина,true
-Версия 1.5.25,Номенклатира CL998 - добавено съобщение за предупреждение W002 за недостатъчно количество,false
-Версия 1.5.25,Номенклатура CL150 - промяна в стойността на CL011 за рядко заболяване на ред с ключ 0511000089 - МКБ кодът е коригиран от E11 на E11.9,false
+version,change,change EN,regarding vaccines
+1.5.25,Номенклатира CL998 - добавено съобщение за предупреждение W001 за липсваща партида от ваксина,Nomenclature CL998 - added message for warning W001 for missing batch from vaccine,true
+1.5.25,Номенклатира CL998 - добавено съобщение за предупреждение W002 за недостатъчно количество,Nomenclature CL998 - added message for warning W002 for insufficient quantity,false
+1.5.25,Номенклатура CL150 - промяна в стойността на CL011 за рядко заболяване на ред с ключ 0511000089 - МКБ кодът е коригиран от E11 на E11.9,Nomenclature CL150 - change in the value of CL011 for rare disease of row with key 0511000089 - ICD the code is corrected from E11 of E11.9,false

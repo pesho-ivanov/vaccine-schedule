@@ -1,4 +1,4 @@
-version,change,regarding vaccines
-Версия 1.2.1,Добавена номенклатура CL055,false
-Версия 1.2.1,"Номенклатура CL026 разширена със стойности, които бяха премахнати с ъпдейта от 16.03.2021 - тези редове показват правилно валидност до тази дата и са в червено",false
-Версия 1.2.1,Номенклатура CL009 обновена с данни от НСЦРЛП към 02.04.2021 - отменените стойности се показват в червено и са с валидност до тази дата,false
+version,change,change EN,regarding vaccines
+1.2.1,Добавена номенклатура CL055,Added nomenclature CL055,false
+1.2.1,"Номенклатура CL026 разширена със стойности, които бяха премахнати с ъпдейта от 16.03.2021 - тези редове показват правилно валидност до тази дата и са в червено","Nomenclature CL026 expanded with values, that were removed with update from 16.03.2021 - these rows correctly show validity until this date and are in red",false
+1.2.1,Номенклатура CL009 обновена с данни от НСЦРЛП към 02.04.2021 - отменените стойности се показват в червено и са с валидност до тази дата,Nomenclature CL009 updated with data from NCPRMP to 02.04.2021 - canceled values shown in red and are with validity until this date,false

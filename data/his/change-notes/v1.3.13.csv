@@ -1,8 +1,8 @@
-version,change,regarding vaccines
-Версия 1.3.13,Добавен код 2 в номенклатура CL052,false
-Версия 1.3.13,Добавяне на код -1005 в номенклатура CL037,true
-Версия 1.3.13,"Коригирана колона ""Description"" за редове 3 и 4 в номенклатура CL047",false
-Версия 1.3.13,Добавени колони за мета данни в номенклатура CL011,false
-Версия 1.3.13,"Добавени нови редове ""T6"" и ""T7"" в номенклатура CL007",false
-Версия 1.3.13,Добавени преводи на Български в номенклатура CL046,false
-Версия 1.3.13,Добавени преводи на Английски в номенклатура CL045,false
+version,change,change EN,regarding vaccines
+1.3.13,Добавен код 2 в номенклатура CL052,Added code 2 in nomenclature CL052,false
+1.3.13,Добавяне на код -1005 в номенклатура CL037,Added code -1005 in nomenclature CL037,true
+1.3.13,"Коригирана колона ""Description"" за редове 3 и 4 в номенклатура CL047","Corrected column ""Description"" for rows 3 and 4 in nomenclature CL047",false
+1.3.13,Добавени колони за мета данни в номенклатура CL011,Added columns for meta data in nomenclature CL011,false
+1.3.13,"Добавени нови редове ""T6"" и ""T7"" в номенклатура CL007","Added new rows ""T6"" and ""T7"" in nomenclature CL007",false
+1.3.13,Добавени преводи на Български в номенклатура CL046,Added translations for Bulgarian in nomenclature CL046,false
+1.3.13,Добавени преводи на Английски в номенклатура CL045,Added translations for English in nomenclature CL045,false

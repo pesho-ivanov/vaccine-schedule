@@ -1,4 +1,4 @@
-version,change,regarding vaccines
-Версия 1.5.19,"Номенклатура CL038 - спиране на кодове 77, 78, 79 и 80 във връзка със стартиране на новата HPV програма и въвеждането на кодове 100 и 101",true
-Версия 1.5.19,Номенклатура CL037 - спиране на код 1542 за ваксина Pentaxim поради изтичане на срок на годност на последни закупени партиди до 30.06.2025. Ваксината се заменя от Infanrix-IPV+HIB,true
-Версия 1.5.19,"Номенклатура CL038 - премахната е връзка към CL037 за кодове 28, 29, 30 и 31 за ваксина 1542 поради спиране на ваксина Pentaxim",true
+version,change,change EN,regarding vaccines
+1.5.19,"Номенклатура CL038 - спиране на кодове 77, 78, 79 и 80 във връзка със стартиране на новата HPV програма и въвеждането на кодове 100 и 101","Nomenclature CL038 - discontinuation of codes 77, 78, 79 and 80 in relation with launch of new HPV program and introduction of codes 100 and 101",true
+1.5.19,Номенклатура CL037 - спиране на код 1542 за ваксина Pentaxim поради изтичане на срок на годност на последни закупени партиди до 30.06.2025. Ваксината се заменя от Infanrix-IPV+HIB,Nomenclature CL037 - discontinuation of code 1542 for vaccine Pentaxim due to expiration of term of validity of last purchased batches until 30.06.2025. the vaccine replaces from Infanrix-IPV+HIB,true
+1.5.19,"Номенклатура CL038 - премахната е връзка към CL037 за кодове 28, 29, 30 и 31 за ваксина 1542 поради спиране на ваксина Pentaxim","Nomenclature CL038 - removed is relation to CL037 for codes 28, 29, 30 and 31 for vaccine 1542 due to discontinuation of vaccine Pentaxim",true

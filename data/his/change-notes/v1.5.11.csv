@@ -1,7 +1,7 @@
-version,change,regarding vaccines
-Версия 1.5.11,"Номенклатура CL144 - промяна на стойности в колона Units при кодове: 65-226-02, 65-226-08, 98-012-01, 98-012-02, 98-012-04",false
-Версия 1.5.11,Номенклатура CL132 - промяна на стойности в колона Max age при код V1,false
-Версия 1.5.11,"Номенклатура CL132 - добавени стойности в колони Min interval from common index и Max interval from common index указващи минимален и максимален интервал между дози от една и съща група ваксини (групата се хваща по ключа в колона Common index) за кодове: V3, V7, V9",true
-Версия 1.5.11,"Номенклатура CL038 - добавени нови колони в Meta data със следните наименования: Display value BG и Display value EN, които да се използват при визуализация на данни за поствени ваксини от съответната група",true
-Версия 1.5.11,"Номенклатура CL132 - промени стойности на Description, Display value Bg и Display value En за код A1M",false
-Версия 1.5.11,"Номенклатура CL132 - добаве код J1M, включващ изследванията на урина от всички профилактични прегледи от група J*",false
+version,change,change EN,regarding vaccines
+1.5.11,"Номенклатура CL144 - промяна на стойности в колона Units при кодове: 65-226-02, 65-226-08, 98-012-01, 98-012-02, 98-012-04","Nomenclature CL144 - change of values in column Units for codes: 65-226-02, 65-226-08, 98-012-01, 98-012-02, 98-012-04",false
+1.5.11,Номенклатура CL132 - промяна на стойности в колона Max age при код V1,Nomenclature CL132 - change of values in column Max age for code V1,false
+1.5.11,"Номенклатура CL132 - добавени стойности в колони Min interval from common index и Max interval from common index указващи минимален и максимален интервал между дози от една и съща група ваксини (групата се хваща по ключа в колона Common index) за кодове: V3, V7, V9","Nomenclature CL132 - added values in columns Min interval from common index and Max interval from common index indicating minimum and maximum interval between doses from one and same group vaccines (group captures by key in column Common index) for codes: V3, V7, V9",true
+1.5.11,"Номенклатура CL038 - добавени нови колони в Meta data със следните наименования: Display value BG и Display value EN, които да се използват при визуализация на данни за поствени ваксини от съответната група","Nomenclature CL038 - added new columns in Meta data with the following names: Display value BG and Display value EN, that to are used for visualization of data for administered vaccines from corresponding group",true
+1.5.11,"Номенклатура CL132 - промени стойности на Description, Display value Bg и Display value En за код A1M","Nomenclature CL132 - changes values of Description, Display value Bg and Display value En for code A1M",false
+1.5.11,"Номенклатура CL132 - добаве код J1M, включващ изследванията на урина от всички профилактични прегледи от група J*","Nomenclature CL132 - added code J1M, including tests of urine from all preventive examinations from group J*",false

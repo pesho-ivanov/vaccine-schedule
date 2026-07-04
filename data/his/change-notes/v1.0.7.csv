@@ -1,10 +1,10 @@
-version,change,regarding vaccines
-Версия 1.0.7,Коригирани ключовете на номенклатура CL007 на латиница,false
-Версия 1.0.7,Коригирана номенклатура CL022 на база анекс между НЗОК и БЛС,false
-Версия 1.0.7,Добавени преводи на CL005,false
-Версия 1.0.7,Добавени преводи на CL015,false
-Версия 1.0.7,Добавени преводи на CL017,false
-Версия 1.0.7,Добавени преводи на CL022,false
-Версия 1.0.7,Добавени преводи на CL024,false
-Версия 1.0.7,Добавени преводи на CL029,false
-Версия 1.0.7,"Ключовете на номенклатура CL031 са променени да представляват валидни мерни единици по UCUM, тъй като те по своето естество са уникални",false
+version,change,change EN,regarding vaccines
+1.0.7,Коригирани ключовете на номенклатура CL007 на латиница,Corrected keys of nomenclature CL007 of Latin,false
+1.0.7,Коригирана номенклатура CL022 на база анекс между НЗОК и БЛС,Corrected nomenclature CL022 of base annex between NHIF and BMA,false
+1.0.7,Добавени преводи на CL005,Added translations for CL005,false
+1.0.7,Добавени преводи на CL015,Added translations for CL015,false
+1.0.7,Добавени преводи на CL017,Added translations for CL017,false
+1.0.7,Добавени преводи на CL022,Added translations for CL022,false
+1.0.7,Добавени преводи на CL024,Added translations for CL024,false
+1.0.7,Добавени преводи на CL029,Added translations for CL029,false
+1.0.7,"Ключовете на номенклатура CL031 са променени да представляват валидни мерни единици по UCUM, тъй като те по своето естество са уникални","Keys of nomenclature CL031 are changed to represent valid units of measure by UCUM, because by their nature are unique",false

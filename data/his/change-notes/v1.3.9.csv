@@ -1,3 +1,3 @@
-version,change,regarding vaccines
-Версия 1.3.9,"Коригирани редове ""<"" и "">"" на ""LT"" и ""GT"" съответно в номенклатура CL097",false
-Версия 1.3.9,"Променени са стойностите на редове ""391"", ""392"" в номенклатура CL085",false
+version,change,change EN,regarding vaccines
+1.3.9,"Коригирани редове ""<"" и "">"" на ""LT"" и ""GT"" съответно в номенклатура CL097","Corrected rows ""<"" and "">"" of ""LT"" and ""GT"" respectively in nomenclature CL097",false
+1.3.9,"Променени са стойностите на редове ""391"", ""392"" в номенклатура CL085","Changed the values of rows ""391"", ""392"" in nomenclature CL085",false

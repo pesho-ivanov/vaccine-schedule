@@ -1,18 +1,18 @@
-version,change,regarding vaccines
-Версия 1.4.3,Променено името на номенклатура CL032,false
-Версия 1.4.3,Променено името на номенклатура CL012,false
-Версия 1.4.3,"Добавени колони за мета данни ""Definition"" и ""Definition EN"" в номенклатура CL012",false
-Версия 1.4.3,"Премахнат код ""50"" от номенклатура CL038",true
-Версия 1.4.3,"Променени стойности в колони ""Description"" и ""Dose Number"" за код ""51"" в номенклатура CL038",true
-Версия 1.4.3,"Добавен код ""Kb"" в номенклатура CL107",false
-Версия 1.4.3,"Коригирани няколко стойности в колона ""Description"" в номенклатура CL107",false
-Версия 1.4.3,"Коригирани няколко стойности в колона ""Language EN"" в номенклатура CL107",false
-Версия 1.4.3,"Коригирани няколко стойности в колона ""Incompatible other codes from CL107"" в номенклатура CL107",false
-Версия 1.4.3,"Коригирани няколко стойности в колона ""Language EN"" в номенклатура CL111",false
-Версия 1.4.3,Променено името на номенклатура CL098,false
-Версия 1.4.3,"Добавен код ""7"" в номенклатура CL069",false
-Версия 1.4.3,"Добавени редове ""11-001"" до ""6E-005"" в номенклатура CL022",false
-Версия 1.4.3,"Добавени редове ""11-001-00"" до ""6E-005-00"" в номенклатура CL024 (подлежат на разширяване и конкретизиране)",false
-Версия 1.4.3,"Коригирани стойностите в колона ""Incompatible other codes from CL107"" в номенклатура CL107",false
-Версия 1.4.3,Създадена номенклатура CL114,false
-Версия 1.4.3,Създадена номенклатура CL115,false
+version,change,change EN,regarding vaccines
+1.4.3,Променено името на номенклатура CL032,Changed the name of nomenclature CL032,false
+1.4.3,Променено името на номенклатура CL012,Changed the name of nomenclature CL012,false
+1.4.3,"Добавени колони за мета данни ""Definition"" и ""Definition EN"" в номенклатура CL012","Added columns for meta data ""Definition"" and ""Definition EN"" in nomenclature CL012",false
+1.4.3,"Премахнат код ""50"" от номенклатура CL038","Removed code ""50"" from nomenclature CL038",true
+1.4.3,"Променени стойности в колони ""Description"" и ""Dose Number"" за код ""51"" в номенклатура CL038","Changed values in columns ""Description"" and ""Dose Number"" for code ""51"" in nomenclature CL038",true
+1.4.3,"Добавен код ""Kb"" в номенклатура CL107","Added code ""Kb"" in nomenclature CL107",false
+1.4.3,"Коригирани няколко стойности в колона ""Description"" в номенклатура CL107","Corrected several values in column ""Description"" in nomenclature CL107",false
+1.4.3,"Коригирани няколко стойности в колона ""Language EN"" в номенклатура CL107","Corrected several values in column ""Language EN"" in nomenclature CL107",false
+1.4.3,"Коригирани няколко стойности в колона ""Incompatible other codes from CL107"" в номенклатура CL107","Corrected several values in column ""Incompatible other codes from CL107"" in nomenclature CL107",false
+1.4.3,"Коригирани няколко стойности в колона ""Language EN"" в номенклатура CL111","Corrected several values in column ""Language EN"" in nomenclature CL111",false
+1.4.3,Променено името на номенклатура CL098,Changed the name of nomenclature CL098,false
+1.4.3,"Добавен код ""7"" в номенклатура CL069","Added code ""7"" in nomenclature CL069",false
+1.4.3,"Добавени редове ""11-001"" до ""6E-005"" в номенклатура CL022","Added rows ""11-001"" until ""6E-005"" in nomenclature CL022",false
+1.4.3,"Добавени редове ""11-001-00"" до ""6E-005-00"" в номенклатура CL024 (подлежат на разширяване и конкретизиране)","Added rows ""11-001-00"" until ""6E-005-00"" in nomenclature CL024 (are subject of expansion and specification)",false
+1.4.3,"Коригирани стойностите в колона ""Incompatible other codes from CL107"" в номенклатура CL107","Corrected values in column ""Incompatible other codes from CL107"" in nomenclature CL107",false
+1.4.3,Създадена номенклатура CL114,Created nomenclature CL114,false
+1.4.3,Създадена номенклатура CL115,Created nomenclature CL115,false

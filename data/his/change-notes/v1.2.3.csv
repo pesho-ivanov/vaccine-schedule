@@ -1,5 +1,5 @@
-version,change,regarding vaccines
-Версия 1.2.3,Добавени нови редове в CL010,false
-Версия 1.2.3,Добавени нови редове в CL035,false
-Версия 1.2.3,Номенклатура CL026 обновена с данни от НЗОК към 16.05.2021 - отменените стойности се показват в червено и са с валидност до тази дата,false
-Версия 1.2.3,Номенклатура CL009 обновена с данни от НСЦРЛП към 02.05.2021 - отменените стойности се показват в червено и са с валидност до тази дата,false
+version,change,change EN,regarding vaccines
+1.2.3,Добавени нови редове в CL010,Added new rows in CL010,false
+1.2.3,Добавени нови редове в CL035,Added new rows in CL035,false
+1.2.3,Номенклатура CL026 обновена с данни от НЗОК към 16.05.2021 - отменените стойности се показват в червено и са с валидност до тази дата,Nomenclature CL026 updated with data from NHIF to 16.05.2021 - canceled values shown in red and are with validity until this date,false
+1.2.3,Номенклатура CL009 обновена с данни от НСЦРЛП към 02.05.2021 - отменените стойности се показват в червено и са с валидност до тази дата,Nomenclature CL009 updated with data from NCPRMP to 02.05.2021 - canceled values shown in red and are with validity until this date,false

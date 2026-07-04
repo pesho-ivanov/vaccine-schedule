@@ -1,12 +1,12 @@
-version,change,regarding vaccines
-Версия 1.3.1,Добавен нов ред в номенклатура CL014 за направление R5,false
-Версия 1.3.1,Изцяло преработена номенклатура CL052,false
-Версия 1.3.1,Изцяло преработена номенклатура CL051,false
-Версия 1.3.1,Коригирани мапинги между CL038 и CL037,true
-Версия 1.3.1,Коригирани номера на разрешителни за всички ваксини в CL037,true
-Версия 1.3.1,Всички лекарствени продукти в CL037 маркирани като активни (след проверка в НСЦРЛП),true
-Версия 1.3.1,"Добавен нов ред ""7401"" в номенклатура CL037",true
-Версия 1.3.1,"Добавен нов ред ""15358"" в номенклатура CL037",true
-Версия 1.3.1,"Добавен нов ред ""8556"" в номенклатура CL037",true
-Версия 1.3.1,"Добавен нов ред ""16887"" в номенклатура CL037",true
-Версия 1.3.1,Добавени нови мапинги към CL037 в номенклатура CL038 (спрямо новите редове),true
+version,change,change EN,regarding vaccines
+1.3.1,Добавен нов ред в номенклатура CL014 за направление R5,Added new row in nomenclature CL014 for referral R5,false
+1.3.1,Изцяло преработена номенклатура CL052,Completely reworked nomenclature CL052,false
+1.3.1,Изцяло преработена номенклатура CL051,Completely reworked nomenclature CL051,false
+1.3.1,Коригирани мапинги между CL038 и CL037,Corrected mappings between CL038 and CL037,true
+1.3.1,Коригирани номера на разрешителни за всички ваксини в CL037,Corrected permit numbers for all vaccines in CL037,true
+1.3.1,Всички лекарствени продукти в CL037 маркирани като активни (след проверка в НСЦРЛП),All medicinal products in CL037 marked as active (after verification in NCPRMP),true
+1.3.1,"Добавен нов ред ""7401"" в номенклатура CL037","Added new row ""7401"" in nomenclature CL037",true
+1.3.1,"Добавен нов ред ""15358"" в номенклатура CL037","Added new row ""15358"" in nomenclature CL037",true
+1.3.1,"Добавен нов ред ""8556"" в номенклатура CL037","Added new row ""8556"" in nomenclature CL037",true
+1.3.1,"Добавен нов ред ""16887"" в номенклатура CL037","Added new row ""16887"" in nomenclature CL037",true
+1.3.1,Добавени нови мапинги към CL037 в номенклатура CL038 (спрямо новите редове),Added new mappings to CL037 in nomenclature CL038 (compared with the new rows),true

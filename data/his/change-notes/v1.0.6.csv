@@ -1,7 +1,7 @@
-version,change,regarding vaccines
-Версия 1.0.6,"Добавени 3 липсващи мапинга към НЗОК за кодове 3088, 2079 и 2081 в номенклатура CL006",false
-Версия 1.0.6,"Допълнена номенклатура CL006 с информацията последно изпратена от МЗ; добавена колона ""Роля в Здравеопазването"", тъй като много от кодовете имат сходни имена",false
-Версия 1.0.6,Добавени стойности на английски за номенклатурa CL021,false
-Версия 1.0.6,Добавени стойности на бългaрски за номенклатура CL012,false
-Версия 1.0.6,Добавени всички редове от номенклатура CL011. Това значително увеличава размера на файла!,false
-Версия 1.0.6,Добавени 2 липсващи стойности към номенклатура CL010 и премахната една дуплицирана стойност,false
+version,change,change EN,regarding vaccines
+1.0.6,"Добавени 3 липсващи мапинга към НЗОК за кодове 3088, 2079 и 2081 в номенклатура CL006","Added 3 missing mapping to NHIF for codes 3088, 2079 and 2081 in nomenclature CL006",false
+1.0.6,"Допълнена номенклатура CL006 с информацията последно изпратена от МЗ; добавена колона ""Роля в Здравеопазването"", тъй като много от кодовете имат сходни имена","Supplemented nomenclature CL006 with information last sent from Ministry of Health; added column ""Role in Healthcare"", because many from the codes have similar names",false
+1.0.6,Добавени стойности на английски за номенклатурa CL021,Added values of English for nomenclature CL021,false
+1.0.6,Добавени стойности на бългaрски за номенклатура CL012,Added values of Bulgarian for nomenclature CL012,false
+1.0.6,Добавени всички редове от номенклатура CL011. Това значително увеличава размера на файла!,Added all rows from nomenclature CL011. this significantly increases the size of file!,false
+1.0.6,Добавени 2 липсващи стойности към номенклатура CL010 и премахната една дуплицирана стойност,Added 2 missing values to nomenclature CL010 and removed one duplicate value,false

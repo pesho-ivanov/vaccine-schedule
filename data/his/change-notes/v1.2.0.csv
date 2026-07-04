@@ -1,9 +1,9 @@
-version,change,regarding vaccines
-Версия 1.2.0,Номенклатура CL022 обновена с данни от НЗОК към 01.03.2021,false
-Версия 1.2.0,"Коригирано описание на поле ""senderId"" в съобщение C001",false
-Версия 1.2.0,"Табове ""Съобщения"", ""С001"", ""С002, ""С003"", ""С004"", ""С099"" са преместени в нов файл с име ""НЗИС Общи Медицински Услуги - API Спецификация""",false
-Версия 1.2.0,Допълнена номенклатура CL056 с тестове за COVID налични в България,false
-Версия 1.2.0,Допълнена номенклатура CL011 с новите кодове за COVID,false
-Версия 1.2.0,"Добавена нова колона ""Mapping to CL038"" в мета-данните за номенклатура CL037",true
-Версия 1.2.0,"Променено името на ваксина ""COVID-19 Vaccine AstraZeneca"" на ""Vaxzevria"" в номенклатура CL037",true
-Версия 1.2.0,"Добавен нов ред за ваксина ""COVID-19 Vaccine Janssen"" в номенклатура CL037",true
+version,change,change EN,regarding vaccines
+1.2.0,Номенклатура CL022 обновена с данни от НЗОК към 01.03.2021,Nomenclature CL022 updated with data from NHIF to 01.03.2021,false
+1.2.0,"Коригирано описание на поле ""senderId"" в съобщение C001","Corrected description of field ""senderId"" in message C001",false
+1.2.0,"Табове ""Съобщения"", ""С001"", ""С002, ""С003"", ""С004"", ""С099"" са преместени в нов файл с име ""НЗИС Общи Медицински Услуги - API Спецификация""","Tabs ""Messages"", ""C001"", ""C002, ""C003"", ""C004"", ""C099"" were moved in new file with name ""NHIS General Medical Services - API Specification""",false
+1.2.0,Допълнена номенклатура CL056 с тестове за COVID налични в България,Supplemented nomenclature CL056 with tests for COVID available in Bulgaria,false
+1.2.0,Допълнена номенклатура CL011 с новите кодове за COVID,Supplemented nomenclature CL011 with new codes for COVID,false
+1.2.0,"Добавена нова колона ""Mapping to CL038"" в мета-данните за номенклатура CL037","Added new column ""Mapping to CL038"" in meta-data for nomenclature CL037",true
+1.2.0,"Променено името на ваксина ""COVID-19 Vaccine AstraZeneca"" на ""Vaxzevria"" в номенклатура CL037","Changed the name of vaccine ""COVID-19 Vaccine AstraZeneca"" of ""Vaxzevria"" in nomenclature CL037",true
+1.2.0,"Добавен нов ред за ваксина ""COVID-19 Vaccine Janssen"" в номенклатура CL037","Added new row for vaccine ""COVID-19 Vaccine Janssen"" in nomenclature CL037",true

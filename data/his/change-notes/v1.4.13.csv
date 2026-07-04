@@ -1,20 +1,20 @@
-version,change,regarding vaccines
-Версия 1.4.13,Коригирано наименование на ред 6 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 7 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 8 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 9 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 10 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 11 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 12 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 16 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 17 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 18 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 19 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 20 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 21 колона B  в номенклатура CL107,false
-Версия 1.4.13,Коригирано наименование на ред 22 колона B  в номенклатура CL107,false
-Версия 1.4.13,Добавен нов код P187.1 в номенклатура CL062,false
-Версия 1.4.13,Добавен нов код P187.2 в номенклатура CL062,false
-Версия 1.4.13,Добавен нов код P262.1 в номенклатура CL062,false
-Версия 1.4.13,Добавен нов код P262.2 в номенклатура CL062,false
-Версия 1.4.13,Добавен нов код P265.3 в номенклатура CL062,false
+version,change,change EN,regarding vaccines
+1.4.13,Коригирано наименование на ред 6 колона B  в номенклатура CL107,Corrected row name 6 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 7 колона B  в номенклатура CL107,Corrected row name 7 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 8 колона B  в номенклатура CL107,Corrected row name 8 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 9 колона B  в номенклатура CL107,Corrected row name 9 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 10 колона B  в номенклатура CL107,Corrected row name 10 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 11 колона B  в номенклатура CL107,Corrected row name 11 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 12 колона B  в номенклатура CL107,Corrected row name 12 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 16 колона B  в номенклатура CL107,Corrected row name 16 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 17 колона B  в номенклатура CL107,Corrected row name 17 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 18 колона B  в номенклатура CL107,Corrected row name 18 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 19 колона B  в номенклатура CL107,Corrected row name 19 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 20 колона B  в номенклатура CL107,Corrected row name 20 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 21 колона B  в номенклатура CL107,Corrected row name 21 column B in nomenclature CL107,false
+1.4.13,Коригирано наименование на ред 22 колона B  в номенклатура CL107,Corrected row name 22 column B in nomenclature CL107,false
+1.4.13,Добавен нов код P187.1 в номенклатура CL062,Added new code P187.1 in nomenclature CL062,false
+1.4.13,Добавен нов код P187.2 в номенклатура CL062,Added new code P187.2 in nomenclature CL062,false
+1.4.13,Добавен нов код P262.1 в номенклатура CL062,Added new code P262.1 in nomenclature CL062,false
+1.4.13,Добавен нов код P262.2 в номенклатура CL062,Added new code P262.2 in nomenclature CL062,false
+1.4.13,Добавен нов код P265.3 в номенклатура CL062,Added new code P265.3 in nomenclature CL062,false

@@ -1,7 +1,7 @@
-version,change,regarding vaccines
-Версия 1.0.14,"Допълнена номенклатура CL037 с ваксина ""COVID-19 Vaccine AstraZeneca""",true
-Версия 1.0.14,Добавени нови редове в номенклатура CL045,false
-Версия 1.0.14,Номенклатура CL031 е маркирана за премахване,false
-Версия 1.0.14,Добавена номенклатура CL047,false
-Версия 1.0.14,Добавена номенклатура CL048,false
-Версия 1.0.14,Добавена номенклатура CL049,false
+version,change,change EN,regarding vaccines
+1.0.14,"Допълнена номенклатура CL037 с ваксина ""COVID-19 Vaccine AstraZeneca""","Supplemented nomenclature CL037 with vaccine ""COVID-19 Vaccine AstraZeneca""",true
+1.0.14,Добавени нови редове в номенклатура CL045,Added new rows in nomenclature CL045,false
+1.0.14,Номенклатура CL031 е маркирана за премахване,Nomenclature CL031 is marked for removal,false
+1.0.14,Добавена номенклатура CL047,Added nomenclature CL047,false
+1.0.14,Добавена номенклатура CL048,Added nomenclature CL048,false
+1.0.14,Добавена номенклатура CL049,Added nomenclature CL049,false

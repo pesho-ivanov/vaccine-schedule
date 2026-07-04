@@ -1,11 +1,11 @@
-version,change,regarding vaccines
-Версия 1.1.0,Добавени нови редове в номенклатура CL042,false
-Версия 1.1.0,Добавени нови редове в номенклатура CL037,true
-Версия 1.1.0,Добавена номенклатура CL050,false
-Версия 1.1.0,Добавени нови редове в номенклатура CL014,false
-Версия 1.1.0,"Промемен формата на всички номенклатурни таблици така, че да отговарят по структура на резултата от заявка C001",false
-Версия 1.1.0,"Поле ""senderISName"" е направено задължително в съобщение C001",false
-Версия 1.1.0,Премахнато правило RL008 от съобщение C001 (нерелевантно),false
-Версия 1.1.0,Премахнато условие CD014 от съобщения C001 и C002 (нерелевантно),false
-Версия 1.1.0,Добавено съобщение C003,false
-Версия 1.1.0,Добавено съобщение C004,false
+version,change,change EN,regarding vaccines
+1.1.0,Добавени нови редове в номенклатура CL042,Added new rows in nomenclature CL042,false
+1.1.0,Добавени нови редове в номенклатура CL037,Added new rows in nomenclature CL037,true
+1.1.0,Добавена номенклатура CL050,Added nomenclature CL050,false
+1.1.0,Добавени нови редове в номенклатура CL014,Added new rows in nomenclature CL014,false
+1.1.0,"Промемен формата на всички номенклатурни таблици така, че да отговарят по структура на резултата от заявка C001","Changed format of all nomenclature tables so, that to match by structure of result from request C001",false
+1.1.0,"Поле ""senderISName"" е направено задължително в съобщение C001","Field ""senderISName"" is made mandatory in message C001",false
+1.1.0,Премахнато правило RL008 от съобщение C001 (нерелевантно),Removed rule RL008 from message C001 (irrelevant),false
+1.1.0,Премахнато условие CD014 от съобщения C001 и C002 (нерелевантно),Removed condition CD014 from Messages C001 and C002 (irrelevant),false
+1.1.0,Добавено съобщение C003,Added message C003,false
+1.1.0,Добавено съобщение C004,Added message C004,false

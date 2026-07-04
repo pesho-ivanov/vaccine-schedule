@@ -1,10 +1,10 @@
-version,change,regarding vaccines
-Версия 1.0.13,"Добавена колона Attribute към всички съобщения - по дефаулт стойността е ""value"", отразяваща текущата ситуация",false
-Версия 1.0.13,"Променено името на поле ""nomenclature.entry.value"" на ""nomenclature.entry.description"" в съобщение C002",false
-Версия 1.0.13,"Добавена опционална група ""nomenclature.entry.meta"" в съобщение C002",false
-Версия 1.0.13,"Добавенo задължително поле ""nomenclature.entry.meta.name"" в съобщение C002",false
-Версия 1.0.13,"Добавенo задължително поле ""nomenclature.entry.meta.value"" в съобщение C002",false
-Версия 1.0.13,"Добавено опционално поле ""senderISName"" в хедъра на съобщение C001",false
-Версия 1.0.13,Добавен нов ред към номенклатура CL043,false
-Версия 1.0.13,"Добавени мета колони към номенклатура CL037 - Days to Next Dose, Permit Owner, Target Disease",true
-Версия 1.0.13,"Допълнена номенклатура CL037 с ваксина ""COVID-19 Vaccine Moderna""",true
+version,change,change EN,regarding vaccines
+1.0.13,"Добавена колона Attribute към всички съобщения - по дефаулт стойността е ""value"", отразяваща текущата ситуация","Added column Attribute to all Messages - by default the value is ""value"", reflecting current situation",false
+1.0.13,"Променено името на поле ""nomenclature.entry.value"" на ""nomenclature.entry.description"" в съобщение C002","Changed the name of field ""nomenclature.entry.value"" of ""nomenclature.entry.description"" in message C002",false
+1.0.13,"Добавена опционална група ""nomenclature.entry.meta"" в съобщение C002","Added optional group ""nomenclature.entry.meta"" in message C002",false
+1.0.13,"Добавенo задължително поле ""nomenclature.entry.meta.name"" в съобщение C002","Added mandatory field ""nomenclature.entry.meta.name"" in message C002",false
+1.0.13,"Добавенo задължително поле ""nomenclature.entry.meta.value"" в съобщение C002","Added mandatory field ""nomenclature.entry.meta.value"" in message C002",false
+1.0.13,"Добавено опционално поле ""senderISName"" в хедъра на съобщение C001","Added optional field ""senderISName"" in header of message C001",false
+1.0.13,Добавен нов ред към номенклатура CL043,Added new row to nomenclature CL043,false
+1.0.13,"Добавени мета колони към номенклатура CL037 - Days to Next Dose, Permit Owner, Target Disease","Added meta columns to nomenclature CL037 - Days to Next Dose, Permit Owner, Target Disease",true
+1.0.13,"Допълнена номенклатура CL037 с ваксина ""COVID-19 Vaccine Moderna""","Supplemented nomenclature CL037 with vaccine ""COVID-19 Vaccine Moderna""",true

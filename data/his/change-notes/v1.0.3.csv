@@ -1,10 +1,10 @@
-version,change,regarding vaccines
-Версия 1.0.3,Коригирани имената на таблиците за всяка номенклатура с цел по-ясно заначение на всяка колона.,false
-Версия 1.0.3,Актуализирана номенклатура CL013 спрямо последните данни от МЗ,false
-Версия 1.0.3,Сменен статуса на номенклатура CL013 на ФИНАЛИЗИРАНА,false
-Версия 1.0.3,"Добавен ред в номенклатура CL003: 5, Fetched",false
-Версия 1.0.3,Добавен мапинг към НЗОК за номенклатура CL006,false
-Версия 1.0.3,Актуализирана номенклатура CL010 спрямо последните данни от МЗ,false
-Версия 1.0.3,Сменен статуса на номенклатура CL014 на ФИНАЛИЗИРАНА,false
-Версия 1.0.3,Сменено името на номенклатура CL024,false
-Версия 1.0.3,Добавена референция към FHIR за номенклатура CL027,false
+version,change,change EN,regarding vaccines
+1.0.3,Коригирани имената на таблиците за всяка номенклатура с цел по-ясно заначение на всяка колона.,Corrected the table names for each nomenclature to make each column meaning clearer.,false
+1.0.3,Актуализирана номенклатура CL013 спрямо последните данни от МЗ,Updated nomenclature CL013 according to the latest data from Ministry of Health,false
+1.0.3,Сменен статуса на номенклатура CL013 на ФИНАЛИЗИРАНА,Changed status of nomenclature CL013 to FINALIZED,false
+1.0.3,"Добавен ред в номенклатура CL003: 5, Fetched","Added row in nomenclature CL003: 5, Fetched",false
+1.0.3,Добавен мапинг към НЗОК за номенклатура CL006,Added mapping to NHIF for nomenclature CL006,false
+1.0.3,Актуализирана номенклатура CL010 спрямо последните данни от МЗ,Updated nomenclature CL010 according to the latest data from Ministry of Health,false
+1.0.3,Сменен статуса на номенклатура CL014 на ФИНАЛИЗИРАНА,Changed status of nomenclature CL014 to FINALIZED,false
+1.0.3,Сменено името на номенклатура CL024,Changed the name of nomenclature CL024,false
+1.0.3,Добавена референция към FHIR за номенклатура CL027,Added reference to FHIR for nomenclature CL027,false

@@ -1,9 +1,9 @@
-version,change,regarding vaccines
-Версия 1.5.13,"Номенклатура CL038 - добавена нова ваксина по CL037 - 57335 за кодове: 48, 49 и 51",true
-Версия 1.5.13,Номенклатура CL044 - добавени са всички ЕКАТТЕ записи към публичната номенклатура. Включени са към номенклатурата всички селищни образувания,false
-Версия 1.5.13,Номенклатура CL007 - премахнати грешно дублирани записи за Т4 и Т5,false
-Версия 1.5.13,"Номенклатура CL134 - добавена колона Ask once със стойност тип boolean, с която се посочва дали даден въпрос да се задава повторно, ако веднъж вече е получил отговор, различен от NULL или отрицателен отговор",false
-Версия 1.5.13,Номенклатура CL114 - добавен нов лекарствен продукт с код 28724 - Fentanyl Kalceks,false
-Версия 1.5.13,"Номенклатура CL139 - добавен код 07.99, който да се използва в случай, че битово-санитарните условия са добри",false
-Версия 1.5.13,Номенклатура CL037 - добавена стойност за vaccine group за код 57335,true
-Версия 1.5.13,Номенклатура CL018 - добавен код 8 за фелдшери във връзка с отделянето им от БАПЗГ,false
+version,change,change EN,regarding vaccines
+1.5.13,"Номенклатура CL038 - добавена нова ваксина по CL037 - 57335 за кодове: 48, 49 и 51","Nomenclature CL038 - added new vaccine by CL037 - 57335 for codes: 48, 49 and 51",true
+1.5.13,Номенклатура CL044 - добавени са всички ЕКАТТЕ записи към публичната номенклатура. Включени са към номенклатурата всички селищни образувания,Nomenclature CL044 - added are all EKATTE records to public nomenclature. Included are to the nomenclature all settlement formations,false
+1.5.13,Номенклатура CL007 - премахнати грешно дублирани записи за Т4 и Т5,Nomenclature CL007 - removed incorrectly duplicated records for T4 and T5,false
+1.5.13,"Номенклатура CL134 - добавена колона Ask once със стойност тип boolean, с която се посочва дали даден въпрос да се задава повторно, ако веднъж вече е получил отговор, различен от NULL или отрицателен отговор","Nomenclature CL134 - added column Ask once with value type boolean, with which indicates whether given question to asked again, if once already is received response, different from NULL or negative response",false
+1.5.13,Номенклатура CL114 - добавен нов лекарствен продукт с код 28724 - Fentanyl Kalceks,Nomenclature CL114 - added new medicinal product with code 28724 - Fentanyl Kalceks,false
+1.5.13,"Номенклатура CL139 - добавен код 07.99, който да се използва в случай, че битово-санитарните условия са добри","Nomenclature CL139 - added code 07.99, which to uses in case, that household sanitary conditions are good",false
+1.5.13,Номенклатура CL037 - добавена стойност за vaccine group за код 57335,Nomenclature CL037 - added value for vaccine group for code 57335,true
+1.5.13,Номенклатура CL018 - добавен код 8 за фелдшери във връзка с отделянето им от БАПЗГ,Nomenclature CL018 - added code 8 for physician assistants in relation to their separation from BAPH,false

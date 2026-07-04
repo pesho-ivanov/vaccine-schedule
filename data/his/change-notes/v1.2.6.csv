@@ -1,33 +1,33 @@
-version,change,regarding vaccines
-Версия 1.2.6,"Добавени нови колони ""Quantity"", ""Divisible"", ""Narcotic"", ""Target Disease"", ""Prescription Type"" в номенклатура CL026",false
-Версия 1.2.6,Номенклатура CL026 е сведена до няколко примерни реда; данните за тази номенклатура се синхронизират автоматично от НЗОК,false
-Версия 1.2.6,Добавени 2 реда с кодове Т4 и Т5 в номенклатура CL007,false
-Версия 1.2.6,Коригирани описанията на всички редове в номенклатура CL007,false
-Версия 1.2.6,Номенклатура CL009 е сведена до няколко примерни реда; данните за тази номенклатура се синхронизират автоматично от НСЦРЛП,false
-Версия 1.2.6,Добавен нов ред в номенклатура CL002 за статус 6 на е-рецепта,false
-Версия 1.2.6,Добавен нов ред в номенклатура CL014 за направление R4,false
-Версия 1.2.6,Добавен нов ред в номенклатура CL003 за статус 8 на е-направление,false
-Версия 1.2.6,Добавена номенклатура CL059,false
-Версия 1.2.6,Добавена номенклатура CL060,false
-Версия 1.2.6,Добавена номенклатура CL061,false
-Версия 1.2.6,Добавена номенклатура CL062,false
-Версия 1.2.6,Добавена номенклатура CL063,false
-Версия 1.2.6,Добавена номенклатура CL064,false
-Версия 1.2.6,Добавена номенклатура CL065,false
-Версия 1.2.6,Добавена номенклатура CL066,false
-Версия 1.2.6,Добавена номенклатура CL067,false
-Версия 1.2.6,Добавена номенклатура CL068,false
-Версия 1.2.6,Добавена номенклатура CL069,false
-Версия 1.2.6,Добавена номенклатура CL070,false
-Версия 1.2.6,Добавена номенклатура CL071,false
-Версия 1.2.6,Добавена номенклатура CL072,false
-Версия 1.2.6,Добавена номенклатура CL073,false
-Версия 1.2.6,Добавена номенклатура CL074,false
-Версия 1.2.6,Добавена номенклатура CL075,false
-Версия 1.2.6,Добавена номенклатура CL076,false
-Версия 1.2.6,Добавена номенклатура CL077,false
-Версия 1.2.6,Добавена номенклатура CL078,false
-Версия 1.2.6,Добавена номенклатура CL079,false
-Версия 1.2.6,Добавена номенклатура CL080,false
-Версия 1.2.6,Добавена номенклатура CL081,false
-Версия 1.2.6,Добавен нов ред в номенклатура CL002 за статус 7 на е-рецепта,false
+version,change,change EN,regarding vaccines
+1.2.6,"Добавени нови колони ""Quantity"", ""Divisible"", ""Narcotic"", ""Target Disease"", ""Prescription Type"" в номенклатура CL026","Added new columns ""Quantity"", ""Divisible"", ""Narcotic"", ""Target Disease"", ""Prescription Type"" in nomenclature CL026",false
+1.2.6,Номенклатура CL026 е сведена до няколко примерни реда; данните за тази номенклатура се синхронизират автоматично от НЗОК,Nomenclature CL026 is reduced until several sample rows; data for this nomenclature synchronize automatically from NHIF,false
+1.2.6,Добавени 2 реда с кодове Т4 и Т5 в номенклатура CL007,Added 2 rows with codes T4 and T5 in nomenclature CL007,false
+1.2.6,Коригирани описанията на всички редове в номенклатура CL007,Corrected descriptions of all rows in nomenclature CL007,false
+1.2.6,Номенклатура CL009 е сведена до няколко примерни реда; данните за тази номенклатура се синхронизират автоматично от НСЦРЛП,Nomenclature CL009 is reduced until several sample rows; data for this nomenclature synchronize automatically from NCPRMP,false
+1.2.6,Добавен нов ред в номенклатура CL002 за статус 6 на е-рецепта,Added new row in nomenclature CL002 for status 6 of e-prescription,false
+1.2.6,Добавен нов ред в номенклатура CL014 за направление R4,Added new row in nomenclature CL014 for referral R4,false
+1.2.6,Добавен нов ред в номенклатура CL003 за статус 8 на е-направление,Added new row in nomenclature CL003 for status 8 of is-referral,false
+1.2.6,Добавена номенклатура CL059,Added nomenclature CL059,false
+1.2.6,Добавена номенклатура CL060,Added nomenclature CL060,false
+1.2.6,Добавена номенклатура CL061,Added nomenclature CL061,false
+1.2.6,Добавена номенклатура CL062,Added nomenclature CL062,false
+1.2.6,Добавена номенклатура CL063,Added nomenclature CL063,false
+1.2.6,Добавена номенклатура CL064,Added nomenclature CL064,false
+1.2.6,Добавена номенклатура CL065,Added nomenclature CL065,false
+1.2.6,Добавена номенклатура CL066,Added nomenclature CL066,false
+1.2.6,Добавена номенклатура CL067,Added nomenclature CL067,false
+1.2.6,Добавена номенклатура CL068,Added nomenclature CL068,false
+1.2.6,Добавена номенклатура CL069,Added nomenclature CL069,false
+1.2.6,Добавена номенклатура CL070,Added nomenclature CL070,false
+1.2.6,Добавена номенклатура CL071,Added nomenclature CL071,false
+1.2.6,Добавена номенклатура CL072,Added nomenclature CL072,false
+1.2.6,Добавена номенклатура CL073,Added nomenclature CL073,false
+1.2.6,Добавена номенклатура CL074,Added nomenclature CL074,false
+1.2.6,Добавена номенклатура CL075,Added nomenclature CL075,false
+1.2.6,Добавена номенклатура CL076,Added nomenclature CL076,false
+1.2.6,Добавена номенклатура CL077,Added nomenclature CL077,false
+1.2.6,Добавена номенклатура CL078,Added nomenclature CL078,false
+1.2.6,Добавена номенклатура CL079,Added nomenclature CL079,false
+1.2.6,Добавена номенклатура CL080,Added nomenclature CL080,false
+1.2.6,Добавена номенклатура CL081,Added nomenclature CL081,false
+1.2.6,Добавен нов ред в номенклатура CL002 за статус 7 на е-рецепта,Added new row in nomenclature CL002 for status 7 of e-prescription,false

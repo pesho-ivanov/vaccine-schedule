@@ -1,4 +1,4 @@
-version,change,regarding vaccines
-Версия 1.5.27,"Номенклатура CL038 - спиране на кодове 19, 20, 21, 22, 65, 75, 76",true
-Версия 1.5.27,"Номенклатура CL150 - промяна в стойността на връзката с МКБ код по CL011на ""M30.1"" за запис с ключ: 1330000271",false
-Версия 1.5.27,"Номенклатура CL136 - промяна в Description, Display value BG, Display value EN за записи с ключове: 3, 4",false
+version,change,change EN,regarding vaccines
+1.5.27,"Номенклатура CL038 - спиране на кодове 19, 20, 21, 22, 65, 75, 76","Nomenclature CL038 - discontinuation of codes 19, 20, 21, 22, 65, 75, 76",true
+1.5.27,"Номенклатура CL150 - промяна в стойността на връзката с МКБ код по CL011на ""M30.1"" за запис с ключ: 1330000271","Nomenclature CL150 - change in the value of the relation with ICD code under CL011 of ""M30.1"" for record with key: 1330000271",false
+1.5.27,"Номенклатура CL136 - промяна в Description, Display value BG, Display value EN за записи с ключове: 3, 4","Nomenclature CL136 - change in Description, Display value BG, Display value EN for records with keys: 3, 4",false

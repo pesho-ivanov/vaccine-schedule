@@ -1,3 +1,3 @@
-version,change,regarding vaccines
-Версия 1.0.5,Коригирани мапинги към НЗОК кодове в номенклатура CL006 спрямо последна информация от МЗ,false
-Версия 1.0.5,Коригирана номенклатура CL010 спрямо последна информация от МЗ. Това променя индексите от предходната версия!,false
+version,change,change EN,regarding vaccines
+1.0.5,Коригирани мапинги към НЗОК кодове в номенклатура CL006 спрямо последна информация от МЗ,Corrected mappings to NHIF codes in nomenclature CL006 compared with latest information from Ministry of Health,false
+1.0.5,Коригирана номенклатура CL010 спрямо последна информация от МЗ. Това променя индексите от предходната версия!,Corrected nomenclature CL010 compared with latest information from Ministry of Health. this changes indexes from previous version!,false

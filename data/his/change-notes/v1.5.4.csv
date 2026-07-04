@@ -1,7 +1,7 @@
-version,change,regarding vaccines
-Версия 1.5.4,Добавена номенклатура CL142,false
-Версия 1.5.4,Възстановена номенклатура CL050 спрямо версия 1.5.2 на спецификацията,false
-Версия 1.5.4,"Корекция в nhif_code в номенклатура CL142 за кодове: 11-025, 29-019, 64-120, 60-103",false
-Версия 1.5.4,Възстановяване на деактивирани кодове в CL037 - 1754 и 3339,true
-Версия 1.5.4,"В номенклатура CL038 - добавяне на код 1754 в Meta Data - CL037 за кодове: 16, 17, 18",true
-Версия 1.5.4,"В номенклатура CL038 - добавяне на код 3339 в Meta Data - CL037 за кодове: 28, 29, 30, 31",true
+version,change,change EN,regarding vaccines
+1.5.4,Добавена номенклатура CL142,Added nomenclature CL142,false
+1.5.4,Възстановена номенклатура CL050 спрямо версия 1.5.2 на спецификацията,Restored nomenclature CL050 compared with version 1.5.2 of specification,false
+1.5.4,"Корекция в nhif_code в номенклатура CL142 за кодове: 11-025, 29-019, 64-120, 60-103","Correction in nhif_code in nomenclature CL142 for codes: 11-025, 29-019, 64-120, 60-103",false
+1.5.4,Възстановяване на деактивирани кодове в CL037 - 1754 и 3339,Restoration of deactivated codes in CL037 - 1754 and 3339,true
+1.5.4,"В номенклатура CL038 - добавяне на код 1754 в Meta Data - CL037 за кодове: 16, 17, 18","In nomenclature CL038 - addition of code 1754 in Meta Data - CL037 for codes: 16, 17, 18",true
+1.5.4,"В номенклатура CL038 - добавяне на код 3339 в Meta Data - CL037 за кодове: 28, 29, 30, 31","In nomenclature CL038 - addition of code 3339 in Meta Data - CL037 for codes: 28, 29, 30, 31",true

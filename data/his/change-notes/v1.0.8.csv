@@ -1,10 +1,10 @@
-version,change,regarding vaccines
-Версия 1.0.8,Добавени преводи и инструкции за употреба в CL016,false
-Версия 1.0.8,Добавени преводи CL027,false
-Версия 1.0.8,Допълнена номенклатура CL005 с информацията предоставена от НСИ,false
-Версия 1.0.8,Допълнена номенклатура CL029 с информацията предоставена от НСИ,false
-Версия 1.0.8,Допълнена номенклатура CL020 (добавени стойности за секунда и мнинута) на база  Fhir и НСИ,false
-Версия 1.0.8,Актуализиран код на МДД 01.38 - С-реактивен протеин,false
-Версия 1.0.8,Добавени държави в CL005,false
-Версия 1.0.8,Попълнена номенклатура CL009,false
-Версия 1.0.8,Попълнена номенклатура CL026,false
+version,change,change EN,regarding vaccines
+1.0.8,Добавени преводи и инструкции за употреба в CL016,Added translations and instructions for use in CL016,false
+1.0.8,Добавени преводи CL027,Added translations CL027,false
+1.0.8,Допълнена номенклатура CL005 с информацията предоставена от НСИ,Supplemented nomenclature CL005 with the information provided by NSI,false
+1.0.8,Допълнена номенклатура CL029 с информацията предоставена от НСИ,Supplemented nomenclature CL029 with the information provided by NSI,false
+1.0.8,Допълнена номенклатура CL020 (добавени стойности за секунда и мнинута) на база  Fhir и НСИ,Supplemented nomenclature CL020 (added values for second and minute) of base Fhir and NSI,false
+1.0.8,Актуализиран код на МДД 01.38 - С-реактивен протеин,Updated code of MDD 01.38 - with-reactive protein,false
+1.0.8,Добавени държави в CL005,Added countries in CL005,false
+1.0.8,Попълнена номенклатура CL009,Populated nomenclature CL009,false
+1.0.8,Попълнена номенклатура CL026,Populated nomenclature CL026,false

@@ -1,7 +1,7 @@
-version,change,regarding vaccines
-Версия 1.4.4,"Добавен код ""T8"" в номенклатура CL007",false
-Версия 1.4.4,"Добавен код ""T9"" в номенклатура CL007",false
-Версия 1.4.4,"Коригирани няколко стойности в CL038,  Key 77,78",true
-Версия 1.4.4,"Добавен код ""81"" в CL038 ( даваща опция да се добавят и лица извън посочената от имунизация възраст)",true
-Версия 1.4.4,Създадена номенклатура CL116,false
-Версия 1.4.4,Създадена номенклатура CL117,false
+version,change,change EN,regarding vaccines
+1.4.4,"Добавен код ""T8"" в номенклатура CL007","Added code ""T8"" in nomenclature CL007",false
+1.4.4,"Добавен код ""T9"" в номенклатура CL007","Added code ""T9"" in nomenclature CL007",false
+1.4.4,"Коригирани няколко стойности в CL038,  Key 77,78","Corrected several values in CL038, Key 77,78",true
+1.4.4,"Добавен код ""81"" в CL038 ( даваща опция да се добавят и лица извън посочената от имунизация възраст)","Added code ""81"" in CL038 ( giving option to add and persons outside the specified from immunization age)",true
+1.4.4,Създадена номенклатура CL116,Created nomenclature CL116,false
+1.4.4,Създадена номенклатура CL117,Created nomenclature CL117,false

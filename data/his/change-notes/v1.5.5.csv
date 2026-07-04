@@ -1,6 +1,6 @@
-version,change,regarding vaccines
-Версия 1.5.5,Добавена номенклатура CL143,false
-Версия 1.5.5,"Добавен нов код ""1"" в номенклатура CL143",false
-Версия 1.5.5,"Добавен нов код ""12"" в номенклатура CL047",false
-Версия 1.5.5,"Добавен нов код ""14"" в номенклатура CL021",false
-Версия 1.5.5,"Код ""8"" в номенклатура CL069 става неактивен след 30.09.2024",false
+version,change,change EN,regarding vaccines
+1.5.5,Добавена номенклатура CL143,Added nomenclature CL143,false
+1.5.5,"Добавен нов код ""1"" в номенклатура CL143","Added new code ""1"" in nomenclature CL143",false
+1.5.5,"Добавен нов код ""12"" в номенклатура CL047","Added new code ""12"" in nomenclature CL047",false
+1.5.5,"Добавен нов код ""14"" в номенклатура CL021","Added new code ""14"" in nomenclature CL021",false
+1.5.5,"Код ""8"" в номенклатура CL069 става неактивен след 30.09.2024","Code ""8"" in nomenclature CL069 becomes inactive after 30.09.2024",false

@@ -409,6 +409,7 @@ def build_change_notes() -> list[dict[str, Any]]:
             changes.append(
                 {
                     "change": change,
+                    "change_en": row.get("change EN", ""),
                     "regarding_vaccines": (
                         True
                         if regards_vaccines is None

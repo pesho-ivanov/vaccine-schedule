@@ -1,10 +1,10 @@
-version,change,regarding vaccines
-Версия 1.0.4,"Премахнати стойности 3127, 3129, 3130, 3133, 3134 и 3136 от номенклатура CL006",false
-Версия 1.0.4,Коригирани едноцифрени мапинги към НЗОК код в номенклатура CL006,false
-Версия 1.0.4,"Добавен ред в номенклатура CL003: 6, Processing",false
-Версия 1.0.4,"Добавен ред в номенклатура CL003: 7, Partially Executed",false
-Версия 1.0.4,Актуализирана номенклатура CL022,false
-Версия 1.0.4,Актуализирана номенклатура CL024,false
-Версия 1.0.4,Финализирана номенклатура CL031,false
-Версия 1.0.4,Добавена номенклатура CL033,false
-Версия 1.0.4,Премахната FHIR референция за номенклатура CL013,false
+version,change,change EN,regarding vaccines
+1.0.4,"Премахнати стойности 3127, 3129, 3130, 3133, 3134 и 3136 от номенклатура CL006","Removed values 3127, 3129, 3130, 3133, 3134 and 3136 from nomenclature CL006",false
+1.0.4,Коригирани едноцифрени мапинги към НЗОК код в номенклатура CL006,Corrected single-digit mappings to NHIF code in nomenclature CL006,false
+1.0.4,"Добавен ред в номенклатура CL003: 6, Processing","Added row in nomenclature CL003: 6, Processing",false
+1.0.4,"Добавен ред в номенклатура CL003: 7, Partially Executed","Added row in nomenclature CL003: 7, Partially Executed",false
+1.0.4,Актуализирана номенклатура CL022,Updated nomenclature CL022,false
+1.0.4,Актуализирана номенклатура CL024,Updated nomenclature CL024,false
+1.0.4,Финализирана номенклатура CL031,Finalized nomenclature CL031,false
+1.0.4,Добавена номенклатура CL033,Added nomenclature CL033,false
+1.0.4,Премахната FHIR референция за номенклатура CL013,Removed FHIR reference for nomenclature CL013,false

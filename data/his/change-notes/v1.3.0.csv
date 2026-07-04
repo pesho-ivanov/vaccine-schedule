@@ -1,20 +1,20 @@
-version,change,regarding vaccines
-Версия 1.3.0,Добавена номенклатура CL083,false
-Версия 1.3.0,"Коригирани имената на номенклатури CL012, CL022, CL024, CL025",false
-Версия 1.3.0,Изцяло преработена номенкалтура CL022,false
-Версия 1.3.0,Изцяло преработена номенкалтура CL024,false
-Версия 1.3.0,Премахната номенклатура CL068,false
-Версия 1.3.0,Добавена номенклатура CL084,false
-Версия 1.3.0,Добавена номенклатура CL085,false
-Версия 1.3.0,Добавена номенклатура CL086,false
-Версия 1.3.0,Добавена номенклатура CL087,false
-Версия 1.3.0,Изцяло преработена номенклатура CL037,true
-Версия 1.3.0,Актуализирана номенклатура CL038,true
-Версия 1.3.0,"Добавена колона ""Vaccine Group"" в номенклатура CL037",true
-Версия 1.3.0,"Добавена колона ""Dose Number"" в номенклатура CL038",true
-Версия 1.3.0,Добавена номенклатура CL088,false
-Версия 1.3.0,"Добавена колона ""Offset Allowed"" в номенклатура CL034",false
-Версия 1.3.0,"Коригирани описания ""Description"" на всички редове в номенклатура CL013",false
-Версия 1.3.0,"Коригирани описания ""Description"" на всички редове в номенклатура CL034",false
-Версия 1.3.0,"Добавена колона ""Medicament Details"" в номенклатура CL037",true
-Версия 1.3.0,"Премахната колона ""Language EN"" в номенклатура CL038",true
+version,change,change EN,regarding vaccines
+1.3.0,Добавена номенклатура CL083,Added nomenclature CL083,false
+1.3.0,"Коригирани имената на номенклатури CL012, CL022, CL024, CL025","Corrected names of nomenclatures CL012, CL022, CL024, CL025",false
+1.3.0,Изцяло преработена номенкалтура CL022,Completely reworked nomenclature CL022,false
+1.3.0,Изцяло преработена номенкалтура CL024,Completely reworked nomenclature CL024,false
+1.3.0,Премахната номенклатура CL068,Removed nomenclature CL068,false
+1.3.0,Добавена номенклатура CL084,Added nomenclature CL084,false
+1.3.0,Добавена номенклатура CL085,Added nomenclature CL085,false
+1.3.0,Добавена номенклатура CL086,Added nomenclature CL086,false
+1.3.0,Добавена номенклатура CL087,Added nomenclature CL087,false
+1.3.0,Изцяло преработена номенклатура CL037,Completely reworked nomenclature CL037,true
+1.3.0,Актуализирана номенклатура CL038,Updated nomenclature CL038,true
+1.3.0,"Добавена колона ""Vaccine Group"" в номенклатура CL037","Added column ""Vaccine Group"" in nomenclature CL037",true
+1.3.0,"Добавена колона ""Dose Number"" в номенклатура CL038","Added column ""Dose Number"" in nomenclature CL038",true
+1.3.0,Добавена номенклатура CL088,Added nomenclature CL088,false
+1.3.0,"Добавена колона ""Offset Allowed"" в номенклатура CL034","Added column ""Offset Allowed"" in nomenclature CL034",false
+1.3.0,"Коригирани описания ""Description"" на всички редове в номенклатура CL013","Corrected descriptions ""Description"" of all rows in nomenclature CL013",false
+1.3.0,"Коригирани описания ""Description"" на всички редове в номенклатура CL034","Corrected descriptions ""Description"" of all rows in nomenclature CL034",false
+1.3.0,"Добавена колона ""Medicament Details"" в номенклатура CL037","Added column ""Medicament Details"" in nomenclature CL037",true
+1.3.0,"Премахната колона ""Language EN"" в номенклатура CL038","Removed column ""Language EN"" in nomenclature CL038",true

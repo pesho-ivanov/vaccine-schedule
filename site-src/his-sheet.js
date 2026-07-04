@@ -57,6 +57,28 @@
   const productsColumnIndex = sheet.name === "CL038"
     ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "CL037 Mapping (2025)") || 0
     : 0;
+  const programGroupEnglishLabels = new Map([
+    [
+      "Задължителни планови имунизации и реимунизации",
+      "Mandatory scheduled immunizations and reimmunizations",
+    ],
+    [
+      "Целеви имунизации и реимунизации",
+      "Targeted immunizations and reimmunizations",
+    ],
+    [
+      "Препоръчителни имунизации и реимунизации",
+      "Recommended immunizations and reimmunizations",
+    ],
+    [
+      "Серуми и ваксини при нараняване",
+      "Sera and vaccines for injuries",
+    ],
+    [
+      "Имунизации по национални програми",
+      "Immunizations under national programs",
+    ],
+  ]);
 
   function columnName(index) {
     let name = "";
@@ -229,6 +251,9 @@
   }
 
   function footnoteTooltip(value) {
+    if (sheet.name === "CL037" && String(value || "").trim() === "ATC") {
+      return "ATC";
+    }
     const marker = footnoteMarker(value);
     if (marker && footnotesByMarker.has(marker)) {
       return combinedAgeFootnoteTooltip();
@@ -267,12 +292,22 @@
 
   function displayHeaderText(value) {
     const text = displayFootnotedText(value);
+    if (sheet.name === "CL037" && text === "ATC") {
+      return "Vaccine class";
+    }
+    if (sheet.name === "CL037" && text === "Number of Doses") {
+      return bgColumnsVisible() ? "Брой дози" : "Number of Doses";
+    }
+    if (sheet.name === "CL037" && text === "Display value EN") {
+      return "Vaccine product";
+    }
     if (sheet.name !== "CL038") {
       return text;
     }
     return {
       "CL037 Mapping (2025)": "Vaccines",
       "Description EN": "Diseases",
+      "Dose Number": bgColumnsVisible() ? "Номер на доза" : "Dose Number",
     }[text] || text;
   }
 
@@ -319,6 +354,68 @@
     label.tabIndex = 0;
     label.setAttribute("aria-label", `${convertedText}. ${originalText}`);
     element.replaceChildren(label);
+    return true;
+  }
+
+  function doseColumnKind(column) {
+    const label = displayFootnotedText(cellValue(hierarchicalHeaderRows[1], column));
+    if (sheet.name === "CL038" && label === "Dose Number") {
+      return "dose-number";
+    }
+    if (sheet.name === "CL037" && label === "Number of Doses") {
+      return "number-of-doses";
+    }
+    return "";
+  }
+
+  function doseNumberText(value, kind) {
+    const text = String(value || "").trim();
+    if (!text || text === "---") {
+      return "";
+    }
+    if (kind === "dose-number") {
+      return dosePositionText(text);
+    }
+    return doseCountText(text);
+  }
+
+  function doseCountText(text) {
+    return text
+      .split(";")
+      .map((entry) => entry.trim())
+      .filter(Boolean)
+      .map((entry) => {
+        if (bgColumnsVisible()) {
+          return `${entry}${entry === "1" ? " доза" : " дози"}`;
+        }
+        return `${entry}${entry === "1" ? " dose" : " doses"}`;
+      })
+      .join("; ");
+  }
+
+  function dosePositionText(text) {
+    const language = bgColumnsVisible() ? "bg" : "en";
+    const singularPrefix = language === "bg" ? "доза" : "dose";
+    const pluralPrefix = language === "bg" ? "дози" : "doses";
+    const marker = language === "bg" ? "№" : "#";
+    const rangeMatch = text.match(/^(\d+)\s*-\s*(\d+)$/);
+
+    if (rangeMatch) {
+      return `${pluralPrefix} ${marker}${rangeMatch[1]}-${marker}${rangeMatch[2]}`;
+    }
+    if (/^\d+\+$/.test(text)) {
+      return `${pluralPrefix} ${marker}${text}`;
+    }
+    return `${singularPrefix} ${marker}${text}`;
+  }
+
+  function setDoseNumberCellText(element, value, column) {
+    const kind = doseColumnKind(column);
+    if (!kind) {
+      return false;
+    }
+
+    element.textContent = doseNumberText(value, kind);
     return true;
   }
 
@@ -401,6 +498,12 @@
     return document.body.classList.contains("show-bg");
   }
 
+  function programGroupDisplayLabel(label) {
+    return bgColumnsVisible()
+      ? label
+      : programGroupEnglishLabels.get(label) || label;
+  }
+
   function isBulgarianColumn(column) {
     return usesKeyRowHeader && /\bBG$/i.test(cellValue(hierarchicalHeaderRows[1], column));
   }
@@ -410,11 +513,17 @@
   }
 
   function isAlwaysHiddenColumn(column) {
-    return sheet.name === "CL038" && [
-      "CL082 Mapping",
-      "CL037 Mapping (2023)",
-      "CL037 Mapping (2024)",
-    ].includes(cellValue(hierarchicalHeaderRows[1], column));
+    const hiddenBySheet = {
+      CL037: [
+        "Target Disease",
+      ],
+      CL038: [
+        "CL082 Mapping",
+        "CL037 Mapping (2023)",
+        "CL037 Mapping (2024)",
+      ],
+    };
+    return (hiddenBySheet[sheet.name] || []).includes(cellValue(hierarchicalHeaderRows[1], column));
   }
 
   function isOldRecordColumn(column) {
@@ -431,7 +540,6 @@
         "Description EN",
         "Vaccine Group",
         "Dose Quantity (ml)",
-        "INN",
         "Permit Number",
         "Permit Owner ID",
         "MH code",
@@ -541,7 +649,7 @@
     const titleCell = document.createElement("th");
     titleCell.scope = "rowgroup";
     titleCell.colSpan = columns.length + 1;
-    titleCell.textContent = title;
+    titleCell.textContent = programGroupDisplayLabel(title);
     titleRow.appendChild(titleCell);
     tbody.appendChild(titleRow);
   }
@@ -565,6 +673,7 @@
       if (
         !setProductsCellText(td, sheetRow.cells[index] || "", index)
         && !setAgeCellText(td, sheetRow.cells[index] || "", index)
+        && !setDoseNumberCellText(td, sheetRow.cells[index] || "", index)
       ) {
         setFootnotedText(td, sheetRow.cells[index] || "");
       }

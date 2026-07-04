@@ -1,21 +1,21 @@
-version,change,regarding vaccines
-Версия 1.3.3,Изцяло преработена номенкалтура CL022,false
-Версия 1.3.3,Изцяло преработена номенкалтура CL024,false
-Версия 1.3.3,"Добавена нова колона ""CL032 Mapping"" в номенклатура CL088",false
-Версия 1.3.3,"Добавен нов ред ""2-00001"" в номенклатура CL050",false
-Версия 1.3.3,"Добавен нов ред ""2-00001-1"" в номенклатура CL088",false
-Версия 1.3.3,"Добавен нов ред ""2-00001-2"" в номенклатура CL088",false
-Версия 1.3.3,"Коригирани стойностите в ""Description"" за редове от ""33"" до ""41"" в номенклатура CL038",true
-Версия 1.3.3,"Променен код на ред ""5"" на ""6"" в номенклатра CL061",false
-Версия 1.3.3,"Добавен нов код ""5"" в номенклатура CL061",false
-Версия 1.3.3,"Коригирани данните в ""Dose Number"" за редове ""04"", ""06"", ""07"" и ""09"" в номенклатура CL038",true
-Версия 1.3.3,Добавена номенклaтура CL090,false
-Версия 1.3.3,Добавена номенклaтура CL091,false
-Версия 1.3.3,Добавена номенклaтура CL092,false
-Версия 1.3.3,Добавена номенклaтура CL093,false
-Версия 1.3.3,"Добавена нова колона ""Usage Instructions"" в номенклатура CL014",false
-Версия 1.3.3,Премахната номенклатура CL036,false
-Версия 1.3.3,Добавена номенклaтура CL094,false
-Версия 1.3.3,"Променено описанието ""Description"" и ""Language EN"" на ред ""1"" в номенклатура CL069",false
-Версия 1.3.3,"Добавен ред ""5"" в номенклатура CL069",false
-Версия 1.3.3,Добавена номенклaтура CL998,false
+version,change,change EN,regarding vaccines
+1.3.3,Изцяло преработена номенкалтура CL022,Completely reworked nomenclature CL022,false
+1.3.3,Изцяло преработена номенкалтура CL024,Completely reworked nomenclature CL024,false
+1.3.3,"Добавена нова колона ""CL032 Mapping"" в номенклатура CL088","Added new column ""CL032 Mapping"" in nomenclature CL088",false
+1.3.3,"Добавен нов ред ""2-00001"" в номенклатура CL050","Added new row ""2-00001"" in nomenclature CL050",false
+1.3.3,"Добавен нов ред ""2-00001-1"" в номенклатура CL088","Added new row ""2-00001-1"" in nomenclature CL088",false
+1.3.3,"Добавен нов ред ""2-00001-2"" в номенклатура CL088","Added new row ""2-00001-2"" in nomenclature CL088",false
+1.3.3,"Коригирани стойностите в ""Description"" за редове от ""33"" до ""41"" в номенклатура CL038","Corrected values in ""Description"" for rows from ""33"" until ""41"" in nomenclature CL038",true
+1.3.3,"Променен код на ред ""5"" на ""6"" в номенклатра CL061","Changed code of row ""5"" of ""6"" in nomenclature CL061",false
+1.3.3,"Добавен нов код ""5"" в номенклатура CL061","Added new code ""5"" in nomenclature CL061",false
+1.3.3,"Коригирани данните в ""Dose Number"" за редове ""04"", ""06"", ""07"" и ""09"" в номенклатура CL038","Corrected the data in ""Dose Number"" for rows ""04"", ""06"", ""07"" and ""09"" in nomenclature CL038",true
+1.3.3,Добавена номенклaтура CL090,Added nomenclature CL090,false
+1.3.3,Добавена номенклaтура CL091,Added nomenclature CL091,false
+1.3.3,Добавена номенклaтура CL092,Added nomenclature CL092,false
+1.3.3,Добавена номенклaтура CL093,Added nomenclature CL093,false
+1.3.3,"Добавена нова колона ""Usage Instructions"" в номенклатура CL014","Added new column ""Usage Instructions"" in nomenclature CL014",false
+1.3.3,Премахната номенклатура CL036,Removed nomenclature CL036,false
+1.3.3,Добавена номенклaтура CL094,Added nomenclature CL094,false
+1.3.3,"Променено описанието ""Description"" и ""Language EN"" на ред ""1"" в номенклатура CL069","Changed the description ""Description"" and ""Language EN"" of row ""1"" in nomenclature CL069",false
+1.3.3,"Добавен ред ""5"" в номенклатура CL069","Added row ""5"" in nomenclature CL069",false
+1.3.3,Добавена номенклaтура CL998,Added nomenclature CL998,false

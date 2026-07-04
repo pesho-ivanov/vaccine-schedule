@@ -1,5 +1,5 @@
-version,change,regarding vaccines
-Версия 1.4.1,Коригирана номенклатура CL106 като са премахнати свръхбройните зъби,false
-Версия 1.4.1,CL037 - Ваксини - добавена колона N - MH Code,true
-Версия 1.4.1,Променена изцяло номенклатура CL107 с нови кодове и различни редове,false
-Версия 1.4.1,Променена изцяло номенклатура CL111 с нови кодове и различни редове,false
+version,change,change EN,regarding vaccines
+1.4.1,Коригирана номенклатура CL106 като са премахнати свръхбройните зъби,Corrected nomenclature CL106 as are removed supernumerary teeth,false
+1.4.1,CL037 - Ваксини - добавена колона N - MH Code,CL037 - vaccines - added column N - MH Code,true
+1.4.1,Променена изцяло номенклатура CL107 с нови кодове и различни редове,Completely changed nomenclature CL107 with new codes and different rows,false
+1.4.1,Променена изцяло номенклатура CL111 с нови кодове и различни редове,Completely changed nomenclature CL111 with new codes and different rows,false

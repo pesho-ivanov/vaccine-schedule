@@ -1,3 +1,3 @@
-version,change,regarding vaccines
-Версия 1.5.14,"Номенклатура CL132 - добавена стойност за Max age при преглед A5M, за да няма застъпване с дейностите по A10M",false
-Версия 1.5.14,Номенклатура CL018 - добавен код 9 за медицинска експертиза,false
+version,change,change EN,regarding vaccines
+1.5.14,"Номенклатура CL132 - добавена стойност за Max age при преглед A5M, за да няма застъпване с дейностите по A10M","Nomenclature CL132 - added value for Max age for examination A5M, so there is no overlap with activities by A10M",false
+1.5.14,Номенклатура CL018 - добавен код 9 за медицинска експертиза,Nomenclature CL018 - added code 9 for medical expertise,false

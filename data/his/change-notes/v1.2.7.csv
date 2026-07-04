@@ -1,8 +1,8 @@
-version,change,regarding vaccines
-Версия 1.2.7,Добавена номенклатура CL082,true
-Версия 1.2.7,"Премахната колона ""CL038 Mapping"" от номенклатура CL037",true
-Версия 1.2.7,"Добавена колона ""CL037 Mapping"" в номенклатура CL038",true
-Версия 1.2.7,"Добавена колона ""CL082 Mapping"" в номенклатура CL038",true
-Версия 1.2.7,Актуализирана номенклатура CL037,true
-Версия 1.2.7,Актуализирана номенклатура CL038,true
-Версия 1.2.7,Променено описанието (и значението) на редове 05 и 06 в номенклатура CL049,false
+version,change,change EN,regarding vaccines
+1.2.7,Добавена номенклатура CL082,Added nomenclature CL082,true
+1.2.7,"Премахната колона ""CL038 Mapping"" от номенклатура CL037","Removed column ""CL038 Mapping"" from nomenclature CL037",true
+1.2.7,"Добавена колона ""CL037 Mapping"" в номенклатура CL038","Added column ""CL037 Mapping"" in nomenclature CL038",true
+1.2.7,"Добавена колона ""CL082 Mapping"" в номенклатура CL038","Added column ""CL082 Mapping"" in nomenclature CL038",true
+1.2.7,Актуализирана номенклатура CL037,Updated nomenclature CL037,true
+1.2.7,Актуализирана номенклатура CL038,Updated nomenclature CL038,true
+1.2.7,Променено описанието (и значението) на редове 05 и 06 в номенклатура CL049,Changed the description (and meaning) of rows 05 and 06 in nomenclature CL049,false

@@ -1,5 +1,5 @@
-version,change,regarding vaccines
-Версия 1.2.8,Попълнена номенлатура CL050 с данни от НЗОК,false
-Версия 1.2.8,"Добавена колона ""Type"" в номенклатура CL050",false
-Версия 1.2.8,Предефинирана номенклатуа CL049 с изцяло нови редове и по FHIR стандарт,false
-Версия 1.2.8,Комбинирани номенклатури CL047 с CL048 в нова номенклатура CL047; номенклатура CL048 е изтрита,false
+version,change,change EN,regarding vaccines
+1.2.8,Попълнена номенлатура CL050 с данни от НЗОК,Populated nomenclature CL050 with data from NHIF,false
+1.2.8,"Добавена колона ""Type"" в номенклатура CL050","Added column ""Type"" in nomenclature CL050",false
+1.2.8,Предефинирана номенклатуа CL049 с изцяло нови редове и по FHIR стандарт,Redefined nomenclature CL049 with completely new rows and by FHIR standard,false
+1.2.8,Комбинирани номенклатури CL047 с CL048 в нова номенклатура CL047; номенклатура CL048 е изтрита,Combined nomenclatures CL047 with CL048 in new nomenclature CL047; nomenclature CL048 is deleted,false

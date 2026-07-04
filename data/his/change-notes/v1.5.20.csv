@@ -1,8 +1,8 @@
-version,change,regarding vaccines
-Версия 1.5.20,Номенклатура CL037 - добавена ваксина с код 46255 - Bexsero,true
-Версия 1.5.20,Номенклатура CL038 - промяна в данните за код 73 и 74 за следните данни: Dose number (брой дози); Min age; Rules; CL037 Mapping (2025),true
-Версия 1.5.20,Номенклатура CL001 - премахване на записи с код 3 и 4,false
-Версия 1.5.20,Създадена номенклатура CL147,false
-Версия 1.5.20,"Номенклатура CL037 - спиране на кодове: 16568, 15497, 17327 поради смяна на продуктите за противогрипни ваксини",true
-Версия 1.5.20,"Номенклатура CL037 - добавени ваксини с кодове: 66739 (Vaxigrip), 66737 (Vaxigrip)",true
-Версия 1.5.20,Номенклатура CL038 - промяна на кодове за връзка към CL037 - сменят се стойностите за код 99 и 72,true
+version,change,change EN,regarding vaccines
+1.5.20,Номенклатура CL037 - добавена ваксина с код 46255 - Bexsero,Nomenclature CL037 - added vaccine with code 46255 - Bexsero,true
+1.5.20,Номенклатура CL038 - промяна в данните за код 73 и 74 за следните данни: Dose number (брой дози); Min age; Rules; CL037 Mapping (2025),Nomenclature CL038 - change in data for code 73 and 74 for the following data: Dose number (number doses); Min age; Rules; CL037 Mapping (2025),true
+1.5.20,Номенклатура CL001 - премахване на записи с код 3 и 4,Nomenclature CL001 - removal of records with code 3 and 4,false
+1.5.20,Създадена номенклатура CL147,Created nomenclature CL147,false
+1.5.20,"Номенклатура CL037 - спиране на кодове: 16568, 15497, 17327 поради смяна на продуктите за противогрипни ваксини","Nomenclature CL037 - discontinuation of codes: 16568, 15497, 17327 due to a change of products for influenza vaccines",true
+1.5.20,"Номенклатура CL037 - добавени ваксини с кодове: 66739 (Vaxigrip), 66737 (Vaxigrip)","Nomenclature CL037 - added vaccines with codes: 66739 (Vaxigrip), 66737 (Vaxigrip)",true
+1.5.20,Номенклатура CL038 - промяна на кодове за връзка към CL037 - сменят се стойностите за код 99 и 72,Nomenclature CL038 - change of codes for relation to CL037 - change values for code 99 and 72,true

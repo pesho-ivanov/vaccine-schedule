@@ -1,8 +1,8 @@
-version,change,regarding vaccines
-Версия 1.5.6,"Добавен нов ред ""00-030"" в номенклатура CL022",false
-Версия 1.5.6,"Добавен нов ред ""00-030-00"" в номенклатура CL024",false
-Версия 1.5.6,"Към CL088 e добавена колона F с ""CL50 Mapping"" с връзка към номенклатура CL050",false
-Версия 1.5.6,Към CL088 е добавени стойности за CL028 Mapping за записи: 75-175-01; 76-168-01,false
-Версия 1.5.6,"Към CL088 е добавени колона за CL032 Mapping за излседванията, при които CL028 е по номенклатура",false
-Версия 1.5.6,Към CL088 е добавени стойности за CL032 Mapping за записи: 75-175-01,false
-Версия 1.5.6,Променена номенклатура CL110 в съответствие с новата наредба за зъболекарските дейности. Старите кодове остават валидни до 1.12.2024,false
+version,change,change EN,regarding vaccines
+1.5.6,"Добавен нов ред ""00-030"" в номенклатура CL022","Added new row ""00-030"" in nomenclature CL022",false
+1.5.6,"Добавен нов ред ""00-030-00"" в номенклатура CL024","Added new row ""00-030-00"" in nomenclature CL024",false
+1.5.6,"Към CL088 e добавена колона F с ""CL50 Mapping"" с връзка към номенклатура CL050","To CL088 e added column F with ""CL50 Mapping"" with relation to nomenclature CL050",false
+1.5.6,Към CL088 е добавени стойности за CL028 Mapping за записи: 75-175-01; 76-168-01,To CL088 is added values for CL028 Mapping for records: 75-175-01; 76-168-01,false
+1.5.6,"Към CL088 е добавени колона за CL032 Mapping за излседванията, при които CL028 е по номенклатура","To CL088 is added column for CL032 Mapping for tests, for which CL028 is by nomenclature",false
+1.5.6,Към CL088 е добавени стойности за CL032 Mapping за записи: 75-175-01,To CL088 is added values for CL032 Mapping for records: 75-175-01,false
+1.5.6,Променена номенклатура CL110 в съответствие с новата наредба за зъболекарските дейности. Старите кодове остават валидни до 1.12.2024,Changed nomenclature CL110 in accordance with new regulation for dental activities. old codes remain valid until 1.12.2024,false

@@ -1,16 +1,16 @@
-version,change,regarding vaccines
-Версия 1.4.12,Добавен нов код 152 в номенклатура CL087,false
-Версия 1.4.12,Промяна в наименованието на код 141,false
-Версия 1.4.12,Промяна в наименованието на код 142,false
-Версия 1.4.12,Заличени 8 броя кодове в номенклатура CL087,false
-Версия 1.4.12,"Премахнат код ""K"" на ред 32 колона F в номенклатура CL107",false
-Версия 1.4.12,"Премахнат код ""F"" на ред 24 колона F в номенклатура CL107",false
-Версия 1.4.12,"Премахнат код ""Е"" на ред 38 колона F в номенклатура CL107",false
-Версия 1.4.12,"Премахнат код ""S"" на ред 23 колона F в номенклатура CL107",false
-Версия 1.4.12,"Премахнат код ""D"" на ред 23 колона F в номенклатура CL107",false
-Версия 1.4.12,"Премахнат код ""Е"" на ред 34 колона F в номенклатура CL107",false
-Версия 1.4.12,Коригиранo наименование на ред 6 колона B в номенклатура CL107,false
-Версия 1.4.12,Коригиранo наименование на ред 16 колона B  в номенклатура CL107,false
-Версия 1.4.12,Промяна в наименованието при код 70 и код 71 в номенклатура CL038,true
-Версия 1.4.12,Създадена номенклатура CL135,false
-Версия 1.4.12,Коригирано наименование на ред 6 колона C  в номенклатура CL107,false
+version,change,change EN,regarding vaccines
+1.4.12,Добавен нов код 152 в номенклатура CL087,Added new code 152 in nomenclature CL087,false
+1.4.12,Промяна в наименованието на код 141,Change in the name of code 141,false
+1.4.12,Промяна в наименованието на код 142,Change in the name of code 142,false
+1.4.12,Заличени 8 броя кодове в номенклатура CL087,Deleted 8 number of codes in nomenclature CL087,false
+1.4.12,"Премахнат код ""K"" на ред 32 колона F в номенклатура CL107","Removed code ""K"" of row 32 column F in nomenclature CL107",false
+1.4.12,"Премахнат код ""F"" на ред 24 колона F в номенклатура CL107","Removed code ""F"" of row 24 column F in nomenclature CL107",false
+1.4.12,"Премахнат код ""Е"" на ред 38 колона F в номенклатура CL107","Removed code ""is"" of row 38 column F in nomenclature CL107",false
+1.4.12,"Премахнат код ""S"" на ред 23 колона F в номенклатура CL107","Removed code ""S"" of row 23 column F in nomenclature CL107",false
+1.4.12,"Премахнат код ""D"" на ред 23 колона F в номенклатура CL107","Removed code ""D"" of row 23 column F in nomenclature CL107",false
+1.4.12,"Премахнат код ""Е"" на ред 34 колона F в номенклатура CL107","Removed code ""is"" of row 34 column F in nomenclature CL107",false
+1.4.12,Коригиранo наименование на ред 6 колона B в номенклатура CL107,Corrected name of row 6 column B in nomenclature CL107,false
+1.4.12,Коригиранo наименование на ред 16 колона B  в номенклатура CL107,Corrected name of row 16 column B in nomenclature CL107,false
+1.4.12,Промяна в наименованието при код 70 и код 71 в номенклатура CL038,Change in the name for code 70 and code 71 in nomenclature CL038,true
+1.4.12,Създадена номенклатура CL135,Created nomenclature CL135,false
+1.4.12,Коригирано наименование на ред 6 колона C  в номенклатура CL107,Corrected row name 6 column C in nomenclature CL107,false

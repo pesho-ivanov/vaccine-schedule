@@ -1,8 +1,8 @@
-version,change,regarding vaccines
-Версия 1.1.1,Добавена номенклатура CL051,false
-Версия 1.1.1,Добавена номенклатура CL052,false
-Версия 1.1.1,Добавена номенклатура CL053,false
-Версия 1.1.1,Добавена номенклатура CL054,false
-Версия 1.1.1,Добавена номенклатура CL056,false
-Версия 1.1.1,Допълнена номенклатура CL022 с нови редове,false
-Версия 1.1.1,Премахната номенклатура CL031,false
+version,change,change EN,regarding vaccines
+1.1.1,Добавена номенклатура CL051,Added nomenclature CL051,false
+1.1.1,Добавена номенклатура CL052,Added nomenclature CL052,false
+1.1.1,Добавена номенклатура CL053,Added nomenclature CL053,false
+1.1.1,Добавена номенклатура CL054,Added nomenclature CL054,false
+1.1.1,Добавена номенклатура CL056,Added nomenclature CL056,false
+1.1.1,Допълнена номенклатура CL022 с нови редове,Supplemented nomenclature CL022 with new rows,false
+1.1.1,Премахната номенклатура CL031,Removed nomenclature CL031,false

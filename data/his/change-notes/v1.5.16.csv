@@ -1,9 +1,9 @@
-version,change,regarding vaccines
-Версия 1.5.16,"Номенклатура CL132 - промяна на стойност за Max age при преглед A2M20, A2M25 и A8M68 - намаляват се с 1 година, тъй като се горната възрастова граница е до годината, в която се навършва възрастта и се удължават събитията",false
-Версия 1.5.16,"Добавен код ""03-028"" в номенклатура CL022",false
-Версия 1.5.16,"Добавен код ""03-028-00"" в номенклатура CL024",false
-Версия 1.5.16,"Добавени кодове 9, 10, 11 в номенклатура CL002",false
-Версия 1.5.16,Добавен код 4 в номенклатура CL055,false
-Версия 1.5.16,"Добавени кодове 100, 101 в номенклатура CL038 за новите правила за HPV",true
-Версия 1.5.16,Промяна на descr и min age при код 81 в номенклатура CL038,true
-Версия 1.5.16,Създадена номенклатура CL146,false
+version,change,change EN,regarding vaccines
+1.5.16,"Номенклатура CL132 - промяна на стойност за Max age при преглед A2M20, A2M25 и A8M68 - намаляват се с 1 година, тъй като се горната възрастова граница е до годината, в която се навършва възрастта и се удължават събитията","Nomenclature CL132 - change of value for Max age for examination A2M20, A2M25 and A8M68 - decrease with 1 year, because upper age limit is until year, in which turns age and extend the events",false
+1.5.16,"Добавен код ""03-028"" в номенклатура CL022","Added code ""03-028"" in nomenclature CL022",false
+1.5.16,"Добавен код ""03-028-00"" в номенклатура CL024","Added code ""03-028-00"" in nomenclature CL024",false
+1.5.16,"Добавени кодове 9, 10, 11 в номенклатура CL002","Added codes 9, 10, 11 in nomenclature CL002",false
+1.5.16,Добавен код 4 в номенклатура CL055,Added code 4 in nomenclature CL055,false
+1.5.16,"Добавени кодове 100, 101 в номенклатура CL038 за новите правила за HPV","Added codes 100, 101 in nomenclature CL038 for new rules for HPV",true
+1.5.16,Промяна на descr и min age при код 81 в номенклатура CL038,Change of descr and min age for code 81 in nomenclature CL038,true
+1.5.16,Създадена номенклатура CL146,Created nomenclature CL146,false
