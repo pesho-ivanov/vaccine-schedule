@@ -16,6 +16,7 @@ SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = ("index.html", "app.js", "styles.css", "CNAME")
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
+HIS_VACCINE_SPEC_PATH = DATA_DIR / "his/vaccine-specifications.yaml"
 
 
 def read_yaml(name: str) -> dict[str, Any]:
@@ -123,6 +124,14 @@ def schedule_rows(schedule_data: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
+def his_vaccine_spec() -> dict[str, Any]:
+    with HIS_VACCINE_SPEC_PATH.open(encoding="utf-8") as handle:
+        spec = yaml.safe_load(handle) or {}
+    if not isinstance(spec, dict):
+        raise ValueError(f"{HIS_VACCINE_SPEC_PATH}: expected mapping")
+    return spec
+
+
 def build_schedule_table() -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     diseases_data = read_yaml("diseases.yaml")
@@ -131,6 +140,7 @@ def build_schedule_table() -> dict[str, Any]:
     notes_data = read_yaml("notes.yaml")
     sources_data = read_yaml("sources.yaml")
     metadata = read_yaml("metadata.yaml")
+    his_spec = his_vaccine_spec()
 
     columns = columns_data["columns"]
     column_ids = [column["id"] for column in columns]
@@ -231,6 +241,9 @@ def build_schedule_table() -> dict[str, Any]:
             },
         },
         "source_links": sources_data["source_links"],
+        "source_versions": {
+            "his_bg": f"v{his_spec['his_version']}",
+        },
         "generated_from": [
             "data/columns.yaml",
             "data/bg/columns.yaml",
@@ -240,6 +253,7 @@ def build_schedule_table() -> dict[str, Any]:
             "data/dose_texts.yaml",
             "data/notes.yaml",
             "data/sources.yaml",
+            "data/his/vaccine-specifications.yaml",
             "data/metadata.yaml",
             "data/bg/metadata.yaml",
         ],

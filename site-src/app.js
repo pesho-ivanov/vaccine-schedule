@@ -290,17 +290,21 @@
   }
 
   function sourceLabel(name) {
-    return {
+    const label = {
       ecdc_calendar: "ECDC",
       lex_calendar: "lex.bg",
-      pregnancy_vaccine: "plusmen",
+      pregnancy_vaccine: "plusmen.bg",
       his_bg: "his.bg",
     }[name] || name.replaceAll("_", " ");
+    const version = data.source_versions?.[name];
+    return version ? `${label} (${version})` : label;
   }
 
   function sourceTitle(name) {
     return {
-      his_bg: "Sheets CL037 & CL038",
+      lex_calendar: "The law about vaccines in Bulgaria.",
+      pregnancy_vaccine: "Informational site. Not complete and updated.",
+      his_bg: "The electronic health system in Bulgaria. Sheets CL037 & CL038.",
     }[name] || "";
   }
 
@@ -318,8 +322,19 @@
   }
 
   function renderSources() {
+    const sourceOrder = ["lex_calendar", "his_bg", "pregnancy_vaccine"];
+    for (const name of sourceOrder) {
+      const url = data.source_links[name];
+      if (!url) {
+        continue;
+      }
+      appendLinkItem(sourceList, sourceLabel(name), url, sourceTitle(name));
+    }
     for (const [name, url] of Object.entries(data.source_links)) {
       if (name === "ecdc_calendar") {
+        continue;
+      }
+      if (sourceOrder.includes(name)) {
         continue;
       }
       appendLinkItem(sourceList, sourceLabel(name), url, sourceTitle(name));

@@ -11,6 +11,7 @@ Reusable Bulgaria vaccine schedule data and rendering helpers.
 - `data/notes.yaml` defines dose notes by disease ID and column ID.
 - `data/metadata.yaml` contains UI text and display settings.
 - `data/bg/*.yaml` contains Bulgarian translation overlays for the matching base files.
+- `data/his/` contains the current HIS vaccine nomenclature artifact and manifest.
 - `schema/*.schema.json` documents the YAML file contracts.
 - `validate.py` checks required fields and cross-file references.
 - `site-src/` contains the static site source.
@@ -33,6 +34,18 @@ Build the static site:
 
 ```sh
 make site
+```
+
+Check whether committed external reference data still matches upstream sources:
+
+```sh
+make check-updates
+```
+
+To run update checks before every push from this checkout:
+
+```sh
+git config core.hooksPath .githooks
 ```
 
 Then open `generated-site/index.html` in a browser. The site copies static assets from
