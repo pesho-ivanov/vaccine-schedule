@@ -756,6 +756,17 @@ def schedule_notes_by_dose(notes_data: dict) -> dict[tuple[str, str, str], str]:
     return notes
 
 
+def schedule_rows(schedule_data: dict) -> list[dict]:
+    return [
+        {**row, "group": group}
+        for group, key in (
+            ("mandatory", "rows_mandatory"),
+            ("recommended", "rows_recommended"),
+        )
+        for row in schedule_data.get(key, [])
+    ]
+
+
 SCHEDULE_DOSE_TEXTS_BY_DOSE = schedule_dose_texts_by_dose(SCHEDULE_DOSE_TEXTS_DATA)
 SCHEDULE_NOTES_BY_DOSE = schedule_notes_by_dose(SCHEDULE_NOTES_DATA)
 
@@ -810,7 +821,7 @@ def overlay_fill_lookup() -> dict[tuple[str, str], str]:
 
 
 def load_immunization_calendar() -> dict:
-    source_rows = SCHEDULE_DATA.get("rows", [])
+    source_rows = schedule_rows(SCHEDULE_DATA)
     if not source_rows:
         raise ValueError(f"No vaccine schedule rows found in {DATA_DIR / 'schedule.yaml'}")
     rows = [

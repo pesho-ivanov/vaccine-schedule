@@ -105,6 +105,17 @@ def require_unique(items: list[str], message: str) -> None:
     require(not duplicates, f"{message}: {', '.join(duplicates)}")
 
 
+def schedule_rows(schedule: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    rows: list[tuple[str, dict[str, Any]]] = []
+    for group, key in (
+        ("mandatory", "rows_mandatory"),
+        ("recommended", "rows_recommended"),
+    ):
+        for row in require_list(schedule.get(key), f"schedule.yaml: {key} must be a list"):
+            rows.append((group, row))
+    return rows
+
+
 def dose_reference_key(disease_id: str, dose: dict[str, Any]) -> tuple[str, str, str]:
     return (
         disease_id,
@@ -220,12 +231,13 @@ def validate() -> None:
         require_string(fill.get("cell_text"), f"metadata.yaml: {vaccine_id}: cell_text is required")
         require_string(fill.get("fill_background"), f"metadata.yaml: {vaccine_id}: fill_background is required")
 
-    schedule_rows = require_list(schedule.get("rows"), "schedule.yaml: rows must be a list")
+    schedule_row_entries = schedule_rows(schedule)
+    require(schedule_row_entries, "schedule.yaml: rows_mandatory and rows_recommended must not both be empty")
     schedule_dose_keys: set[tuple[str, str, str]] = set()
-    for row in schedule_rows:
+    for group, row in schedule_row_entries:
         disease_id = require_string(row.get("disease"), "schedule.yaml: row disease is required")
         require(disease_id in disease_id_set, f"schedule.yaml: unknown disease {disease_id}")
-        require(row.get("group") in {"mandatory", "recommended"}, f"schedule.yaml: {disease_id}: invalid group")
+        require("group" not in row, f"schedule.yaml: {disease_id}: group belongs in rows_mandatory or rows_recommended")
         for dose in require_list(row.get("doses"), f"schedule.yaml: {disease_id}: doses must be a list"):
             require("note" not in dose, f"schedule.yaml: {disease_id}: dose notes belong in notes.yaml")
             require("text" not in dose, f"schedule.yaml: {disease_id}: dose text belongs in dose_texts.yaml")

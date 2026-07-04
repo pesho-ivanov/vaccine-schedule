@@ -4,38 +4,46 @@
   "title": "Vaccine Schedule Rows",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "country", "rows"],
+  "required": ["version", "country", "rows_mandatory", "rows_recommended"],
   "properties": {
     "version": { "const": 1 },
     "country": { "const": "BG" },
-    "rows": {
+    "rows_mandatory": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["disease", "group", "doses"],
-        "properties": {
-          "disease": { "$ref": "types.schema.json#/$defs/id" },
-          "group": { "enum": ["mandatory", "recommended"] },
-          "divider_after": { "type": "boolean" },
-          "doses": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": ["column"],
-              "properties": {
-                "column": { "$ref": "types.schema.json#/$defs/id" },
-                "through": { "$ref": "types.schema.json#/$defs/id" },
-                "mandatory": { "type": "boolean" },
-                "muted": { "type": "boolean" },
-                "struck": { "type": "boolean" },
-                "note_style": { "type": "boolean" }
-              }
-            }
-          }
+      "items": { "$ref": "#/$defs/row" }
+    },
+    "rows_recommended": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/row" }
+    }
+  },
+  "$defs": {
+    "row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disease", "doses"],
+      "properties": {
+        "disease": { "$ref": "types.schema.json#/$defs/id" },
+        "divider_after": { "type": "boolean" },
+        "doses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/dose" }
         }
+      }
+    },
+    "dose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column"],
+      "properties": {
+        "column": { "$ref": "types.schema.json#/$defs/id" },
+        "through": { "$ref": "types.schema.json#/$defs/id" },
+        "mandatory": { "type": "boolean" },
+        "muted": { "type": "boolean" },
+        "struck": { "type": "boolean" },
+        "note_style": { "type": "boolean" }
       }
     }
   }

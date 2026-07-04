@@ -1,14 +1,12 @@
 version: 1
 country: BG
-rows:
+rows_mandatory:
 - disease: tuberculosis
-  group: mandatory
   doses:
   - column: birth
   - column: 7m
   - column: 7y
 - disease: diphtheria
-  group: mandatory
   doses:
   - column: 2m
   - column: 3m
@@ -20,7 +18,6 @@ rows:
   - column: 25y
     through: gte65y
 - disease: tetanus
-  group: mandatory
   doses:
   - column: 2m
   - column: 3m
@@ -32,7 +29,6 @@ rows:
   - column: 25y
     through: gte65y
 - disease: pertussis
-  group: mandatory
   doses:
   - column: 2m
   - column: 3m
@@ -43,7 +39,6 @@ rows:
   - column: 18y
     through: 64y
 - disease: poliomyelitis
-  group: mandatory
   doses:
   - column: 2m
   - column: 3m
@@ -51,14 +46,12 @@ rows:
   - column: 16m
   - column: 6y
 - disease: haemophilus_influenzae_type_b
-  group: mandatory
   doses:
   - column: 2m
   - column: 3m
   - column: 4m
   - column: 16m
 - disease: hepatitis_b
-  group: mandatory
   doses:
   - column: birth
   - column: 1m
@@ -67,31 +60,27 @@ rows:
   - column: 4m
   - column: 6m
 - disease: pneumococcal_disease
-  group: mandatory
   doses:
   - column: 2m
   - column: 4m
   - column: 12m
   - column: gte65y
 - disease: measles_mumps_rubella
-  group: mandatory
   doses:
   - column: 13m
   - column: 12y
 - disease: varicella
-  group: mandatory
   divider_after: true
   doses:
   - column: 12m
     through: 15m
   - column: 4y
+rows_recommended:
 - disease: pert
-  group: recommended
   doses:
   - column: pregnancy_27w
     through: pregnancy_36w
 - disease: rsv
-  group: recommended
   doses:
   - column: pregnancy_24w
     through: pregnancy_36w
@@ -99,22 +88,18 @@ rows:
   - column: 18y
     through: gte65y
 - disease: rotavirus
-  group: recommended
   doses:
   - column: 2m
     through: 6m
 - disease: meningococcal
-  group: recommended
   doses:
   - column: 2m
     through: 18y
 - disease: hepatitis_a
-  group: recommended
   doses:
   - column: 12m
     through: 18y
 - disease: covid
-  group: recommended
   doses:
   - column: pregnancy_1w
     through: pregnancy_end
@@ -125,7 +110,6 @@ rows:
   - column: 60y
     through: gte65y
 - disease: influenza
-  group: recommended
   doses:
   - column: pregnancy_1w
     through: pregnancy_end
@@ -135,7 +119,6 @@ rows:
     through: 64y
   - column: gte65y
 - disease: hpv
-  group: recommended
   doses:
   - column: 10y
     through: 12y

@@ -112,6 +112,17 @@ def build_ecdc_links(disease: dict[str, Any]) -> list[dict[str, str]]:
     ]
 
 
+def schedule_rows(schedule_data: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        {**row, "group": group}
+        for group, key in (
+            ("mandatory", "rows_mandatory"),
+            ("recommended", "rows_recommended"),
+        )
+        for row in schedule_data.get(key, [])
+    ]
+
+
 def build_schedule_table() -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     diseases_data = read_yaml("diseases.yaml")
@@ -133,7 +144,7 @@ def build_schedule_table() -> dict[str, Any]:
     }
 
     rows: list[dict[str, Any]] = []
-    for schedule_row in schedule_data["rows"]:
+    for schedule_row in schedule_rows(schedule_data):
         disease_id = schedule_row["disease"]
         disease = diseases[disease_id]
         doses: list[dict[str, Any]] = []
