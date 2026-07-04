@@ -22,6 +22,7 @@ STATIC_FILES = ("index.html", "app.js", "his-sheet.html", "his-sheet.js", "style
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
 HIS_VACCINE_SPEC_PATH = DATA_DIR / "his/vaccine-specifications.yaml"
 HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
+HIS_PRODUCTS_PATH = DATA_DIR / "his/products.csv"
 HIS_SHEET_NAMES = ("CL037", "CL038", "Change Notes")
 HIS_OMITTED_COLUMNS = {
     "Change Notes": ("Дата на тестова", "Дата на прод"),
@@ -428,6 +429,27 @@ def build_change_notes() -> list[dict[str, Any]]:
     return sorted(versions, key=lambda item: version_sort_key(item["version"]), reverse=True)
 
 
+def build_product_links() -> dict[str, dict[str, str]]:
+    if not HIS_PRODUCTS_PATH.is_file():
+        raise FileNotFoundError(f"missing HIS products links file: {HIS_PRODUCTS_PATH}")
+
+    with HIS_PRODUCTS_PATH.open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    links = {}
+    for row in rows:
+        key = str(row.get("key", "")).strip()
+        if not key:
+            continue
+        links[key] = {
+            "product": str(row.get("product", "")).strip(),
+            "ema": str(row.get("EMA link", "")).strip(),
+            "who": str(row.get("WHO link", "")).strip(),
+            "fda": str(row.get("FDA link", "")).strip(),
+        }
+    return links
+
+
 def build_his_sheets() -> dict[str, Any]:
     his_spec = his_vaccine_spec()
     sources_data = read_yaml("sources.yaml")
@@ -486,6 +508,7 @@ def build_his_sheets() -> dict[str, Any]:
             "his_bg": f"v{his_spec['his_version']}",
         },
         "change_notes": build_change_notes(),
+        "product_links": build_product_links(),
         "sheets": sheets,
     }
 

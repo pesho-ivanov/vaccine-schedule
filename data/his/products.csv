@@ -1,61 +1,61 @@
-key,EMA link
--1000,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty
--1001,https://www.ema.europa.eu/en/medicines/human/EPAR/spikevax
--1002,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxzevria
--1003,https://www.ema.europa.eu/en/medicines/human/EPAR/jcovden
--1004,https://www.ema.europa.eu/en/medicines/human/EPAR/covid-19-vaccine-inactivated-adjuvanted-valneva
--1005,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty
--1006,https://www.ema.europa.eu/en/medicines/human/EPAR/vidprevtyn-beta
-99999,
-17,
-15138,
-16058,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa
-1754,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa
-3537,https://www.ema.europa.eu/en/medicines/human/EPAR/hexacima
-3339,
-1542,
-1541,
-15420,
-61121,
-127,
-16962,
-64,
-1344,
-2998,
-1730,
-2517,https://www.ema.europa.eu/en/medicines/human/EPAR/m-m-rvaxpro
-1234,
-4084,
-4184,
-2958,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix
-16291,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix
-1653,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13
-16979,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13
-16651,
-4133,
-129,https://www.ema.europa.eu/en/medicines/human/EPAR/twinrix-adult
-1925,
-7401,
-16568,
-15497,
-16744,
-16146,
-17327,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-tetra
-66739,
-66737,
-2683,https://www.ema.europa.eu/en/medicines/human/EPAR/cervarix
-16074,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil
-48571,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil-9
-4144,
-2565,https://www.ema.europa.eu/en/medicines/human/EPAR/rotateq
-17091,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix
-3932,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix
-15358,
-8556,https://www.ema.europa.eu/en/medicines/human/EPAR/nimenrix
-16887,
-15210,
-57335,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxneuvance
-58090,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-20
-64095,https://www.ema.europa.eu/en/medicines/human/EPAR/abrysvo
-64907,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-0
-46255,https://www.ema.europa.eu/en/medicines/human/EPAR/bexsero
+key,product,EMA link,WHO link,FDA link
+-1000,Comirnaty,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
+-1001,Moderna,https://www.ema.europa.eu/en/medicines/human/EPAR/spikevax,,https://www.fda.gov/vaccines-blood-biologics/spikevax
+-1002,Vaxzevria,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxzevria,,
+-1003,Janssen,https://www.ema.europa.eu/en/medicines/human/EPAR/jcovden,,
+-1004,Valneva,https://www.ema.europa.eu/en/medicines/human/EPAR/covid-19-vaccine-inactivated-adjuvanted-valneva,,
+-1005,Comirnaty Kids,https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty,https://extranet.who.int/prequal/vaccines/p/comirnatyr,https://www.fda.gov/vaccines-blood-biologics/comirnaty
+-1006,Vidprevtyn,https://www.ema.europa.eu/en/medicines/human/EPAR/vidprevtyn-beta,,
+99999,UNKNOWN,,,
+17,BCG,,https://extranet.who.int/prequal/vaccines/p/bcg-vaccine,https://www.fda.gov/vaccines-blood-biologics/vaccines/bcg-vaccine
+15138,PPD,,,
+16058,Infanrix Hexa,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
+1754,Infanrix Hexa,https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa,,
+3537,Hexacima,https://www.ema.europa.eu/en/medicines/human/EPAR/hexacima,https://extranet.who.int/prequal/vaccines/p/hexaxim,
+3339,Infanrix-IPV+HIB,,,
+1542,Pentaxim,,,
+1541,Pentaxim,,,
+15420,Tetraxim,,,
+61121,Tetraxim,,,
+127,Boostrix,,https://extranet.who.int/prequal/vaccines/p/boostrix,https://www.fda.gov/vaccines-blood-biologics/vaccines/boostrix
+16962,Adacel,,https://extranet.who.int/prequal/vaccines/p/adacel,https://www.fda.gov/vaccines-blood-biologics/vaccines/adacel
+64,Tetadif,,https://extranet.who.int/prequal/vaccines/p/tetadif,
+1344,Tetatox,,https://extranet.who.int/prequal/vaccines/p/tetatox,
+2998,Engerix B,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
+1730,Engerix B,,https://extranet.who.int/prequal/vaccines/p/engerix-b,https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b
+2517,M-M-RVAXPRO,https://www.ema.europa.eu/en/medicines/human/EPAR/m-m-rvaxpro,,
+1234,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+4084,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+4184,Priorix,,https://extranet.who.int/prequal/vaccines/p/priorix,https://www.fda.gov/vaccines-blood-biologics/priorix
+2958,Synflorix,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
+16291,Synflorix,https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix,https://extranet.who.int/prequal/vaccines/p/synflorix,
+1653,Prevenar 13,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
+16979,Prevenar 13,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13,https://extranet.who.int/prequal/vaccines/p/prevenar-13,
+16651,Verorab,,https://extranet.who.int/prequal/vaccines/p/verorab,
+4133,Anti-CHF,,,
+129,Twinrix adult,https://www.ema.europa.eu/en/medicines/human/EPAR/twinrix-adult,,https://www.fda.gov/vaccines-blood-biologics/vaccines/twinrix
+1925,Havrix 720,,https://extranet.who.int/prequal/vaccines/p/havrix-720-junior,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
+7401,Havrix 1440,,https://extranet.who.int/prequal/vaccines/p/havrix-1440-adult,https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix
+16568,VaxigripTetra,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
+15497,VaxigripTetra,,https://extranet.who.int/prequal/vaccines/p/vaxigriptetra,
+16744,Influvac Tetra,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
+16146,Influvac Tetra,,https://extranet.who.int/prequal/vaccines/p/influvacr-tetra,
+17327,Fluenz Tetra,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-tetra,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist-quadrivalent
+66739,Vaxigrip,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
+66737,Vaxigrip,,https://extranet.who.int/prequal/vaccines/p/vaxigrip,
+2683,Cervarix,https://www.ema.europa.eu/en/medicines/human/EPAR/cervarix,https://extranet.who.int/prequal/vaccines/p/cervarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/cervarix
+16074,Gardasil,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil,https://extranet.who.int/prequal/vaccines/p/gardasiltm,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil
+48571,Gardasil 9,https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil-9,https://extranet.who.int/prequal/vaccines/p/gardasil-9,https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil-9
+4144,Antitetanus serum,,,
+2565,RotaTeq,https://www.ema.europa.eu/en/medicines/human/EPAR/rotateq,https://extranet.who.int/prequal/vaccines/p/rotateq,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotateq
+17091,Rotarix,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
+3932,Rotarix,https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix,https://extranet.who.int/prequal/vaccines/p/rotarix,https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix
+15358,Stamaril,,https://extranet.who.int/prequal/vaccines/p/stamaril,
+8556,Nimenrix,https://www.ema.europa.eu/en/medicines/human/EPAR/nimenrix,https://extranet.who.int/prequal/vaccines/p/nimenrix,
+16887,Varivax,,https://extranet.who.int/prequal/vaccines/p/varivax,https://www.fda.gov/vaccines-blood-biologics/vaccines/varivax-refrigerated-and-frozen-formulations
+15210,Antidiphtheria serum,,,
+57335,Vaxneuvance,https://www.ema.europa.eu/en/medicines/human/EPAR/vaxneuvance,,https://www.fda.gov/vaccines-blood-biologics/vaccines/vaxneuvance
+58090,Prevenar 20,https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-20,,https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20
+64095,Abrysvo,https://www.ema.europa.eu/en/medicines/human/EPAR/abrysvo,https://extranet.who.int/prequal/vaccines/p/abrysvo,https://www.fda.gov/vaccines-blood-biologics/abrysvo
+64907,Fluenz,https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-0,,https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist
+46255,Bexsero,https://www.ema.europa.eu/en/medicines/human/EPAR/bexsero,,https://www.fda.gov/vaccines-blood-biologics/vaccines/bexsero
