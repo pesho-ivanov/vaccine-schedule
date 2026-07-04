@@ -485,7 +485,14 @@
 
   function productRegistryLinkForKey(key) {
     const links = productLinksByKey.get(String(key || "").trim());
-    return links ? links.ema || links.who || links.fda || "" : "";
+    return links
+      ? links.bda_harakteristika
+        || links.bda_listovka
+        || links.ema
+        || links.who
+        || links.fda
+        || ""
+      : "";
   }
 
   function setVaccineProductCellLink(element, value, row, column) {

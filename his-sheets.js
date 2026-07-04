@@ -3706,360 +3706,480 @@ window.HIS_SHEETS = {
   "product_links": {
     "-1000": {
       "product": "Comirnaty",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty",
       "who": "https://extranet.who.int/prequal/vaccines/p/comirnatyr",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/comirnaty"
     },
     "-1001": {
       "product": "Moderna",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/spikevax",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/spikevax"
     },
     "-1002": {
       "product": "Vaxzevria",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/vaxzevria",
       "who": "",
       "fda": ""
     },
     "-1003": {
       "product": "Janssen",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/jcovden",
       "who": "",
       "fda": ""
     },
     "-1004": {
       "product": "Valneva",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/covid-19-vaccine-inactivated-adjuvanted-valneva",
       "who": "",
       "fda": ""
     },
     "-1005": {
       "product": "Comirnaty Kids",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/comirnaty",
       "who": "https://extranet.who.int/prequal/vaccines/p/comirnatyr",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/comirnaty"
     },
     "-1006": {
       "product": "Vidprevtyn",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/vidprevtyn-beta",
       "who": "",
       "fda": ""
     },
     "99999": {
       "product": "UNKNOWN",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "17": {
       "product": "BCG",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2024-12-09-136778q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-12-09-136778.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/bcg-vaccine",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/bcg-vaccine"
     },
     "15138": {
       "product": "PPD",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-03-11-137614q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-03-11-137614.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "16058": {
       "product": "Infanrix Hexa",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa",
       "who": "",
       "fda": ""
     },
     "1754": {
       "product": "Infanrix Hexa",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/infanrix-hexa",
       "who": "",
       "fda": ""
     },
     "3537": {
       "product": "Hexacima",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/hexacima",
       "who": "https://extranet.who.int/prequal/vaccines/p/hexaxim",
       "fda": ""
     },
     "3339": {
       "product": "Infanrix-IPV+HIB",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-01-13-136949q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134016.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "1542": {
       "product": "Pentaxim",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141817q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141737.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "1541": {
       "product": "Pentaxim",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141817q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141737.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "15420": {
       "product": "Tetraxim",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141826q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136822.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "61121": {
       "product": "Tetraxim",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-06-08-141826q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136822.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "127": {
       "product": "Boostrix",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134014q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134014.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/boostrix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/boostrix"
     },
     "16962": {
       "product": "Adacel",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-03-24-141032q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-03-24-141032.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/adacel",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/adacel"
     },
     "64": {
       "product": "Tetadif",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-11-03-139994q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-04-06-141195.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/tetadif",
       "fda": ""
     },
     "1344": {
       "product": "Tetatox",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136805q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136805.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/tetatox",
       "fda": ""
     },
     "2998": {
       "product": "Engerix B",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134027q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-06-11-135043.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/engerix-b",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b"
     },
     "1730": {
       "product": "Engerix B",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2024-02-19-134028q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-06-11-135044.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/engerix-b",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/engerix-b"
     },
     "2517": {
       "product": "M-M-RVAXPRO",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/m-m-rvaxpro",
       "who": "",
       "fda": ""
     },
     "1234": {
       "product": "Priorix",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/priorix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/priorix"
     },
     "4084": {
       "product": "Priorix",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/priorix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/priorix"
     },
     "4184": {
       "product": "Priorix",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-05-26-141605.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/priorix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/priorix"
     },
     "2958": {
       "product": "Synflorix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix",
       "who": "https://extranet.who.int/prequal/vaccines/p/synflorix",
       "fda": ""
     },
     "16291": {
       "product": "Synflorix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/synflorix",
       "who": "https://extranet.who.int/prequal/vaccines/p/synflorix",
       "fda": ""
     },
     "1653": {
       "product": "Prevenar 13",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13",
       "who": "https://extranet.who.int/prequal/vaccines/p/prevenar-13",
       "fda": ""
     },
     "16979": {
       "product": "Prevenar 13",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-13",
       "who": "https://extranet.who.int/prequal/vaccines/p/prevenar-13",
       "fda": ""
     },
     "16651": {
       "product": "Verorab",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-03-17-137708q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-01-13-136983.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/verorab",
       "fda": ""
     },
     "4133": {
       "product": "Anti-CHF",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-01-19-140522q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-01-19-140522.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "129": {
       "product": "Twinrix adult",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/twinrix-adult",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/twinrix"
     },
     "1925": {
       "product": "Havrix 720",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137961q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137961.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/havrix-720-junior",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix"
     },
     "7401": {
       "product": "Havrix 1440",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137962q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-04-08-137962.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/havrix-1440-adult",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/havrix"
     },
     "16568": {
       "product": "VaxigripTetra",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/vaxigriptetra",
       "fda": ""
     },
     "15497": {
       "product": "VaxigripTetra",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-06-16-138690.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/vaxigriptetra",
       "fda": ""
     },
     "16744": {
       "product": "Influvac Tetra",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/influvacr-tetra",
       "fda": ""
     },
     "16146": {
       "product": "Influvac Tetra",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2026-02-23-140788.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/influvacr-tetra",
       "fda": ""
     },
     "17327": {
       "product": "Fluenz Tetra",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-tetra",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist-quadrivalent"
     },
     "66739": {
       "product": "Vaxigrip",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/vaxigrip",
       "fda": ""
     },
     "66737": {
       "product": "Vaxigrip",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-06-23-138776.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/vaxigrip",
       "fda": ""
     },
     "2683": {
       "product": "Cervarix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/cervarix",
       "who": "https://extranet.who.int/prequal/vaccines/p/cervarix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/cervarix"
     },
     "16074": {
       "product": "Gardasil",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil",
       "who": "https://extranet.who.int/prequal/vaccines/p/gardasiltm",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil"
     },
     "48571": {
       "product": "Gardasil 9",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/gardasil-9",
       "who": "https://extranet.who.int/prequal/vaccines/p/gardasil-9",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/gardasil-9"
     },
     "4144": {
       "product": "Antitetanus serum",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139722q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139722.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "2565": {
       "product": "RotaTeq",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/rotateq",
       "who": "https://extranet.who.int/prequal/vaccines/p/rotateq",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/rotateq"
     },
     "17091": {
       "product": "Rotarix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix",
       "who": "https://extranet.who.int/prequal/vaccines/p/rotarix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix"
     },
     "3932": {
       "product": "Rotarix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/rotarix",
       "who": "https://extranet.who.int/prequal/vaccines/p/rotarix",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/rotarix"
     },
     "15358": {
       "product": "Stamaril",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-04-22-138135q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2024-12-16-136824.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/stamaril",
       "fda": ""
     },
     "8556": {
       "product": "Nimenrix",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/nimenrix",
       "who": "https://extranet.who.int/prequal/vaccines/p/nimenrix",
       "fda": ""
     },
     "16887": {
       "product": "Varivax",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-12-08-140204q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-12-08-140204.pdf",
       "ema": "",
       "who": "https://extranet.who.int/prequal/vaccines/p/varivax",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/varivax-refrigerated-and-frozen-formulations"
     },
     "15210": {
       "product": "Antidiphtheria serum",
+      "bda_listovka": "https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139724q.pdf",
+      "bda_harakteristika": "https://www.bda.bg/images/stories/documents/bdias/2025-10-14-139724.pdf",
       "ema": "",
       "who": "",
       "fda": ""
     },
     "57335": {
       "product": "Vaxneuvance",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/vaxneuvance",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/vaxneuvance"
     },
     "58090": {
       "product": "Prevenar 20",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/prevenar-20",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20"
     },
     "64095": {
       "product": "Abrysvo",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/abrysvo",
       "who": "https://extranet.who.int/prequal/vaccines/p/abrysvo",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/abrysvo"
     },
     "64907": {
       "product": "Fluenz",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/fluenz-0",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/flumist"
     },
     "46255": {
       "product": "Bexsero",
+      "bda_listovka": "",
+      "bda_harakteristika": "",
       "ema": "https://www.ema.europa.eu/en/medicines/human/EPAR/bexsero",
       "who": "",
       "fda": "https://www.fda.gov/vaccines-blood-biologics/vaccines/bexsero"
