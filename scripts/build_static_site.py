@@ -390,6 +390,7 @@ def build_change_notes() -> list[dict[str, Any]]:
 
 def build_his_sheets() -> dict[str, Any]:
     his_spec = his_vaccine_spec()
+    sources_data = read_yaml("sources.yaml")
     artifact = DATA_DIR / "his" / str(his_spec["artifact"])
     if not artifact.is_file():
         raise FileNotFoundError(f"missing HIS artifact: {artifact}")
@@ -432,6 +433,10 @@ def build_his_sheets() -> dict[str, Any]:
             "page_url": str(his_spec["pages"]["nomenclatures"]),
             "his_version": f"v{his_spec['his_version']}",
             "nomenclatures_date": str(his_spec["nomenclatures_date"]),
+        },
+        "source_links": sources_data["source_links"],
+        "source_versions": {
+            "his_bg": f"v{his_spec['his_version']}",
         },
         "change_notes": build_change_notes(),
         "sheets": sheets,

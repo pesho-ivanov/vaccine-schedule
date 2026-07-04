@@ -89,7 +89,7 @@ p {
 
 h1 {
   max-width: 920px;
-  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -188,14 +188,9 @@ main {
 }
 
 .table-scroll {
-  overflow: auto;
-  max-height: calc(100vh - 210px);
+  overflow-x: auto;
   border: 1px solid var(--line-strong);
   background: var(--surface);
-}
-
-.sheet-scroll {
-  max-height: calc(100vh - 220px);
 }
 
 .change-notes-list {
@@ -618,10 +613,6 @@ tbody td {
 
   main {
     padding: 18px;
-  }
-
-  .table-scroll {
-    max-height: calc(100vh - 246px);
   }
 
   table {

@@ -17,10 +17,13 @@
   const nav = document.getElementById("sheet-nav");
   const bgToggle = document.getElementById("bg-toggle");
   const oldRecordsToggle = document.getElementById("old-records-toggle");
+  const detailsToggle = document.getElementById("details-toggle");
   const hisSheetsSource = document.getElementById("his-sheets-source");
   const changeNotesList = document.getElementById("change-notes-list");
   const tableSection = document.getElementById("sheet-table-section");
   const footnotes = document.getElementById("sheet-footnotes");
+  const sourceList = document.getElementById("source-list");
+  const otherCalendarList = document.getElementById("other-calendar-list");
   const table = document.getElementById("his-sheet-table");
   const caption = document.getElementById("sheet-caption");
   const firstRow = sheet.rows[0];
@@ -69,6 +72,73 @@
     }
   }
 
+  function sourceLabel(name) {
+    const label = {
+      ecdc_calendar: "ECDC",
+      lex_calendar: "lex.bg",
+      pregnancy_vaccine: "plusmen.bg",
+      his_bg: "his.bg",
+    }[name] || name.replaceAll("_", " ");
+    const version = data.source_versions?.[name];
+    return version ? `${label} (${version})` : label;
+  }
+
+  function sourceTitle(name) {
+    return {
+      lex_calendar: "The law about vaccines in Bulgaria.",
+      pregnancy_vaccine: "Informational site. Not complete and updated.",
+      his_bg: "The electronic health system in Bulgaria. Sheets CL037 & CL038.",
+    }[name] || "";
+  }
+
+  function appendLinkItem(parent, label, url, title = "") {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = url;
+    link.textContent = label;
+    link.rel = "noreferrer";
+    if (title) {
+      link.title = title;
+    }
+    item.appendChild(link);
+    parent.appendChild(item);
+  }
+
+  function renderSources() {
+    const sourceOrder = ["lex_calendar", "his_bg", "pregnancy_vaccine"];
+    for (const name of sourceOrder) {
+      const url = data.source_links[name];
+      if (!url) {
+        continue;
+      }
+      appendLinkItem(sourceList, sourceLabel(name), url, sourceTitle(name));
+    }
+  }
+
+  function renderOtherCalendars() {
+    appendLinkItem(otherCalendarList, "ECDC (EU)", data.source_links.ecdc_calendar);
+    appendLinkItem(
+      otherCalendarList,
+      "NHS (UK)",
+      "https://www.nhs.uk/vaccinations/nhs-vaccinations-and-when-to-have-them"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "CDC (US)",
+      "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-age.html"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "Australia",
+      "https://www.health.gov.au/sites/default/files/2026-06/national-immunisation-program-schedule.pdf"
+    );
+    appendLinkItem(
+      otherCalendarList,
+      "Germany",
+      "https://www.bundesgesundheitsministerium.de/en/topics/vaccinations"
+    );
+  }
+
   function cellValue(row, column) {
     return String(row?.cells[column] || "").trim();
   }
@@ -103,11 +173,36 @@
     return usesKeyRowHeader && cellValue(hierarchicalHeaderRows[1], column) === "Valid Until";
   }
 
+  function detailsVisible() {
+    return document.body.classList.contains("show-details");
+  }
+
+  function isDetailsColumn(column) {
+    const hiddenBySheet = {
+      CL037: [
+        "Description EN",
+        "Vaccine Group",
+        "Dose Quantity (ml)",
+        "Permit Number",
+        "Permit Owner ID",
+        "MH code",
+        "Since",
+      ],
+      CL038: [
+        "Display transfered data EN",
+        "Display value EN",
+        "Since",
+      ],
+    };
+    return (hiddenBySheet[sheet.name] || []).includes(cellValue(hierarchicalHeaderRows[1], column));
+  }
+
   function visibleColumns() {
     return dataColumns.filter(
       (column) => (
         !isAlwaysHiddenColumn(column)
         && (oldRecordsVisible() || !isOldRecordColumn(column))
+        && (detailsVisible() || !isDetailsColumn(column))
         && (bgColumnsVisible() || !isBulgarianColumn(column))
       )
     );
@@ -121,8 +216,17 @@
     return usesKeyRowHeader && (row.row_style === "red" || cellStyle(row, 1) === "red");
   }
 
+  function isDetailsRow(row) {
+    return sheet.name === "CL037" && cellValue(row, 1) === "99999";
+  }
+
   function visibleRows() {
-    return baseBodyRows.filter((row) => oldRecordsVisible() || !isOldRecordRow(row));
+    return baseBodyRows.filter(
+      (row) => (
+        (oldRecordsVisible() || !isOldRecordRow(row))
+        && (detailsVisible() || !isDetailsRow(row))
+      )
+    );
   }
 
   function isFootnoteRow(row) {
@@ -331,7 +435,17 @@
       renderTable();
     }
   });
+  detailsToggle.addEventListener("click", () => {
+    const showDetails = !document.body.classList.contains("show-details");
+    document.body.classList.toggle("show-details", showDetails);
+    detailsToggle.setAttribute("aria-pressed", String(showDetails));
+    if (sheet.name !== "Change Notes") {
+      renderTable();
+    }
+  });
   appendSheetNav();
+  renderSources();
+  renderOtherCalendars();
   if (sheet.name === "Change Notes") {
     appendChangeNotes();
   } else {

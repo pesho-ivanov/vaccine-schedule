@@ -15,9 +15,12 @@ from xml.etree import ElementTree
 
 import yaml
 
+from split_change_notes import split_change_notes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "data/his/vaccine-specifications.yaml"
+DEFAULT_CHANGE_NOTES_DIR = ROOT / "data/his/change-notes"
 XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 USER_AGENT = "vaccine-schedule-update-check/1.0"
 
@@ -231,6 +234,7 @@ def check_his_vaccine_nomenclatures(manifest_path: Path) -> bool:
     if needs_update:
         artifact = download_current_artifact(manifest_path, manifest, specs_release, nomenclatures_release)
         check_artifact(artifact, required_sheets)
+        split_change_notes(manifest_path, DEFAULT_CHANGE_NOTES_DIR)
         print(f"Updated HIS vaccine nomenclature artifact: {artifact}")
         return True
 
