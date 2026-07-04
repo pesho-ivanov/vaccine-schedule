@@ -22,7 +22,7 @@ STATIC_FILES = ("index.html", "app.js", "his-sheet.html", "his-sheet.js", "style
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
 HIS_VACCINE_SPEC_PATH = DATA_DIR / "his/vaccine-specifications.yaml"
 HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
-HIS_SHEET_NAMES = ("Change Notes", "CL037", "CL038")
+HIS_SHEET_NAMES = ("CL037", "CL038", "Change Notes")
 HIS_OMITTED_COLUMNS = {
     "Change Notes": ("Дата на тестова", "Дата на прод"),
 }
@@ -351,7 +351,9 @@ def his_sheet_label(name: str, rows: list[dict[str, Any]]) -> str:
     if name == "CL037":
         return "HIS products"
     if name == "CL038":
-        return "HIS Schedule"
+        return "HIS schedule"
+    if name == "Change Notes":
+        return "HIS Change notes"
     if name not in {"CL037", "CL038"} or not rows:
         return name
 
@@ -377,11 +379,27 @@ def build_change_notes() -> list[dict[str, Any]]:
         if not rows:
             continue
         version = rows[0]["version"]
+        changes = []
+        for row in rows:
+            change = row.get("change", "")
+            if not change:
+                continue
+            regards_vaccines = row.get("regarding vaccines")
+            changes.append(
+                {
+                    "change": change,
+                    "regarding_vaccines": (
+                        True
+                        if regards_vaccines is None
+                        else regards_vaccines.strip().casefold() == "true"
+                    ),
+                }
+            )
         versions.append(
             {
                 "version": version,
                 "file": str(path.relative_to(ROOT)),
-                "changes": [row["change"] for row in rows if row.get("change")],
+                "changes": changes,
             }
         )
 

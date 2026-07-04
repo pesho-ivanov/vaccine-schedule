@@ -19,6 +19,12 @@ DEFAULT_OUTPUT_DIR = ROOT / "data/his/change-notes"
 XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 XLSX_REL_NS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
 PACKAGE_REL_NS = "{http://schemas.openxmlformats.org/package/2006/relationships}"
+VACCINE_NOMENCLATURE_CODES = ("CL037", "CL038", "CL082")
+VACCINE_NOMENCLATURE_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(code) for code in VACCINE_NOMENCLATURE_CODES) + r")\b",
+    re.IGNORECASE,
+)
+VACCINE_KEYWORDS = ("ваксин", "имуниз", "vaccin", "immuni")
 
 
 def read_manifest(path: Path) -> dict[str, Any]:
@@ -120,6 +126,14 @@ def version_slug(version: str) -> str:
     return f"v{match.group(1)}"
 
 
+def regards_vaccines(text: str) -> bool:
+    if VACCINE_NOMENCLATURE_RE.search(text):
+        return True
+
+    normalized = text.casefold()
+    return any(keyword in normalized for keyword in VACCINE_KEYWORDS)
+
+
 def split_versions(rows: list[dict[int, str]]) -> list[tuple[str, list[str]]]:
     versions: list[tuple[str, list[str]]] = []
     current_version = ""
@@ -155,9 +169,9 @@ def write_version_csvs(versions: list[tuple[str, list[str]]], output_dir: Path) 
         path = output_dir / f"{version_slug(version)}.csv"
         with path.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.writer(handle)
-            writer.writerow(["version", "change"])
+            writer.writerow(["version", "change", "regarding vaccines"])
             for note in notes:
-                writer.writerow([version, note])
+                writer.writerow([version, note, "true" if regards_vaccines(note) else "false"])
 
 
 def split_change_notes(manifest_path: Path, output_dir: Path) -> int:

@@ -16,13 +16,8 @@
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const hisSheetList = document.getElementById("his-sheet-list");
-  const hisSheetsSource = document.getElementById("his-sheets-source");
 
   title.textContent = data.title.en;
-  if (data.his_sheets_source) {
-    hisSheetsSource.href = data.his_sheets_source.url;
-    hisSheetsSource.textContent = `HIS sheets (${data.his_sheets_source.version}, ${data.his_sheets_source.date}):`;
-  }
   bgToggle.addEventListener("click", () => {
     const showBulgarian = !document.body.classList.contains("show-bg");
     document.body.classList.toggle("show-bg", showBulgarian);
