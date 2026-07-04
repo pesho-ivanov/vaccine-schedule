@@ -217,7 +217,10 @@
   }
 
   function isDetailsRow(row) {
-    return sheet.name === "CL037" && cellValue(row, 1) === "99999";
+    return (
+      (sheet.name === "CL037" && cellValue(row, 1) === "99999")
+      || (sheet.name === "CL038" && cellValue(row, 1) === "00")
+    );
   }
 
   function visibleRows() {
