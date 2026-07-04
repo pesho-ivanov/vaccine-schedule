@@ -400,8 +400,7 @@
       appendLinkItem(
         hisSheetList,
         data.his_sheet_labels?.[sheetName] || sheetName,
-        `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
-        ["CL037", "CL038"].includes(sheetName) ? `sheet ${sheetName}` : ""
+        `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`
       );
     }
   }

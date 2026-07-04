@@ -108,6 +108,14 @@ h1 {
   position: relative;
 }
 
+[data-tooltip]:not(.ecdc-link) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: rgb(102 112 133 / 0.55);
+  text-decoration-thickness: 0.75px;
+  text-underline-offset: 0.16em;
+}
+
 [data-tooltip]::after {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -129,6 +137,7 @@ h1 {
   pointer-events: none;
   text-align: left;
   transform: translateX(-50%);
+  text-decoration: none;
   white-space: pre-line;
   visibility: hidden;
 }
@@ -256,27 +265,17 @@ main {
 }
 
 .table-scroll {
-  overflow-x: auto;
+  display: inline-block;
+  width: max-content;
+  max-width: none;
+  overflow: visible;
   border: 1px solid var(--line-strong);
   background: var(--surface);
-}
-
-.sheet-scroll {
-  display: inline-block;
-  max-width: 100%;
   vertical-align: top;
 }
 
-.sheet-program-group + .sheet-program-group {
-  margin-top: 18px;
-}
-
-.sheet-program-title {
-  margin: 0 0 8px;
-  color: var(--text);
-  font-size: 0.95rem;
-  font-weight: 800;
-  line-height: 1.3;
+.sheet-scroll {
+  max-width: none;
 }
 
 .change-notes-list {
@@ -563,9 +562,11 @@ tbody td {
 
 .his-sheet-table .sheet-column-header th {
   top: 0;
+  z-index: 4;
 }
 
-.sheet-header-tooltip {
+.sheet-header-tooltip,
+.sheet-cell-tooltip {
   display: inline-block;
 }
 
@@ -589,6 +590,20 @@ tbody td {
 .his-sheet-table tbody th {
   color: var(--muted);
   font-weight: 800;
+}
+
+.his-sheet-table tbody .sheet-title-row th {
+  position: sticky;
+  top: 34px;
+  z-index: 3;
+  min-width: 0;
+  max-width: none;
+  height: 34px;
+  padding: 7px 8px;
+  background: var(--header-bg);
+  color: var(--header-text);
+  font-weight: 800;
+  text-align: left;
 }
 
 .his-sheet-table .sheet-row-number {

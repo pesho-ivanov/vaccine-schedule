@@ -54,6 +54,9 @@
   const programGroupColumnIndex = sheet.name === "CL038"
     ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "Program Group") || 0
     : 0;
+  const productsColumnIndex = sheet.name === "CL038"
+    ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "CL037 Mapping (2025)") || 0
+    : 0;
 
   function columnName(index) {
     let name = "";
@@ -110,9 +113,6 @@
       const link = document.createElement("a");
       link.href = `his-sheet.html?sheet=${encodeURIComponent(candidate.name)}`;
       link.textContent = candidate.label || candidate.name;
-      if (["CL037", "CL038"].includes(candidate.name)) {
-        setTooltip(link, `sheet ${candidate.name}`);
-      }
       if (candidate.name === sheet.name) {
         link.setAttribute("aria-current", "page");
       }
@@ -223,6 +223,11 @@
       : String(value || "");
   }
 
+  function displayTableText(value) {
+    const text = displayHeaderText(value);
+    return String(text).trim() === "---" ? "" : text;
+  }
+
   function footnoteTooltip(value) {
     const marker = footnoteMarker(value);
     if (marker && footnotesByMarker.has(marker)) {
@@ -245,8 +250,8 @@
   }
 
   function setFootnotedText(element, value) {
-    const text = displayFootnotedText(value);
-    const tooltip = footnoteTooltip(value);
+    const text = displayTableText(value);
+    const tooltip = text ? footnoteTooltip(value) : "";
     if (tooltip) {
       const label = document.createElement("span");
       label.className = "sheet-header-tooltip";
@@ -258,6 +263,133 @@
     } else {
       element.textContent = text;
     }
+  }
+
+  function displayHeaderText(value) {
+    const text = displayFootnotedText(value);
+    if (sheet.name !== "CL038") {
+      return text;
+    }
+    return {
+      "CL037 Mapping (2025)": "Vaccines",
+      "Description EN": "Diseases",
+    }[text] || text;
+  }
+
+  function isAgeColumn(column) {
+    if (sheet.name !== "CL038") {
+      return false;
+    }
+    const label = displayFootnotedText(cellValue(hierarchicalHeaderRows[1], column));
+    return label === "Min age" || label === "Max age";
+  }
+
+  function roundedMonthText(days) {
+    const months = Math.round((days / 30) * 2) / 2;
+    const monthText = Number.isInteger(months) ? String(months) : months.toFixed(1);
+    return `${monthText} ${months === 1 ? "month" : "months"}`;
+  }
+
+  function convertedAgeCellText(value) {
+    const text = String(value || "").trim();
+    const match = text.match(/^(\d+)\s+days?$/i);
+    if (!match) {
+      return "";
+    }
+
+    const days = Number(match[1]);
+    return days > 30 ? roundedMonthText(days) : "";
+  }
+
+  function setAgeCellText(element, value, column) {
+    if (!isAgeColumn(column)) {
+      return false;
+    }
+
+    const convertedText = convertedAgeCellText(value);
+    if (!convertedText) {
+      return false;
+    }
+
+    const originalText = String(value || "").trim();
+    const label = document.createElement("span");
+    label.className = "sheet-cell-tooltip";
+    label.textContent = convertedText;
+    setTooltip(label, originalText);
+    label.tabIndex = 0;
+    label.setAttribute("aria-label", `${convertedText}. ${originalText}`);
+    element.replaceChildren(label);
+    return true;
+  }
+
+  function isProductsColumn(column) {
+    return sheet.name === "CL038" && column === productsColumnIndex;
+  }
+
+  function productTokens(value) {
+    return String(value || "")
+      .split(";")
+      .map((token) => token.trim())
+      .filter(Boolean);
+  }
+
+  function matchingProductNames(token) {
+    if (!/[xX]/.test(token)) {
+      return productDisplayValuesByKey.has(token)
+        ? [productDisplayValuesByKey.get(token)]
+        : [];
+    }
+
+    const pattern = new RegExp(`^${token
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/[xX]/g, "\\d")}$`);
+    return productKeyOrder
+      .filter((key) => pattern.test(key))
+      .map((key) => productDisplayValuesByKey.get(key))
+      .filter(Boolean);
+  }
+
+  function productDisplayText(value) {
+    const names = [];
+    const seen = new Set();
+
+    for (const token of productTokens(value)) {
+      const matches = matchingProductNames(token);
+      const values = matches.length ? matches : [token];
+      for (const productName of values) {
+        if (!seen.has(productName)) {
+          seen.add(productName);
+          names.push(productName);
+        }
+      }
+    }
+
+    return names.join(", ");
+  }
+
+  function setProductsCellText(element, value, column) {
+    if (!isProductsColumn(column)) {
+      return false;
+    }
+
+    const originalText = String(value || "").trim();
+    if (!originalText || originalText === "---") {
+      return false;
+    }
+
+    const displayText = productDisplayText(originalText);
+    if (!displayText) {
+      return false;
+    }
+
+    const label = document.createElement("span");
+    label.className = "sheet-cell-tooltip";
+    label.textContent = displayText;
+    setTooltip(label, originalText);
+    label.tabIndex = 0;
+    label.setAttribute("aria-label", `${displayText}. ${originalText}`);
+    element.replaceChildren(label);
+    return true;
   }
 
   function usesDefaultHeaderColor(column) {
@@ -365,6 +497,7 @@
   function appendHeader(targetTable, columns) {
     const thead = document.createElement("thead");
     const hasHierarchy = hierarchicalHeaderRows.length === 2;
+
     const row = document.createElement("tr");
     row.className = "sheet-column-header";
 
@@ -402,31 +535,64 @@
     targetTable.appendChild(thead);
   }
 
+  function appendProgramTitleRow(tbody, title, columns) {
+    const titleRow = document.createElement("tr");
+    titleRow.className = "sheet-title-row";
+    const titleCell = document.createElement("th");
+    titleCell.scope = "rowgroup";
+    titleCell.colSpan = columns.length + 1;
+    titleCell.textContent = title;
+    titleRow.appendChild(titleCell);
+    tbody.appendChild(titleRow);
+  }
+
+  function appendSheetRow(tbody, sheetRow, columns) {
+    const tr = document.createElement("tr");
+    if (sheetRow.row_style === "red") {
+      tr.classList.add("sheet-row-red");
+    }
+    const rowNumber = document.createElement("th");
+    rowNumber.scope = "row";
+    rowNumber.className = "sheet-row-number";
+    rowNumber.textContent = usesKeyRowHeader ? cellValue(sheetRow, 1) : sheetRow.index;
+    if (usesKeyRowHeader) {
+      applyCellStyle(rowNumber, sheetRow, 1);
+    }
+    tr.appendChild(rowNumber);
+
+    for (const index of columns) {
+      const td = document.createElement("td");
+      if (
+        !setProductsCellText(td, sheetRow.cells[index] || "", index)
+        && !setAgeCellText(td, sheetRow.cells[index] || "", index)
+      ) {
+        setFootnotedText(td, sheetRow.cells[index] || "");
+      }
+      applyCellStyle(td, sheetRow, index);
+      tr.appendChild(td);
+    }
+
+    tbody.appendChild(tr);
+  }
+
   function appendBody(targetTable, rows, columns) {
     const tbody = document.createElement("tbody");
 
     for (const sheetRow of rows) {
-      const tr = document.createElement("tr");
-      if (sheetRow.row_style === "red") {
-        tr.classList.add("sheet-row-red");
-      }
-      const rowNumber = document.createElement("th");
-      rowNumber.scope = "row";
-      rowNumber.className = "sheet-row-number";
-      rowNumber.textContent = usesKeyRowHeader ? cellValue(sheetRow, 1) : sheetRow.index;
-      if (usesKeyRowHeader) {
-        applyCellStyle(rowNumber, sheetRow, 1);
-      }
-      tr.appendChild(rowNumber);
+      appendSheetRow(tbody, sheetRow, columns);
+    }
 
-      for (const index of columns) {
-        const td = document.createElement("td");
-        setFootnotedText(td, sheetRow.cells[index] || "");
-        applyCellStyle(td, sheetRow, index);
-        tr.appendChild(td);
-      }
+    targetTable.appendChild(tbody);
+  }
 
-      tbody.appendChild(tr);
+  function appendProgramGroupBody(targetTable, groups, columns) {
+    const tbody = document.createElement("tbody");
+
+    for (const group of groups) {
+      appendProgramTitleRow(tbody, group.label, columns);
+      for (const sheetRow of group.rows) {
+        appendSheetRow(tbody, sheetRow, columns);
+      }
     }
 
     targetTable.appendChild(tbody);
@@ -474,28 +640,16 @@
     const columns = visibleColumns();
     tableSection.replaceChildren();
 
-    for (const group of programGroupTables()) {
-      const section = document.createElement("section");
-      section.className = "sheet-program-group";
+    const scroll = document.createElement("div");
+    scroll.className = "table-scroll sheet-scroll";
 
-      const heading = document.createElement("h2");
-      heading.className = "sheet-program-title";
-      heading.textContent = group.label;
-      section.appendChild(heading);
-
-      const scroll = document.createElement("div");
-      scroll.className = "table-scroll sheet-scroll";
-
-      const groupTable = document.createElement("table");
-      groupTable.className = "his-sheet-table";
-      appendCaption(groupTable, `HIS ${sheet.name}: ${group.label}`);
-      appendHeader(groupTable, columns);
-      appendBody(groupTable, group.rows, columns);
-      scroll.appendChild(groupTable);
-
-      section.appendChild(scroll);
-      tableSection.appendChild(section);
-    }
+    const groupTable = document.createElement("table");
+    groupTable.className = "his-sheet-table";
+    appendCaption(groupTable, `HIS ${sheet.name}`);
+    appendHeader(groupTable, columns);
+    appendProgramGroupBody(groupTable, programGroupTables(), columns);
+    scroll.appendChild(groupTable);
+    tableSection.appendChild(scroll);
   }
 
   function appendFootnotes() {
@@ -575,6 +729,46 @@
     }
     return 0;
   }
+
+  function productDisplayValueLookup() {
+    const sourceSheet = data.sheets.find((candidate) => candidate.name === "CL037");
+    if (!sourceSheet) {
+      return { keyOrder: [], lookup: new Map() };
+    }
+
+    const firstSourceRow = sourceSheet.rows[0];
+    const firstSourceRowCells = firstSourceRow
+      ? Object.values(firstSourceRow.cells).filter(Boolean)
+      : [];
+    const sourceRows = firstSourceRowCells.length === 1
+      ? sourceSheet.rows.slice(1)
+      : sourceSheet.rows;
+    const leafHeader = sourceRows[1];
+    const keyColumn = findColumnByHeader(sourceSheet, leafHeader, "Key");
+    const displayColumn = findColumnByHeader(sourceSheet, leafHeader, "Display value EN");
+    const keyOrder = [];
+    const lookup = new Map();
+
+    if (!keyColumn || !displayColumn) {
+      return { keyOrder, lookup };
+    }
+
+    for (const row of sourceRows.slice(2)) {
+      const key = cellValue(row, keyColumn);
+      const displayValue = cellValue(row, displayColumn);
+      if (!key || !displayValue || lookup.has(key)) {
+        continue;
+      }
+      keyOrder.push(key);
+      lookup.set(key, displayValue);
+    }
+
+    return { keyOrder, lookup };
+  }
+
+  const productDisplayValues = productDisplayValueLookup();
+  const productKeyOrder = productDisplayValues.keyOrder;
+  const productDisplayValuesByKey = productDisplayValues.lookup;
 
   const hisCodeDescriptionsBySheet = new Map([
     ["CL037", sheetCodeDescriptions("CL037")],
