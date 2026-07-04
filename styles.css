@@ -632,6 +632,10 @@ tbody td {
   color: #c00000 !important;
 }
 
+.sheet-row-red a {
+  color: inherit;
+}
+
 .time-cell {
   height: 42px;
   padding: 4px;

@@ -79,6 +79,7 @@
       "Immunizations under national programs",
     ],
   ]);
+  const productLinksByKey = new Map(Object.entries(data.product_links || {}));
 
   function columnName(index) {
     let name = "";
@@ -419,6 +420,93 @@
     return true;
   }
 
+  function isDaysToNextDoseColumn(column) {
+    return sheet.name === "CL037"
+      && cellValue(hierarchicalHeaderRows[1], column) === "Days to Next Dose";
+  }
+
+  function daysToNextDoseText(value) {
+    return String(value || "")
+      .replace(/\b\d+(?:st|nd|rd|th):\s*/gi, "")
+      .trim();
+  }
+
+  function dayText(days) {
+    return `${days} ${days === 1 ? "day" : "days"}`;
+  }
+
+  function daysToNextDoseParts(value) {
+    return daysToNextDoseText(value)
+      .split(";")
+      .map((entry) => entry.trim())
+      .filter((entry) => entry && entry !== "---")
+      .map((entry) => {
+        const days = Number(entry);
+        if (!Number.isInteger(days) || days < 0) {
+          return { text: entry, tooltip: "" };
+        }
+        if (days > 30) {
+          return { text: roundedMonthText(days), tooltip: dayText(days) };
+        }
+        return { text: dayText(days), tooltip: "" };
+      });
+  }
+
+  function setDaysToNextDoseCellText(element, value, column) {
+    if (!isDaysToNextDoseColumn(column)) {
+      return false;
+    }
+
+    const parts = daysToNextDoseParts(value);
+    element.replaceChildren();
+    parts.forEach((part, index) => {
+      if (index > 0) {
+        element.appendChild(document.createTextNode("; "));
+      }
+      if (part.tooltip) {
+        const label = document.createElement("span");
+        label.className = "sheet-cell-tooltip";
+        label.textContent = part.text;
+        setTooltip(label, part.tooltip);
+        label.tabIndex = 0;
+        label.setAttribute("aria-label", `${part.text}. ${part.tooltip}`);
+        element.appendChild(label);
+      } else {
+        element.appendChild(document.createTextNode(part.text));
+      }
+    });
+    return true;
+  }
+
+  function isVaccineProductColumn(column) {
+    return sheet.name === "CL037"
+      && cellValue(hierarchicalHeaderRows[1], column) === "Display value EN";
+  }
+
+  function productRegistryLinkForKey(key) {
+    const links = productLinksByKey.get(String(key || "").trim());
+    return links ? links.ema || links.who || links.fda || "" : "";
+  }
+
+  function setVaccineProductCellLink(element, value, row, column) {
+    if (!isVaccineProductColumn(column)) {
+      return false;
+    }
+
+    const text = displayTableText(value);
+    const url = productRegistryLinkForKey(cellValue(row, 1));
+    if (!text || !url) {
+      return false;
+    }
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.rel = "noreferrer";
+    link.textContent = text;
+    element.replaceChildren(link);
+    return true;
+  }
+
   function isProductsColumn(column) {
     return sheet.name === "CL038" && column === productsColumnIndex;
   }
@@ -671,9 +759,11 @@
     for (const index of columns) {
       const td = document.createElement("td");
       if (
-        !setProductsCellText(td, sheetRow.cells[index] || "", index)
+        !setVaccineProductCellLink(td, sheetRow.cells[index] || "", sheetRow, index)
+        && !setProductsCellText(td, sheetRow.cells[index] || "", index)
         && !setAgeCellText(td, sheetRow.cells[index] || "", index)
         && !setDoseNumberCellText(td, sheetRow.cells[index] || "", index)
+        && !setDaysToNextDoseCellText(td, sheetRow.cells[index] || "", index)
       ) {
         setFootnotedText(td, sheetRow.cells[index] || "");
       }
