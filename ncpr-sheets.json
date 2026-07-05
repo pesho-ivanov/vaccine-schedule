@@ -1,0 +1,2029 @@
+{
+  "schema_version": 1,
+  "source": {
+    "directory": "data/ncpr/vacc",
+    "url": "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html"
+  },
+  "source_links": {
+    "ecdc_calendar": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
+    "lex_calendar": "https://lex.bg/laws/ldoc/2135504228",
+    "pregnancy_vaccine": "https://plusmen.bg",
+    "his_bg": "https://his.bg/bg/dev/nomenclatures"
+  },
+  "source_versions": {},
+  "sheets": [
+    {
+      "id": "Prilogenie-2-Export-202607051748",
+      "label": "NCPR Appendix 2",
+      "artifact": "data/ncpr/vacc/Prilogenie-2-Export-202607051748.xlsx",
+      "workbook_sheet_name": "Приложение № 2 на ПЛС",
+      "title": "ПОЗИТИВЕН ЛЕКАРСТВЕН СПИСЪК",
+      "updated": "02.07.2026",
+      "source": {
+        "name": "NCPR",
+        "url": "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html",
+        "date": "02.07.2026",
+        "sheet_name": "ПРИЛОЖЕНИЕ 2",
+        "sheet_description": "Лекарствени продукти, заплащани от бюджета на лечебните заведения по чл. 5 от Закона за лечебните заведения и от бюджета на лечебните заведения с държавно и/или общинско участие по чл. 9 и 10 от Закона за лечебните заведения;"
+      },
+      "column_count": 27,
+      "header_rows": [
+        {
+          "index": 7,
+          "cells": {
+            "1": "Анатомо-терапевтичен код /АТС-код/",
+            "2": "Международно непатентно наименование /INN/",
+            "3": "Наименование на лекарствения продукт",
+            "4": "Лекарствена форма",
+            "5": "Количество на активното лекарствено вещество",
+            "7": "Окончателна опаковка",
+            "8": "Окончателна опаковка(текст)",
+            "9": "Притежател на разрешението за употреба",
+            "10": "DDD/Терапевтичен курс",
+            "12": "Цена по чл. 261a, ал.1 от ЗЛПХМ",
+            "13": "Референтна стойност за DDD/ Терапевтичен курс",
+            "14": "Стойност за опаковка, изчислена на база референтна стойност",
+            "15": "Ниво на заплащане (%)",
+            "16": "Терапевтични показания",
+            "17": "Ограничения в начина на предписване при различни индикации",
+            "19": "МКБ",
+            "20": "Допълнителна информация",
+            "25": "Статус",
+            "26": "Национален номер",
+            "27": "Вид на лекарствен продукт"
+          }
+        },
+        {
+          "index": 8,
+          "cells": {
+            "17": "Ограничения в предписването",
+            "18": "Лечебни заведения",
+            "20": "№/дата на решението",
+            "21": "№ и дата на решение за поддържане на реимбурсен статус",
+            "22": "Дата на влизане в сила на решение за поддържане на реимбурсен статус",
+            "23": "Дата на настъпили промени в обстоятелствата",
+            "24": "Дата на настъпили промени в обстоятелствата във връзка с ПМС 196/2012 г., ДВ, бр. 68 от 04.09.2012 г."
+          }
+        }
+      ],
+      "rows": [
+        {
+          "index": 9,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "Diphtheria, Tetanus and Pertussis (acellular, component) vaccine",
+            "3": "J07AJ52 Diphtheria, Tetanus and Pertussis (acellular, component) vaccine"
+          }
+        },
+        {
+          "index": 10,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "pertussis, purified antigen, combinations with toxoids",
+            "3": "Adacel",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "10",
+            "8": "Pre-filled syringe without needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "519.31",
+            "13": "51.931",
+            "14": "519.31",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-21394/29.04.2020 Предварително изпълнение; НСР-23105/07.01.2021; НСР-30842/11.04.2023; НСР-33407/17.01.2024; НСР-36850/12.02.2025; НСР-37481/30.04.2025",
+            "21": "НСР-40421 - 25/03/2026",
+            "22": "09.04.2026",
+            "23": "02.05.2026",
+            "25": "Активен",
+            "26": "16962",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 11,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)",
+            "3": "J07AL02 Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)"
+          }
+        },
+        {
+          "index": 12,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)",
+            "3": "Prevenar 20",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "Pfizer Europe MA EEIG, Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "60.31",
+            "13": "60.31",
+            "14": "60.31",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-33070/08.12.2023 Предварително изпълнение; НСР-35392/14.08.2024; НСР-41052/02.06.2026",
+            "21": "НСР-33070 - 08/12/2023",
+            "22": "08.12.2023",
+            "23": "02.07.2026",
+            "25": "Активен",
+            "26": "58090",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 13,
+          "cells": {
+            "1": "J07AL52",
+            "2": "Pneumococcal polysaccharide conjugate vaccine",
+            "3": "J07AL52 Pneumococcal polysaccharide conjugate vaccine"
+          }
+        },
+        {
+          "index": 14,
+          "cells": {
+            "1": "J07AL52",
+            "2": "pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated",
+            "3": "Synflorix",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "39.94",
+            "13": "39.94",
+            "14": "39.94",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "№ 25/03.08.2009; № 89/17.06.2010; НСР-1281/25.09.2013; НСР-3842/16.06.2014; Протокол №361/05.12.2019; НСР-36260/04.12.2024",
+            "21": "НСР-32964 - 01/12/2023",
+            "22": "16.12.2023",
+            "23": "02.01.2025",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "2958",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 15,
+          "cells": {
+            "1": "J07AL52",
+            "2": "pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated",
+            "3": "Synflorix",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 2 needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "39.94",
+            "13": "39.94",
+            "14": "39.94",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-16866/28.09.2018; Протокол № 361/05.12.2019; НСР-36261/04.12.2024",
+            "21": "НСР-35494 - 28/08/2024",
+            "22": "12.09.2024",
+            "23": "02.01.2025",
+            "25": "Активен",
+            "26": "16291",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 16,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatit B antigen, purified",
+            "3": "J07BC01 Hepatit B antigen, purified"
+          }
+        },
+        {
+          "index": 17,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatitis B, purified antigen",
+            "3": "Engerix B",
+            "4": "Suspension for injection",
+            "5": "10 mcg/0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "7.63",
+            "13": "7.63",
+            "14": "7.63",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "№ 209/04.11.2011; НСР-3980/30.06.2014; НСР-8323/26.02.2016; НСР-10750/27.10.2016; НСР-13274/20.07.2017; НСР-17028/19.10.2018; НСР-19079/27.06.2019; Протокол №549/22.05.2023; НСР-37027/06.03.2025; НСР-38995/29.10.2025",
+            "21": "НСР-31946 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.12.2025",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "2998",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 18,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatit B antigen, purified",
+            "3": "J07BC01 Hepatit B antigen, purified"
+          }
+        },
+        {
+          "index": 19,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatitis B, purified antigen",
+            "3": "Engerix B",
+            "4": "Suspension for injection",
+            "5": "20 mcg/1.0 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.75",
+            "13": "10.75",
+            "14": "10.75",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "№ 209/ 04.11.2011; КЦРР-2557/14.03.2013 г.; НСР-12476/28.04.2017 г.; НСР-16124/13.07.2018; НСР-18291/28.03.2019; Протокол №549/22.05.2023; НСР-33074/13.12.2023",
+            "21": "НСР-31946 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.01.2024",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "1730",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 20,
+          "cells": {
+            "1": "J07BC02",
+            "2": "Hepatitis A vaccine (inactivated, adsorbed)",
+            "3": "J07BC02 Hepatitis A vaccine (inactivated, adsorbed)"
+          }
+        },
+        {
+          "index": 21,
+          "cells": {
+            "1": "J07BC02",
+            "2": "Hepatitis A, inactivated, whole virus",
+            "3": "Havrix 720",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (Junior monodose)",
+            "7": "1",
+            "8": "Pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "13.39",
+            "13": "13.39",
+            "14": "13.39",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "HCР-301/03.07.2013; КП-303/17.06.2015 и НСР-5955/01.04.2015; НСР-37025/06.03.2025; НСР-38994/29.10.2025",
+            "21": "НСР-33299 - 11/01/2024",
+            "22": "26.01.2024",
+            "23": "02.12.2025",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "1925",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 22,
+          "cells": {
+            "1": "J07BC20",
+            "2": "Hepatitis A (inactivated) and hepatitis B (rDNA) (HAB) vaccine (adsorbed)",
+            "3": "J07BC20 Hepatitis A (inactivated) and hepatitis B (rDNA) (HAB) vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 23,
+          "cells": {
+            "1": "J07BC20",
+            "2": "Combinations",
+            "3": "Twinrix Adult",
+            "4": "Suspension for injection",
+            "5": "1 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "36.67",
+            "13": "36.67",
+            "14": "36.67",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "КЦРР-743/07.06.2012; НСР-7782/28.12.2015; НСР-37024/06.03.2025",
+            "21": "НСР-31959 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.04.2025",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "129",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 24,
+          "cells": {
+            "1": "J07BD52",
+            "2": "Measles, mumps and rubella vaccine, live",
+            "3": "J07BD52 Measles, mumps and rubella vaccine, live"
+          }
+        },
+        {
+          "index": 25,
+          "cells": {
+            "1": "J07BD52",
+            "2": "measles, combinations with mumps and rubella, live attenuated",
+            "3": "Priorix",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with 2 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.03",
+            "13": "10.03",
+            "14": "10.03",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "КЦРР-718/07.06.2012; Протокол № 549/22.05.2023; НСР-36257/04.12.2024; НСР-40111/25.02.2026",
+            "21": "НСР-31720 - 12/07/2023",
+            "22": "27.07.2023",
+            "23": "02.04.2026",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "1234",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 26,
+          "cells": {
+            "1": "J07BH01",
+            "2": "Rotavirus vaccine, live",
+            "3": "J07BH01 Rotavirus vaccine, live"
+          }
+        },
+        {
+          "index": 27,
+          "cells": {
+            "1": "J07BH01",
+            "2": "Rota virus, live attenuated",
+            "3": "Rotarix",
+            "4": "Oral suspension",
+            "5": "1,5 ml (dose)",
+            "7": "1",
+            "8": "squeezable tube",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "52.49",
+            "13": "52.49",
+            "14": "52.49",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-22451/30.09.2020; НСР-36259/04.12.2024",
+            "21": "НСР-32265 - 13/09/2023",
+            "22": "28.09.2023",
+            "23": "02.01.2025",
+            "25": "Активен",
+            "26": "17091",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 28,
+          "cells": {
+            "1": "J07BX05",
+            "2": "Respiratory syncytial virus vaccine (bivalent, recombinant)",
+            "3": "J07BX05 Respiratory syncytial virus vaccine (bivalent, recombinant)"
+          }
+        },
+        {
+          "index": 29,
+          "cells": {
+            "1": "J07BX05",
+            "2": "Respiratory syncytial virus vaccine (bivalent, recombinant)",
+            "3": "Abrysvo",
+            "4": "Powder and solvent for solution for injection",
+            "5": "0.5",
+            "6": "ml",
+            "7": "1",
+            "8": "vial, 1 vial adaptor, 1 pre-filled syringe, 1 needle",
+            "9": "Pfizer Europe MA EEIG, Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "198.13",
+            "13": "198.13",
+            "14": "198.13",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-36695/28.01.2025",
+            "21": "НСР-36695 - 28/01/2025",
+            "22": "12.02.2025",
+            "23": "02.03.2025",
+            "25": "Активен",
+            "26": "64095",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 30,
+          "cells": {
+            "1": "J07CA02",
+            "2": "Diphteria, tetanus, pertussis (acellular, component) and Poliomyelitis (inactivated) vaccine (adsorbed)",
+            "3": "J07CA02 Diphteria, tetanus, pertussis (acellular, component) and Poliomyelitis (inactivated) vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 31,
+          "cells": {
+            "1": "J07CA02",
+            "2": "diphtheria-pertussis-poliomyelitis-tetanus",
+            "3": "Boostrix polio",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "1",
+            "8": "Pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "21.5",
+            "13": "21.5",
+            "14": "21.5",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "КЦРР-1673/20.11.2012 г.; НСР-2753/17.02.2014; НСР-5459/16.01.2015; НСР-32597/23.10.2023",
+            "21": "НСР-32129 - 30/08/2023",
+            "22": "14.09.2023",
+            "23": "02.12.2023",
+            "25": "Активен",
+            "26": "3515",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 32,
+          "cells": {
+            "1": "J07CA06",
+            "2": "Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)",
+            "3": "J07CA06 Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 33,
+          "cells": {
+            "1": "J07CA06",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus",
+            "3": "Infanrix-IPV+Hib",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "24.55",
+            "13": "24.55",
+            "14": "24.55",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "№ 44/07.01.2010; № 57/05.03.2010; КЦРР-2541/14.03.2013; НСР-4994/05.11.2014; НСР-6674/09.07.2015; НСР-8326/26.02.2016; НСР-21603/04.06.2020; НСР-32854/15.11.2023",
+            "21": "НСР-33020 - 08/12/2023",
+            "22": "23.12.2023",
+            "23": "02.01.2024",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "3339",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 34,
+          "cells": {
+            "1": "J07CA09",
+            "2": "Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated) and Haemophilus influenzae type b conjugate vaccine (adsorbed)",
+            "3": "J07CA09 Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated) and Haemophilus influenzae type b conjugate vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 35,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Infanrix Hexa",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe without needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "33.7",
+            "13": "33.7",
+            "14": "33.7",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-15129/02.03.2018; НСР-21601/04.06.2020; НСР-31986/09.08.2023",
+            "21": "НСР-34765 - 13/06/2024",
+            "22": "28.06.2024",
+            "23": "02.07.2024",
+            "25": "Активен",
+            "26": "16058",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 36,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Infanrix Hexa",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe + 2 needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "33.7",
+            "13": "33.7",
+            "14": "33.7",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "КЦРР-2406/21.02.2013 г.; НСР-7707/17.12.2015, Протокол № 227/01.06.2017; НСР-21600/04.06.2020; НСР-31985/09.08.2023",
+            "21": "НСР-32367 - 21/09/2023",
+            "22": "06.10.2023",
+            "23": "02.11.2023",
+            "24": "08.09.2012",
+            "25": "Активен",
+            "26": "1754",
+            "27": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 37,
+          "cells": {
+            "1": "J07CA09",
+            "2": "Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated)",
+            "3": "J07CA09 Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated)"
+          }
+        },
+        {
+          "index": 38,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Hexyon",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "34.38",
+            "13": "34.38",
+            "14": "34.38",
+            "15": "100%",
+            "19": "Съгласно РУ",
+            "20": "НСР-31488/29.06.2023; НСР-36732/28.01.2025; НСР-38700/30.09.2025",
+            "21": "НСР-31488 - 29/06/2023",
+            "22": "14.07.2023",
+            "23": "02.11.2025",
+            "25": "Активен",
+            "26": "48761",
+            "27": "Оригинален ЛП"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Prilogenie-3-Export-202607051802",
+      "label": "NCPR Appendix 3",
+      "artifact": "data/ncpr/vacc/Prilogenie-3-Export-202607051802.xlsx",
+      "workbook_sheet_name": "Приложение № 3 на ПЛС",
+      "title": "ПОЗИТИВЕН ЛЕКАРСТВЕН СПИСЪК",
+      "updated": "02.07.2026",
+      "source": {
+        "name": "NCPR",
+        "url": "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html",
+        "date": "02.07.2026",
+        "sheet_name": "ПРИЛОЖЕНИЕ 3",
+        "sheet_description": "Лекарствени продукти, предназначени за лечение на СПИН, на инфекциозни заболявания, на заболявания извън обхвата на ЗЗО, заплащани по реда на чл. 82, ал. 1, т. 8 от Закона за здравето, както и ваксини за задължителни имунизации и реимунизации, ваксини по специални показания и при извънредни обстоятелства, специфични серуми, имуноглобулини, определени с наредбата по чл. 58, ал. 2 от Закона за здравето"
+      },
+      "column_count": 28,
+      "header_rows": [
+        {
+          "index": 7,
+          "cells": {
+            "1": "Анатомо-терапевтичен код /АТС-код/",
+            "2": "Международно непатентно наименование /INN/",
+            "3": "Наименование на лекарствения продукт",
+            "4": "Лекарствена форма",
+            "5": "Количество на активното лекарствено вещество",
+            "7": "Окончателна опаковка",
+            "8": "Окончателна опаковка(текст)",
+            "9": "Притежател на разрешението за употреба",
+            "10": "DDD/Терапевтичен курс",
+            "12": "Цена по чл. 261a, ал.1 от ЗЛПХМ",
+            "13": "Референтна стойност за DDD/ Терапевтичен курс",
+            "14": "Стойност за опаковка, изчислена на база референтна стойност",
+            "15": "Ниво на заплащане (%)",
+            "16": "Терапевтични показания",
+            "17": "Ограничения в начина на предписване при различни индикации",
+            "19": "МКБ",
+            "20": "Допълнителна информация",
+            "26": "Статус",
+            "27": "Национален номер",
+            "28": "Вид на лекарствен продукт"
+          }
+        },
+        {
+          "index": 8,
+          "cells": {
+            "17": "Ограничения в предписването",
+            "18": "Лечебни заведения",
+            "20": "№/дата на решението",
+            "21": "№ и дата на решение за поддържане на реимбурсен статус",
+            "22": "Дата на влизане в сила на решение за поддържане на реимбурсен статус",
+            "23": "Дата на настъпили промени в обстоятелствата",
+            "24": "Дата на настъпили промени в обстоятелствата във връзка с ПМС 196/2012 г., ДВ, бр. 68 от 04.09.2012 г.",
+            "25": "Дата на настъпили промени в обстоятелствата във връзка с &8  на НУПРЗРРЦЛП за привеждане в съответствие с чл. 1, ал. 3 от Наредба №42 на МЗ"
+          }
+        }
+      ],
+      "rows": [
+        {
+          "index": 9,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "Diphtheria, Tetanus and Pertussis (acellular, component) vaccine",
+            "3": "J07AJ52 Diphtheria, Tetanus and Pertussis (acellular, component) vaccine"
+          }
+        },
+        {
+          "index": 10,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "pertussis, purified antigen, combinations with toxoids",
+            "3": "Adacel",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "10",
+            "8": "Pre-filled syringe without needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "519.31",
+            "13": "51.931",
+            "14": "519.31",
+            "15": "100%",
+            "16": "Активна имунизация срещу тетанус, дифтерия и коклюш на лица над 4 годишна възраст, като бустер след първична имунизация.",
+            "19": "Z27.1",
+            "20": "НСР-21394/29.04.2020 Предварително изпълнение; НСР-23105/07.01.2021; НСР-30842/11.04.2023; Протокол №549/22.05.2023; НСР-33407/17.01.2024; НСР-36850/12.02.2025; НСР-37481/30.04.2025",
+            "21": "НСР-40421 - 25/03/2026",
+            "22": "09.04.2026",
+            "23": "02.05.2026",
+            "26": "Активен",
+            "27": "16962",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 11,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "Diphtheria, Tetanus and Pertussis (acellular, component) vaccine",
+            "3": "J07AJ52 Diphtheria, Tetanus and Pertussis (acellular, component) vaccine"
+          }
+        },
+        {
+          "index": 12,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "Diphtheria, tetanus, pertussis",
+            "3": "Boostrix",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "1",
+            "8": "Pre-filled syringe + 1 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "14.65",
+            "13": "14.65",
+            "14": "14.65",
+            "15": "100%",
+            "16": "показан за реимунизация срещу дифтерия, тетанус и коклюш при лица над 4-годишна възраст. Показан също за пасивна защита срещу коклюш в ранна детска възраст след имунизация на майката по време на бременност",
+            "19": "Z27.1",
+            "20": "НСР-34896/21.06.2024 Предварително изпълнение; НСР-36719/28.01.2025",
+            "21": "НСР-34896 - 21/06/2024",
+            "22": "21.06.2024",
+            "23": "02.03.2025",
+            "26": "Активен",
+            "27": "44454",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 13,
+          "cells": {
+            "1": "J07AJ52",
+            "2": "Diphtheria, tetanus, pertussis",
+            "3": "Boostrix",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe 0.5 ml + 2 needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "14.65",
+            "13": "14.65",
+            "14": "14.65",
+            "15": "100%",
+            "16": "Показан за реимунизация срещу дифтерия, тетанус и коклюш при лица над 4-годишна възраст. Показан също за пасивна защита срещу коклюш в ранна детска възраст след имунизация на майката по време на бременност.",
+            "19": "Z27.1",
+            "20": "Протокол №383/14.05.2020; НСР-21602/04.06.2020; НСР-26781/28.01.2022; Протокол №549/22.05.2023; НСР-36720/28.01.2025",
+            "21": "НСР-32128 - 30/08/2023",
+            "22": "14.09.2023",
+            "23": "02.03.2025",
+            "24": "08.09.2012",
+            "25": "16.01.2014",
+            "26": "Активен",
+            "27": "127",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 14,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (13-valent, adsorbed)",
+            "3": "Pneumococcus, purified polysaccharides antigen conjugated (13-valent, adsorbed)"
+          }
+        },
+        {
+          "index": 15,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (13-valent, adsorbed)",
+            "3": "Prevenar 13",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe with separate needle",
+            "9": "Pfizer Europe MA EEIG, Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "51.36",
+            "13": "51.36",
+            "14": "51.36",
+            "15": "100%",
+            "16": "Активна имунизация за превенция на инвазивно заболяване, пневмония и остро възпаление на средното ухо, причинено от Streptococcus pneumoniae, при кърмачета, деца и юноши на възраст от 6 седмици до 17 години. Активна имунизация за превенция на инвазивно заболяване и пневмония, причинени от Streptococcus pneumoniae, при възрастни ≥18 години и в старческа възраст",
+            "19": "Z23.8",
+            "20": "НСР-25145/05.08.2021; НСР-27963/26.05.2022",
+            "21": "НСР-35193 - 24/07/2024",
+            "22": "08.08.2024",
+            "23": "02.09.2024",
+            "26": "Активен",
+            "27": "16979",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 16,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (15-valent, adsorbed)",
+            "3": "J07AL02 Pneumococcus, purified polysaccharides antigen conjugated (15-valent, adsorbed)"
+          }
+        },
+        {
+          "index": 17,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (15-valent, adsorbed)",
+            "3": "Vaxneuvance",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 2 separate needles",
+            "9": "Merck Sharp & Dohme B.V., Нидерландия",
+            "10": "1",
+            "11": "dose",
+            "12": "51.92",
+            "13": "51.92",
+            "14": "51.92",
+            "15": "100%",
+            "16": "Активна имунизация с цел превенция на инвазивно заболяване, пневмония и остро възпаление на средното ухо, причинени от Streptococcus pneumoniae при кърмачета, деца и юноши на възраст от 6 седмици до по-малко от 18 години.",
+            "19": "Z23.8",
+            "20": "НСР-32920/28.11.2023 Предварително изпълнение; НСР-35222/24.07.2024",
+            "21": "НСР-32920 - 28/11/2023",
+            "22": "28.11.2023",
+            "23": "02.09.2024",
+            "26": "Активен",
+            "27": "57335",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 18,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)",
+            "3": "J07AL02 Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)"
+          }
+        },
+        {
+          "index": 19,
+          "cells": {
+            "1": "J07AL02",
+            "2": "Pneumococcus, purified polysaccharides antigen conjugated (20-valent, adsorbed)",
+            "3": "Prevenar 20",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "Pfizer Europe MA EEIG, Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "60.31",
+            "13": "60.31",
+            "14": "60.31",
+            "15": "100%",
+            "16": "Aктивна имунизация за превенция на инвазивно заболяване и пневмония, причинени от Streptococcus pneumoniae при лица на 18 и повече години.",
+            "19": "Z23.8",
+            "20": "НСР-33070/08.12.2023 Предварително изпълнение; НСР-35392/14.08.2024; НСР-41052/02.06.2026",
+            "21": "НСР-33070 - 08/12/2023",
+            "22": "08.12.2023",
+            "23": "02.07.2026",
+            "26": "Активен",
+            "27": "58090",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 20,
+          "cells": {
+            "1": "J07AL52",
+            "2": "Pneumococcal polysaccharide conjugate vaccine",
+            "3": "J07AL52 Pneumococcal polysaccharide conjugate vaccine"
+          }
+        },
+        {
+          "index": 21,
+          "cells": {
+            "1": "J07AL52",
+            "2": "pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated",
+            "3": "Synflorix",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "39.94",
+            "13": "39.94",
+            "14": "39.94",
+            "15": "100%",
+            "16": "Активна имунизация срещу инвазивно заболяване, пневмония и остър отит на средното ухо, причинявани от Streptococcus pneumoniae при кърмачета и деца на възраст от 6 седмици до 5 години.",
+            "19": "Z23.8",
+            "20": "№ 25/ 03.08.2009; № 89/ 17.06.2010; НСР-1281/25.09.2013; НСР-3842/16.06.2014; Протокол №361/05.12.2019; НСР-36260/04.12.2024",
+            "21": "НСР-32964 - 01/12/2023",
+            "22": "16.12.2023",
+            "23": "02.01.2025",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "2958",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 22,
+          "cells": {
+            "1": "J07AL52",
+            "2": "pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated",
+            "3": "Synflorix",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 2 needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "39.94",
+            "13": "39.94",
+            "14": "39.94",
+            "15": "100%",
+            "16": "Активна имунизация срещу инвазивно заболяване, пневмония и остър отит на средното ухо, причинявани от Streptococcus pneumoniae при кърмачета и деца на възраст от 6 седмици до 5 години.",
+            "19": "Z23.8",
+            "20": "НСР-16866/28.09.2018; Протокол № 361/05.12.2019; НСР-36261/04.12.2024",
+            "21": "НСР-35494 - 28/08/2024",
+            "22": "12.09.2024",
+            "23": "02.01.2025",
+            "26": "Активен",
+            "27": "16291",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 23,
+          "cells": {
+            "1": "J07AM01",
+            "2": "Tetanus Toxoid",
+            "3": "J07AM01 Tetanus Toxoid"
+          }
+        },
+        {
+          "index": 24,
+          "cells": {
+            "1": "J07AM01",
+            "2": "Tetanus toxoid",
+            "3": "Tetatox",
+            "4": "Suspension for injection",
+            "5": "40 IU/dose - 0.5 ml (1 dose)",
+            "7": "10",
+            "8": "Ampoule",
+            "9": "БУЛ БИО - НЦЗПБ ЕАД, България",
+            "10": "1",
+            "11": "dose",
+            "12": "7.7",
+            "13": "0.77",
+            "14": "7.7",
+            "15": "100%",
+            "16": "Първична имунизация и реимунизация срещу тетанус при възрастни; екстремна профилактика при нараняване и изгаряне; специфична профилактика на тетанус у новородени; профилактика на неонатален тетанус",
+            "19": "Z23.5",
+            "20": "№ 16/24.06.2009; КЦРР-1252/15.08.2012; НСР-21879/09.07.2020; НСР-30785/07.04.2023; НСР-36943/19.02.2025",
+            "21": "НСР-38378 - 19/08/2025",
+            "22": "03.09.2025",
+            "23": "02.10.2025",
+            "24": "8.9.2012.",
+            "25": "16.01.2014",
+            "26": "Активен",
+            "27": "1344",
+            "28": "ЛП с добре установена употреба"
+          }
+        },
+        {
+          "index": 25,
+          "cells": {
+            "1": "J07AM51",
+            "2": "Diphtheria and tetanus vaccine (adsorbed, reduced antigen (s) content)",
+            "3": "J07AM51 Diphtheria and tetanus vaccine (adsorbed, reduced antigen (s) content)"
+          }
+        },
+        {
+          "index": 26,
+          "cells": {
+            "1": "J07AM51",
+            "2": "tetanus toxoid, combinations with diphtheria toxoid",
+            "3": "Tetadif",
+            "4": "Suspension for injection",
+            "5": "0.5 ml ( dose)",
+            "7": "10",
+            "8": "Ampoule, colourless glass class I",
+            "9": "БУЛ БИО - НЦЗПБ ЕАД, България",
+            "10": "1",
+            "11": "dose",
+            "12": "10.82",
+            "13": "1.082",
+            "14": "10.82",
+            "15": "100%",
+            "16": "Реимунизация срещу тетанус и дифтерия при деца над 7 години и възрастни; Първична имунизация срещу тетанус и дифтерия, започната след 7 годишна възраст; ваксинация след нараняване или изгаряне с опасност от тетанус, ако е необходима реимунизация срещу дифтерия.",
+            "19": "Z27.8",
+            "20": "№ 16/24.06.2009; НСР-21877/09.07.2020; НСР-30784/07.04.2023; НСР-36942/19.02.2025",
+            "21": "НСР-38624 - 24/09/2025",
+            "22": "09.10.2025",
+            "23": "02.11.2025",
+            "24": "08.09.2012",
+            "25": "16.01.2014",
+            "26": "Активен",
+            "27": "64",
+            "28": "ЛП с добре установена употреба"
+          }
+        },
+        {
+          "index": 27,
+          "cells": {
+            "1": "J07AN01",
+            "2": "Mycobacterium bovis BCG",
+            "3": "J07AN01 Mycobacterium bovis BCG"
+          }
+        },
+        {
+          "index": 28,
+          "cells": {
+            "1": "J07AN01",
+            "2": "tuberculosis, live attenuated",
+            "3": "BCG vaccine, freeze-dried",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0.05 mg (dose)",
+            "7": "20",
+            "8": "ampoules (1 ampoule/10 doses)",
+            "9": "БУЛ БИО - НЦЗПБ ЕАД, България",
+            "10": "1",
+            "11": "dose",
+            "12": "26.65",
+            "13": "0.13325",
+            "14": "26.65",
+            "15": "100%",
+            "16": "За специфична профилактика на туберкулозата.",
+            "19": "Z23.2",
+            "20": "№ 16/24.06.2009; Протокол №383/14.05.2020; НСР-21874/09.07.2020; НСР-30779/07.04.2023; НСР-36944/19.02.2025",
+            "21": "НСР-40855 - 13/05/2026",
+            "22": "28.05.2026",
+            "23": "02.06.2026",
+            "24": "08.09.2012",
+            "25": "16.01.2014",
+            "26": "Активен",
+            "27": "17",
+            "28": "ЛП с добре установена употреба"
+          }
+        },
+        {
+          "index": 29,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "J07BB02 Trivalent influenza vaccine"
+          }
+        },
+        {
+          "index": 30,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "Vaxigrip",
+            "4": "Suspension for injection in pre-filled syringe",
+            "5": "0.5 ml (dose)",
+            "7": "10",
+            "8": "Pre-filled syringe with attached needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "113.58",
+            "13": "11.358",
+            "14": "113.58",
+            "15": "100%",
+            "16": "Профилактика на заболяване от грип, причинено от два подтипа на грипен вирус А и на грипен вирус В, които се съдържат във ваксината за: активна имунизация при възрастни, вкл. бременни жени, и деца от 6-месечна възраст и по-големи; пасивна защита на кърмаче(та) от раждането до под 6-месечна възраст след ваксиниране на бременни жени.",
+            "19": "Z25.1",
+            "20": "НСР-37945/20.06.2025 Предварително изпълнение",
+            "21": "НСР-37945 - 20/06/2025",
+            "22": "20.06.2025",
+            "23": "02.07.2025",
+            "26": "Активен",
+            "27": "66739",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 31,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "J07BB02 Trivalent influenza vaccine"
+          }
+        },
+        {
+          "index": 32,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "Influvac",
+            "4": "Suspension for injection in pre-filled syringe",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Pre-filled syringe with needle",
+            "9": "Viatris Healthcare Limited, Ирландия",
+            "10": "1",
+            "11": "dose",
+            "12": "11.72",
+            "13": "11.72",
+            "14": "11.72",
+            "15": "100%",
+            "16": "за активна имунизация за профилактика на грипно заболяване при възрастни и деца на възраст над 6 месеца",
+            "19": "Z25.1",
+            "20": "НСР-38889/22.10.2025; НСР-40654/14.04.2026",
+            "21": "НСР-38889 - 22/10/2025",
+            "22": "06.11.2025",
+            "23": "02.05.2026",
+            "26": "Активен",
+            "27": "65153",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 33,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "J07BB02 Quadrivalent Influenza vaccine (split virion, inactivated)"
+          }
+        },
+        {
+          "index": 34,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "Influvac Tetra",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe with needle",
+            "9": "Viatris Healthcare Limited, Ирландия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.04",
+            "13": "10.04",
+            "14": "10.04",
+            "15": "100%",
+            "16": "Профилактика на грип, особено при пациенти с повишен риск от свързани усложнения. Показан за възрастни и деца от 3-годишна възраст",
+            "19": "Z25.1",
+            "20": "НСР-31403/15.06.2023; НСР-40655/14.04.2026",
+            "21": "НСР-41185 - 09/06/2026",
+            "22": "24.06.2026",
+            "23": "02.07.2026",
+            "26": "Активен",
+            "27": "16146",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 35,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "J07BB02  Quadrivalent Influenza vaccine (split virion, inactivated)"
+          }
+        },
+        {
+          "index": 36,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "VaxigripTetra",
+            "4": "Suspension for injection in pre-filled syringe",
+            "5": "0.5 ml (dose)",
+            "7": "10",
+            "8": "pre-filled syringe with attached needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "113.58",
+            "13": "11.358",
+            "14": "113.58",
+            "15": "100%",
+            "16": "Профилактика на заболяване от грип, причинено от два подтипа на грипен вирус А и два подтипа на грипен вирус В, които се съдържат във ваксината за: активна имунизация на възрастни, вкл. бременни жени, и деца от 6 месечна възраст или по-големи; пасивна защита на бебе от раждането до под 6-месечна възраст след ваксиниране на бременни жени.",
+            "19": "Z25.1",
+            "20": "НСР-18933/13.06.2019г.; НСР-20733/30.01.2020; НСР-23999/26.03.2021; Протокол №549/22.05.2023; НСР-36849/12.02.2025",
+            "21": "НСР-37864 - 10/06/2025",
+            "22": "25.06.2025",
+            "23": "02.07.2025",
+            "26": "Активен",
+            "27": "16568",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 37,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "J07BB02 Trivalent influenza vaccine"
+          }
+        },
+        {
+          "index": 38,
+          "cells": {
+            "1": "J07BB02",
+            "2": "influenza, inactivated, split virus or surface antigen",
+            "3": "Efluelda",
+            "4": "Suspension for injection in pre-filled syringe",
+            "5": "0.5 ml (dose)",
+            "7": "10",
+            "8": "Pre-filled syringe without needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "369.1",
+            "13": "36.91",
+            "14": "369.1",
+            "15": "100%",
+            "16": "за активна имунизация на възрастни на възраст на и над 60 години за предпазване от заболяване от грип",
+            "19": "Z25.1",
+            "20": "НСР-38251/05.08.2025",
+            "21": "НСР-38251 - 05/08/2025",
+            "22": "20.08.2025",
+            "23": "02.09.2025",
+            "26": "Активен",
+            "27": "66735",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 39,
+          "cells": {
+            "1": "J07BB03",
+            "2": "Influenza vaccine (live attenuated, nasal)",
+            "3": "J07BB03 Influenza vaccine (live attenuated, nasal)"
+          }
+        },
+        {
+          "index": 40,
+          "cells": {
+            "1": "J07BB03",
+            "2": "Influenza vaccine (live attenuated, nasal)",
+            "3": "Fluenz",
+            "4": "Nasal spray, suspension",
+            "5": "0.2 ml (dose)",
+            "7": "1",
+            "8": "sprayer",
+            "9": "AstraZeneca AB, Швеция",
+            "10": "1",
+            "11": "dose",
+            "12": "22.22",
+            "13": "22.22",
+            "14": "22.22",
+            "15": "100%",
+            "16": "за активна имунизация за превенция на грип при деца и юноши от 2-годишна до 18-годишна възраст",
+            "19": "Z25.1",
+            "20": "НСР-37961/25.06.2025",
+            "21": "НСР-37961 - 25/06/2025",
+            "22": "10.07.2025",
+            "23": "02.08.2025",
+            "26": "Активен",
+            "27": "64907",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 41,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatit B antigen, purified",
+            "3": "J07BC01 Hepatit B antigen, purified"
+          }
+        },
+        {
+          "index": 42,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatitis B, purified antigen",
+            "3": "Engerix B",
+            "4": "Suspension for injection",
+            "5": "10 mcg/0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "7.63",
+            "13": "7.63",
+            "14": "7.63",
+            "15": "100%",
+            "16": "За активна имунизация срещу хепатит B вирусна инфекция, причинена от всички известни субтипове на HBV, при неимунни лица.",
+            "19": "Z24.6",
+            "20": "Задължителна; № 209/04.11.2011; НСР-3980/30.06.2014; НСР-8323/26.02.2016; НСР-10750/27.10.2016; НСР-13274/20.07.2017; НСР-17028/19.10.2018; НСР-19079/27.06.2019; Протокол №549/22.05.2023; НСР-37027/06.03.2025; НСР-38995/29.10.2025",
+            "21": "НСР-31946 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.12.2025",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "2998",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 43,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatit B antigen, purified",
+            "3": "J07BC01 Hepatit B antigen, purified"
+          }
+        },
+        {
+          "index": 44,
+          "cells": {
+            "1": "J07BC01",
+            "2": "Hepatitis B, purified antigen",
+            "3": "Engerix B",
+            "4": "Suspension for injection",
+            "5": "20 mcg/1.0 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.75",
+            "13": "10.75",
+            "14": "10.75",
+            "15": "100%",
+            "16": "За активна имунизация срещу хепатит B вирусна инфекция, причинена от всички известни субтипове на HBV, при неимунни лица на възраст на и над 16 години.",
+            "19": "Z24.6",
+            "20": "№ 209/ 04.11.2011; КЦРР-2557/14.03.2013; НСР-12476/28.04.2017 г.; НСР-16124/13.07.2018; НСР-18291/28.03.2019; Протокол №549/22.05.2023; НСР-33074/13.12.2023",
+            "21": "НСР-31946 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.01.2024",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "1730",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 45,
+          "cells": {
+            "1": "J07BC02",
+            "2": "Hepatitis A vaccine (inactivated, adsorbed)",
+            "3": "J07BC02 Hepatitis A vaccine (inactivated, adsorbed)"
+          }
+        },
+        {
+          "index": 46,
+          "cells": {
+            "1": "J07BC02",
+            "2": "Hepatitis A, inactivated, whole virus",
+            "3": "Havrix 720",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (Junior monodose)",
+            "7": "1",
+            "8": "Pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "13.39",
+            "13": "13.39",
+            "14": "13.39",
+            "15": "100%",
+            "16": "За активна имунизация срещу хепатит A (HAV) вирусни инфекции, при лица с риск от излагане на HAV.",
+            "19": "Z24.6",
+            "20": "HCР-301/03.07.2013; КП-303/17.06.2015 и НСР-5955/01.04.2015; НСР-37025/06.03.2025; НСР-38994/29.10.2025",
+            "21": "НСР-33299 - 11/01/2024",
+            "22": "26.01.2024",
+            "23": "02.12.2025",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "1925",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 47,
+          "cells": {
+            "1": "J07BC20",
+            "2": "Hepatitis A (inactivated) and hepatitis B (rDNA) (HAB) vaccine (adsorbed)",
+            "3": "J07BC20 Hepatitis A (inactivated) and hepatitis B (rDNA) (HAB) vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 48,
+          "cells": {
+            "1": "J07BC20",
+            "2": "Combinations",
+            "3": "Twinrix Adult",
+            "4": "Suspension for injection",
+            "5": "1 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "36.67",
+            "13": "36.67",
+            "14": "36.67",
+            "15": "100%",
+            "16": "За приложение при неимунни възрастни и юноши на и над 16 години, които са изложени на риск от хепатит A и хепатит B инфекции.",
+            "19": "Z24.6,Z27.8",
+            "20": "КЦРР-743/07.06.2012; НСР-7782/28.12.2015; НСР-37024/06.03.2025",
+            "21": "НСР-31959 - 09/08/2023",
+            "22": "24.08.2023",
+            "23": "02.04.2025",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "129",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 49,
+          "cells": {
+            "1": "J07BD52",
+            "2": "Measles, mumps and rubella vaccine, live",
+            "3": "J07BD52 Measles, mumps and rubella vaccine, live"
+          }
+        },
+        {
+          "index": 50,
+          "cells": {
+            "1": "J07BD52",
+            "2": "measles, combinations with mumps and rubella, live attenuated",
+            "3": "Priorix",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with 2 needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.03",
+            "13": "10.03",
+            "14": "10.03",
+            "15": "100%",
+            "16": "За активна имунизация на деца на 9-месечна възраст и повече, юноши и възрастни срещу морбили, паротит и рубеола.",
+            "19": "Z27.4",
+            "20": "КЦРР-718/07.06.2012; Протокол № 549/22.05.2023; НСР-36257/04.12.2024; НСР-40111/25.02.2026",
+            "21": "НСР-31720 - 12/07/2023",
+            "22": "27.07.2023",
+            "23": "02.04.2026",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "1234",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 51,
+          "cells": {
+            "1": "J07BD52",
+            "2": "Measles, mumps and rubella vaccine, live",
+            "3": "J07BD52 Measles, mumps and rubella vaccine, live"
+          }
+        },
+        {
+          "index": 52,
+          "cells": {
+            "1": "J07BD52",
+            "2": "measles, combinations with mumps and rubella, live attenuated",
+            "3": "M-M-RvaxPro",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe + 2 needles",
+            "9": "Merck Sharp & Dohme B.V., Нидерландия",
+            "10": "1",
+            "11": "dose",
+            "12": "10.54",
+            "13": "10.54",
+            "14": "10.54",
+            "15": "100%",
+            "16": "Показан за ваксиниране едновременно срещу морбили, паротит и рубеола при лица на възраст от 12 месеца. Може да се прилага при кърмачета по-големи от 9 месеца при специални обстоятелства. За използване при взрив на морбили или ваксиниране на контактни лица, или за използване при неваксинирани преди това лица на възраст по-големи от 9 месеца, които са контактни с възприемчиви бременни жени и хора, които има вероятност да са податливи на заразяване с паротит и рубеола",
+            "19": "Z27.4",
+            "20": "НСР-2854/21.02.2014; НСР-28226/27.06.2022; Протокол №549/22.05.2023; Предварително изпълнение НСР-32446/05.10.2023",
+            "21": "НСР-36520 - 16/01/2025",
+            "22": "31.01.2025",
+            "23": "02.02.2025",
+            "26": "Активен",
+            "27": "2517",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 53,
+          "cells": {
+            "1": "J07BG01",
+            "2": "Rabies vaccine for human use prepared in cell cultures (inactivated)",
+            "3": "J07BG01 Rabies vaccine for human use prepared in cell cultures (inactivated)"
+          }
+        },
+        {
+          "index": 54,
+          "cells": {
+            "1": "J07BG01",
+            "2": "rabies, inactivated, whole virus",
+            "3": "Verorab",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "51.26",
+            "13": "51.26",
+            "14": "51.26",
+            "15": "100%",
+            "16": "Показан за преекспозиционна и постекспозиционна профилактика срещу бяс при всички възрастови групи.; Профилактика на бяс преди контакт (профилактична ваксинация). Профилактична ваксинация се препоръчва за лица с висок риск от заразяване с вируса на беса.  Всички лица, изложени на постоянен риск, като такива работещи в диагностични, научни или производствени лаборатории, работещи с вируса на беса, трябва да бъдат ваксинирани.",
+            "19": "Z24.2",
+            "20": "НСР-19378/02.08.2019; НСР-30367/24.02.2023; НСР-36846/12.02.2025; НСР-38056/01.07.2025",
+            "21": "НСР-38155 - 15/07/2025",
+            "22": "30.07.2025",
+            "23": "02.08.2025",
+            "26": "Активен",
+            "27": "16651",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 55,
+          "cells": {
+            "1": "J07BH01",
+            "2": "Rotavirus vaccine, live",
+            "3": "J07BH01 Rotavirus vaccine, live"
+          }
+        },
+        {
+          "index": 56,
+          "cells": {
+            "1": "J07BH01",
+            "2": "Rota virus, live attenuated",
+            "3": "Rotarix",
+            "4": "Oral suspension",
+            "5": "1,5 ml (dose)",
+            "7": "1",
+            "8": "squeezable tube",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "52.49",
+            "13": "52.49",
+            "14": "52.49",
+            "15": "100%",
+            "16": "За активна имунизация на деца на възраст от 6 до 24 седмици за профилактика на гастроентерит, дължащ се на ротавирусна инфекция.",
+            "19": "Z25.8",
+            "20": "НСР-22451/30.09.2020; НСР-36259/04.12.2024",
+            "21": "НСР-32265 - 13/09/2023",
+            "22": "28.09.2023",
+            "23": "02.01.2025",
+            "26": "Активен",
+            "27": "17091",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 57,
+          "cells": {
+            "1": "J07BH02",
+            "2": "Rotavirus vaccine, live",
+            "3": "J07BH02 Rotavirus vaccine, live"
+          }
+        },
+        {
+          "index": 58,
+          "cells": {
+            "1": "J07BH02",
+            "2": "rota virus, pentavalent, live, reassorted",
+            "3": "RotaTeq",
+            "4": "Oral solution",
+            "5": "2 ml (dose)",
+            "7": "1",
+            "8": "tube",
+            "9": "Merck Sharp & Dohme B.V., Нидерландия",
+            "10": "1",
+            "11": "dose",
+            "12": "32.2",
+            "13": "32.2",
+            "14": "32.2",
+            "15": "100%",
+            "16": "За активно имунизиране на кърмачета след 6-седмична до 32-седмична възраст за профилактика на гастроентерити, причинени от ротавирусна инфекция.",
+            "19": "Z25.8",
+            "20": "НСР-2903/05.03.2014; НСР-27958/26.05.2022; НСР-28226/27.06.2022",
+            "21": "НСР-35120 - 16/07/2024",
+            "22": "31.07.2024",
+            "23": "02.08.2024",
+            "26": "Активен",
+            "27": "2565",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 59,
+          "cells": {
+            "1": "J07BK01",
+            "2": "Varicella, live  attenuated",
+            "3": "J07BK01 Varicella, live attenuated"
+          }
+        },
+        {
+          "index": 60,
+          "cells": {
+            "1": "J07BK01",
+            "2": "Varicella, live  attenuated",
+            "3": "Varivax",
+            "4": "Powder and solvent for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with 2 needles",
+            "9": "Merck Sharp & Dohme B.V., Нидерландия",
+            "10": "1",
+            "11": "dose",
+            "12": "36.28",
+            "13": "36.28",
+            "14": "36.28",
+            "15": "100%",
+            "16": "За имунизиране срещу варицела при лица на възраст от 12 месеца; Може да се прилага при кърмачета на възраст от 9 месеца при специални обстоятелства, в съответствие с националния имунизационен календар или в случаи на епидемия; Може да се прилага и при податливи на заразяване лица, които са изложени на варицела вирус. Имунизация в рамките на 3 дни от излагането може да предотврати клинично проявена инфекция или да промени хода на инфекцията. Освен това има ограничени данни, които показват, че имунизацията до 5 дни след излагането може да промени хода на инфекцията.",
+            "19": "Z25.8",
+            "20": "НСР-34516/09.05.2024",
+            "21": "НСР-34516 - 09/05/2024",
+            "22": "24.05.2024",
+            "23": "02.06.2024",
+            "26": "Активен",
+            "27": "16887",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 61,
+          "cells": {
+            "1": "J07BM03",
+            "2": "Papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)",
+            "3": "J07BM03  Papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)"
+          }
+        },
+        {
+          "index": 62,
+          "cells": {
+            "1": "J07BM03",
+            "2": "Papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)",
+            "3": "Gardasil 9",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Pre-filled syringe + 2 needles",
+            "9": "Merck Sharp & Dohme B.V., Нидерландия",
+            "10": "1",
+            "11": "dose",
+            "12": "124.36",
+            "13": "124.36",
+            "14": "124.36",
+            "15": "100%",
+            "16": "За активно имунизиране на лица след 9- годишна възраст, за предпазване от следните HPV заболявания: премалигнени лезии и карцином, засягащ цервикса, вулвата, вагината и ануса, причинени от ваксиналните HPV типове; генитални брадавици (Condyloma acuminata), причинени от определени HPV типове.",
+            "19": "Z25.8",
+            "20": "НСР-31191/01.06.2023 Предварително изпълнение; НСР-36925/19.02.2025",
+            "21": "НСР-40639 - 14/04/2026",
+            "22": "29.04.2026",
+            "23": "02.05.2026",
+            "26": "Активен",
+            "27": "48571",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 63,
+          "cells": {
+            "1": "J07BX00",
+            "2": "Crimean Haemorrhagic fever vaccine; inactivated",
+            "3": "J07BX00 Crimean Haemorrhagic fever vaccine; inactivated"
+          }
+        },
+        {
+          "index": 64,
+          "cells": {
+            "1": "J07BX",
+            "2": "Other viral vaccines",
+            "3": "Anti-CHF Vaccine",
+            "4": "Suspension for injection",
+            "5": "1 ml (1 dose)",
+            "7": "1",
+            "8": "Ampoule, glass class I",
+            "9": "БУЛ БИО - НЦЗПБ ЕАД, България",
+            "10": "1",
+            "11": "ml",
+            "12": "31.3",
+            "13": "31.3",
+            "14": "31.3",
+            "15": "100%",
+            "16": "За предпазване от заразяване с вируса на КХТ на лица над 16 годишна възраст. Прилага се профилактично на населението (с приоритет за ендемичните райони), гранични войски, горски и селскостопански работници, здравни работници, експедиции от археолози, геолози и други.",
+            "19": "Z25.8",
+            "20": "НСР-7502/19.11.2015; НСР-21869/09.07.2020; НСР-30782/07.04.2023; НСР-39972/04.02.2026",
+            "21": "НСР-36632 - 22/01/2025",
+            "22": "06.02.2025",
+            "23": "02.03.2026",
+            "26": "Активен",
+            "27": "4133",
+            "28": "ЛП с добре установена употреба"
+          }
+        },
+        {
+          "index": 65,
+          "cells": {
+            "1": "J07BX05",
+            "2": "Respiratory syncytial virus vaccine (bivalent, recombinant)",
+            "3": "J07BX05 Respiratory syncytial virus vaccine (bivalent, recombinant)"
+          }
+        },
+        {
+          "index": 66,
+          "cells": {
+            "1": "J07BX05",
+            "2": "Respiratory syncytial virus vaccine (bivalent, recombinant)",
+            "3": "Abrysvo",
+            "4": "Powder and solvent for solution for injection",
+            "5": "0.5",
+            "6": "ml",
+            "7": "1",
+            "8": "vial, 1 vial adaptor, 1 pre-filled syringe, 1 needle",
+            "9": "Pfizer Europe MA EEIG, Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "198.13",
+            "13": "198.13",
+            "14": "198.13",
+            "15": "100%",
+            "16": "1. Активна имунизация на лица на възраст 60 години и повече за предотвратяване на заболяване на долните дихателни пътища, причинено от RSV; 2. Пасивна защита срещу заболяване на долните дихателни пътища, причинено от респираторнoсинцитиален вирус (RSV) при кърмачета от раждането до 6-месечна възраст след имунизация на майката по време на бременността.",
+            "19": "Z25.8",
+            "20": "НСР-36695/28.01.2025",
+            "21": "НСР-36695 - 28/01/2025",
+            "22": "12.02.2025",
+            "23": "02.03.2025",
+            "26": "Активен",
+            "27": "64095",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 67,
+          "cells": {
+            "1": "J07CA02",
+            "2": "Diphteria, tetanus, pertussis and poliomyelitis vaccine",
+            "3": "J07CA02 Diphteria, tetanus, pertussis and poliomyelitis vaccine"
+          }
+        },
+        {
+          "index": 68,
+          "cells": {
+            "1": "J07CA02",
+            "2": "diphtheria-pertussis-poliomyelitis-tetanus",
+            "3": "Tetraxim",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "10",
+            "8": "pre-filled syringe 0.5 ml with 1 separate needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "178.67",
+            "13": "17.867",
+            "14": "178.67",
+            "15": "100%",
+            "16": "За комбинирана профилактика на дифтерия, тетанус, коклюш и полиомиелит: - за първична ваксинация на деца навършили 2 месеца.; - за реимунизация една година след първичната имунизация, през втората година от живота; - за реимунизация между 5 и 13 годишна възраст",
+            "19": "Z27.3",
+            "20": "НСР-31404/15.06.2023; НСР-36847/12.02.2025",
+            "21": "НСР-40821 - 08/05/2026",
+            "22": "23.05.2026",
+            "23": "02.06.2026",
+            "26": "Активен",
+            "27": "61121",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 69,
+          "cells": {
+            "1": "J07CA02",
+            "2": "Diphteria, tetanus, pertussis (acellular, component) and Poliomyelitis (inactivated) vaccine (adsorbed)",
+            "3": "J07CA02 Diphteria, tetanus, pertussis (acellular, component) and Poliomyelitis (inactivated) vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 70,
+          "cells": {
+            "1": "J07CA02",
+            "2": "diphtheria-pertussis-poliomyelitis-tetanus",
+            "3": "Boostrix polio",
+            "4": "Suspension for injection",
+            "5": "0,5 ml (dose)",
+            "7": "1",
+            "8": "Pre-filled syringe",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "21.5",
+            "13": "21.5",
+            "14": "21.5",
+            "15": "100%",
+            "16": "За реимунизация срещу дифтерия, тетанус, коклюш и полиомиелит при лица над 3-годишна възраст.; за пасивна защита срещу коклюш в ранна детска възраст след имунизация на майката по време на бременност.",
+            "19": "Z27.3",
+            "20": "КЦРР-1673/20.11.2012; НСР-2753/17.02.2014; НСР-5459/16.01.2015; НСР-32597/23.10.2023",
+            "21": "НСР-32129 - 30/08/2023",
+            "22": "14.09.2023",
+            "23": "02.12.2023",
+            "26": "Активен",
+            "27": "3515",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 71,
+          "cells": {
+            "1": "J07CA06",
+            "2": "Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)",
+            "3": "J07CA06 Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 72,
+          "cells": {
+            "1": "J07CA06",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus",
+            "3": "Pentaxim",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with 2 needles",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "24.55",
+            "13": "24.55",
+            "14": "24.55",
+            "15": "100%",
+            "16": "За комбинирано предпазване от дифтерия, тетанус, коклюш, полиомиелит и от инвазивни инфекции, причинявани от Haemophilus influenzae тип b (като менингит, септицемия, целули, артри, епиглотит и др.). - за първична ваксинация на деца навършили 2 месеца; - за реимунизация, една година след първична имунизация през втората година от живота.",
+            "19": "Z27.8",
+            "20": "16/24.06.2009;КЦРР-997/23.07.2012; Протокол №383/14.05.2020; Протокол №549/22.05.2023; НСР-36848/12.02.2025",
+            "21": "НСР-33349 - 17/01/2024",
+            "22": "01.02.2024",
+            "23": "02.03.2025",
+            "24": "08.09.2012",
+            "25": "16.01.2014",
+            "26": "Активен",
+            "27": "1542",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 73,
+          "cells": {
+            "1": "J07CA06",
+            "2": "Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)",
+            "3": "J07CA06 Diphteria, tetanus, pertussis (acellular, component), poliomyelitis (inactivated) and Haemophilis type b conjugate vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 74,
+          "cells": {
+            "1": "J07CA06",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus",
+            "3": "Infanrix-IPV+Hib",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "Vial + pre-filled syringe with needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "24.55",
+            "13": "24.55",
+            "14": "24.55",
+            "15": "100%",
+            "16": "За активна имунизация срещу дифтерия, тетанус, коклюш, полиомиелит и Haemophilus influenzae тип b заболяване при деца на възраст от 2 месеца нагоре.",
+            "19": "Z27.8",
+            "20": "№ 44/07.01.2010; № 57/05.03.2010; КЦРР-2541/14.03.2013; НСР-4994/05.11.2014; НСР-6674/09.07.2015; НСР-8326/26.02.2016; НСР-21603/04.06.2020; Протокол №549/22.05.2023; НСР-32854/15.11.2023",
+            "21": "НСР-33020 - 08/12/2023",
+            "22": "23.12.2023",
+            "23": "02.01.2024",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "3339",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 75,
+          "cells": {
+            "1": "J07CA09",
+            "2": "Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated) and Haemophilus influenzae type b conjugate vaccine (adsorbed)",
+            "3": "J07CA09 Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated) and Haemophilus influenzae type b conjugate vaccine (adsorbed)"
+          }
+        },
+        {
+          "index": 76,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Infanrix Hexa",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe + 2 needles",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "33.7",
+            "13": "33.7",
+            "14": "33.7",
+            "15": "100%",
+            "16": "За първична ваксинация и бустер ваксинация на кърмачета и малки деца срещу дифтерия, тетанус, коклюш, хепатит B, пилиомиелит и заболявания, причинени от Haemophilus influenzae тип b.",
+            "19": "Z27.8",
+            "20": "КЦРР-2406/21.02.2013 г.; НСР-7707/17.12.2015, Протокол № 227/01.06.2017; НСР-21600/04.06.2020; НСР-31985/09.08.2023",
+            "21": "НСР-32367 - 21/09/2023",
+            "22": "06.10.2023",
+            "23": "02.11.2023",
+            "24": "08.09.2012",
+            "26": "Активен",
+            "27": "1754",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 77,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Infanrix Hexa",
+            "4": "Powder and suspension for suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "vial + 1 pre-filled syringe without needle",
+            "9": "GlaxoSmithKline Biologicals S.A., Белгия",
+            "10": "1",
+            "11": "dose",
+            "12": "33.7",
+            "13": "33.7",
+            "14": "33.7",
+            "15": "100%",
+            "16": "За първична ваксинация и бустер ваксинация на кърмачета и малки деца срещу дифтерия, тетанус, коклюш, хепатит B, пилиомиелит и заболявания, причинени от Haemophilus influenzae тип b.",
+            "19": "Z27.8",
+            "20": "НСР-15129/02.03.2018; НСР-21601/04.06.2020; НСР-31986/09.08.2023",
+            "21": "НСР-34765 - 13/06/2024",
+            "22": "28.06.2024",
+            "23": "02.07.2024",
+            "26": "Активен",
+            "27": "16058",
+            "28": "Оригинален ЛП"
+          }
+        },
+        {
+          "index": 78,
+          "cells": {
+            "1": "J07CA09",
+            "2": "Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated)",
+            "3": "J07CA09 Diphtheria, tetanus, pertussis (acellular, component), hepatitis B (rDNA), poliomyelitis (inactivated)"
+          }
+        },
+        {
+          "index": 79,
+          "cells": {
+            "1": "J07CA09",
+            "2": "diphtheria-hemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B",
+            "3": "Hexyon",
+            "4": "Suspension for injection",
+            "5": "0.5 ml (dose)",
+            "7": "1",
+            "8": "pre-filled syringe + 1 needle",
+            "9": "Sanofi Winthrop Industrie, Франция",
+            "10": "1",
+            "11": "dose",
+            "12": "34.38",
+            "13": "34.38",
+            "14": "34.38",
+            "15": "100%",
+            "16": "За първична и бустер ваксинация на кърмачета и малки деца от шестседмична възраст срещу дифтерия, тетанус, коклюш, хепатит B, полиомиелит и инвазивни заболявания, причинени от Haemophilus influenzae тип b (Hib)",
+            "19": "Z27.8",
+            "20": "НСР-31488/29.06.2023; НСР-36732/28.01.2025; НСР-38700/30.09.2025",
+            "21": "НСР-31488 - 29/06/2023",
+            "22": "14.07.2023",
+            "23": "02.11.2025",
+            "26": "Активен",
+            "27": "48761",
+            "28": "Оригинален ЛП"
+          }
+        }
+      ]
+    }
+  ],
+  "his_sheets": [
+    "CL037",
+    "CL038",
+    "Change Notes"
+  ],
+  "his_sheet_labels": {
+    "CL037": "HIS products",
+    "CL038": "HIS schedule",
+    "Change Notes": "HIS Change notes"
+  },
+  "ncpr_sheets": [
+    "Prilogenie-2-Export-202607051748",
+    "Prilogenie-3-Export-202607051802"
+  ],
+  "ncpr_sheet_labels": {
+    "Prilogenie-2-Export-202607051748": "NCPR Appendix 2",
+    "Prilogenie-3-Export-202607051802": "NCPR Appendix 3"
+  }
+}

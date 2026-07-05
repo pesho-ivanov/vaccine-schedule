@@ -348,6 +348,28 @@ main {
   line-height: 1.35;
 }
 
+.ncpr-summary {
+  display: grid;
+  gap: 4px;
+  max-width: 980px;
+  margin: 0 0 12px;
+}
+
+.ncpr-summary:empty {
+  display: none;
+}
+
+.ncpr-summary-title {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.ncpr-summary-meta {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
 table {
   width: max-content;
   min-width: 100%;
@@ -621,6 +643,24 @@ tbody td {
   top: 0;
   z-index: 5;
   background: var(--header-bg);
+}
+
+.ncpr-sheet-table thead th {
+  min-width: 120px;
+  white-space: pre-wrap;
+}
+
+.ncpr-sheet-table .sheet-row-number {
+  min-width: 88px;
+  width: 88px;
+  text-align: left;
+}
+
+.ncpr-category-row th,
+.ncpr-category-row td {
+  background: #eef3f8;
+  color: var(--text);
+  font-weight: 800;
 }
 
 .sheet-cell-red {

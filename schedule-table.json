@@ -1208,6 +1208,14 @@
     "CL038": "HIS schedule",
     "Change Notes": "HIS Change notes"
   },
+  "ncpr_sheets": [
+    "Prilogenie-2-Export-202607051748",
+    "Prilogenie-3-Export-202607051802"
+  ],
+  "ncpr_sheet_labels": {
+    "Prilogenie-2-Export-202607051748": "NCPR Appendix 2",
+    "Prilogenie-3-Export-202607051802": "NCPR Appendix 3"
+  },
   "his_sheets_source": {
     "url": "https://his.bg/bg/dev/nomenclatures",
     "version": "v1.5.27",

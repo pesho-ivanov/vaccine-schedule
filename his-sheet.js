@@ -142,6 +142,14 @@
       item.appendChild(link);
       nav.appendChild(item);
     }
+    for (const sheetId of data.ncpr_sheets || []) {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`;
+      link.textContent = data.ncpr_sheet_labels?.[sheetId] || sheetId;
+      item.appendChild(link);
+      nav.appendChild(item);
+    }
   }
 
   function sourceLabel(name) {
@@ -298,6 +306,9 @@
     }
     if (sheet.name === "CL037" && text === "Number of Doses") {
       return bgColumnsVisible() ? "Брой дози" : "Number of Doses";
+    }
+    if (sheet.name === "CL037" && text === "Days to Next Dose") {
+      return "Min Days to Next Dose";
     }
     if (sheet.name === "CL037" && text === "Display value EN") {
       return "Vaccine product";
@@ -637,6 +648,7 @@
         "Dose Quantity (ml)",
         "Permit Number",
         "Permit Owner ID",
+        "Permit Owner Name",
         "MH code",
         "Since",
       ],
