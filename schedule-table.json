@@ -1199,22 +1199,24 @@
     "his_bg": "v1.5.27"
   },
   "his_sheets": [
+    "Change Notes",
     "CL037",
-    "CL038",
-    "Change Notes"
+    "CL038"
   ],
   "his_sheet_labels": {
+    "Change Notes": "HIS changes",
     "CL037": "HIS products",
-    "CL038": "HIS events",
-    "Change Notes": "HIS changes"
+    "CL038": "HIS events"
   },
   "ncpr_sheets": [
     "Prilogenie-2-Export-202607051748",
-    "Prilogenie-3-Export-202607051802"
+    "Prilogenie-3-Export-202607051802",
+    "Prilogenie-4-Export-202607051815"
   ],
   "ncpr_sheet_labels": {
     "Prilogenie-2-Export-202607051748": "NCPR Appendix 2",
-    "Prilogenie-3-Export-202607051802": "NCPR Appendix 3"
+    "Prilogenie-3-Export-202607051802": "NCPR Appendix 3",
+    "Prilogenie-4-Export-202607051815": "NCPR Appendix 4"
   },
   "his_sheets_source": {
     "url": "https://his.bg/bg/dev/nomenclatures",

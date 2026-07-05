@@ -33,6 +33,33 @@
   const table = document.getElementById("ncpr-sheet-table");
   const caption = document.getElementById("sheet-caption");
   const headerRows = sheet.header_rows || [];
+  const STORAGE_KEYS = {
+    showBulgarian: "vaccine-schedule.show-bg",
+    showOldRecords: "vaccine-schedule.show-old-records",
+    showDetails: "vaccine-schedule.show-details",
+  };
+
+  function storedFlag(key) {
+    try {
+      return window.localStorage.getItem(key) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  function storeFlag(key, value) {
+    try {
+      window.localStorage.setItem(key, String(value));
+    } catch {
+      // Storage can be unavailable in restricted browsing contexts.
+    }
+  }
+
+  function setButtonState(button, className, storageKey, enabled) {
+    document.body.classList.toggle(className, enabled);
+    button.setAttribute("aria-pressed", String(enabled));
+    storeFlag(storageKey, enabled);
+  }
 
   function setTooltip(element, text) {
     element.dataset.tooltip = text;
@@ -186,6 +213,10 @@
     ["Анатомо-терапевтичен код /АТС-код/", { en: "ATC", bg: "АТС код" }],
     ["Международно непатентно наименование /INN/", { en: "INN", bg: "INN" }],
     ["Наименование на лекарствения продукт", { en: "Product", bg: "Име на продукта" }],
+    [
+      "Наименование на лекарствения продукт/лекарствена форма и количество активно вещество в окончателна опаковка",
+      { en: "Product", bg: "Име на продукта" },
+    ],
     ["Лекарствена форма", { en: "Pharmaceutical form", bg: "Лекарствена форма" }],
     ["Количество на активното лекарствено вещество", { en: "Active substance quantity", bg: "Количество активно вещество" }],
     ["Окончателна опаковка", { en: "Pack size", bg: "Брой в опаковка" }],
@@ -268,6 +299,7 @@
     const patientHeaders = new Set([
       "Международно непатентно наименование /INN/",
       "Наименование на лекарствения продукт",
+      "Наименование на лекарствения продукт/лекарствена форма и количество активно вещество в окончателна опаковка",
       "Ниво на заплащане (%)",
       "Терапевтични показания",
       "Ограничения в начина на предписване при различни индикации",
@@ -279,6 +311,18 @@
       return true;
     }
     return false;
+  }
+
+  function isPriceColumn(column) {
+    return headerTexts(column).some((text) => {
+      const header = text.trim().toLowerCase();
+      return header.includes("цена")
+        || header.includes("стойност")
+        || header.includes("price")
+        || header.includes("value")
+        || header.includes("ддс")
+        || header.includes("надбавка");
+    });
   }
 
   function detailsVisible() {
@@ -306,7 +350,7 @@
   }
 
   function rowHeaderVisible() {
-    return (!isKeyColumn(1) && !isAtcColumn(1)) || detailsVisible();
+    return (isKeyColumn(1) || isAtcColumn(1)) && detailsVisible();
   }
 
   function oldRecordsVisible() {
@@ -315,13 +359,14 @@
 
   function visibleColumns() {
     const columns = [];
-    for (let index = 2; index <= sheet.column_count; index += 1) {
+    const startColumn = rowHeaderVisible() ? 2 : 1;
+    for (let index = startColumn; index <= sheet.column_count; index += 1) {
       if (
         detailsVisible()
         || (
           !isKeyColumn(index)
           && !isAtcColumn(index)
-          && isPatientFacingColumn(index)
+          && (isPatientFacingColumn(index) || isPriceColumn(index))
           && columnHasVisibleProductValue(index)
         )
       ) {
@@ -379,6 +424,10 @@
     return rows;
   }
 
+  function categoryNamesVisible() {
+    return visibleRows().some(isCategoryRow);
+  }
+
   function atcValue(row) {
     for (let index = 1; index <= sheet.column_count; index += 1) {
       if (isAtcColumn(index)) {
@@ -432,6 +481,12 @@
     const productColumns = columns.filter(isProductColumn);
     const otherColumns = columns.filter((column) => !isProductColumn(column));
 
+    const rowNumberHeader = document.createElement("th");
+    rowNumberHeader.scope = "col";
+    rowNumberHeader.className = "sheet-display-row-number";
+    rowNumberHeader.setAttribute("aria-label", "Row number");
+    row.appendChild(rowNumberHeader);
+
     if (rowHeaderVisible()) {
       const rowHeader = document.createElement("th");
       rowHeader.scope = "col";
@@ -442,11 +497,13 @@
 
     appendColumnHeaders(row, productColumns);
 
-    const nameHeader = document.createElement("th");
-    nameHeader.scope = "col";
-    appendText(nameHeader, "Name", "column-label");
-    appendText(nameHeader, "Име", "column-meta translation-bg");
-    row.appendChild(nameHeader);
+    if (categoryNamesVisible()) {
+      const nameHeader = document.createElement("th");
+      nameHeader.scope = "col";
+      appendText(nameHeader, "Name", "column-label");
+      appendText(nameHeader, "Име", "column-meta translation-bg");
+      row.appendChild(nameHeader);
+    }
 
     appendColumnHeaders(row, otherColumns);
 
@@ -460,8 +517,14 @@
     const productColumns = columns.filter(isProductColumn);
     const otherColumns = columns.filter((column) => !isProductColumn(column));
 
-    for (const { row: sheetRow, name } of productRowsWithCategoryName()) {
+    for (const [index, { row: sheetRow, name }] of productRowsWithCategoryName().entries()) {
       const tr = document.createElement("tr");
+
+      const rowNumberCell = document.createElement("th");
+      rowNumberCell.scope = "row";
+      rowNumberCell.className = "sheet-display-row-number";
+      rowNumberCell.textContent = index + 1;
+      tr.appendChild(rowNumberCell);
 
       if (rowHeaderVisible()) {
         const atcCell = document.createElement("th");
@@ -475,9 +538,11 @@
         appendSheetDataCell(tr, sheetRow, index);
       }
 
-      const nameCell = document.createElement("td");
-      nameCell.textContent = name;
-      tr.appendChild(nameCell);
+      if (categoryNamesVisible()) {
+        const nameCell = document.createElement("td");
+        nameCell.textContent = name;
+        tr.appendChild(nameCell);
+      }
 
       for (const index of otherColumns) {
         appendSheetDataCell(tr, sheetRow, index);
@@ -500,21 +565,38 @@
 
   document.title = sheet.label;
   caption.textContent = sheet.label;
+  setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
+  setButtonState(
+    oldRecordsToggle,
+    "show-old-records",
+    STORAGE_KEYS.showOldRecords,
+    storedFlag(STORAGE_KEYS.showOldRecords)
+  );
+  setButtonState(detailsToggle, "show-details", STORAGE_KEYS.showDetails, storedFlag(STORAGE_KEYS.showDetails));
   bgToggle.addEventListener("click", () => {
-    const showBulgarian = !document.body.classList.contains("show-bg");
-    document.body.classList.toggle("show-bg", showBulgarian);
-    bgToggle.setAttribute("aria-pressed", String(showBulgarian));
+    setButtonState(
+      bgToggle,
+      "show-bg",
+      STORAGE_KEYS.showBulgarian,
+      !document.body.classList.contains("show-bg")
+    );
   });
   oldRecordsToggle.addEventListener("click", () => {
-    const showOldRecords = !oldRecordsVisible();
-    document.body.classList.toggle("show-old-records", showOldRecords);
-    oldRecordsToggle.setAttribute("aria-pressed", String(showOldRecords));
+    setButtonState(
+      oldRecordsToggle,
+      "show-old-records",
+      STORAGE_KEYS.showOldRecords,
+      !oldRecordsVisible()
+    );
     renderTable();
   });
   detailsToggle.addEventListener("click", () => {
-    const showDetails = !detailsVisible();
-    document.body.classList.toggle("show-details", showDetails);
-    detailsToggle.setAttribute("aria-pressed", String(showDetails));
+    setButtonState(
+      detailsToggle,
+      "show-details",
+      STORAGE_KEYS.showDetails,
+      !detailsVisible()
+    );
     renderTable();
   });
   renderSheetNav();
