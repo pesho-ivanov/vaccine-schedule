@@ -57,6 +57,12 @@
   const productsColumnIndex = sheet.name === "CL038"
     ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "CL037 Mapping (2025)") || 0
     : 0;
+  const atcColumnIndex = sheet.name === "CL037"
+    ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "ATC") || 0
+    : 0;
+  const innColumnIndex = sheet.name === "CL037"
+    ? dataColumns.find((column) => cellValue(hierarchicalHeaderRows[1], column) === "INN") || 0
+    : 0;
   const programGroupEnglishLabels = new Map([
     [
       "Задължителни планови имунизации и реимунизации",
@@ -302,7 +308,7 @@
   function displayHeaderText(value) {
     const text = displayFootnotedText(value);
     if (sheet.name === "CL037" && text === "ATC") {
-      return "Vaccine class";
+      return "ATC";
     }
     if (sheet.name === "CL037" && text === "Number of Doses") {
       return bgColumnsVisible() ? "Брой дози" : "Number of Doses";
@@ -311,7 +317,7 @@
       return "Min Days to Next Dose";
     }
     if (sheet.name === "CL037" && text === "Display value EN") {
-      return "Vaccine product";
+      return "Product";
     }
     if (sheet.name !== "CL038") {
       return text;
@@ -640,6 +646,26 @@
     return document.body.classList.contains("show-details");
   }
 
+  function isKeyColumn(column) {
+    return usesKeyRowHeader && cellValue(hierarchicalHeaderRows[1], column) === "Key";
+  }
+
+  function isAtcColumn(column) {
+    return column === atcColumnIndex;
+  }
+
+  function isInnColumn(column) {
+    return column === innColumnIndex;
+  }
+
+  function atcColumnVisible() {
+    return !atcColumnIndex || detailsVisible();
+  }
+
+  function rowHeaderVisible() {
+    return !usesKeyRowHeader || detailsVisible();
+  }
+
   function isDetailsColumn(column) {
     const hiddenBySheet = {
       CL037: [
@@ -669,6 +695,8 @@
         !isAlwaysHiddenColumn(column)
         && !isProgramGroupColumn(column)
         && (oldRecordsVisible() || !isOldRecordColumn(column))
+        && (detailsVisible() || !isKeyColumn(column))
+        && (detailsVisible() || !isAtcColumn(column))
         && (detailsVisible() || !isDetailsColumn(column))
         && (bgColumnsVisible() || !isBulgarianColumn(column))
       )
@@ -716,16 +744,18 @@
     const row = document.createElement("tr");
     row.className = "sheet-column-header";
 
-    const rowHeader = document.createElement("th");
-    rowHeader.scope = "col";
-    rowHeader.className = "sheet-row-number";
-    rowHeader.textContent = usesKeyRowHeader
-      ? cellValue(hierarchicalHeaderRows[1], 1) || "Key"
-      : "";
-    if (usesKeyRowHeader) {
-      applyCellStyle(rowHeader, hierarchicalHeaderRows[1], 1);
+    if (rowHeaderVisible()) {
+      const rowHeader = document.createElement("th");
+      rowHeader.scope = "col";
+      rowHeader.className = "sheet-row-number";
+      rowHeader.textContent = usesKeyRowHeader
+        ? cellValue(hierarchicalHeaderRows[1], 1) || "Key"
+        : "";
+      if (usesKeyRowHeader) {
+        applyCellStyle(rowHeader, hierarchicalHeaderRows[1], 1);
+      }
+      row.appendChild(rowHeader);
     }
-    row.appendChild(rowHeader);
 
     if (hasHierarchy) {
       for (const index of columns) {
@@ -755,10 +785,30 @@
     titleRow.className = "sheet-title-row";
     const titleCell = document.createElement("th");
     titleCell.scope = "rowgroup";
-    titleCell.colSpan = columns.length + 1;
+    titleCell.colSpan = columns.length + (rowHeaderVisible() ? 1 : 0);
     titleCell.textContent = programGroupDisplayLabel(title);
     titleRow.appendChild(titleCell);
     tbody.appendChild(titleRow);
+  }
+
+  function applyAtcTooltipToInnCell(element, sheetRow, column) {
+    if (atcColumnVisible() || !isInnColumn(column)) {
+      return;
+    }
+
+    const atc = cellValue(sheetRow, atcColumnIndex);
+    const text = element.textContent.trim();
+    if (!atc || !text) {
+      return;
+    }
+
+    const label = document.createElement("span");
+    label.className = "sheet-cell-tooltip";
+    label.textContent = text;
+    setTooltip(label, `ATC: ${atc}`);
+    label.tabIndex = 0;
+    label.setAttribute("aria-label", `${text}. ATC: ${atc}`);
+    element.replaceChildren(label);
   }
 
   function appendSheetRow(tbody, sheetRow, columns) {
@@ -766,14 +816,16 @@
     if (sheetRow.row_style === "red") {
       tr.classList.add("sheet-row-red");
     }
-    const rowNumber = document.createElement("th");
-    rowNumber.scope = "row";
-    rowNumber.className = "sheet-row-number";
-    rowNumber.textContent = usesKeyRowHeader ? cellValue(sheetRow, 1) : sheetRow.index;
-    if (usesKeyRowHeader) {
-      applyCellStyle(rowNumber, sheetRow, 1);
+    if (rowHeaderVisible()) {
+      const rowNumber = document.createElement("th");
+      rowNumber.scope = "row";
+      rowNumber.className = "sheet-row-number";
+      rowNumber.textContent = usesKeyRowHeader ? cellValue(sheetRow, 1) : sheetRow.index;
+      if (usesKeyRowHeader) {
+        applyCellStyle(rowNumber, sheetRow, 1);
+      }
+      tr.appendChild(rowNumber);
     }
-    tr.appendChild(rowNumber);
 
     for (const index of columns) {
       const td = document.createElement("td");
@@ -786,6 +838,7 @@
       ) {
         setFootnotedText(td, sheetRow.cells[index] || "");
       }
+      applyAtcTooltipToInnCell(td, sheetRow, index);
       applyCellStyle(td, sheetRow, index);
       tr.appendChild(td);
     }

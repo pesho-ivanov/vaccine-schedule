@@ -348,28 +348,6 @@ main {
   line-height: 1.35;
 }
 
-.ncpr-summary {
-  display: grid;
-  gap: 4px;
-  max-width: 980px;
-  margin: 0 0 12px;
-}
-
-.ncpr-summary:empty {
-  display: none;
-}
-
-.ncpr-summary-title {
-  font-weight: 800;
-  line-height: 1.25;
-}
-
-.ncpr-summary-meta {
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.35;
-}
-
 table {
   width: max-content;
   min-width: 100%;
@@ -405,7 +383,7 @@ thead th {
   color: var(--header-text);
   font-size: 0.78rem;
   font-weight: 800;
-  text-align: center;
+  text-align: left;
 }
 
 .column-group-header {

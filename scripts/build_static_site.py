@@ -363,9 +363,9 @@ def his_sheet_label(name: str, rows: list[dict[str, Any]]) -> str:
     if name == "CL037":
         return "HIS products"
     if name == "CL038":
-        return "HIS schedule"
+        return "HIS events"
     if name == "Change Notes":
-        return "HIS Change notes"
+        return "HIS changes"
     if name not in {"CL037", "CL038"} or not rows:
         return name
 
