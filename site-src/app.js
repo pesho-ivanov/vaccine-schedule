@@ -17,12 +17,42 @@
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const hisSheetList = document.getElementById("his-sheet-list");
+  const STORAGE_KEYS = {
+    showBulgarian: "vaccine-schedule.show-bg",
+  };
 
   title.textContent = data.title.en;
+
+  function storedFlag(key) {
+    try {
+      return window.localStorage.getItem(key) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  function storeFlag(key, value) {
+    try {
+      window.localStorage.setItem(key, String(value));
+    } catch {
+      // Storage can be unavailable in restricted browsing contexts.
+    }
+  }
+
+  function setButtonState(button, className, storageKey, enabled) {
+    document.body.classList.toggle(className, enabled);
+    button.setAttribute("aria-pressed", String(enabled));
+    storeFlag(storageKey, enabled);
+  }
+
+  setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
   bgToggle.addEventListener("click", () => {
-    const showBulgarian = !document.body.classList.contains("show-bg");
-    document.body.classList.toggle("show-bg", showBulgarian);
-    bgToggle.setAttribute("aria-pressed", String(showBulgarian));
+    setButtonState(
+      bgToggle,
+      "show-bg",
+      STORAGE_KEYS.showBulgarian,
+      !document.body.classList.contains("show-bg")
+    );
   });
 
   function appendText(parent, value, className) {
@@ -108,6 +138,10 @@
   function makeColGroup() {
     const colgroup = document.createElement("colgroup");
 
+    const rowNumberCol = document.createElement("col");
+    rowNumberCol.className = "row-number-col";
+    colgroup.appendChild(rowNumberCol);
+
     const vaccineCol = document.createElement("col");
     vaccineCol.className = "vaccine-col";
     colgroup.appendChild(vaccineCol);
@@ -141,6 +175,13 @@
     groupRow.className = "column-group-row";
     const timeRow = document.createElement("tr");
     timeRow.className = "time-header-row";
+
+    const rowNumberHeader = document.createElement("th");
+    rowNumberHeader.scope = "col";
+    rowNumberHeader.className = "schedule-row-number";
+    rowNumberHeader.rowSpan = 2;
+    rowNumberHeader.setAttribute("aria-label", "Row number");
+    groupRow.appendChild(rowNumberHeader);
 
     const vaccineHeader = document.createElement("th");
     vaccineHeader.scope = "col";
@@ -239,12 +280,18 @@
     appendText(parent, shortName, "vaccine-short");
   }
 
-  function makeBodyRow(rowData) {
+  function makeBodyRow(rowData, rowNumber) {
     const tr = document.createElement("tr");
     tr.className = `schedule-row ${rowData.group}`;
     if (rowData.divider_after) {
       tr.classList.add("divider-after");
     }
+
+    const rowNumberCell = document.createElement("th");
+    rowNumberCell.scope = "row";
+    rowNumberCell.className = "schedule-row-number";
+    rowNumberCell.textContent = rowNumber;
+    tr.appendChild(rowNumberCell);
 
     const nameCell = document.createElement("th");
     nameCell.scope = "row";
@@ -308,12 +355,12 @@
         groupRow.className = `group-row ${currentGroup}`;
         const groupCell = document.createElement("th");
         groupCell.scope = "rowgroup";
-        groupCell.colSpan = data.columns.length + 1;
+        groupCell.colSpan = data.columns.length + 2;
         groupCell.textContent = data.groups[currentGroup].en;
         groupRow.appendChild(groupCell);
         tbody.appendChild(groupRow);
       }
-      tbody.appendChild(makeBodyRow(rowData));
+      tbody.appendChild(makeBodyRow(rowData, index + 1));
     }
 
     return tbody;

@@ -86,6 +86,33 @@
     ],
   ]);
   const productLinksByKey = new Map(Object.entries(data.product_links || {}));
+  const STORAGE_KEYS = {
+    showBulgarian: "vaccine-schedule.show-bg",
+    showOldRecords: "vaccine-schedule.show-old-records",
+    showDetails: "vaccine-schedule.show-details",
+  };
+
+  function storedFlag(key) {
+    try {
+      return window.localStorage.getItem(key) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  function storeFlag(key, value) {
+    try {
+      window.localStorage.setItem(key, String(value));
+    } catch {
+      // Storage can be unavailable in restricted browsing contexts.
+    }
+  }
+
+  function setButtonState(button, className, storageKey, enabled) {
+    document.body.classList.toggle(className, enabled);
+    button.setAttribute("aria-pressed", String(enabled));
+    storeFlag(storageKey, enabled);
+  }
 
   function columnName(index) {
     let name = "";
@@ -323,8 +350,8 @@
       return text;
     }
     return {
-      "CL037 Mapping (2025)": "Vaccines",
-      "Description EN": "Diseases",
+      "CL037 Mapping (2025)": "Product",
+      "Description EN": "Event",
       "Dose Number": bgColumnsVisible() ? "Номер на доза" : "Dose Number",
     }[text] || text;
   }
@@ -663,7 +690,7 @@
   }
 
   function rowHeaderVisible() {
-    return !usesKeyRowHeader || detailsVisible();
+    return usesKeyRowHeader && detailsVisible();
   }
 
   function isDetailsColumn(column) {
@@ -721,7 +748,7 @@
   function visibleRows() {
     return baseBodyRows.filter(
       (row) => (
-        (oldRecordsVisible() || !isOldRecordRow(row))
+        (oldRecordsVisible() || detailsVisible() || !isOldRecordRow(row))
         && (detailsVisible() || !isDetailsRow(row))
       )
     );
@@ -743,6 +770,12 @@
 
     const row = document.createElement("tr");
     row.className = "sheet-column-header";
+
+    const rowNumberHeader = document.createElement("th");
+    rowNumberHeader.scope = "col";
+    rowNumberHeader.className = "sheet-display-row-number";
+    rowNumberHeader.setAttribute("aria-label", "Row number");
+    row.appendChild(rowNumberHeader);
 
     if (rowHeaderVisible()) {
       const rowHeader = document.createElement("th");
@@ -785,7 +818,7 @@
     titleRow.className = "sheet-title-row";
     const titleCell = document.createElement("th");
     titleCell.scope = "rowgroup";
-    titleCell.colSpan = columns.length + (rowHeaderVisible() ? 1 : 0);
+    titleCell.colSpan = columns.length + 1 + (rowHeaderVisible() ? 1 : 0);
     titleCell.textContent = programGroupDisplayLabel(title);
     titleRow.appendChild(titleCell);
     tbody.appendChild(titleRow);
@@ -811,11 +844,18 @@
     element.replaceChildren(label);
   }
 
-  function appendSheetRow(tbody, sheetRow, columns) {
+  function appendSheetRow(tbody, sheetRow, columns, displayIndex) {
     const tr = document.createElement("tr");
     if (sheetRow.row_style === "red") {
       tr.classList.add("sheet-row-red");
     }
+
+    const displayRowNumber = document.createElement("th");
+    displayRowNumber.scope = "row";
+    displayRowNumber.className = "sheet-display-row-number";
+    displayRowNumber.textContent = displayIndex;
+    tr.appendChild(displayRowNumber);
+
     if (rowHeaderVisible()) {
       const rowNumber = document.createElement("th");
       rowNumber.scope = "row";
@@ -849,8 +889,8 @@
   function appendBody(targetTable, rows, columns) {
     const tbody = document.createElement("tbody");
 
-    for (const sheetRow of rows) {
-      appendSheetRow(tbody, sheetRow, columns);
+    for (const [index, sheetRow] of rows.entries()) {
+      appendSheetRow(tbody, sheetRow, columns, index + 1);
     }
 
     targetTable.appendChild(tbody);
@@ -858,11 +898,13 @@
 
   function appendProgramGroupBody(targetTable, groups, columns) {
     const tbody = document.createElement("tbody");
+    let displayIndex = 1;
 
     for (const group of groups) {
       appendProgramTitleRow(tbody, group.label, columns);
       for (const sheetRow of group.rows) {
-        appendSheetRow(tbody, sheetRow, columns);
+        appendSheetRow(tbody, sheetRow, columns, displayIndex);
+        displayIndex += 1;
       }
     }
 
@@ -948,7 +990,12 @@
   }
 
   function changeText(change) {
-    return typeof change === "string" ? change : change.change || "";
+    if (typeof change === "string") {
+      return change;
+    }
+    return bgColumnsVisible()
+      ? change.change || change.change_en || ""
+      : change.change_en || change.change || "";
   }
 
   function changeRegardsVaccines(change) {
@@ -1037,9 +1084,50 @@
     return { keyOrder, lookup };
   }
 
+  function cl038EventLookup() {
+    const sourceSheet = data.sheets.find((candidate) => candidate.name === "CL038");
+    if (!sourceSheet) {
+      return new Map();
+    }
+
+    const firstSourceRow = sourceSheet.rows[0];
+    const firstSourceRowCells = firstSourceRow
+      ? Object.values(firstSourceRow.cells).filter(Boolean)
+      : [];
+    const sourceRows = firstSourceRowCells.length === 1
+      ? sourceSheet.rows.slice(1)
+      : sourceSheet.rows;
+    const leafHeader = sourceRows[1];
+    const keyColumn = findColumnByHeader(sourceSheet, leafHeader, "Key");
+    const eventColumn = findColumnByHeader(sourceSheet, leafHeader, "Description EN");
+    const displayBgColumn = findColumnByHeader(sourceSheet, leafHeader, "Display value BG");
+    const lookup = new Map();
+
+    if (!keyColumn || !eventColumn || !displayBgColumn) {
+      return lookup;
+    }
+
+    for (const row of sourceRows.slice(2)) {
+      const key = cellValue(row, keyColumn);
+      const event = cellValue(row, eventColumn);
+      const displayBg = cellValue(row, displayBgColumn);
+      if (!key || (!event && !displayBg)) {
+        continue;
+      }
+      const value = { event, displayBg };
+      lookup.set(key, value);
+      if (/^0\d$/.test(key)) {
+        lookup.set(String(Number(key)), value);
+      }
+    }
+
+    return lookup;
+  }
+
   const productDisplayValues = productDisplayValueLookup();
   const productKeyOrder = productDisplayValues.keyOrder;
   const productDisplayValuesByKey = productDisplayValues.lookup;
+  const cl038EventsByCode = cl038EventLookup();
 
   const hisCodeDescriptionsBySheet = new Map([
     ["CL037", sheetCodeDescriptions("CL037")],
@@ -1073,17 +1161,71 @@
     return cl038Descriptions.get(code) || cl037Descriptions.get(code) || "";
   }
 
-  function appendAnnotatedChangeText(parent, text) {
-    const codeListPattern = /(?:(?:CL037|CL038)\s*[-:]\s*|(?:код(?:ове)?|Key|ключ(?:ове)?|запис(?:и)?|ред(?:ове)?)\s*(?::|от|from)?\s*)["“”']?-?\d+["“”']?(?:\s*(?:,|и|and|до|to|–)\s*["“”']?-?\d+["“”']?)*/giu;
+  function cl038EventForChangeCode(code, text) {
+    if (!/\bCL038\b/i.test(text)) {
+      return null;
+    }
+
+    const event = cl038EventsByCode.get(code);
+    const label = bgColumnsVisible()
+      ? event?.displayBg || event?.event || ""
+      : event?.event || event?.displayBg || "";
+    if (!label) {
+      return null;
+    }
+
+    return {
+      label,
+      tooltip: bgColumnsVisible()
+        ? `код ${code}`
+        : `code ${code}`,
+    };
+  }
+
+  function cl037ProductForChangeCode(code, text) {
+    const mentionsCl037 = /\bCL037\b/i.test(text);
+    const mentionsCl038 = /\bCL038\b/i.test(text);
+    if (!mentionsCl037 && (!mentionsCl038 || cl038EventsByCode.has(code))) {
+      return null;
+    }
+
+    const product = productDisplayValuesByKey.get(code);
+    if (!product) {
+      return null;
+    }
+
+    return {
+      label: product,
+      tooltip: bgColumnsVisible()
+        ? `код ${code}`
+        : `code ${code}`,
+    };
+  }
+
+  function codeReplacementForChange(code, text) {
+    return cl038EventForChangeCode(code, text) || cl037ProductForChangeCode(code, text);
+  }
+
+  function appendSheetReferenceText(parent, text) {
+    const sheetPattern = /(?:Nomenclature|Номенклатура)\s+(CL037|CL038)\b/giu;
     let cursor = 0;
 
-    for (const match of text.matchAll(codeListPattern)) {
+    for (const match of text.matchAll(sheetPattern)) {
       const phrase = match[0];
+      const sheetName = match[1].toUpperCase();
       const start = match.index || 0;
       if (start > cursor) {
         parent.appendChild(document.createTextNode(text.slice(cursor, start)));
       }
-      appendAnnotatedCodePhrase(parent, phrase, text);
+
+      const label = data.sheets.find((candidate) => candidate.name === sheetName)?.label || sheetName;
+      const sheetElement = document.createElement("span");
+      sheetElement.className = "change-note-code";
+      setTooltip(sheetElement, phrase);
+      sheetElement.textContent = label;
+      sheetElement.tabIndex = 0;
+      sheetElement.setAttribute("aria-label", `${label}. ${phrase}`);
+      parent.appendChild(sheetElement);
       cursor = start + phrase.length;
     }
 
@@ -1092,34 +1234,81 @@
     }
   }
 
-  function appendAnnotatedCodePhrase(parent, phrase, text) {
-    const codePattern = /-?\d+/g;
+  function appendAnnotatedChangeText(parent, text) {
+    const codeListPattern = /(?:(?:CL037|CL038)\s*[-:]\s*|(?:code(?:s)?|Key|record(?:s)?|row(?:s)?|код(?:ове)?|ключ(?:ове)?|запис(?:и)?|ред(?:ове)?)\s*(?::|от|from)?\s*)["“”']?-?\d+["“”']?(?:\s*(?:,|и|and|до|to|until|–)\s*["“”']?-?\d+["“”']?)*/giu;
     let cursor = 0;
 
-    for (const match of phrase.matchAll(codePattern)) {
-      const code = match[0];
+    for (const match of text.matchAll(codeListPattern)) {
+      const phrase = match[0];
       const start = match.index || 0;
       if (start > cursor) {
-        parent.appendChild(document.createTextNode(phrase.slice(cursor, start)));
+        appendSheetReferenceText(parent, text.slice(cursor, start));
+      }
+      appendAnnotatedCodePhrase(parent, phrase, text);
+      cursor = start + phrase.length;
+    }
+
+    if (cursor < text.length) {
+      appendSheetReferenceText(parent, text.slice(cursor));
+    }
+  }
+
+  function eventCodePrefixText(text) {
+    return text.replace(/(?:\bcode(?:s)?\b|код(?:ове)?)\s*(?::|от|from)?\s*$/iu, "");
+  }
+
+  function appendAnnotatedCodePhrase(parent, phrase, text) {
+    const codePattern = /-?\d+/g;
+    const codeMatches = [...phrase.matchAll(codePattern)];
+    const translatedEventCount = codeMatches.filter((match) => (
+      Boolean(codeReplacementForChange(match[0], text))
+    )).length;
+    let translatedEventIndex = 0;
+    let cursor = 0;
+
+    for (const match of codeMatches) {
+      const code = match[0];
+      const start = match.index || 0;
+      const replacement = codeReplacementForChange(code, text);
+      if (start > cursor) {
+        const prefixText = phrase.slice(cursor, start);
+        if (!replacement || translatedEventCount <= 1 || translatedEventIndex === 0) {
+          appendSheetReferenceText(
+            parent,
+            replacement ? eventCodePrefixText(prefixText) : prefixText
+          );
+        }
+      }
+
+      if (replacement && translatedEventCount > 1) {
+        parent.appendChild(document.createElement("br"));
       }
 
       const description = changeCodeDescription(code, text);
-      if (description) {
+      if (replacement || description) {
         const codeElement = document.createElement("span");
         codeElement.className = "change-note-code";
-        setTooltip(codeElement, description);
-        codeElement.textContent = code;
+        if (replacement && translatedEventCount > 1) {
+          codeElement.classList.add("change-note-translated-line");
+        }
+        const label = replacement?.label || code;
+        const tooltip = replacement?.tooltip || description;
+        setTooltip(codeElement, tooltip);
+        codeElement.textContent = label;
         codeElement.tabIndex = 0;
-        codeElement.setAttribute("aria-label", `${code}. ${description}`);
+        codeElement.setAttribute("aria-label", `${label}. ${tooltip}`);
         parent.appendChild(codeElement);
       } else {
         parent.appendChild(document.createTextNode(code));
+      }
+      if (replacement) {
+        translatedEventIndex += 1;
       }
       cursor = start + code.length;
     }
 
     if (cursor < phrase.length) {
-      parent.appendChild(document.createTextNode(phrase.slice(cursor)));
+      appendSheetReferenceText(parent, phrase.slice(cursor));
     }
   }
 
@@ -1137,7 +1326,7 @@
       }
 
       const section = {
-        title: version.version,
+        title: versionTitle(version.version),
         style: "",
         notes: [],
       };
@@ -1147,6 +1336,10 @@
         appendChangeNote(section, changeText(change), "", !regardsVaccines, regardsVaccines);
       }
     }
+  }
+
+  function versionTitle(version) {
+    return `${bgColumnsVisible() ? "Версия" : "Version"} ${version}`;
   }
 
   function appendChangeNoteSection(section) {
@@ -1190,26 +1383,45 @@
 
   document.title = `HIS ${sheet.name}`;
   caption.textContent = `HIS ${sheet.name}`;
+  setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
+  setButtonState(
+    oldRecordsToggle,
+    "show-old-records",
+    STORAGE_KEYS.showOldRecords,
+    storedFlag(STORAGE_KEYS.showOldRecords)
+  );
+  setButtonState(detailsToggle, "show-details", STORAGE_KEYS.showDetails, storedFlag(STORAGE_KEYS.showDetails));
   bgToggle.addEventListener("click", () => {
-    const showBulgarian = !document.body.classList.contains("show-bg");
-    document.body.classList.toggle("show-bg", showBulgarian);
-    bgToggle.setAttribute("aria-pressed", String(showBulgarian));
-    if (sheet.name !== "Change Notes") {
+    setButtonState(
+      bgToggle,
+      "show-bg",
+      STORAGE_KEYS.showBulgarian,
+      !document.body.classList.contains("show-bg")
+    );
+    if (sheet.name === "Change Notes") {
+      renderChangeNotes();
+    } else {
       renderTable();
     }
   });
   oldRecordsToggle.addEventListener("click", () => {
-    const showOldRecords = !document.body.classList.contains("show-old-records");
-    document.body.classList.toggle("show-old-records", showOldRecords);
-    oldRecordsToggle.setAttribute("aria-pressed", String(showOldRecords));
+    setButtonState(
+      oldRecordsToggle,
+      "show-old-records",
+      STORAGE_KEYS.showOldRecords,
+      !document.body.classList.contains("show-old-records")
+    );
     if (sheet.name !== "Change Notes") {
       renderTable();
     }
   });
   detailsToggle.addEventListener("click", () => {
-    const showDetails = !document.body.classList.contains("show-details");
-    document.body.classList.toggle("show-details", showDetails);
-    detailsToggle.setAttribute("aria-pressed", String(showDetails));
+    setButtonState(
+      detailsToggle,
+      "show-details",
+      STORAGE_KEYS.showDetails,
+      !document.body.classList.contains("show-details")
+    );
     if (sheet.name === "Change Notes") {
       renderChangeNotes();
     } else {

@@ -7,14 +7,15 @@
   --line: #d8dee9;
   --line-strong: #bac3d1;
   --mandatory: #126e5a;
-  --mandatory-bg: #e8f4ef;
+  --mandatory-bg: #fff2df;
   --recommended: #8a4b13;
-  --recommended-bg: #fff2df;
+  --recommended-bg: #e8f4ef;
   --header-bg: #273447;
   --header-text: #ffffff;
   --group-header-height: 34px;
   --time-header-height: 56px;
   --vaccine-column-width: 280px;
+  --row-number-column-width: 42px;
   --sticky-shadow: 8px 0 14px rgb(23 32 51 / 0.08);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -323,6 +324,11 @@ main {
   text-underline-offset: 0.16em;
 }
 
+.change-note-translated-line {
+  display: inline-block;
+  margin-left: 18px;
+}
+
 .sheet-footnotes {
   max-width: 980px;
   margin-top: 14px;
@@ -358,6 +364,10 @@ table {
 
 .vaccine-col {
   width: var(--vaccine-column-width);
+}
+
+.row-number-col {
+  width: var(--row-number-column-width);
 }
 
 caption {
@@ -398,17 +408,32 @@ thead th {
   height: var(--time-header-height);
 }
 
-.vaccine-column,
-.vaccine-cell {
+.schedule-row-number {
   left: 0;
-  min-width: var(--vaccine-column-width);
-  width: var(--vaccine-column-width);
+  min-width: var(--row-number-column-width);
+  width: var(--row-number-column-width);
+  text-align: right;
 }
 
 .vaccine-column,
 .vaccine-cell {
+  left: var(--row-number-column-width);
+  min-width: var(--vaccine-column-width);
+  width: var(--vaccine-column-width);
+}
+
+.schedule-row-number,
+.vaccine-column,
+.vaccine-cell {
   position: sticky;
   z-index: 2;
+}
+
+thead .schedule-row-number {
+  top: 0;
+  z-index: 6;
+  height: calc(var(--group-header-height) + var(--time-header-height));
+  background: var(--header-bg);
 }
 
 thead .vaccine-column {
@@ -421,6 +446,7 @@ thead .vaccine-column {
   z-index: 4;
 }
 
+.schedule-row-number,
 .vaccine-column,
 .vaccine-cell {
   box-shadow: var(--sticky-shadow);
@@ -473,6 +499,12 @@ tbody td {
   background: var(--surface);
 }
 
+tbody .schedule-row-number {
+  background: #fbfcfe;
+  color: var(--muted);
+  font-weight: 800;
+}
+
 .group-row th {
   position: sticky;
   left: 0;
@@ -485,11 +517,11 @@ tbody td {
 }
 
 .group-row.mandatory th {
-  background: var(--mandatory);
+  background: var(--recommended);
 }
 
 .group-row.recommended th {
-  background: var(--recommended);
+  background: var(--mandatory);
 }
 
 .vaccine-cell {
@@ -608,11 +640,24 @@ tbody td {
 
 .his-sheet-table .sheet-row-number {
   position: sticky;
-  left: 0;
+  left: var(--row-number-column-width);
   z-index: 2;
   min-width: 54px;
   width: 54px;
   background: #fbfcfe;
+  text-align: right;
+  box-shadow: var(--sticky-shadow);
+}
+
+.his-sheet-table .sheet-display-row-number {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  min-width: var(--row-number-column-width);
+  width: var(--row-number-column-width);
+  background: #fbfcfe;
+  color: var(--muted);
+  font-weight: 800;
   text-align: right;
   box-shadow: var(--sticky-shadow);
 }
@@ -623,9 +668,21 @@ tbody td {
   background: var(--header-bg);
 }
 
+.his-sheet-table thead .sheet-display-row-number {
+  top: 0;
+  z-index: 6;
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
 .ncpr-sheet-table thead th {
   min-width: 120px;
   white-space: pre-wrap;
+}
+
+.ncpr-sheet-table thead .sheet-display-row-number {
+  min-width: var(--row-number-column-width);
+  width: var(--row-number-column-width);
 }
 
 .ncpr-sheet-table .sheet-row-number {
@@ -671,7 +728,7 @@ tbody td {
 .dose {
   display: inline;
   margin: 1px;
-  color: var(--mandatory);
+  color: var(--recommended);
   font-size: 0.78rem;
   font-weight: 800;
   line-height: 1.15;
@@ -679,7 +736,7 @@ tbody td {
 }
 
 .dose.recommended {
-  color: var(--recommended);
+  color: var(--mandatory);
 }
 
 .muted-dose {

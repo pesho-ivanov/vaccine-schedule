@@ -34,7 +34,7 @@ HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
 HIS_PRODUCTS_PATH = DATA_DIR / "his/products.csv"
 NCPR_VACC_DIR = DATA_DIR / "ncpr/vacc"
 NCPR_SOURCE_URL = "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html"
-HIS_SHEET_NAMES = ("CL037", "CL038", "Change Notes")
+HIS_SHEET_NAMES = ("Change Notes", "CL037", "CL038")
 HIS_OMITTED_COLUMNS = {
     "Change Notes": ("Дата на тестова", "Дата на прод"),
 }
@@ -541,11 +541,20 @@ def contains_atc_header(value: str) -> bool:
     return ("АТС" in text or "ATC" in text) and ("КОД" in text or "CODE" in text)
 
 
+def contains_ncpr_data_header(value: str) -> bool:
+    text = value.upper()
+    return contains_atc_header(value) or (
+        "МЕЖДУНАРОДНО" in text
+        and "НЕПАТЕНТНО" in text
+        and ("INN" in text or "НАИМЕНОВАНИЕ" in text)
+    )
+
+
 def ncpr_header_row_position(rows: list[dict[str, Any]]) -> int:
     for position, row in enumerate(rows):
-        if any(contains_atc_header(str(value)) for value in row.get("cells", {}).values()):
+        if any(contains_ncpr_data_header(str(value)) for value in row.get("cells", {}).values()):
             return position
-    raise ValueError("missing NCPR ATC header row")
+    raise ValueError("missing NCPR data header row")
 
 
 def ncpr_date_text(rows: list[dict[str, Any]]) -> str:
