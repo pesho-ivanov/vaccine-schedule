@@ -18,11 +18,22 @@ DATA_DIR = ROOT / "data"
 BG_DATA_DIR = DATA_DIR / "bg"
 SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
-STATIC_FILES = ("index.html", "app.js", "his-sheet.html", "his-sheet.js", "styles.css", "CNAME")
+STATIC_FILES = (
+    "index.html",
+    "app.js",
+    "his-sheet.html",
+    "his-sheet.js",
+    "ncpr-sheet.html",
+    "ncpr-sheet.js",
+    "styles.css",
+    "CNAME",
+)
 ROOT_STATIC_FILES = ("ECDC_logo_simple.svg",)
 HIS_VACCINE_SPEC_PATH = DATA_DIR / "his/vaccine-specifications.yaml"
 HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
 HIS_PRODUCTS_PATH = DATA_DIR / "his/products.csv"
+NCPR_VACC_DIR = DATA_DIR / "ncpr/vacc"
+NCPR_SOURCE_URL = "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html"
 HIS_SHEET_NAMES = ("CL037", "CL038", "Change Notes")
 HIS_OMITTED_COLUMNS = {
     "Change Notes": ("Дата на тестова", "Дата на прод"),
@@ -515,7 +526,145 @@ def build_his_sheets() -> dict[str, Any]:
     }
 
 
-def build_schedule_table(his_sheet_labels: dict[str, str] | None = None) -> dict[str, Any]:
+def first_non_empty_cell(row: dict[str, Any] | None) -> str:
+    if not row:
+        return ""
+    for _, value in sorted(row.get("cells", {}).items()):
+        text = str(value).strip()
+        if text:
+            return text
+    return ""
+
+
+def contains_atc_header(value: str) -> bool:
+    text = value.upper()
+    return ("АТС" in text or "ATC" in text) and ("КОД" in text or "CODE" in text)
+
+
+def ncpr_header_row_position(rows: list[dict[str, Any]]) -> int:
+    for position, row in enumerate(rows):
+        if any(contains_atc_header(str(value)) for value in row.get("cells", {}).values()):
+            return position
+    raise ValueError("missing NCPR ATC header row")
+
+
+def ncpr_date_text(rows: list[dict[str, Any]]) -> str:
+    for row in rows:
+        text = first_non_empty_cell(row)
+        match = re.search(r"(\d{2}\.\d{2}\.\d{4})", text)
+        if match:
+            return match.group(1)
+    return ""
+
+
+def ncpr_sheet_label(path: Path, source_rows: list[dict[str, Any]]) -> str:
+    appendix = ""
+    for row in source_rows:
+        text = first_non_empty_cell(row)
+        if "ПРИЛОЖЕНИЕ" in text.upper():
+            appendix = text
+            break
+
+    match = re.search(r"(\d+)", appendix)
+    if match:
+        return f"NCPR Appendix {match.group(1)}"
+
+    name = path.stem.split("-Export", 1)[0].replace("-", " ")
+    return f"NCPR {name}"
+
+
+def ncpr_national_number_column(header_rows: list[dict[str, Any]], column_count: int) -> int:
+    for column in range(1, column_count + 1):
+        if any(str(row.get("cells", {}).get(column, "")).strip() == "Национален номер" for row in header_rows):
+            return column
+    return 0
+
+
+def normalize_ncpr_national_numbers(
+    rows: list[dict[str, Any]],
+    header_rows: list[dict[str, Any]],
+    column_count: int,
+) -> None:
+    national_number_column = ncpr_national_number_column(header_rows, column_count)
+    if not national_number_column:
+        return
+
+    for row in rows:
+        value = str(row.get("cells", {}).get(national_number_column, "")).strip()
+        match = re.fullmatch(r"(\d+)\.0+", value)
+        if match:
+            row["cells"][national_number_column] = match.group(1)
+
+
+def build_ncpr_sheets() -> dict[str, Any]:
+    sources_data = read_yaml("sources.yaml")
+    sheets = []
+    if NCPR_VACC_DIR.is_dir():
+        for artifact in sorted(NCPR_VACC_DIR.glob("*.xlsx")):
+            if artifact.name.startswith(".~lock"):
+                continue
+            with zipfile.ZipFile(artifact) as archive:
+                strings = shared_strings(archive)
+                red_styles = red_style_indexes(archive)
+                red_fill_styles = red_fill_style_indexes(archive)
+                paths = workbook_sheet_paths(archive)
+                if not paths:
+                    raise ValueError(f"{artifact.name}: no worksheets found")
+                workbook_sheet_name, sheet_path = next(iter(paths.items()))
+                rows, column_count = sheet_rows(
+                    archive,
+                    sheet_path,
+                    strings,
+                    red_styles,
+                    red_fill_styles,
+                )
+
+            header_position = ncpr_header_row_position(rows)
+            source_rows = rows[:header_position]
+            header_rows = rows[header_position:header_position + 2]
+            body_rows = rows[header_position + 2:]
+            normalize_ncpr_national_numbers(body_rows, header_rows, column_count)
+            sheet_name = first_non_empty_cell(next((row for row in source_rows if row["index"] == 4), None))
+            sheet_description = first_non_empty_cell(
+                next((row for row in source_rows if row["index"] == 5), None)
+            )
+            sheets.append(
+                {
+                    "id": artifact.stem,
+                    "label": ncpr_sheet_label(artifact, source_rows),
+                    "artifact": str(artifact.relative_to(ROOT)),
+                    "workbook_sheet_name": workbook_sheet_name,
+                    "title": first_non_empty_cell(source_rows[0] if source_rows else None),
+                    "updated": ncpr_date_text(source_rows),
+                    "source": {
+                        "name": "NCPR",
+                        "url": NCPR_SOURCE_URL,
+                        "date": ncpr_date_text(source_rows),
+                        "sheet_name": sheet_name or workbook_sheet_name,
+                        "sheet_description": sheet_description,
+                    },
+                    "column_count": column_count,
+                    "header_rows": header_rows,
+                    "rows": body_rows,
+                }
+            )
+
+    return {
+        "schema_version": 1,
+        "source": {
+            "directory": str(NCPR_VACC_DIR.relative_to(ROOT)),
+            "url": NCPR_SOURCE_URL,
+        },
+        "source_links": sources_data["source_links"],
+        "source_versions": {},
+        "sheets": sheets,
+    }
+
+
+def build_schedule_table(
+    his_sheet_labels: dict[str, str] | None = None,
+    ncpr_sheet_labels: dict[str, str] | None = None,
+) -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     diseases_data = read_yaml("diseases.yaml")
     schedule_data = read_yaml("schedule.yaml")
@@ -638,6 +787,8 @@ def build_schedule_table(his_sheet_labels: dict[str, str] | None = None) -> dict
             name: his_sheet_labels.get(name, name) if his_sheet_labels else name
             for name in HIS_SHEET_NAMES
         },
+        "ncpr_sheets": list(ncpr_sheet_labels or {}),
+        "ncpr_sheet_labels": ncpr_sheet_labels or {},
         "his_sheets_source": {
             "url": str(his_spec["pages"]["nomenclatures"]),
             "version": f"v{his_spec['his_version']}",
@@ -687,7 +838,18 @@ def main() -> int:
         sheet["name"]: sheet.get("label", sheet["name"])
         for sheet in his_sheets["sheets"]
     }
-    table = build_schedule_table(his_sheet_labels)
+    ncpr_sheets = build_ncpr_sheets()
+    ncpr_sheet_labels = {
+        sheet["id"]: sheet.get("label", sheet["id"])
+        for sheet in ncpr_sheets["sheets"]
+    }
+    his_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
+    his_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
+    ncpr_sheets["his_sheets"] = list(HIS_SHEET_NAMES)
+    ncpr_sheets["his_sheet_labels"] = his_sheet_labels
+    ncpr_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
+    ncpr_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
+    table = build_schedule_table(his_sheet_labels, ncpr_sheet_labels)
     json_text = json.dumps(table, ensure_ascii=False, indent=2)
     (SITE_DIR / "schedule-table.json").write_text(f"{json_text}\n", encoding="utf-8")
     (SITE_DIR / "schedule-table.js").write_text(
@@ -702,11 +864,20 @@ def main() -> int:
         f"{json.dumps(his_sheets, ensure_ascii=False, indent=2)};\n",
         encoding="utf-8",
     )
+    ncpr_sheets_json = json.dumps(ncpr_sheets, ensure_ascii=False, indent=2)
+    (SITE_DIR / "ncpr-sheets.json").write_text(f"{ncpr_sheets_json}\n", encoding="utf-8")
+    (SITE_DIR / "ncpr-sheets.js").write_text(
+        "window.NCPR_SHEETS = "
+        f"{json.dumps(ncpr_sheets, ensure_ascii=False, indent=2)};\n",
+        encoding="utf-8",
+    )
     print("copied site-src to generated-site")
     print("wrote generated-site/schedule-table.json")
     print("wrote generated-site/schedule-table.js")
     print("wrote generated-site/his-sheets.json")
     print("wrote generated-site/his-sheets.js")
+    print("wrote generated-site/ncpr-sheets.json")
+    print("wrote generated-site/ncpr-sheets.js")
     return 0
 
 

@@ -403,6 +403,13 @@
         `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`
       );
     }
+    for (const sheetId of data.ncpr_sheets || []) {
+      appendLinkItem(
+        hisSheetList,
+        data.ncpr_sheet_labels?.[sheetId] || sheetId,
+        `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`
+      );
+    }
   }
 
   table.appendChild(makeColGroup());

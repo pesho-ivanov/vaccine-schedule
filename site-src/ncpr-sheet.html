@@ -3,36 +3,38 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vaccine schedule for Bulgaria</title>
+    <title>NCPR vaccine registry</title>
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="sheet-page ncpr-page">
     <header class="page-header">
       <div class="header-content">
-        <h1 id="page-title">Vaccine schedule for Bulgaria</h1>
+        <h1><a class="title-link" href="index.html">Vaccine schedule for Bulgaria</a></h1>
         <nav class="page-link-row sheet-link-row" aria-label="Pages and sheets">
-          <a href="index.html" aria-current="page">Table</a>
-          <ul id="his-sheet-list"></ul>
+          <a href="index.html">Table</a>
+          <ul id="sheet-nav"></ul>
         </nav>
       </div>
       <div class="header-actions">
         <button id="bg-toggle" class="language-toggle" type="button" aria-pressed="false">BG</button>
+        <button id="old-records-toggle" class="language-toggle old-records-toggle" type="button" aria-pressed="false">Old records</button>
+        <button id="details-toggle" class="language-toggle old-records-toggle" type="button" aria-pressed="false">Details</button>
       </div>
     </header>
 
     <main>
-      <section class="table-section" aria-label="Schedule">
-        <div id="table-source" class="table-source"></div>
-        <div class="table-scroll">
-          <table id="schedule-table">
-            <caption>Vaccines by time point</caption>
+      <div id="sheet-source" class="table-source"></div>
+      <section id="sheet-summary" class="ncpr-summary" aria-label="NCPR sheet summary"></section>
+      <section id="sheet-table-section" class="table-section" aria-label="NCPR sheet">
+        <div class="table-scroll sheet-scroll">
+          <table id="ncpr-sheet-table" class="his-sheet-table ncpr-sheet-table">
+            <caption id="sheet-caption">NCPR vaccine registry</caption>
           </table>
         </div>
       </section>
-
       <section class="sources-section" aria-label="Reference links">
         <div class="link-row">
-          <h2 id="sources-title">Bulgarian sources:</h2>
+          <h2>Bulgarian sources:</h2>
           <ul id="source-list"></ul>
         </div>
         <div class="link-row">
@@ -52,7 +54,7 @@
       </section>
     </main>
 
-    <script src="schedule-table.js"></script>
-    <script src="app.js"></script>
+    <script src="ncpr-sheets.js"></script>
+    <script src="ncpr-sheet.js"></script>
   </body>
 </html>
