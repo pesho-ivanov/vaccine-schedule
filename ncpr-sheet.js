@@ -28,7 +28,6 @@
   const oldRecordsToggle = document.getElementById("old-records-toggle");
   const detailsToggle = document.getElementById("details-toggle");
   const sheetSource = document.getElementById("sheet-source");
-  const summary = document.getElementById("sheet-summary");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const table = document.getElementById("ncpr-sheet-table");
@@ -184,9 +183,9 @@
   }
 
   const columnHeaderLabels = new Map([
-    ["Анатомо-терапевтичен код /АТС-код/", { en: "ATC code", bg: "АТС код" }],
+    ["Анатомо-терапевтичен код /АТС-код/", { en: "ATC", bg: "АТС код" }],
     ["Международно непатентно наименование /INN/", { en: "INN", bg: "INN" }],
-    ["Наименование на лекарствения продукт", { en: "Product name", bg: "Име на продукта" }],
+    ["Наименование на лекарствения продукт", { en: "Product", bg: "Име на продукта" }],
     ["Лекарствена форма", { en: "Pharmaceutical form", bg: "Лекарствена форма" }],
     ["Количество на активното лекарствено вещество", { en: "Active substance quantity", bg: "Количество активно вещество" }],
     ["Окончателна опаковка", { en: "Pack size", bg: "Брой в опаковка" }],
@@ -274,7 +273,6 @@
       "Ограничения в начина на предписване при различни индикации",
       "Ограничения в предписването",
       "Лечебни заведения",
-      "МКБ",
     ]);
     const headers = headerTexts(column);
     if (headers.some((text) => patientHeaders.has(text))) {
@@ -287,6 +285,30 @@
     return document.body.classList.contains("show-details");
   }
 
+  function isKeyColumn(column) {
+    return headerTexts(column).some((text) => text.trim().toLowerCase() === "key");
+  }
+
+  function isAtcColumn(column) {
+    return columnHeaderLabel(column).en === "ATC";
+  }
+
+  function isInnColumn(column) {
+    return columnHeaderLabel(column).en === "INN";
+  }
+
+  function isProductColumn(column) {
+    return columnHeaderLabel(column).en === "Product";
+  }
+
+  function atcColumnVisible() {
+    return !isAtcColumn(1) || detailsVisible();
+  }
+
+  function rowHeaderVisible() {
+    return (!isKeyColumn(1) && !isAtcColumn(1)) || detailsVisible();
+  }
+
   function oldRecordsVisible() {
     return document.body.classList.contains("show-old-records");
   }
@@ -294,7 +316,15 @@
   function visibleColumns() {
     const columns = [];
     for (let index = 2; index <= sheet.column_count; index += 1) {
-      if (detailsVisible() || (isPatientFacingColumn(index) && columnHasVisibleProductValue(index))) {
+      if (
+        detailsVisible()
+        || (
+          !isKeyColumn(index)
+          && !isAtcColumn(index)
+          && isPatientFacingColumn(index)
+          && columnHasVisibleProductValue(index)
+        )
+      ) {
         columns.push(index);
       }
     }
@@ -349,22 +379,49 @@
     return rows;
   }
 
-  function appendSummary() {
-    summary.replaceChildren();
-
-    const title = document.createElement("div");
-    title.className = "ncpr-summary-title";
-    title.textContent = sheet.title || sheet.label;
-    summary.appendChild(title);
-
-    const meta = document.createElement("div");
-    meta.className = "ncpr-summary-meta";
-    meta.textContent = [sheet.source?.sheet_name, sheet.source?.sheet_description]
-      .filter(Boolean)
-      .join(": ");
-    if (meta.textContent) {
-      summary.appendChild(meta);
+  function atcValue(row) {
+    for (let index = 1; index <= sheet.column_count; index += 1) {
+      if (isAtcColumn(index)) {
+        return cellValue(row, index);
+      }
     }
+    return "";
+  }
+
+  function appendCellText(parent, text, tooltip = "") {
+    if (!tooltip || !text) {
+      parent.textContent = text;
+      return;
+    }
+
+    const label = document.createElement("span");
+    label.className = "sheet-cell-tooltip";
+    label.textContent = text;
+    setTooltip(label, tooltip);
+    label.tabIndex = 0;
+    label.setAttribute("aria-label", `${text}. ${tooltip}`);
+    parent.appendChild(label);
+  }
+
+  function appendColumnHeaders(row, columns) {
+    for (const index of columns) {
+      const th = document.createElement("th");
+      th.scope = "col";
+      appendColumnHeader(th, index);
+      row.appendChild(th);
+    }
+  }
+
+  function appendSheetDataCell(tr, sheetRow, index) {
+    const td = document.createElement("td");
+    const text = displayText(cellValue(sheetRow, index));
+    const atc = atcValue(sheetRow);
+    appendCellText(
+      td,
+      text,
+      !atcColumnVisible() && isInnColumn(index) && atc ? `ATC: ${atc}` : ""
+    );
+    tr.appendChild(td);
   }
 
   function appendHeader(targetTable) {
@@ -372,12 +429,18 @@
     const row = document.createElement("tr");
     row.className = "sheet-column-header";
     const columns = visibleColumns();
+    const productColumns = columns.filter(isProductColumn);
+    const otherColumns = columns.filter((column) => !isProductColumn(column));
 
-    const rowHeader = document.createElement("th");
-    rowHeader.scope = "col";
-    rowHeader.className = "sheet-row-number";
-    appendColumnHeader(rowHeader, 1);
-    row.appendChild(rowHeader);
+    if (rowHeaderVisible()) {
+      const rowHeader = document.createElement("th");
+      rowHeader.scope = "col";
+      rowHeader.className = "sheet-row-number";
+      appendColumnHeader(rowHeader, 1);
+      row.appendChild(rowHeader);
+    }
+
+    appendColumnHeaders(row, productColumns);
 
     const nameHeader = document.createElement("th");
     nameHeader.scope = "col";
@@ -385,12 +448,7 @@
     appendText(nameHeader, "Име", "column-meta translation-bg");
     row.appendChild(nameHeader);
 
-    for (const index of columns) {
-      const th = document.createElement("th");
-      th.scope = "col";
-      appendColumnHeader(th, index);
-      row.appendChild(th);
-    }
+    appendColumnHeaders(row, otherColumns);
 
     thead.appendChild(row);
     targetTable.appendChild(thead);
@@ -399,24 +457,30 @@
   function appendBody(targetTable) {
     const tbody = document.createElement("tbody");
     const columns = visibleColumns();
+    const productColumns = columns.filter(isProductColumn);
+    const otherColumns = columns.filter((column) => !isProductColumn(column));
 
     for (const { row: sheetRow, name } of productRowsWithCategoryName()) {
       const tr = document.createElement("tr");
 
-      const atcCell = document.createElement("th");
-      atcCell.scope = "row";
-      atcCell.className = "sheet-row-number";
-      atcCell.textContent = cellValue(sheetRow, 1);
-      tr.appendChild(atcCell);
+      if (rowHeaderVisible()) {
+        const atcCell = document.createElement("th");
+        atcCell.scope = "row";
+        atcCell.className = "sheet-row-number";
+        atcCell.textContent = cellValue(sheetRow, 1);
+        tr.appendChild(atcCell);
+      }
+
+      for (const index of productColumns) {
+        appendSheetDataCell(tr, sheetRow, index);
+      }
 
       const nameCell = document.createElement("td");
       nameCell.textContent = name;
       tr.appendChild(nameCell);
 
-      for (const index of columns) {
-        const td = document.createElement("td");
-        td.textContent = displayText(cellValue(sheetRow, index));
-        tr.appendChild(td);
+      for (const index of otherColumns) {
+        appendSheetDataCell(tr, sheetRow, index);
       }
 
       tbody.appendChild(tr);
@@ -455,7 +519,6 @@
   });
   renderSheetNav();
   appendSourceLine(sheetSource, sheet.source);
-  appendSummary();
   renderTable();
   renderSources();
   renderOtherCalendars();

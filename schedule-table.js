@@ -1205,8 +1205,8 @@ window.VACCINE_SCHEDULE_TABLE = {
   ],
   "his_sheet_labels": {
     "CL037": "HIS products",
-    "CL038": "HIS schedule",
-    "Change Notes": "HIS Change notes"
+    "CL038": "HIS events",
+    "Change Notes": "HIS changes"
   },
   "ncpr_sheets": [
     "Prilogenie-2-Export-202607051748",
