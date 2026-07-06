@@ -10,8 +10,18 @@
     return;
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const requestedSheet = params.get("sheet") || data.sheets[0]?.name;
+  const route = window.VACCINE_SITE_ROUTE || {};
+  if (route.section !== "his") {
+    return;
+  }
+
+  document.getElementById("schedule-page").hidden = true;
+  document.getElementById("sheet-page").hidden = false;
+  document.querySelectorAll("#sheet-table-section table").forEach((candidate) => {
+    candidate.hidden = true;
+  });
+
+  const requestedSheet = route.sheetName || data.sheets[0]?.name;
   const sheet = data.sheets.find((candidate) => candidate.name === requestedSheet) || data.sheets[0];
 
   const pageNav = document.getElementById("page-nav");
@@ -161,15 +171,34 @@
     }
   }
 
+  function appendTableSourceTitle(parent, source) {
+    if (!parent || !source) {
+      return;
+    }
+
+    parent.replaceChildren();
+    const tableText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ") || source.name;
+    const versionText = [source.version, source.date].filter(Boolean).join(", ");
+    parent.textContent = versionText ? `${tableText} (${versionText})` : tableText;
+  }
+
   function renderPageNav() {
     const hisSheets = data.sheets.map((candidate) => ({
-      label: candidate.label || candidate.name,
-      href: `his-sheet.html?sheet=${encodeURIComponent(candidate.name)}`,
+      label: window.vaccineButtonLabel(candidate.label || candidate.name, "HIS"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(candidate.label || candidate.name, "HIS")),
       current: candidate.name === sheet.name,
     }));
     const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
-      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
-      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+      label: window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR")),
+    }));
+    const emaSheets = (data.ema_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA")),
+    }));
+    const bdaSheets = (data.bda_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA")),
     }));
 
     if (typeof window.renderGroupedPageNav === "function") {
@@ -177,6 +206,8 @@
         currentSection: "his",
         hisSheets,
         ncprSheets,
+        emaSheets,
+        bdaSheets,
       });
       return;
     }
@@ -186,7 +217,7 @@
       return;
     }
     legacyList.replaceChildren();
-    for (const item of [...hisSheets, ...ncprSheets]) {
+    for (const item of [...hisSheets, ...ncprSheets, ...bdaSheets, ...emaSheets]) {
       const child = document.createElement("li");
       const link = document.createElement("a");
       link.href = item.href;
@@ -202,7 +233,8 @@
   function sourceLabel(name) {
     const label = {
       ecdc_calendar: "ECDC",
-      lex_calendar: "lex.bg",
+      lex_calendar: "Immunization ordinance",
+      lex_medicine_prices: "Medicine price regulation",
       pregnancy_vaccine: "plusmen.bg",
       his_bg: "his.bg",
     }[name] || name.replaceAll("_", " ");
@@ -212,7 +244,8 @@
 
   function sourceTitle(name) {
     return {
-      lex_calendar: "The law about vaccines in Bulgaria.",
+      lex_calendar: "Ordinance No. 15 on immunizations in Bulgaria.",
+      lex_medicine_prices: "Rules for regulation and registration of medicinal product prices.",
       pregnancy_vaccine: "Informational site. Not complete and updated.",
       his_bg: "The electronic health system in Bulgaria. Sheets CL037 & CL038.",
     }[name] || "";
@@ -232,7 +265,7 @@
   }
 
   function renderSources() {
-    const sourceOrder = ["lex_calendar", "his_bg", "pregnancy_vaccine"];
+    const sourceOrder = ["lex_calendar", "lex_medicine_prices", "his_bg", "pregnancy_vaccine"];
     for (const name of sourceOrder) {
       const url = data.source_links[name];
       if (!url) {
@@ -777,6 +810,15 @@
   function appendHeader(targetTable, columns) {
     const thead = document.createElement("thead");
     const hasHierarchy = hierarchicalHeaderRows.length === 2;
+    const columnCount = columns.length + 1 + (rowHeaderVisible() ? 1 : 0);
+
+    const sourceRow = document.createElement("tr");
+    sourceRow.className = "table-source-row";
+    const sourceCell = document.createElement("th");
+    sourceCell.scope = "colgroup";
+    sourceCell.colSpan = columnCount;
+    appendTableSourceTitle(sourceCell, sheet.source);
+    sourceRow.appendChild(sourceCell);
 
     const row = document.createElement("tr");
     row.className = "sheet-column-header";
@@ -819,6 +861,7 @@
       }
     }
 
+    thead.appendChild(sourceRow);
     thead.appendChild(row);
     targetTable.appendChild(thead);
   }
@@ -922,6 +965,7 @@
   }
 
   function renderTable() {
+    table.hidden = false;
     tableSection.hidden = false;
     footnotes.replaceChildren();
     footnotes.hidden = true;
@@ -1422,7 +1466,9 @@
     }
   });
   renderPageNav();
-  appendSourceLine(sheetSource, sheet.source);
+  if (sheet.name === "Change Notes") {
+    appendSourceLine(sheetSource, sheet.source);
+  }
   renderSources();
   renderOtherCalendars();
   if (sheet.name === "Change Notes") {

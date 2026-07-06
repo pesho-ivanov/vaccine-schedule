@@ -27,7 +27,18 @@
     const heading = document.createElement("div");
     heading.id = `page-nav-${group.id}`;
     heading.className = "page-nav-group-label";
-    heading.textContent = group.label;
+    if (group.href) {
+      const link = document.createElement("a");
+      link.className = "page-nav-group-link";
+      link.href = group.href;
+      link.textContent = group.label;
+      if (/^https?:/i.test(group.href)) {
+        link.rel = "noreferrer";
+      }
+      heading.appendChild(link);
+    } else {
+      heading.textContent = group.label;
+    }
     section.appendChild(heading);
 
     const list = document.createElement("ul");
@@ -62,18 +73,36 @@
       ...item,
       label: stripGroupPrefix(item.label, "NCPR"),
     }));
+    const emaSheets = (options.emaSheets || []).map((item) => ({
+      ...item,
+      label: stripGroupPrefix(item.label, "EMA"),
+    }));
+    const bdaSheets = (options.bdaSheets || []).map((item) => ({
+      ...item,
+      label: stripGroupPrefix(item.label, "BDA"),
+    }));
+    const registrySheets = [...bdaSheets, ...emaSheets];
 
     container.replaceChildren();
     container.appendChild(makeSingleSection({
       label: "Table",
-      href: "index.html",
+      href: "index.html?sheet=Table",
       current: options.currentSection === "table",
     }));
+
+    if (registrySheets.length) {
+      container.appendChild(makeGroupedSection({
+        id: "registries",
+        label: "Registries",
+        items: registrySheets,
+      }));
+    }
 
     if (hisSheets.length) {
       container.appendChild(makeGroupedSection({
         id: "his",
-        label: "HIS",
+        label: "Electronic health system (HIS)",
+        href: "https://his.bg",
         items: hisSheets,
       }));
     }
@@ -81,7 +110,8 @@
     if (ncprSheets.length) {
       container.appendChild(makeGroupedSection({
         id: "ncpr",
-        label: "NCPR",
+        label: "Prices (NCPR)",
+        href: "https://www.ncpr.bg",
         items: ncprSheets,
       }));
     }

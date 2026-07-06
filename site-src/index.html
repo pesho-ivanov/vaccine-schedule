@@ -9,22 +9,40 @@
   <body>
     <header class="page-header">
       <div class="header-content">
-        <h1 id="page-title">Vaccine schedule for Bulgaria</h1>
+        <div class="header-title-row">
+          <h1 id="page-title">Vaccine schedule for Bulgaria</h1>
+          <div class="header-actions">
+            <button id="bg-toggle" class="language-toggle" type="button" aria-pressed="false">BG</button>
+            <button id="details-toggle" class="language-toggle header-text-toggle" type="button" aria-pressed="false">Details</button>
+          </div>
+        </div>
         <nav id="page-nav" class="grouped-page-nav" aria-label="Pages and sheets"></nav>
-      </div>
-      <div class="header-actions">
-        <button id="bg-toggle" class="language-toggle" type="button" aria-pressed="false">BG</button>
       </div>
     </header>
 
     <main>
-      <section class="table-section" aria-label="Schedule">
+      <section id="schedule-page" class="table-section" aria-label="Schedule">
         <div id="table-source" class="table-source"></div>
         <div class="table-scroll">
           <table id="schedule-table">
             <caption>Vaccines by time point</caption>
           </table>
         </div>
+      </section>
+
+      <section id="sheet-page" hidden>
+        <div id="sheet-source" class="table-source"></div>
+        <section id="change-notes-list" class="change-notes-list" aria-label="Change notes" hidden></section>
+        <section id="sheet-table-section" class="table-section" aria-label="Source sheet">
+          <div class="table-scroll sheet-scroll">
+            <table id="his-sheet-table" class="his-sheet-table" hidden></table>
+            <table id="ncpr-sheet-table" class="his-sheet-table ncpr-sheet-table" hidden></table>
+            <table id="bda-sheet-table" class="his-sheet-table bda-sheet-table" hidden></table>
+            <table id="ema-sheet-table" class="his-sheet-table ema-sheet-table" hidden></table>
+          </div>
+        </section>
+        <section id="sheet-footnotes" class="sheet-footnotes" aria-label="Footnotes" hidden></section>
+        <span id="sheet-caption" hidden></span>
       </section>
 
       <section class="sources-section" aria-label="Reference links">
@@ -50,7 +68,16 @@
     </main>
 
     <script src="schedule-table.js"></script>
+    <script src="his-sheets.js"></script>
+    <script src="ncpr-sheets.js"></script>
+    <script src="bda-sheets.js"></script>
+    <script src="ema-sheets.js"></script>
+    <script src="site-route.js"></script>
     <script src="page-nav.js"></script>
     <script src="app.js"></script>
+    <script src="his-sheet.js"></script>
+    <script src="ncpr-sheet.js"></script>
+    <script src="bda-sheet.js"></script>
+    <script src="ema-sheet.js"></script>
   </body>
 </html>

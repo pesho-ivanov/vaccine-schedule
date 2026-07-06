@@ -13,6 +13,7 @@
   --header-bg: #273447;
   --header-text: #ffffff;
   --group-header-height: 34px;
+  --source-header-height: 34px;
   --time-header-height: 56px;
   --vaccine-column-width: 280px;
   --row-number-column-width: 42px;
@@ -31,10 +32,6 @@ body {
 }
 
 .page-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
   padding: 28px 32px 22px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
@@ -44,9 +41,16 @@ body {
   min-width: 0;
 }
 
+.header-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
 .header-actions {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex: 0 0 auto;
   gap: 8px;
 }
@@ -152,7 +156,7 @@ h1 {
 .grouped-page-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  gap: 14px;
   align-items: flex-start;
   margin-top: 12px;
 }
@@ -160,11 +164,6 @@ h1 {
 .page-nav-group {
   display: grid;
   grid-template-rows: 30px auto;
-  margin-left: -1px;
-}
-
-.page-nav-group:first-child {
-  margin-left: 0;
 }
 
 .page-nav-group-label {
@@ -177,7 +176,17 @@ h1 {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 800;
-  text-transform: uppercase;
+}
+
+.page-nav-group-link {
+  display: inline;
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-nav-group-link:hover,
+.page-nav-group-link:focus-visible {
+  text-decoration: underline;
 }
 
 .page-nav-list {
@@ -225,15 +234,23 @@ h1 {
 .page-nav-single-link {
   min-height: 70px;
   margin-left: 0;
-  border-radius: 8px 0 0 8px;
+  border-radius: 8px;
 }
 
-.page-nav-group:last-child .page-nav-list li:last-child .page-nav-link {
-  border-radius: 0 8px 8px 0;
+.page-nav-group:not(.page-nav-group-single) .page-nav-group-label {
+  border-radius: 8px 8px 0 0;
 }
 
-.page-nav-group:last-child .page-nav-group-label {
-  border-radius: 0 8px 0 0;
+.page-nav-group:not(.page-nav-group-single) .page-nav-list li:first-child .page-nav-link {
+  border-bottom-left-radius: 8px;
+}
+
+.page-nav-group:not(.page-nav-group-single) .page-nav-list li:last-child .page-nav-link {
+  border-bottom-right-radius: 8px;
+}
+
+.page-nav-group:not(.page-nav-group-single) .page-nav-list li:only-child .page-nav-link {
+  border-radius: 0 0 8px 8px;
 }
 
 .page-link-row {
@@ -320,6 +337,30 @@ main {
 .table-source-sheet {
   color: var(--text);
   font-weight: 800;
+}
+
+.table-source-row th {
+  top: 0;
+  z-index: 8;
+  height: var(--source-header-height);
+  padding: 7px 8px;
+  background: #f2f6fb;
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: normal;
+}
+
+.table-source-row a {
+  margin-left: 4px;
+  color: #245c9f;
+  font-weight: 800;
+}
+
+.table-source-row .table-source-version,
+.table-source-row .table-source-sheet {
+  margin-left: 4px;
 }
 
 .table-scroll {
@@ -454,14 +495,14 @@ thead th {
 }
 
 .column-group-header {
-  top: 0;
+  top: var(--source-header-height);
   height: var(--group-header-height);
   padding: 6px 8px;
   border-bottom-color: #6e7b8d;
 }
 
 .time-column {
-  top: var(--group-header-height);
+  top: calc(var(--source-header-height) + var(--group-header-height));
   height: var(--time-header-height);
 }
 
@@ -487,14 +528,14 @@ thead th {
 }
 
 thead .schedule-row-number {
-  top: 0;
+  top: var(--source-header-height);
   z-index: 6;
   height: calc(var(--group-header-height) + var(--time-header-height));
   background: var(--header-bg);
 }
 
 thead .vaccine-column {
-  top: 0;
+  top: var(--source-header-height);
   z-index: 5;
   height: calc(var(--group-header-height) + var(--time-header-height));
 }
@@ -650,7 +691,7 @@ tbody .schedule-row-number {
 }
 
 .his-sheet-table .sheet-column-header th {
-  top: 0;
+  top: var(--source-header-height);
   z-index: 4;
 }
 
@@ -683,7 +724,7 @@ tbody .schedule-row-number {
 
 .his-sheet-table tbody .sheet-title-row th {
   position: sticky;
-  top: 34px;
+  top: calc(var(--source-header-height) + 34px);
   z-index: 3;
   min-width: 0;
   max-width: none;
@@ -720,13 +761,13 @@ tbody .schedule-row-number {
 }
 
 .his-sheet-table thead .sheet-row-number {
-  top: 0;
+  top: var(--source-header-height);
   z-index: 5;
   background: var(--header-bg);
 }
 
 .his-sheet-table thead .sheet-display-row-number {
-  top: 0;
+  top: var(--source-header-height);
   z-index: 6;
   background: var(--header-bg);
   color: var(--header-text);
@@ -734,6 +775,12 @@ tbody .schedule-row-number {
 
 .ncpr-sheet-table thead th {
   min-width: 120px;
+  white-space: pre-wrap;
+}
+
+.ema-sheet-table thead th,
+.bda-sheet-table thead th {
+  min-width: 130px;
   white-space: pre-wrap;
 }
 
@@ -853,32 +900,21 @@ tbody .schedule-row-number {
   }
 
   .page-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 16px;
     padding: 22px 18px 18px;
   }
 
   .header-content {
-    display: contents;
-  }
-
-  .page-header h1 {
-    grid-column: 1;
-    grid-row: 1;
+    min-width: 0;
   }
 
   .header-actions {
-    grid-column: 2;
-    grid-row: 1;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   .grouped-page-nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
     width: 100%;
+    gap: 10px;
   }
 
   .language-toggle {
@@ -888,27 +924,22 @@ tbody .schedule-row-number {
 
   .page-nav-group {
     width: 100%;
-    margin-top: -1px;
     margin-left: 0;
-  }
-
-  .page-nav-group:first-child {
-    margin-top: 0;
   }
 
   .page-nav-group-single {
     grid-template-rows: 40px;
+    margin-right: 0;
   }
 
   .page-nav-single-link {
     min-height: 40px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
   }
 
   .page-nav-group-label {
     justify-content: flex-start;
     padding: 0 12px;
-    border-radius: 0;
   }
 
   .page-nav-list {
@@ -921,11 +952,7 @@ tbody .schedule-row-number {
     margin-left: 0;
   }
 
-  .page-nav-group:last-child .page-nav-group-label {
-    border-radius: 0;
-  }
-
-  .page-nav-group:last-child .page-nav-list li:last-child .page-nav-link {
+  .page-nav-group:not(.page-nav-group-single) .page-nav-list li:last-child .page-nav-link {
     border-radius: 0 0 8px 8px;
   }
 

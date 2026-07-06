@@ -20,12 +20,13 @@ SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = (
     "index.html",
+    "site-route.js",
     "page-nav.js",
     "app.js",
-    "his-sheet.html",
     "his-sheet.js",
-    "ncpr-sheet.html",
     "ncpr-sheet.js",
+    "ema-sheet.js",
+    "bda-sheet.js",
     "styles.css",
     "CNAME",
 )
@@ -35,6 +36,10 @@ HIS_CHANGE_NOTES_DIR = DATA_DIR / "his/change-notes"
 HIS_PRODUCTS_PATH = DATA_DIR / "his/products.csv"
 NCPR_VACC_DIR = DATA_DIR / "ncpr/vacc"
 NCPR_SOURCE_URL = "https://www.ncpr.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8.html"
+EMA_DIR = DATA_DIR / "ema"
+EMA_SOURCE_URL = "https://www.ema.europa.eu/en/medicines"
+BDA_DIR = DATA_DIR / "bda"
+BDA_SOURCE_URL = "https://bda.bg/bg/%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B8"
 HIS_SHEET_NAMES = ("Change Notes", "CL037", "CL038")
 HIS_OMITTED_COLUMNS = {
     "Change Notes": ("Дата на тестова", "Дата на прод"),
@@ -671,9 +676,183 @@ def build_ncpr_sheets() -> dict[str, Any]:
     }
 
 
+def ema_header_row_position(rows: list[dict[str, Any]]) -> int:
+    for position, row in enumerate(rows):
+        if any(str(value).strip() == "ATC code (human)" for value in row.get("cells", {}).values()):
+            return position
+    raise ValueError("missing EMA ATC header row")
+
+
+def ema_generated_text(source_rows: list[dict[str, Any]]) -> str:
+    for row in source_rows:
+        cells = row.get("cells", {})
+        generated = str(cells.get(3, "")).strip()
+        value = str(cells.get(4, "")).strip()
+        if generated and value:
+            return value
+    return ""
+
+
+def ema_sheet_label(path: Path) -> str:
+    stem = path.stem
+    if stem.endswith("_J07"):
+        return "EU (EMA)"
+    return f"EMA {stem.replace('-', ' ').replace('_', ' ')}"
+
+
+def build_ema_sheets() -> dict[str, Any]:
+    sources_data = read_yaml("sources.yaml")
+    sheets = []
+    if EMA_DIR.is_dir():
+        for artifact in sorted(EMA_DIR.glob("*.xlsx")):
+            if artifact.name.startswith(".~lock") or not artifact.stem.endswith("_J07"):
+                continue
+            with zipfile.ZipFile(artifact) as archive:
+                strings = shared_strings(archive)
+                red_styles = red_style_indexes(archive)
+                red_fill_styles = red_fill_style_indexes(archive)
+                paths = workbook_sheet_paths(archive)
+                if not paths:
+                    raise ValueError(f"{artifact.name}: no worksheets found")
+                workbook_sheet_name, sheet_path = next(iter(paths.items()))
+                rows, column_count = sheet_rows(
+                    archive,
+                    sheet_path,
+                    strings,
+                    red_styles,
+                    red_fill_styles,
+                )
+
+            header_position = ema_header_row_position(rows)
+            source_rows = rows[:header_position]
+            header_rows = [rows[header_position]]
+            body_rows = rows[header_position + 1:]
+            sheets.append(
+                {
+                    "id": artifact.stem,
+                    "label": ema_sheet_label(artifact),
+                    "artifact": str(artifact.relative_to(ROOT)),
+                    "workbook_sheet_name": workbook_sheet_name,
+                    "title": "EMA medicines report",
+                    "updated": ema_generated_text(source_rows),
+                    "source": {
+                        "name": "EMA",
+                        "url": EMA_SOURCE_URL,
+                        "date": ema_generated_text(source_rows),
+                        "sheet_name": "Medicines report",
+                        "sheet_description": "ATC J07 medicines",
+                    },
+                    "filter": {
+                        "column": "ATC code (human)",
+                        "prefix": "J07",
+                    },
+                    "column_count": column_count,
+                    "header_rows": header_rows,
+                    "rows": body_rows,
+                }
+            )
+
+    return {
+        "schema_version": 1,
+        "source": {
+            "directory": str(EMA_DIR.relative_to(ROOT)),
+            "url": EMA_SOURCE_URL,
+        },
+        "source_links": sources_data["source_links"],
+        "source_versions": {},
+        "sheets": sheets,
+    }
+
+
+def bda_header_row_position(rows: list[dict[str, Any]]) -> int:
+    for position, row in enumerate(rows):
+        if any(str(value).strip() == "АТС-Код" for value in row.get("cells", {}).values()):
+            return position
+    raise ValueError("missing BDA ATC header row")
+
+
+def bda_sheet_label(path: Path) -> str:
+    stem = path.stem
+    if stem.endswith("_J07"):
+        return "Bulgarian (BDA)"
+    return f"BDA {stem.replace('-', ' ').replace('_', ' ')}"
+
+
+def bda_file_date(path: Path) -> str:
+    match = re.search(r"_(\d{2})_(\d{4})(?:_|$)", path.stem)
+    if not match:
+        return ""
+    return f"{match.group(1)}/{match.group(2)}"
+
+
+def build_bda_sheets() -> dict[str, Any]:
+    sources_data = read_yaml("sources.yaml")
+    sheets = []
+    if BDA_DIR.is_dir():
+        for artifact in sorted(BDA_DIR.glob("*.xlsx")):
+            if artifact.name.startswith(".~lock") or not artifact.stem.endswith("_J07"):
+                continue
+            with zipfile.ZipFile(artifact) as archive:
+                strings = shared_strings(archive)
+                red_styles = red_style_indexes(archive)
+                red_fill_styles = red_fill_style_indexes(archive)
+                paths = workbook_sheet_paths(archive)
+                if not paths:
+                    raise ValueError(f"{artifact.name}: no worksheets found")
+                workbook_sheet_name, sheet_path = next(iter(paths.items()))
+                rows, column_count = sheet_rows(
+                    archive,
+                    sheet_path,
+                    strings,
+                    red_styles,
+                    red_fill_styles,
+                )
+
+            header_position = bda_header_row_position(rows)
+            header_rows = [rows[header_position]]
+            body_rows = rows[header_position + 1:]
+            sheets.append(
+                {
+                    "id": artifact.stem,
+                    "label": bda_sheet_label(artifact),
+                    "artifact": str(artifact.relative_to(ROOT)),
+                    "workbook_sheet_name": workbook_sheet_name,
+                    "title": "BDA IAL register",
+                    "updated": bda_file_date(artifact),
+                    "source": {
+                        "name": "BDA",
+                        "url": BDA_SOURCE_URL,
+                        "date": bda_file_date(artifact),
+                        "sheet_name": "IAL register",
+                        "sheet_description": "ATC J07 medicines",
+                    },
+                    "filter": {
+                        "column": "АТС-Код",
+                        "prefix": "J07",
+                    },
+                    "column_count": column_count,
+                    "header_rows": header_rows,
+                    "rows": body_rows,
+                }
+            )
+
+    return {
+        "schema_version": 1,
+        "source": {
+            "directory": str(BDA_DIR.relative_to(ROOT)),
+            "url": BDA_SOURCE_URL,
+        },
+        "source_links": sources_data["source_links"],
+        "source_versions": {},
+        "sheets": sheets,
+    }
+
+
 def build_schedule_table(
     his_sheet_labels: dict[str, str] | None = None,
     ncpr_sheet_labels: dict[str, str] | None = None,
+    ema_sheet_labels: dict[str, str] | None = None,
+    bda_sheet_labels: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     columns_data = read_yaml("columns.yaml")
     diseases_data = read_yaml("diseases.yaml")
@@ -773,7 +952,7 @@ def build_schedule_table(
         ],
         "rows": rows,
         "table_source": {
-            "name": "lex.bg",
+            "name": "Immunization ordinance",
             "url": sources_data["source_links"]["lex_calendar"],
             "sheet_name": "Bulgarian immunization calendar",
             "sheet_description": text["en"]["schedule_title"],
@@ -799,6 +978,10 @@ def build_schedule_table(
         },
         "ncpr_sheets": list(ncpr_sheet_labels or {}),
         "ncpr_sheet_labels": ncpr_sheet_labels or {},
+        "ema_sheets": list(ema_sheet_labels or {}),
+        "ema_sheet_labels": ema_sheet_labels or {},
+        "bda_sheets": list(bda_sheet_labels or {}),
+        "bda_sheet_labels": bda_sheet_labels or {},
         "his_sheets_source": {
             "url": str(his_spec["pages"]["nomenclatures"]),
             "version": f"v{his_spec['his_version']}",
@@ -853,13 +1036,47 @@ def main() -> int:
         sheet["id"]: sheet.get("label", sheet["id"])
         for sheet in ncpr_sheets["sheets"]
     }
+    ema_sheets = build_ema_sheets()
+    ema_sheet_labels = {
+        sheet["id"]: sheet.get("label", sheet["id"])
+        for sheet in ema_sheets["sheets"]
+    }
+    bda_sheets = build_bda_sheets()
+    bda_sheet_labels = {
+        sheet["id"]: sheet.get("label", sheet["id"])
+        for sheet in bda_sheets["sheets"]
+    }
     his_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
     his_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
+    his_sheets["ema_sheets"] = list(ema_sheet_labels)
+    his_sheets["ema_sheet_labels"] = ema_sheet_labels
+    his_sheets["bda_sheets"] = list(bda_sheet_labels)
+    his_sheets["bda_sheet_labels"] = bda_sheet_labels
     ncpr_sheets["his_sheets"] = list(HIS_SHEET_NAMES)
     ncpr_sheets["his_sheet_labels"] = his_sheet_labels
     ncpr_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
     ncpr_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
-    table = build_schedule_table(his_sheet_labels, ncpr_sheet_labels)
+    ncpr_sheets["ema_sheets"] = list(ema_sheet_labels)
+    ncpr_sheets["ema_sheet_labels"] = ema_sheet_labels
+    ncpr_sheets["bda_sheets"] = list(bda_sheet_labels)
+    ncpr_sheets["bda_sheet_labels"] = bda_sheet_labels
+    ema_sheets["his_sheets"] = list(HIS_SHEET_NAMES)
+    ema_sheets["his_sheet_labels"] = his_sheet_labels
+    ema_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
+    ema_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
+    ema_sheets["ema_sheets"] = list(ema_sheet_labels)
+    ema_sheets["ema_sheet_labels"] = ema_sheet_labels
+    ema_sheets["bda_sheets"] = list(bda_sheet_labels)
+    ema_sheets["bda_sheet_labels"] = bda_sheet_labels
+    bda_sheets["his_sheets"] = list(HIS_SHEET_NAMES)
+    bda_sheets["his_sheet_labels"] = his_sheet_labels
+    bda_sheets["ncpr_sheets"] = list(ncpr_sheet_labels)
+    bda_sheets["ncpr_sheet_labels"] = ncpr_sheet_labels
+    bda_sheets["ema_sheets"] = list(ema_sheet_labels)
+    bda_sheets["ema_sheet_labels"] = ema_sheet_labels
+    bda_sheets["bda_sheets"] = list(bda_sheet_labels)
+    bda_sheets["bda_sheet_labels"] = bda_sheet_labels
+    table = build_schedule_table(his_sheet_labels, ncpr_sheet_labels, ema_sheet_labels, bda_sheet_labels)
     json_text = json.dumps(table, ensure_ascii=False, indent=2)
     (SITE_DIR / "schedule-table.json").write_text(f"{json_text}\n", encoding="utf-8")
     (SITE_DIR / "schedule-table.js").write_text(
@@ -881,6 +1098,20 @@ def main() -> int:
         f"{json.dumps(ncpr_sheets, ensure_ascii=False, indent=2)};\n",
         encoding="utf-8",
     )
+    ema_sheets_json = json.dumps(ema_sheets, ensure_ascii=False, indent=2)
+    (SITE_DIR / "ema-sheets.json").write_text(f"{ema_sheets_json}\n", encoding="utf-8")
+    (SITE_DIR / "ema-sheets.js").write_text(
+        "window.EMA_SHEETS = "
+        f"{json.dumps(ema_sheets, ensure_ascii=False, indent=2)};\n",
+        encoding="utf-8",
+    )
+    bda_sheets_json = json.dumps(bda_sheets, ensure_ascii=False, indent=2)
+    (SITE_DIR / "bda-sheets.json").write_text(f"{bda_sheets_json}\n", encoding="utf-8")
+    (SITE_DIR / "bda-sheets.js").write_text(
+        "window.BDA_SHEETS = "
+        f"{json.dumps(bda_sheets, ensure_ascii=False, indent=2)};\n",
+        encoding="utf-8",
+    )
     print("copied site-src to generated-site")
     print("wrote generated-site/schedule-table.json")
     print("wrote generated-site/schedule-table.js")
@@ -888,6 +1119,10 @@ def main() -> int:
     print("wrote generated-site/his-sheets.js")
     print("wrote generated-site/ncpr-sheets.json")
     print("wrote generated-site/ncpr-sheets.js")
+    print("wrote generated-site/ema-sheets.json")
+    print("wrote generated-site/ema-sheets.js")
+    print("wrote generated-site/bda-sheets.json")
+    print("wrote generated-site/bda-sheets.js")
     return 0
 
 
