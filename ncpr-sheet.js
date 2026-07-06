@@ -23,9 +23,8 @@
     return;
   }
 
-  const nav = document.getElementById("sheet-nav");
+  const pageNav = document.getElementById("page-nav");
   const bgToggle = document.getElementById("bg-toggle");
-  const oldRecordsToggle = document.getElementById("old-records-toggle");
   const detailsToggle = document.getElementById("details-toggle");
   const sheetSource = document.getElementById("sheet-source");
   const sourceList = document.getElementById("source-list");
@@ -35,7 +34,6 @@
   const headerRows = sheet.header_rows || [];
   const STORAGE_KEYS = {
     showBulgarian: "vaccine-schedule.show-bg",
-    showOldRecords: "vaccine-schedule.show-old-records",
     showDetails: "vaccine-schedule.show-details",
   };
 
@@ -117,22 +115,41 @@
     parent.appendChild(item);
   }
 
-  function renderSheetNav() {
-    for (const sheetName of data.his_sheets || []) {
-      appendLinkItem(
-        nav,
-        data.his_sheet_labels?.[sheetName] || sheetName,
-        `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`
-      );
+  function renderPageNav() {
+    const hisSheets = (data.his_sheets || []).map((sheetName) => ({
+      label: data.his_sheet_labels?.[sheetName] || sheetName,
+      href: `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
+    }));
+    const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
+      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
+      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+      current: sheetId === sheet.id,
+    }));
+
+    if (typeof window.renderGroupedPageNav === "function") {
+      window.renderGroupedPageNav(pageNav, {
+        currentSection: "ncpr",
+        hisSheets,
+        ncprSheets,
+      });
+      return;
     }
-    for (const sheetId of data.ncpr_sheets || []) {
-      appendLinkItem(
-        nav,
-        data.ncpr_sheet_labels?.[sheetId] || sheetId,
-        `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
-        "",
-        sheetId === sheet.id
-      );
+
+    const legacyList = document.getElementById("sheet-nav");
+    if (!legacyList) {
+      return;
+    }
+    legacyList.replaceChildren();
+    for (const item of [...hisSheets, ...ncprSheets]) {
+      const child = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = item.href;
+      link.textContent = item.label;
+      if (item.current) {
+        link.setAttribute("aria-current", "page");
+      }
+      child.appendChild(link);
+      legacyList.appendChild(child);
     }
   }
 
@@ -353,10 +370,6 @@
     return (isKeyColumn(1) || isAtcColumn(1)) && detailsVisible();
   }
 
-  function oldRecordsVisible() {
-    return document.body.classList.contains("show-old-records");
-  }
-
   function visibleColumns() {
     const columns = [];
     const startColumn = rowHeaderVisible() ? 2 : 1;
@@ -389,7 +402,7 @@
   }
 
   function visibleRows() {
-    return sheet.rows.filter((row) => oldRecordsVisible() || !isOldRecordRow(row));
+    return sheet.rows.filter((row) => detailsVisible() || !isOldRecordRow(row));
   }
 
   function nonEmptyCellCount(row) {
@@ -566,12 +579,6 @@
   document.title = sheet.label;
   caption.textContent = sheet.label;
   setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
-  setButtonState(
-    oldRecordsToggle,
-    "show-old-records",
-    STORAGE_KEYS.showOldRecords,
-    storedFlag(STORAGE_KEYS.showOldRecords)
-  );
   setButtonState(detailsToggle, "show-details", STORAGE_KEYS.showDetails, storedFlag(STORAGE_KEYS.showDetails));
   bgToggle.addEventListener("click", () => {
     setButtonState(
@@ -580,15 +587,6 @@
       STORAGE_KEYS.showBulgarian,
       !document.body.classList.contains("show-bg")
     );
-  });
-  oldRecordsToggle.addEventListener("click", () => {
-    setButtonState(
-      oldRecordsToggle,
-      "show-old-records",
-      STORAGE_KEYS.showOldRecords,
-      !oldRecordsVisible()
-    );
-    renderTable();
   });
   detailsToggle.addEventListener("click", () => {
     setButtonState(
@@ -599,7 +597,7 @@
     );
     renderTable();
   });
-  renderSheetNav();
+  renderPageNav();
   appendSourceLine(sheetSource, sheet.source);
   renderTable();
   renderSources();

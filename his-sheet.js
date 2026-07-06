@@ -14,9 +14,8 @@
   const requestedSheet = params.get("sheet") || data.sheets[0]?.name;
   const sheet = data.sheets.find((candidate) => candidate.name === requestedSheet) || data.sheets[0];
 
-  const nav = document.getElementById("sheet-nav");
+  const pageNav = document.getElementById("page-nav");
   const bgToggle = document.getElementById("bg-toggle");
-  const oldRecordsToggle = document.getElementById("old-records-toggle");
   const detailsToggle = document.getElementById("details-toggle");
   const sheetSource = document.getElementById("sheet-source");
   const changeNotesList = document.getElementById("change-notes-list");
@@ -88,7 +87,6 @@
   const productLinksByKey = new Map(Object.entries(data.product_links || {}));
   const STORAGE_KEYS = {
     showBulgarian: "vaccine-schedule.show-bg",
-    showOldRecords: "vaccine-schedule.show-old-records",
     showDetails: "vaccine-schedule.show-details",
   };
 
@@ -163,25 +161,41 @@
     }
   }
 
-  function appendSheetNav() {
-    for (const candidate of data.sheets) {
-      const item = document.createElement("li");
+  function renderPageNav() {
+    const hisSheets = data.sheets.map((candidate) => ({
+      label: candidate.label || candidate.name,
+      href: `his-sheet.html?sheet=${encodeURIComponent(candidate.name)}`,
+      current: candidate.name === sheet.name,
+    }));
+    const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
+      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
+      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+    }));
+
+    if (typeof window.renderGroupedPageNav === "function") {
+      window.renderGroupedPageNav(pageNav, {
+        currentSection: "his",
+        hisSheets,
+        ncprSheets,
+      });
+      return;
+    }
+
+    const legacyList = document.getElementById("sheet-nav");
+    if (!legacyList) {
+      return;
+    }
+    legacyList.replaceChildren();
+    for (const item of [...hisSheets, ...ncprSheets]) {
+      const child = document.createElement("li");
       const link = document.createElement("a");
-      link.href = `his-sheet.html?sheet=${encodeURIComponent(candidate.name)}`;
-      link.textContent = candidate.label || candidate.name;
-      if (candidate.name === sheet.name) {
+      link.href = item.href;
+      link.textContent = item.label;
+      if (item.current) {
         link.setAttribute("aria-current", "page");
       }
-      item.appendChild(link);
-      nav.appendChild(item);
-    }
-    for (const sheetId of data.ncpr_sheets || []) {
-      const item = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`;
-      link.textContent = data.ncpr_sheet_labels?.[sheetId] || sheetId;
-      item.appendChild(link);
-      nav.appendChild(item);
+      child.appendChild(link);
+      legacyList.appendChild(child);
     }
   }
 
@@ -721,17 +735,13 @@
       (column) => (
         !isAlwaysHiddenColumn(column)
         && !isProgramGroupColumn(column)
-        && (oldRecordsVisible() || !isOldRecordColumn(column))
+        && (detailsVisible() || !isOldRecordColumn(column))
         && (detailsVisible() || !isKeyColumn(column))
         && (detailsVisible() || !isAtcColumn(column))
         && (detailsVisible() || !isDetailsColumn(column))
         && (bgColumnsVisible() || !isBulgarianColumn(column))
       )
     );
-  }
-
-  function oldRecordsVisible() {
-    return document.body.classList.contains("show-old-records");
   }
 
   function isOldRecordRow(row) {
@@ -748,7 +758,7 @@
   function visibleRows() {
     return baseBodyRows.filter(
       (row) => (
-        (oldRecordsVisible() || detailsVisible() || !isOldRecordRow(row))
+        (detailsVisible() || !isOldRecordRow(row))
         && (detailsVisible() || !isDetailsRow(row))
       )
     );
@@ -1384,12 +1394,6 @@
   document.title = `HIS ${sheet.name}`;
   caption.textContent = `HIS ${sheet.name}`;
   setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
-  setButtonState(
-    oldRecordsToggle,
-    "show-old-records",
-    STORAGE_KEYS.showOldRecords,
-    storedFlag(STORAGE_KEYS.showOldRecords)
-  );
   setButtonState(detailsToggle, "show-details", STORAGE_KEYS.showDetails, storedFlag(STORAGE_KEYS.showDetails));
   bgToggle.addEventListener("click", () => {
     setButtonState(
@@ -1401,17 +1405,6 @@
     if (sheet.name === "Change Notes") {
       renderChangeNotes();
     } else {
-      renderTable();
-    }
-  });
-  oldRecordsToggle.addEventListener("click", () => {
-    setButtonState(
-      oldRecordsToggle,
-      "show-old-records",
-      STORAGE_KEYS.showOldRecords,
-      !document.body.classList.contains("show-old-records")
-    );
-    if (sheet.name !== "Change Notes") {
       renderTable();
     }
   });
@@ -1428,7 +1421,7 @@
       renderTable();
     }
   });
-  appendSheetNav();
+  renderPageNav();
   appendSourceLine(sheetSource, sheet.source);
   renderSources();
   renderOtherCalendars();

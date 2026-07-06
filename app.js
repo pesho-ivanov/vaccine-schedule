@@ -16,7 +16,7 @@
   const tableSource = document.getElementById("table-source");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
-  const hisSheetList = document.getElementById("his-sheet-list");
+  const pageNav = document.getElementById("page-nav");
   const STORAGE_KEYS = {
     showBulgarian: "vaccine-schedule.show-bg",
   };
@@ -442,20 +442,32 @@
     );
   }
 
-  function renderHisSheets() {
-    for (const sheetName of data.his_sheets || []) {
-      appendLinkItem(
-        hisSheetList,
-        data.his_sheet_labels?.[sheetName] || sheetName,
-        `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`
-      );
+  function renderPageNav() {
+    const hisSheets = (data.his_sheets || []).map((sheetName) => ({
+      label: data.his_sheet_labels?.[sheetName] || sheetName,
+      href: `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
+    }));
+    const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
+      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
+      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+    }));
+
+    if (typeof window.renderGroupedPageNav === "function") {
+      window.renderGroupedPageNav(pageNav, {
+        currentSection: "table",
+        hisSheets,
+        ncprSheets,
+      });
+      return;
     }
-    for (const sheetId of data.ncpr_sheets || []) {
-      appendLinkItem(
-        hisSheetList,
-        data.ncpr_sheet_labels?.[sheetId] || sheetId,
-        `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`
-      );
+
+    const legacyList = document.getElementById("his-sheet-list");
+    if (!legacyList) {
+      return;
+    }
+    legacyList.replaceChildren();
+    for (const item of [...hisSheets, ...ncprSheets]) {
+      appendLinkItem(legacyList, item.label, item.href);
     }
   }
 
@@ -465,5 +477,5 @@
   appendSourceLine(tableSource, data.table_source);
   renderSources();
   renderOtherCalendars();
-  renderHisSheets();
+  renderPageNav();
 })();

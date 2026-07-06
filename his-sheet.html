@@ -10,15 +10,11 @@
     <header class="page-header">
       <div class="header-content">
         <h1><a class="title-link" href="index.html">Vaccine schedule for Bulgaria</a></h1>
-        <nav class="page-link-row sheet-link-row" aria-label="Pages and sheets">
-          <a href="index.html">Table</a>
-          <ul id="sheet-nav"></ul>
-        </nav>
+        <nav id="page-nav" class="grouped-page-nav" aria-label="Pages and sheets"></nav>
       </div>
       <div class="header-actions">
         <button id="bg-toggle" class="language-toggle" type="button" aria-pressed="false">BG</button>
-        <button id="old-records-toggle" class="language-toggle old-records-toggle" type="button" aria-pressed="false">Old records</button>
-        <button id="details-toggle" class="language-toggle old-records-toggle" type="button" aria-pressed="false">Details</button>
+        <button id="details-toggle" class="language-toggle header-text-toggle" type="button" aria-pressed="false">Details</button>
       </div>
     </header>
 
@@ -56,6 +52,7 @@
     </main>
 
     <script src="his-sheets.js"></script>
+    <script src="page-nav.js"></script>
     <script src="his-sheet.js"></script>
   </body>
 </html>
