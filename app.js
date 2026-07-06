@@ -10,15 +10,24 @@
     return;
   }
 
+  const route = window.VACCINE_SITE_ROUTE || { section: "table" };
+  if (route.section !== "table") {
+    return;
+  }
+
+  document.getElementById("schedule-page").hidden = false;
+  document.getElementById("sheet-page").hidden = true;
+
   const table = document.getElementById("schedule-table");
   const title = document.getElementById("page-title");
   const bgToggle = document.getElementById("bg-toggle");
-  const tableSource = document.getElementById("table-source");
+  const detailsToggle = document.getElementById("details-toggle");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const pageNav = document.getElementById("page-nav");
   const STORAGE_KEYS = {
     showBulgarian: "vaccine-schedule.show-bg",
+    showDetails: "vaccine-schedule.show-details",
   };
 
   title.textContent = data.title.en;
@@ -46,12 +55,21 @@
   }
 
   setButtonState(bgToggle, "show-bg", STORAGE_KEYS.showBulgarian, storedFlag(STORAGE_KEYS.showBulgarian));
+  setButtonState(detailsToggle, "show-details", STORAGE_KEYS.showDetails, storedFlag(STORAGE_KEYS.showDetails));
   bgToggle.addEventListener("click", () => {
     setButtonState(
       bgToggle,
       "show-bg",
       STORAGE_KEYS.showBulgarian,
       !document.body.classList.contains("show-bg")
+    );
+  });
+  detailsToggle.addEventListener("click", () => {
+    setButtonState(
+      detailsToggle,
+      "show-details",
+      STORAGE_KEYS.showDetails,
+      !document.body.classList.contains("show-details")
     );
   });
 
@@ -75,22 +93,10 @@
     }
 
     parent.replaceChildren();
-    appendText(parent, "Source:", "table-source-label");
-    const link = document.createElement("a");
-    link.href = source.url;
-    link.rel = "noreferrer";
-    link.textContent = source.name;
-    parent.appendChild(link);
+    const tableText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ") || source.name;
 
     const versionText = [source.version, source.date].filter(Boolean).join(", ");
-    if (versionText) {
-      appendText(parent, `(${versionText})`, "table-source-version");
-    }
-
-    const sheetText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ");
-    if (sheetText) {
-      appendText(parent, `- ${sheetText}`, "table-source-sheet");
-    }
+    parent.textContent = versionText ? `${tableText} (${versionText})` : tableText;
   }
 
   function normalizedText(value) {
@@ -171,6 +177,14 @@
 
   function makeHeader() {
     const thead = document.createElement("thead");
+    const sourceRow = document.createElement("tr");
+    sourceRow.className = "table-source-row";
+    const sourceCell = document.createElement("th");
+    sourceCell.scope = "colgroup";
+    sourceCell.colSpan = data.columns.length + 2;
+    appendSourceLine(sourceCell, data.table_source);
+    sourceRow.appendChild(sourceCell);
+
     const groupRow = document.createElement("tr");
     groupRow.className = "column-group-row";
     const timeRow = document.createElement("tr");
@@ -217,6 +231,7 @@
       timeRow.appendChild(th);
     }
 
+    thead.appendChild(sourceRow);
     thead.appendChild(groupRow);
     thead.appendChild(timeRow);
     return thead;
@@ -369,7 +384,8 @@
   function sourceLabel(name) {
     const label = {
       ecdc_calendar: "ECDC",
-      lex_calendar: "lex.bg",
+      lex_calendar: "Immunization ordinance",
+      lex_medicine_prices: "Medicine price regulation",
       pregnancy_vaccine: "plusmen.bg",
       his_bg: "his.bg",
     }[name] || name.replaceAll("_", " ");
@@ -379,7 +395,8 @@
 
   function sourceTitle(name) {
     return {
-      lex_calendar: "The law about vaccines in Bulgaria.",
+      lex_calendar: "Ordinance No. 15 on immunizations in Bulgaria.",
+      lex_medicine_prices: "Rules for regulation and registration of medicinal product prices.",
       pregnancy_vaccine: "Informational site. Not complete and updated.",
       his_bg: "The electronic health system in Bulgaria. Sheets CL037 & CL038.",
     }[name] || "";
@@ -399,7 +416,7 @@
   }
 
   function renderSources() {
-    const sourceOrder = ["lex_calendar", "his_bg", "pregnancy_vaccine"];
+    const sourceOrder = ["lex_calendar", "lex_medicine_prices", "his_bg", "pregnancy_vaccine"];
     for (const name of sourceOrder) {
       const url = data.source_links[name];
       if (!url) {
@@ -444,12 +461,20 @@
 
   function renderPageNav() {
     const hisSheets = (data.his_sheets || []).map((sheetName) => ({
-      label: data.his_sheet_labels?.[sheetName] || sheetName,
-      href: `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
+      label: window.vaccineButtonLabel(data.his_sheet_labels?.[sheetName] || sheetName, "HIS"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.his_sheet_labels?.[sheetName] || sheetName, "HIS")),
     }));
     const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
-      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
-      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+      label: window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR")),
+    }));
+    const emaSheets = (data.ema_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA")),
+    }));
+    const bdaSheets = (data.bda_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA")),
     }));
 
     if (typeof window.renderGroupedPageNav === "function") {
@@ -457,6 +482,8 @@
         currentSection: "table",
         hisSheets,
         ncprSheets,
+        emaSheets,
+        bdaSheets,
       });
       return;
     }
@@ -466,7 +493,7 @@
       return;
     }
     legacyList.replaceChildren();
-    for (const item of [...hisSheets, ...ncprSheets]) {
+    for (const item of [...hisSheets, ...ncprSheets, ...bdaSheets, ...emaSheets]) {
       appendLinkItem(legacyList, item.label, item.href);
     }
   }
@@ -474,7 +501,6 @@
   table.appendChild(makeColGroup());
   table.appendChild(makeHeader());
   table.appendChild(makeBody());
-  appendSourceLine(tableSource, data.table_source);
   renderSources();
   renderOtherCalendars();
   renderPageNav();

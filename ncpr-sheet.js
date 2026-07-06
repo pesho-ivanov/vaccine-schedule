@@ -10,8 +10,18 @@
     return;
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const requestedSheet = params.get("sheet") || data.sheets[0]?.id;
+  const route = window.VACCINE_SITE_ROUTE || {};
+  if (route.section !== "ncpr") {
+    return;
+  }
+
+  document.getElementById("schedule-page").hidden = true;
+  document.getElementById("sheet-page").hidden = false;
+  document.querySelectorAll("#sheet-table-section table").forEach((candidate) => {
+    candidate.hidden = true;
+  });
+
+  const requestedSheet = route.sheetId || data.sheets[0]?.id;
   const sheet = data.sheets.find((candidate) => candidate.id === requestedSheet) || data.sheets[0];
 
   if (!sheet) {
@@ -26,7 +36,6 @@
   const pageNav = document.getElementById("page-nav");
   const bgToggle = document.getElementById("bg-toggle");
   const detailsToggle = document.getElementById("details-toggle");
-  const sheetSource = document.getElementById("sheet-source");
   const sourceList = document.getElementById("source-list");
   const otherCalendarList = document.getElementById("other-calendar-list");
   const table = document.getElementById("ncpr-sheet-table");
@@ -79,22 +88,10 @@
     }
 
     parent.replaceChildren();
-    appendText(parent, "Source:", "table-source-label");
-    const link = document.createElement("a");
-    link.href = source.url;
-    link.rel = "noreferrer";
-    link.textContent = source.name;
-    parent.appendChild(link);
+    const tableText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ") || source.name;
 
     const versionText = [source.version, source.date].filter(Boolean).join(", ");
-    if (versionText) {
-      appendText(parent, `(${versionText})`, "table-source-version");
-    }
-
-    const sheetText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ");
-    if (sheetText) {
-      appendText(parent, `- ${sheetText}`, "table-source-sheet");
-    }
+    parent.textContent = versionText ? `${tableText} (${versionText})` : tableText;
   }
 
   function appendLinkItem(parent, label, url, title = "", current = false) {
@@ -117,13 +114,21 @@
 
   function renderPageNav() {
     const hisSheets = (data.his_sheets || []).map((sheetName) => ({
-      label: data.his_sheet_labels?.[sheetName] || sheetName,
-      href: `his-sheet.html?sheet=${encodeURIComponent(sheetName)}`,
+      label: window.vaccineButtonLabel(data.his_sheet_labels?.[sheetName] || sheetName, "HIS"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.his_sheet_labels?.[sheetName] || sheetName, "HIS")),
     }));
     const ncprSheets = (data.ncpr_sheets || []).map((sheetId) => ({
-      label: data.ncpr_sheet_labels?.[sheetId] || sheetId,
-      href: `ncpr-sheet.html?sheet=${encodeURIComponent(sheetId)}`,
+      label: window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ncpr_sheet_labels?.[sheetId] || sheetId, "NCPR")),
       current: sheetId === sheet.id,
+    }));
+    const emaSheets = (data.ema_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.ema_sheet_labels?.[sheetId] || sheetId, "EMA")),
+    }));
+    const bdaSheets = (data.bda_sheets || []).map((sheetId) => ({
+      label: window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA"),
+      href: window.vaccinePageHref(window.vaccineButtonLabel(data.bda_sheet_labels?.[sheetId] || sheetId, "BDA")),
     }));
 
     if (typeof window.renderGroupedPageNav === "function") {
@@ -131,6 +136,8 @@
         currentSection: "ncpr",
         hisSheets,
         ncprSheets,
+        emaSheets,
+        bdaSheets,
       });
       return;
     }
@@ -140,7 +147,7 @@
       return;
     }
     legacyList.replaceChildren();
-    for (const item of [...hisSheets, ...ncprSheets]) {
+    for (const item of [...hisSheets, ...ncprSheets, ...bdaSheets, ...emaSheets]) {
       const child = document.createElement("li");
       const link = document.createElement("a");
       link.href = item.href;
@@ -156,7 +163,8 @@
   function sourceLabel(name) {
     const label = {
       ecdc_calendar: "ECDC",
-      lex_calendar: "lex.bg",
+      lex_calendar: "Immunization ordinance",
+      lex_medicine_prices: "Medicine price regulation",
       pregnancy_vaccine: "plusmen.bg",
       his_bg: "his.bg",
     }[name] || name.replaceAll("_", " ");
@@ -166,14 +174,15 @@
 
   function sourceTitle(name) {
     return {
-      lex_calendar: "The law about vaccines in Bulgaria.",
+      lex_calendar: "Ordinance No. 15 on immunizations in Bulgaria.",
+      lex_medicine_prices: "Rules for regulation and registration of medicinal product prices.",
       pregnancy_vaccine: "Informational site. Not complete and updated.",
       his_bg: "The electronic health system in Bulgaria. Sheets CL037 & CL038.",
     }[name] || "";
   }
 
   function renderSources() {
-    const sourceOrder = ["lex_calendar", "his_bg", "pregnancy_vaccine"];
+    const sourceOrder = ["lex_calendar", "lex_medicine_prices", "his_bg", "pregnancy_vaccine"];
     for (const name of sourceOrder) {
       const url = data.source_links[name];
       if (!url) {
@@ -493,6 +502,18 @@
     const columns = visibleColumns();
     const productColumns = columns.filter(isProductColumn);
     const otherColumns = columns.filter((column) => !isProductColumn(column));
+    const columnCount = columns.length
+      + 1
+      + (rowHeaderVisible() ? 1 : 0)
+      + (categoryNamesVisible() ? 1 : 0);
+
+    const sourceRow = document.createElement("tr");
+    sourceRow.className = "table-source-row";
+    const sourceCell = document.createElement("th");
+    sourceCell.scope = "colgroup";
+    sourceCell.colSpan = columnCount;
+    appendSourceLine(sourceCell, sheet.source);
+    sourceRow.appendChild(sourceCell);
 
     const rowNumberHeader = document.createElement("th");
     rowNumberHeader.scope = "col";
@@ -520,6 +541,7 @@
 
     appendColumnHeaders(row, otherColumns);
 
+    thead.appendChild(sourceRow);
     thead.appendChild(row);
     targetTable.appendChild(thead);
   }
@@ -568,6 +590,7 @@
   }
 
   function renderTable() {
+    table.hidden = false;
     table.replaceChildren();
     const captionNode = document.createElement("caption");
     captionNode.textContent = sheet.label;
@@ -598,7 +621,6 @@
     renderTable();
   });
   renderPageNav();
-  appendSourceLine(sheetSource, sheet.source);
   renderTable();
   renderSources();
   renderOtherCalendars();

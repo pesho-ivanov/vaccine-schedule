@@ -10,6 +10,7 @@ window.HIS_SHEETS = {
   "source_links": {
     "ecdc_calendar": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
     "lex_calendar": "https://lex.bg/laws/ldoc/2135504228",
+    "lex_medicine_prices": "https://lex.bg/laws/ldoc/2135549536",
     "pregnancy_vaccine": "https://plusmen.bg",
     "his_bg": "https://his.bg/bg/dev/nomenclatures"
   },
@@ -12443,5 +12444,17 @@ window.HIS_SHEETS = {
     "Prilogenie-2-Export-202607051748": "NCPR Appendix 2",
     "Prilogenie-3-Export-202607051802": "NCPR Appendix 3",
     "Prilogenie-4-Export-202607051815": "NCPR Appendix 4"
+  },
+  "ema_sheets": [
+    "medicines-output-medicines-report_en_J07"
+  ],
+  "ema_sheet_labels": {
+    "medicines-output-medicines-report_en_J07": "EU (EMA)"
+  },
+  "bda_sheets": [
+    "IAL_Register_05_2026_J07"
+  ],
+  "bda_sheet_labels": {
+    "IAL_Register_05_2026_J07": "Bulgarian (BDA)"
   }
 };
