@@ -2,7 +2,7 @@
   "schema_version": 1,
   "source": {
     "directory": "data/ema",
-    "url": "https://www.ema.europa.eu/en/medicines"
+    "url": "https://www.ema.europa.eu/en/medicines/download-medicine-data"
   },
   "source_links": {
     "ecdc_calendar": "https://vaccine-schedule.ecdc.europa.eu/Scheduler/ByCountry?SelectedCountryId=35&IncludeChildAgeGroup=true&IncludeChildAgeGroup=false&IncludeAdultAgeGroup=false",
@@ -22,7 +22,7 @@
       "updated": "06/07/2026 - 06:00",
       "source": {
         "name": "EMA",
-        "url": "https://www.ema.europa.eu/en/medicines",
+        "url": "https://www.ema.europa.eu/en/medicines/download-medicine-data",
         "date": "06/07/2026 - 06:00",
         "sheet_name": "Medicines report",
         "sheet_description": "ATC J07 medicines"
