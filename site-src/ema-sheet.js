@@ -45,12 +45,14 @@
     showBulgarian: "vaccine-schedule.show-bg",
     showDetails: "vaccine-schedule.show-details",
   };
+  const INN_COLUMN_HEADER = "International non-proprietary name (INN) / common name";
+  const THERAPEUTIC_INDICATION_HEADER = "Therapeutic indication";
+  const THERAPEUTIC_INDICATION_PREVIEW_LENGTH = 180;
   const parentFacingHeaders = new Set([
     "Name of medicine",
-    "Medicine status",
-    "International non-proprietary name (INN) / common name",
+    INN_COLUMN_HEADER,
     "Active substance",
-    "Therapeutic indication",
+    THERAPEUTIC_INDICATION_HEADER,
   ]);
 
   function storedFlag(key) {
@@ -98,7 +100,16 @@
     const tableText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ") || source.name;
 
     const versionText = [source.version, source.date].filter(Boolean).join(", ");
-    parent.textContent = versionText ? `${tableText} (${versionText})` : tableText;
+    const titleText = versionText ? `${tableText} (${versionText})` : tableText;
+
+    const sourceLink = document.createElement("a");
+    sourceLink.className = "table-source-symbol-link";
+    sourceLink.href = source.url;
+    sourceLink.rel = "noreferrer";
+    sourceLink.textContent = "🔗";
+    sourceLink.setAttribute("aria-label", "Open EMA medicine data source");
+    parent.appendChild(sourceLink);
+    parent.appendChild(document.createTextNode(titleText));
   }
 
   function appendLinkItem(parent, label, url, title = "", current = false) {
@@ -234,6 +245,10 @@
     return headerTexts(column).join("\n");
   }
 
+  function displayColumnHeader(column) {
+    return headerTexts(column).map((header) => (header === INN_COLUMN_HEADER ? "INN" : header)).join("\n");
+  }
+
   function detailsVisible() {
     return document.body.classList.contains("show-details");
   }
@@ -246,11 +261,82 @@
     return headerTexts(column).some((header) => parentFacingHeaders.has(header));
   }
 
+  function findColumnByHeader(label) {
+    for (let index = 1; index <= sheet.column_count; index += 1) {
+      if (headerTexts(index).includes(label)) {
+        return index;
+      }
+    }
+    return 0;
+  }
+
+  function visibleRows() {
+    if (detailsVisible()) {
+      return sheet.rows;
+    }
+
+    const statusColumn = findColumnByHeader("Medicine status");
+    if (!statusColumn) {
+      return sheet.rows;
+    }
+    return sheet.rows.filter((row) => displayText(cellValue(row, statusColumn)) === "Authorised");
+  }
+
+  function isTherapeuticIndicationColumn(column) {
+    return headerTexts(column).includes(THERAPEUTIC_INDICATION_HEADER);
+  }
+
+  function previewText(text, maxLength) {
+    if (text.length <= maxLength) {
+      return text;
+    }
+
+    const wordBreak = text.lastIndexOf(" ", maxLength);
+    const cutoff = wordBreak > Math.floor(maxLength * 0.65) ? wordBreak : maxLength;
+    return text.slice(0, cutoff).trimEnd();
+  }
+
+  function appendExpandableCellText(cell, text, column) {
+    if (
+      detailsVisible()
+      || !isTherapeuticIndicationColumn(column)
+      || text.length <= THERAPEUTIC_INDICATION_PREVIEW_LENGTH
+    ) {
+      cell.textContent = text;
+      return;
+    }
+
+    const preview = previewText(text, THERAPEUTIC_INDICATION_PREVIEW_LENGTH);
+    const textNode = document.createElement("span");
+    textNode.className = "sheet-expandable-text";
+    textNode.textContent = `${preview}...`;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "sheet-expand-toggle";
+    button.textContent = "More";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", "Show full therapeutic indication");
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!expanded));
+      button.textContent = expanded ? "More" : "Less";
+      button.setAttribute(
+        "aria-label",
+        expanded ? "Show full therapeutic indication" : "Collapse therapeutic indication"
+      );
+      textNode.textContent = expanded ? `${preview}...` : text;
+    });
+
+    cell.classList.add("sheet-expandable-cell");
+    cell.append(textNode, button);
+  }
+
   function columnHasValue(column) {
     if (columnHeader(column)) {
       return true;
     }
-    return sheet.rows.some((row) => Boolean(displayText(cellValue(row, column))));
+    return visibleRows().some((row) => Boolean(displayText(cellValue(row, column))));
   }
 
   function visibleColumns() {
@@ -289,7 +375,10 @@
     for (const column of columns) {
       const th = document.createElement("th");
       th.scope = "col";
-      th.textContent = columnHeader(column);
+      th.textContent = displayColumnHeader(column);
+      if (headerTexts(column).includes(INN_COLUMN_HEADER)) {
+        setTooltip(th, INN_COLUMN_HEADER);
+      }
       row.appendChild(th);
     }
 
@@ -302,7 +391,7 @@
     const tbody = document.createElement("tbody");
     const columns = visibleColumns();
 
-    for (const [index, sheetRow] of sheet.rows.entries()) {
+    for (const [index, sheetRow] of visibleRows().entries()) {
       const tr = document.createElement("tr");
 
       const rowNumberCell = document.createElement("th");
@@ -313,7 +402,7 @@
 
       for (const column of columns) {
         const td = document.createElement("td");
-        td.textContent = displayText(cellValue(sheetRow, column));
+        appendExpandableCellText(td, displayText(cellValue(sheetRow, column)), column);
         tr.appendChild(td);
       }
 

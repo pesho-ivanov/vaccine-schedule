@@ -358,6 +358,11 @@ main {
   font-weight: 800;
 }
 
+.table-source-row .table-source-symbol-link {
+  margin: 0 5px 0 0;
+  text-decoration: none;
+}
+
 .table-source-row .table-source-version,
 .table-source-row .table-source-sheet {
   margin-left: 4px;
@@ -782,6 +787,40 @@ tbody .schedule-row-number {
 .bda-sheet-table thead th {
   min-width: 130px;
   white-space: pre-wrap;
+}
+
+.ema-sheet-table .sheet-expandable-cell {
+  min-width: 360px;
+  max-width: 520px;
+}
+
+.sheet-expandable-text {
+  display: inline;
+}
+
+.sheet-expand-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  margin: 4px 0 0 6px;
+  padding: 1px 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #fbfcfe;
+  color: #245c9f;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.sheet-expand-toggle:hover,
+.sheet-expand-toggle:focus-visible {
+  border-color: #245c9f;
+  outline: 2px solid rgb(36 92 159 / 0.18);
+  outline-offset: 1px;
 }
 
 .ncpr-sheet-table thead .sheet-display-row-number {
