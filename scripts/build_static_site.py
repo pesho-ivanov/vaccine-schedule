@@ -20,6 +20,7 @@ SITE_SRC_DIR = ROOT / "site-src"
 SITE_DIR = ROOT / "generated-site"
 STATIC_FILES = (
     "index.html",
+    "page-nav.js",
     "app.js",
     "his-sheet.html",
     "his-sheet.js",

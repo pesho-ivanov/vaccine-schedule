@@ -65,7 +65,7 @@ body {
   cursor: pointer;
 }
 
-.old-records-toggle {
+.header-text-toggle {
   width: auto;
   padding: 0 10px;
   white-space: nowrap;
@@ -149,6 +149,93 @@ h1 {
   visibility: visible;
 }
 
+.grouped-page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+
+.page-nav-group {
+  display: grid;
+  grid-template-rows: 30px auto;
+  margin-left: -1px;
+}
+
+.page-nav-group:first-child {
+  margin-left: 0;
+}
+
+.page-nav-group-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccd7e4;
+  border-bottom: 0;
+  background: #dfe8f2;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.page-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin-left: -1px;
+  padding: 0 16px;
+  border: 1px solid #ccd7e4;
+  border-radius: 0;
+  background: #edf3f8;
+  color: #5e6f82;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.page-nav-list li:first-child .page-nav-link {
+  margin-left: 0;
+}
+
+.page-nav-link[aria-current="page"] {
+  position: relative;
+  z-index: 1;
+  border-color: #00479f;
+  background: #00479f;
+  color: #ffffff;
+}
+
+.page-nav-group-single {
+  grid-template-rows: 70px;
+}
+
+.page-nav-single-link {
+  min-height: 70px;
+  margin-left: 0;
+  border-radius: 8px 0 0 8px;
+}
+
+.page-nav-group:last-child .page-nav-list li:last-child .page-nav-link {
+  border-radius: 0 8px 8px 0;
+}
+
+.page-nav-group:last-child .page-nav-group-label {
+  border-radius: 0 8px 0 0;
+}
+
 .page-link-row {
   display: flex;
   flex-wrap: wrap;
@@ -157,41 +244,25 @@ h1 {
   margin-top: 12px;
 }
 
-.page-link-row > a {
+.page-link-row > a,
+.sheet-link-row li a {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
+  margin-left: -1px;
   padding: 0 16px;
   border: 1px solid #ccd7e4;
-  border-radius: 8px 0 0 8px;
   background: #edf3f8;
   color: #5e6f82;
   font-size: 0.92rem;
   font-weight: 800;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.page-link-row > a[aria-current="page"] {
-  position: relative;
-  z-index: 1;
-  border-color: #00479f;
-  background: #00479f;
-  color: #ffffff;
-}
-
-.sheet-link-row {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 0;
-  margin-top: 12px;
-}
-
-.sheet-link-row span {
-  flex: 0 0 auto;
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 800;
+.page-link-row > a {
+  margin-left: 0;
+  border-radius: 8px 0 0 8px;
 }
 
 .sheet-link-row ul {
@@ -203,21 +274,7 @@ h1 {
   list-style: none;
 }
 
-.sheet-link-row li a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  margin-left: -1px;
-  padding: 0 16px;
-  border: 1px solid #ccd7e4;
-  border-radius: 0;
-  background: #edf3f8;
-  color: #5e6f82;
-  font-size: 0.92rem;
-  font-weight: 800;
-  text-decoration: none;
-}
-
+.page-link-row > a[aria-current="page"],
 .sheet-link-row li a[aria-current="page"] {
   position: relative;
   z-index: 1;
@@ -796,13 +853,80 @@ tbody .schedule-row-number {
   }
 
   .page-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 16px;
     padding: 22px 18px 18px;
+  }
+
+  .header-content {
+    display: contents;
+  }
+
+  .page-header h1 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .grouped-page-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
   }
 
   .language-toggle {
     min-width: 40px;
     height: 32px;
+  }
+
+  .page-nav-group {
+    width: 100%;
+    margin-top: -1px;
+    margin-left: 0;
+  }
+
+  .page-nav-group:first-child {
+    margin-top: 0;
+  }
+
+  .page-nav-group-single {
+    grid-template-rows: 40px;
+  }
+
+  .page-nav-single-link {
+    min-height: 40px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .page-nav-group-label {
+    justify-content: flex-start;
+    padding: 0 12px;
+    border-radius: 0;
+  }
+
+  .page-nav-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  }
+
+  .page-nav-link {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .page-nav-group:last-child .page-nav-group-label {
+    border-radius: 0;
+  }
+
+  .page-nav-group:last-child .page-nav-list li:last-child .page-nav-link {
+    border-radius: 0 0 8px 8px;
   }
 
   main {
