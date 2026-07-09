@@ -1,4 +1,7 @@
 (() => {
+  const BDA_SOURCE_URL = "https://bda.bg/bg/регистри";
+  const EMA_SOURCE_URL = "https://www.ema.europa.eu/en/medicines/download-medicine-data";
+
   function stripGroupPrefix(label, prefix) {
     const text = String(label || "").trim();
     const stripped = text.replace(new RegExp(`^${prefix}\\s+`, "i"), "");
@@ -16,6 +19,24 @@
     if (item.current) {
       link.setAttribute("aria-current", "page");
     }
+    if (item.sourceHref) {
+      const wrapper = document.createElement("span");
+      wrapper.className = "page-nav-button-with-source";
+      if (item.current) {
+        wrapper.classList.add("page-nav-button-current");
+      }
+
+      const sourceLink = document.createElement("a");
+      sourceLink.className = "page-nav-button-source-link";
+      sourceLink.href = item.sourceHref;
+      sourceLink.textContent = "🔗";
+      sourceLink.setAttribute("aria-label", `Open ${item.label} source`);
+      if (/^https?:/i.test(item.sourceHref)) {
+        sourceLink.rel = "noreferrer";
+      }
+      wrapper.append(sourceLink, link);
+      return wrapper;
+    }
     return link;
   }
 
@@ -27,6 +48,17 @@
     const heading = document.createElement("div");
     heading.id = `page-nav-${group.id}`;
     heading.className = "page-nav-group-label";
+    if (group.sourceHref) {
+      const sourceLink = document.createElement("a");
+      sourceLink.className = "page-nav-group-source-link";
+      sourceLink.href = group.sourceHref;
+      sourceLink.textContent = "🔗";
+      sourceLink.setAttribute("aria-label", `Open ${group.label} source`);
+      if (/^https?:/i.test(group.sourceHref)) {
+        sourceLink.rel = "noreferrer";
+      }
+      heading.appendChild(sourceLink);
+    }
     if (group.href) {
       const link = document.createElement("a");
       link.className = "page-nav-group-link";
@@ -37,7 +69,7 @@
       }
       heading.appendChild(link);
     } else {
-      heading.textContent = group.label;
+      heading.appendChild(document.createTextNode(group.label));
     }
     section.appendChild(heading);
 
@@ -76,10 +108,12 @@
     const emaSheets = (options.emaSheets || []).map((item) => ({
       ...item,
       label: stripGroupPrefix(item.label, "EMA"),
+      sourceHref: EMA_SOURCE_URL,
     }));
     const bdaSheets = (options.bdaSheets || []).map((item) => ({
       ...item,
       label: stripGroupPrefix(item.label, "BDA"),
+      sourceHref: BDA_SOURCE_URL,
     }));
     const registrySheets = [...bdaSheets, ...emaSheets];
 
@@ -111,7 +145,7 @@
       container.appendChild(makeGroupedSection({
         id: "ncpr",
         label: "Prices (NCPR)",
-        href: "https://www.ncpr.bg",
+        sourceHref: "https://ncpr.bg/bg/регистри.html",
         items: ncprSheets,
       }));
     }

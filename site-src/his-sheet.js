@@ -700,9 +700,6 @@
 
   function isAlwaysHiddenColumn(column) {
     const hiddenBySheet = {
-      CL037: [
-        "Target Disease",
-      ],
       CL038: [
         "CL082 Mapping",
         "CL037 Mapping (2023)",
