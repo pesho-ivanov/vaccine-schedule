@@ -115,15 +115,7 @@
     const tableText = [source.sheet_name, source.sheet_description].filter(Boolean).join(": ") || source.name;
     const versionText = [source.version, source.date].filter(Boolean).join(", ");
     const titleText = versionText ? `${tableText} (${versionText})` : tableText;
-
-    const sourceLink = document.createElement("a");
-    sourceLink.className = "table-source-symbol-link";
-    sourceLink.href = source.url;
-    sourceLink.rel = "noreferrer";
-    sourceLink.textContent = "🔗";
-    sourceLink.setAttribute("aria-label", "Open BDA registries source");
-    parent.appendChild(sourceLink);
-    parent.appendChild(document.createTextNode(titleText));
+    parent.textContent = titleText;
   }
 
   function appendLinkItem(parent, label, url, title = "", current = false) {

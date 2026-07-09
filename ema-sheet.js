@@ -101,15 +101,7 @@
 
     const versionText = [source.version, source.date].filter(Boolean).join(", ");
     const titleText = versionText ? `${tableText} (${versionText})` : tableText;
-
-    const sourceLink = document.createElement("a");
-    sourceLink.className = "table-source-symbol-link";
-    sourceLink.href = source.url;
-    sourceLink.rel = "noreferrer";
-    sourceLink.textContent = "🔗";
-    sourceLink.setAttribute("aria-label", "Open EMA medicine data source");
-    parent.appendChild(sourceLink);
-    parent.appendChild(document.createTextNode(titleText));
+    parent.textContent = titleText;
   }
 
   function appendLinkItem(parent, label, url, title = "", current = false) {
@@ -309,23 +301,23 @@
     const preview = previewText(text, THERAPEUTIC_INDICATION_PREVIEW_LENGTH);
     const textNode = document.createElement("span");
     textNode.className = "sheet-expandable-text";
-    textNode.textContent = `${preview}...`;
+    textNode.textContent = preview;
 
     const button = document.createElement("button");
     button.type = "button";
     button.className = "sheet-expand-toggle";
-    button.textContent = "More";
+    button.textContent = "...";
     button.setAttribute("aria-expanded", "false");
     button.setAttribute("aria-label", "Show full therapeutic indication");
     button.addEventListener("click", () => {
       const expanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", String(!expanded));
-      button.textContent = expanded ? "More" : "Less";
+      button.textContent = expanded ? "..." : "<<";
       button.setAttribute(
         "aria-label",
         expanded ? "Show full therapeutic indication" : "Collapse therapeutic indication"
       );
-      textNode.textContent = expanded ? `${preview}...` : text;
+      textNode.textContent = expanded ? preview : text;
     });
 
     cell.classList.add("sheet-expandable-cell");
